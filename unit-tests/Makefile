@@ -10,8 +10,8 @@ EXECUTION_STAMPS := $(TEST_OBJS:.o=.execution.stamp)
 
 CC = gcc
 CFLAGS_MORE =
-CFLAGS = -fno-builtin #-Wall -Wextra -Werror
-CFLAGS += $(CFLAGS_MORE)
+CFLAGS_UTEST = -fno-builtin #-Wall -Wextra -Werror
+CFLAGS_UTEST += $(CFLAGS) $(CFLAGS_MORE)
 
 
 
@@ -29,7 +29,7 @@ build_tests : cmocka $(TEST_OBJS)
 
 .PHONY : cmocka
 cmocka : 
-	if $(CC) $(CFLAGS)\
+	if $(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -L $(LIBS_L)\
 	 	$(UTEST_DIR)/boilerplate.c\
 		 -lcmocka -o test.o; then\
@@ -42,7 +42,7 @@ cmocka :
 	fi
 
 %.test.o $(UTEST_DIR)/%.test.o : $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS)\
+	$(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
 		-include $(SRC_DIR)/$*.c\
@@ -54,7 +54,7 @@ cmocka :
 		touch $(UTEST_DIR)/$*.test.build.stamp
 
 %.test.o : %.test.c
-	$(CC) $(CFLAGS)\
+	$(CC) $(CFLAGS_UTEST)\
 		-I $(SRC_DIR)\
 		-I $(LIBS_I)\
 		$<\

@@ -22,6 +22,16 @@ $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(CFLAGS_MORE)\
 		-o $(NAME) $(OBJS)
 
+$(OBJ)/%.o : $(SRC)/%.c | objdir
+	$(CC) $(CFLAGS) $(CFLAGS_MORE)\
+		-o $@ -c $<
+
+.PHONY : objdir
+objdir :
+	if [ ! -d $(OBJ) ]; then\
+		mkdir $(OBJ);\
+	fi
+
 clean :
 	-rm $(OBJS)
 
