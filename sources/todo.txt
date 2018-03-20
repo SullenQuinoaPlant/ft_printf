@@ -1,0 +1,2 @@
+decide where to count the length of the lists used in parse_format_string
+decide which lists to convert to arrays
