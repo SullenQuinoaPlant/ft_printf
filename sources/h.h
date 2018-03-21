@@ -7,7 +7,7 @@
 
 
 /*input string parsing:*/
-enum			e_chunk_types {
+typedef enum	e_chunk_types {
 	e_tsTxt,
 	e_tsChar,
 	e_tsPct
@@ -31,11 +31,11 @@ typedef struct	s_percent {
 	unsigned char	flags;
 	int				*width;
 	int				*precision;
-	size_t			arg_index;
+	t_sArg			*convertee;
 }				t_sPct;
 
 /*convesion arguments:*/
-enum			e_types {
+typedef enum	e_types {
 	e_char, e_uchar,
 	e_short, e_ushort,
 	e_int,	e_uint,
@@ -48,7 +48,7 @@ enum			e_types {
 
 typedef struct	s_va_arg {
 	t_eTypes	type;
-	int			count_uses;
+	int			pos;
 	void const	*arg;
 }				t_sArg;
 
@@ -56,5 +56,12 @@ typedef struct	s_va_arg_array_info {
 	size_t			length;
 	t_sArg const	*array;
 }				t_sArgs;
+
+typedef enum	e_dollar_convention {
+	e_no_status,
+	e_no_dollar,
+	e_mix_dollar,
+	e_all_dollar
+}				t_eDollar;
 
 #endif

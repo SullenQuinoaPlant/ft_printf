@@ -1,11 +1,37 @@
 #include "h.h"
 
+int		get_set_dollar_convention(unsigned int arg_count,
+									unsigned int dollar_count)
+{
+	static t_eDollar	status = e_no_status;
+
+	if (status == e_no_dollar && dollar_count ||
+		status == e_all_dollar && dollar_count < arg_count)
+		status = e_mix_dollar;
+	else if (status == e_no_status)
+	{
+		if (arg_count != dollar_count)
+			status = e_mix_dollar;
+		else if (! dollar_count)
+			status = e_no_dollar;
+		else
+			status = e_all_dollar;
+	}
+	return (status);
+}
+
 char	*parse_percent(char const *in,
 							t_list **p_out_bits,
 							t_list **p_req_args,
 							t_list **p_known_ints)
 {
-	//one of the thorny bits
+	unsigned int	arg_index;
+	unsigned int	dollar_count;
+
+	arg_count = 0;
+	dollar_count = 0;
+
+	get_set_dollar_convention(arg_index, dollar_count);
 	return (in);
 }
 
