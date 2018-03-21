@@ -48,6 +48,10 @@ typedef enum	e_types {
 
 typedef struct	s_va_arg {
 	t_eTypes	type;
+	union		{
+		int			position;
+		int			count_uses;
+				};
 	int			pos;
 	void const	*arg;
 }				t_sArg;
