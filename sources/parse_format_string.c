@@ -1,76 +1,48 @@
 #include "h.h"
 
-int		get_set_dollar_convention(unsigned int arg_count,
-									unsigned int dollar_count)
-{
-	static t_eDollar	status = e_no_status;
+t_s_ps	g_ps;
 
-	if (status == e_no_dollar && dollar_count ||
-		status == e_all_dollar && dollar_count < arg_count)
-		status = e_mix_dollar;
-	else if (status == e_no_status)
+static void refresh_parse_state()
+{
+	if (g_ps.p_out_bits)
+		ft_lstdel(&g_ps.p_out_bits, ft_bzero);
+	if (g_ps.p_req_args)
+		ft_lstdel(&g_ps.p_req_args, ft_bzero);
+	if (g_ps.p_literal_vals)
+		ft_lstdel(&g_ps.p_literal_vals, my_clean_free);
+	g_ps.arg_count = 0;
+	g_ps.dollar_count = 0;
+}
+
+int		parse_format_string(char const *in)
+{
+	char	*(* const f_str[])(char const *) = {
+			parse_percent,
+			parse_text,
+			0};
+	char	* const strt = in;
+	int		i;
+
+	refresh_parse_state();
+	i = -1;
+	while (f_str[++i] && strt == in)
+		in = f_str[i](in);
+	if (in == strt || *in)
 	{
-		if (arg_count != dollar_count)
-			status = e_mix_dollar;
-		else if (! dollar_count)
-			status = e_no_dollar;
-		else
-			status = e_all_dollar;
+		refresh_parse_state();
+		return (-1);
 	}
-	return (status);
+	return (0);
 }
 
-char	*parse_percent(char const *in,
-							t_list **p_out_bits,
-							t_list **p_req_args,
-							t_list **p_known_ints)
+t_e_dc	get_parse_dollar_convention(t_s_ps *s)
 {
-	unsigned int	arg_index;
-	unsigned int	dollar_count;
-
-	arg_count = 0;
-	dollar_count = 0;
-
-	get_set_dollar_convention(arg_index, dollar_count);
-	return (in);
-}
-
-char	*parse_text(char const *in, t_list **p_out_bits)
-{
-	t_sTxt	chunk;
-	size_t	i;
-	char	c;
-	t_list	*new;
-
-	chunk.strt = in;
-	i = 1;
-	while ((c = in[i]) != '%' && c)
-		i++;
-	chunk.len = i;
-	new = ft_lstnew(&(t_sTxt){in, i}, sizeof(t_sTxt));
-	ft_lstadd(p_out_bits, new);
-	return (in + i);
-}
-
-int		parse_format_string(char const *in,
-							t_list **p_out_bits,
-							t_list **p_req_args,
-							t_list **p_known_ints)
-{
-	t_list	*out_bits;
-	t_list	*req_args;
-	t_list	*known_ints;
-
-	out_bits = 0;
-	req_args = 0;
-	known_ints = 0;
-	while (*in)
-		if (*in == '%')
-			in = parse_percent(in, &out_bits, &req_args, &known_ints);
+	if (g_ps.dollar_count)
+	{
+		if (g_ps.arg_count > g_ps.dollar_count)
+			return (e_mix_dollar);
 		else
-			in = parse_text(in, &out_bits);
-	*p_out_bits = out_bits;
-	*p_req_args = req_args;
-	*p_known_ints = known_ints;
-	return ((int)*in)
+			return (e_all_dollar);
+	}
+	return (e_no_dollar);
 }

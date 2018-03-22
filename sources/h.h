@@ -8,33 +8,64 @@
 
 /*input string parsing:*/
 typedef enum	e_chunk_types {
-	e_tsTxt,
-	e_tsChar,
-	e_tsPct
-}				t_eChunkT;
+	e_ts_txt,
+	e_ts_char,
+	e_ts_pct
+}				t_e_cts;
 
 typedef struct	s_wrap_format_chunks {
-	t_eChunkT	type;
-	void		*data;
-}				t_sWFC;
+	t_e_cts	type;
+	void	*data;
+}				t_s_wfc;
 
 typedef struct	s_text_chunk {
 	char	*strt;
 	size_t	len;
-}				t_sTxt;
+}				t_s_txt;
 
 typedef struct	s_character {
 	char	c;
-}				t_sChar;
+}				t_s_char;
 
 typedef struct	s_percent {
 	unsigned char	flags;
 	int				*width;
 	int				*precision;
-	t_sArg			*convertee;
-}				t_sPct;
+	t_s_arg			*convertee;
+}				t_s_pct;
 
-/*convesion arguments:*/
+typedef enum	e_dollar_convention {
+	e_no_status,
+	e_no_dollar,
+	e_mix_dollar,
+	e_all_dollar
+}				t_e_dc;
+
+/*parse status
+**	p_out_bits points to a list of chunks
+**		chunk types are listed in enum e_chunk_types
+**	p_req_args points to a list of arguments to retrieve from the va_list
+**	p_literal_vals is a list that stores conversion information retrieved from
+**	 the formatting string, values are allocated on the heap
+**	enum e_dollar_convention	dollar, indicates use of dollar sign
+*/
+typedef struct	s_parse_state {
+	t_list	*p_out_bits;
+	t_list	*p_req_args;
+	t_list	*p_literal_vals;
+	unsigned int	arg_count;
+	unsigned int	dollar_count;
+}				t_s_ps;
+
+extern t_s_ps g_ps;
+
+/*parse function constants:*/
+enum			e_string_traversal {
+	e_prev,
+	e_last
+};
+
+/*conversion arguments:*/
 typedef enum	e_types {
 	e_char, e_uchar,
 	e_short, e_ushort,
@@ -44,28 +75,20 @@ typedef enum	e_types {
 	e_float,
 	e_double,
 	e_size_t, e_ssize_t
-}				t_eTypes;
+}				t_e_t;
 
 typedef struct	s_va_arg {
-	t_eTypes	type;
+	t_e_t		type;
 	union		{
 		int			position;
 		int			count_uses;
 				};
-	int			pos;
 	void const	*arg;
-}				t_sArg;
+}				t_s_arg;
 
 typedef struct	s_va_arg_array_info {
 	size_t			length;
-	t_sArg const	*array;
-}				t_sArgs;
-
-typedef enum	e_dollar_convention {
-	e_no_status,
-	e_no_dollar,
-	e_mix_dollar,
-	e_all_dollar
-}				t_eDollar;
+	t_s_arg const	*array;
+}				t_s_args;
 
 #endif
