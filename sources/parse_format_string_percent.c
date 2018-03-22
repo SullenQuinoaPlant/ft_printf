@@ -12,9 +12,9 @@ char		*parse_percent(char const *in)
 
 	if (! *in == '%')
 		return (in);
-	p_str = in + 1;
+	p_str = ++in;
 	i = -1;
-	while (f_str[++i] && p_str == in + 1)
+	while (f_str[++i] && p_str == in)
 		p_str = f_str[i](p_str);
 	return (p_str);
 }

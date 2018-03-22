@@ -4,8 +4,9 @@ t_s_ps	g_ps;
 
 static void refresh_parse_state()
 {
-	if (g_ps.p_out_bits)
-		ft_lstdel(&g_ps.p_out_bits, ft_bzero);
+	if (g_ps.out_bits_anchor.next)
+		ft_lstdel(&g_ps.out_bits_anchor.next, ft_bzero);
+	g_ps.out_bits_anchor.content = 0;
 	if (g_ps.p_req_args)
 		ft_lstdel(&g_ps.p_req_args, ft_bzero);
 	if (g_ps.p_literal_vals)

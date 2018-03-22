@@ -1,2 +1,2 @@
-decide where to count the length of the lists used in parse_format_string
+reverse lists built from formatting string so that result string is built from left to right, because of %n, requires a modification of lstadd function and different state structure.
 decide which lists to convert to arrays

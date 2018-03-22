@@ -15,7 +15,7 @@ char	*parse_text(char const *in)
 	while ((c = in[i]) != '%' && c)
 		i++;
 	if ((new = ft_lstnew(&(t_s_txt){in, i}, sizeof(t_s_txt))))
-		ft_lstadd(&g_ps.p_out_bits, new);
+		my_lstappend(&g_ps.out_bits_anchor.content, new);
 	else
 		return (in);
 	return (in + i);
