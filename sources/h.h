@@ -7,6 +7,8 @@
 
 
 /*input string parsing:*/
+typedef char	*(t_parser)(char const *);
+
 typedef enum	e_chunk_types {
 	e_ts_txt,
 	e_ts_char,
@@ -28,11 +30,20 @@ typedef struct	s_character {
 }				t_s_char;
 
 typedef struct	s_percent {
-	unsigned char	flags;
+	char			flags;
 	int				*width;
 	int				*precision;
 	t_s_arg			*convertee;
 }				t_s_pct;
+
+# define #_FLAG 0X01
+# define 0_FLAG 0X02
+# define -_FLAG 0X04
+# define sp_FLAG 0X08
+# define +_FLAG 0X10
+# define '_FLAG 0X20
+
+
 
 typedef enum	e_dollar_convention {
 	e_no_status,
@@ -42,7 +53,7 @@ typedef enum	e_dollar_convention {
 }				t_e_dc;
 
 /*parse status
-**	out_bits_anchor starts a list of string-building chunks
+ **	chunks starts a list of string-building chunks
 **		chunk types are listed in enum e_chunk_types
 **		the t_list.content is used to store the list's last element's address
 **	p_req_args points to a list of arguments to retrieve from the va_list
@@ -51,20 +62,16 @@ typedef enum	e_dollar_convention {
 **	enum e_dollar_convention	dollar, indicates use of dollar sign
 */
 typedef struct	s_parse_state {
-	t_list			out_bits_anchor;
+	t_list			chunks;
 	t_list			*p_req_args;
 	t_list			*p_literal_vals;
 	unsigned int	arg_count;
 	unsigned int	dollar_count;
+	int				errored;
 }				t_s_ps;
 
 extern t_s_ps g_ps;
 
-/*parse function constants:*/
-enum			e_string_traversal {
-	e_prev,
-	e_last
-};
 
 /*conversion arguments:*/
 typedef enum	e_types {

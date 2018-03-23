@@ -13,6 +13,7 @@ static void refresh_parse_state()
 		ft_lstdel(&g_ps.p_literal_vals, my_clean_free);
 	g_ps.arg_count = 0;
 	g_ps.dollar_count = 0;
+	g_ps.errored = 0;
 }
 
 int		parse_format_string(char const *in)
@@ -25,9 +26,7 @@ int		parse_format_string(char const *in)
 	int		i;
 
 	refresh_parse_state();
-	i = -1;
-	while (f_str[++i] && strt == in)
-		in = f_str[i](in);
+	in = while_progress(strt, f_str);
 	if (in == strt || *in)
 	{
 		refresh_parse_state();

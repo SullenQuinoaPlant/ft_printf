@@ -18,5 +18,9 @@ char	*parse_text(char const *in)
 		my_lstappend(&g_ps.out_bits_anchor.content, new);
 	else
 		return (in);
-	return (in + i);
+	p_str = (in = in + i);
+	i = 0;
+	while (f_str[i] && p_str == in)
+		p_str = f_str[i++](in);
+	return (p_str);
 }
