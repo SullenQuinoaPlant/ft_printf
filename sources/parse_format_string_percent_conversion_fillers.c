@@ -26,15 +26,6 @@ char	*percent_conversion_flags(char const *in)
 	return (in);
 }
 
-char	*percent_conversion_width(char const *in)
-{
-	t_parser	f_str[] = {
-				percent_conversion_width_literal,
-				percent_conversion_star,
-				0};
-	
-	return ((in = until_progress(in, f_str);
-}
 
 char	*percent_conversion_flags(char const *in)
 {
