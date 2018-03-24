@@ -1,2 +1,7 @@
-reverse lists built from formatting string so that result string is built from left to right, because of %n, requires a modification of lstadd function and different state structure.
+fix req_args problem in relation to t_s_pct (probably put fixed values in t_s_pct and pointers to those values in fixed args
+
+add a max_position to g_ps
+add a count of raw stars and conversion specifers to g_ps
+these two so that it might be possible to declare an array of the right length for the args.
+
 decide which lists to convert to arrays

@@ -91,7 +91,7 @@ typedef struct	s_va_arg {
 		int			position;
 		int			count_uses;
 				};
-	void const	*arg;
+	void const	*p_arg;
 }				t_s_arg;
 
 typedef struct	s_va_arg_array_info {
