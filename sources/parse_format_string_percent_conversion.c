@@ -3,6 +3,7 @@
 char	*parse_conversion(char const *in)
 {
 	char	*(* const f_str[])(char const *) = {
+			percent_conversion_dollar_arg,
 			percent_conversion_flags,
 			percent_conversion_width,
 			percent_conversion_precision,
