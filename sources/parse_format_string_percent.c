@@ -7,9 +7,10 @@ char		*parse_percent(char const *in)
 			percent_conversion,
 			0};
 
-	if (! *in == '%')
-		return (in);
-	in += 1;
-	in = until_progress(in, f_str);
-	return (p_str);
+	if (*in == '%')
+	{
+		in++;
+		in = until_progress(in, f_str);
+	}
+	return (in);
 }

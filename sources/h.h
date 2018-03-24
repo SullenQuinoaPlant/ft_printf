@@ -31,8 +31,8 @@ typedef struct	s_character {
 
 typedef struct	s_percent {
 	char			flags;
-	int				*width;
-	int				*precision;
+	int				**width;
+	int				**precision;
 	t_s_arg			*convertee;
 }				t_s_pct;
 
@@ -67,6 +67,7 @@ typedef struct	s_parse_state {
 	t_list			*p_literal_vals;
 	unsigned int	arg_count;
 	unsigned int	dollar_count;
+	unsigned int	max_arg_pos;
 	int				errored;
 }				t_s_ps;
 

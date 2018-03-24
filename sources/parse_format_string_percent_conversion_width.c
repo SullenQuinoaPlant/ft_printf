@@ -1,5 +1,17 @@
 #include "h.h"
 
+char	*percent_conversion_width_literal(char const *in)
+{
+	int ***	const p_res = &((t_s_pct*)g_ps.chunks.content)->width;
+
+	return ((in = parse_store_int_literal(in, p_res));
+}
+
+char	*percent_conversion_star_arg(char const *in)
+{
+}
+
+//HAS TO MOVE:
 char	*dollar(char const *in, int val, int const ** const p_res)
 {
 	t_list	*new_arg;
@@ -16,8 +28,4 @@ char	*dollar(char const *in, int val, int const ** const p_res)
 			g_ps.errored++;
 	}
 	return (in);
-}
-
-char	*percent_conversion_star_arg(char const *in)
-{
 }
