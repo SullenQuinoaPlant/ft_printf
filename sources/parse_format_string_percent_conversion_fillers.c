@@ -26,6 +26,15 @@ char	*percent_conversion_flags(char const *in)
 	return (in);
 }
 
+char	*percent_conversion_width(char const *in)
+{
+	int ***	const p_res = &((t_s_pct*)g_ps.chunks.content)->width;
+	char *	const p_str = in;
+
+	if ((in = percent_conversion_star(in, p_res) == p_str))
+		in = parse_store_int_literal(in, p_res);
+	return (in);
+}
 
 char	*percent_conversion_flags(char const *in)
 {
