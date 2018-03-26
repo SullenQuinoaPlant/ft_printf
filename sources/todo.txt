@@ -1,7 +1,11 @@
-fix req_args problem in relation to t_s_pct (probably put fixed values in t_s_pct and pointers to those values in fixed args
+rewrite the refresh_parse_state() in parse_format_string.c
+forgot to wrap the chunks in the chunk wrapper.
 
 add a max_position to g_ps
 add a count of raw stars and conversion specifers to g_ps
 these two so that it might be possible to declare an array of the right length for the args.
 
 decide which lists to convert to arrays
+
+
+rewrite the whole thing with just one list of required arguments whose members hold a pointer to the value that needs to be filled.

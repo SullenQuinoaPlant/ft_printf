@@ -10,15 +10,16 @@
 typedef char	*(t_parser)(char const *);
 
 typedef enum	e_chunk_types {
-	e_ts_txt,
-	e_ts_char,
-	e_ts_pct
+	e_no_c_type,
+	e_txt_c,
+	e_char_c,
+	e_pct_c
 }				t_e_cts;
 
-typedef struct	s_wrap_format_chunks {
+typedef struct	s_chunk_wrapper {
 	t_e_cts	type;
 	void	*data;
-}				t_s_wfc;
+}				t_s_cw;
 
 typedef struct	s_text_chunk {
 	char	*strt;
@@ -29,13 +30,40 @@ typedef struct	s_character {
 	char	c;
 }				t_s_char;
 
-typedef struct	s_percent {
-	char			flags;
-	int				**width;
-	int				**precision;
-	t_s_arg			*convertee;
-}				t_s_pct;
+typedef enum	e_length_modifiers {
+	e_no_len,
+	e_hh, e_h, e_l, e_ll,
+	e_bigl,
+	e_j, e_z, e_t
+}				t_e_lm;
 
+typedef struct	s_length_mod_and_pattern {
+	t_e_lm	mod;
+	char	*str;
+}				t_s_lmp;
+
+typedef enum	e_types {
+	e_notype,
+	e_char, e_uchar,
+	e_short, e_ushort,
+	e_int,	e_uint,
+	e_long, e_ulong,
+	e_longlong, e_ulonglong,
+	e_float,
+	e_double,
+	e_size_t, e_ssize_t
+}				t_e_t;
+
+typedef struct	s_va_arg {
+	t_e_t		type;
+	union		{
+		int			position;
+		int			count_uses;
+				};
+	void const	*p_arg;
+}				t_s_arg;
+
+# define NO_FLAGS 0X00
 # define #_FLAG 0X01
 # define 0_FLAG 0X02
 # define -_FLAG 0X04
@@ -43,14 +71,16 @@ typedef struct	s_percent {
 # define +_FLAG 0X10
 # define '_FLAG 0X20
 
+typedef struct	s_percent {
+	char		flags;
+	int			**width;
+	int			**precision;
+	t_e_lm		len_mod;
+	char		specifier;
+	t_s_arg		*convertee;
+}				t_s_pct;
 
 
-typedef enum	e_dollar_convention {
-	e_no_status,
-	e_no_dollar,
-	e_mix_dollar,
-	e_all_dollar
-}				t_e_dc;
 
 /*parse status
  **	chunks starts a list of string-building chunks
@@ -73,27 +103,12 @@ typedef struct	s_parse_state {
 
 extern t_s_ps g_ps;
 
-
-/*conversion arguments:*/
-typedef enum	e_types {
-	e_char, e_uchar,
-	e_short, e_ushort,
-	e_int,	e_uint,
-	e_long, e_ulong,
-	e_longlong, e_ulonglong,
-	e_float,
-	e_double,
-	e_size_t, e_ssize_t
-}				t_e_t;
-
-typedef struct	s_va_arg {
-	t_e_t		type;
-	union		{
-		int			position;
-		int			count_uses;
-				};
-	void const	*p_arg;
-}				t_s_arg;
+typedef enum	e_dollar_convention {
+	e_no_status,
+	e_no_dollar,
+	e_mix_dollar,
+	e_all_dollar
+}				t_e_dc;
 
 typedef struct	s_va_arg_array_info {
 	size_t			length;
