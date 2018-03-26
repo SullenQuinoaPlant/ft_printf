@@ -1,6 +1,12 @@
 #include "h.h"
 
-char	*parse_conversion(char const *in)
+static void	set_type(t_s_pct *pct_chunk)
+{
+	t_e_t const	types[e_no_specifier][e_no_len] = {
+		{
+}
+
+char		*parse_conversion(char const *in)
 {
 	char		*(* const f_str[])(char const *) = {
 				percent_conversion_dollar_arg,
@@ -9,6 +15,13 @@ char	*parse_conversion(char const *in)
 				percent_conversion_precision,
 				percent_conversion_length_mod,
 				percent_conversion_specifier,
+				0};
+	t_s_pct		const default = {
+				NO_FLAGS,
+				0,
+				0,
+				e_no_len,
+				e_no_specifier,
 				0};
 	t_s_cw *	const p_cw = g_ps.chunks.content;
 	t_s_pct		*p_chk;
@@ -21,9 +34,11 @@ char	*parse_conversion(char const *in)
 	{
 		ft_lstadd(&g_ps.p_req_args, p_arg);
 		g_ps.arg_count++;
-		*p_chk = (t_s_pct){NO_FLAGS, 0, 0, e_no_len, '\0', p_arg->content};
+		*p_chk = default;
+		p_chk->convertee = p_arg->content;
 		*p_cw = (t_s_cw){e_pct_c, p_chk};
 		in = attempt_all(in, f_str);
+		set_type(p_chk);
 	}
 	else
 	{

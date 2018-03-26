@@ -101,12 +101,14 @@ char	*percent_conversion_specifier(char const *in)
 {
 	t_s_pct *	const p_pct = ((t_s_cw*)g_ps.chunks.content)->data;
 	char const	*specifiers = "aAcdeEfFgGinoupsxX"
+	char		*p_str;
 
-	if (*in && ft_strchr(specifiers, *in))
+	if (*in && (p_str = ft_strchr(specifiers, *in)))
 	{
-		p_pct->specifier = *in;
+		p_pct->specifier = (t_e_cs)(p_str - specifiers);
 		in++;
 	}
 	else
-		p_pct->specifier = 
+		p_pct->specifier = e_no_specifier;
+	return (in);
 }
