@@ -21,6 +21,8 @@ include libs/Makefile
 ########
 #TESTS :
 
+.PHONY : libproject 
+	
 include unit-tests/Makefile
 
 

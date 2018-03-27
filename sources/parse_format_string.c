@@ -2,13 +2,36 @@
 
 t_s_ps	g_ps;
 
+static void	clean_free_cw(void *ptr, size_t whatever)
+{
+	(void)whatever;
+	t_s_cw * const	p_cw = (t_s_cw*)ptr;
+	size_t			sz;
+	t_e_cts			*p;
+
+	if (! p_cw)
+		return;
+	p = &p_cw->type;
+	sz = 0;
+	if (*p == e_txt_c)
+		sz = sizeof(t_s_text);
+	else if (*p == e_char_c)
+		sz = sizeof(t_s_char);
+	else if (*p == e_pct_c)
+		sz = sizeof(t_s_pct);
+	if (p_cw->data)
+		my_clean_free(p_cw->data, sz);
+	*p_cw = (t_s_cw){0,0};
+	free(p_cw);
+}
+
 static void refresh_parse_state()
 {
 	if (g_ps.out_bits_anchor.next)
-		ft_lstdel(&g_ps.out_bits_anchor.next, ft_bzero);
-	g_ps.out_bits_anchor.content = 0;
+		ft_lstdel(&g_ps.chunks.next, clean_free_cw);
+	g_ps.chunks.content = 0;
 	if (g_ps.p_req_args)
-		ft_lstdel(&g_ps.p_req_args, ft_bzero);
+		ft_lstdel(&g_ps.p_req_args, my_clean_free);
 	if (g_ps.p_literal_vals)
 		ft_lstdel(&g_ps.p_literal_vals, my_clean_free);
 	g_ps.arg_count = 0;

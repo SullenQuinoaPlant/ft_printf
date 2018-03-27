@@ -1,15 +1,14 @@
 NAME = ft_printf
 TARGETS =
 
-OBJ = ./objects
-SRC = ./sources
-
-OBJS := $(patsubst %,$(OBJ)/%.o,$(TARGETS))
-
 ifndef ROOT
-	LIB_DIR = ./libs/objects
-	LIB_H_DIR  = ./libs/includes
+	OBJ_DIR = ./objects
+	SRC_DIR = ./sources
+	LIBS_L = ./libs/objects
+	LIBS_I = ./libs/includes
 endif
+
+OBJS := $(patsubst %,$(OBJ_DIR)/%.o,$(TARGETS))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -22,14 +21,14 @@ $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(CFLAGS_MORE)\
 		-o $(NAME) $(OBJS)
 
-$(OBJ)/%.o : $(SRC)/%.c | objdir
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | objdir
 	$(CC) $(CFLAGS) $(CFLAGS_MORE)\
 		-o $@ -c $<
 
 .PHONY : objdir
 objdir :
-	if [ ! -d $(OBJ) ]; then\
-		mkdir $(OBJ);\
+	if [ ! -d $(OBJ_DIR) ]; then\
+		mkdir $(OBJ_DIR);\
 	fi
 
 clean :

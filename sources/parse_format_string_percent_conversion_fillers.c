@@ -1,8 +1,17 @@
 #include "h.h"
 
+static t_s_pct 	*get_p_pct()
+{
+	t_list * const	p1 = (t_list*)g_ps.chunks.content;
+	t_s_cw * const	p2 = p1->content;
+	t_s_pct * const	p3 = p2->data;
+
+	return (p3);
+}
+
 char	*percent_conversion_dollar_arg(char const *in)
 {
-	t_s_pct *	const p_pct = ((t_s_cw*)g_ps.chunks.content)->data;
+	t_s_pct *	const p_pct = get_p_pct();
 	char *		const p_str = in;
 	int			val;
 
@@ -15,10 +24,10 @@ char	*percent_conversion_dollar_arg(char const *in)
 
 char	*percent_conversion_flags(char const *in)
 {
-	const char		flags[] = {'#', '0', '-', ' ', '+', '\''};
-	const size_t	len = sizeof(flags) / sizeof(flags[0]);
-	t_s_pct *		const p_pct = ((t_s_cw*)g_ps.chunks.content)->data;
-	char *			p_res = &p_pct->flags;
+	char const		flags[] = {'#', '0', '-', ' ', '+', '\''};
+	size_t const	len = sizeof(flags) / sizeof(flags[0]);
+	t_s_pct * const	p_pct = get_p_pct();
+	char * const	p_res = &p_pct->flags;
 	size_t			i;
 
 	while (*in)
@@ -42,9 +51,9 @@ char	*percent_conversion_flags(char const *in)
 
 char	*percent_conversion_width(char const *in)
 {
-	t_s_pct *	const p_pct = ((t_s_cw*)g_ps.chunks.content)->data;
-	int ***		const p_res = &p_pct->width;
-	char *		const p_str = in;
+	t_s_pct * const	p_pct = get_p_pct();
+	int *** const	p_res = &p_pct->width;
+	char * const	p_str = in;
 
 	if ((in = percent_conversion_star(in, p_res) == p_str))
 		in = parse_store_int_literal(in, p_res);
@@ -53,9 +62,9 @@ char	*percent_conversion_width(char const *in)
 
 char	*percent_conversion_precision(char const *in)
 {
-	t_s_pct *	const p_pct = ((t_s_cw*)g_ps.chunks.content)->data;
-	int *** 	const p_res = &p_pct->precision;
-	char		*p_str;
+	t_s_pct * const	p_pct = get_p_pct();
+	int *** const	p_res = &p_pct->precision;
+	char			*p_str;
 
 	if (*in == '.')
 	{
@@ -68,18 +77,18 @@ char	*percent_conversion_precision(char const *in)
 
 char	*percent_conversion_length_mod(char const *in)
 {
-	t_s_pct *	const p_pct = ((t_s_cw*)g_ps.chunks.content)->data;
-	t_s_lmp		const mods[] = {
-				{e_hh, "hh"},
-				{e_h, "h"},
-				{e_l, "l"},
-				{e_ll, "ll"},
-				{e_bigl, "L"},
-				{e_j, "j"},
-				{e_z, "z"},
-				{e_t, "t"}};
-	size_t		const len = sizeof(mods) / sizeof(mods[0]);
-	int			i;
+	t_s_pct * const	p_pct = get_p_pct();
+	t_s_lmp const	mods[] = {
+					{e_hh, "hh"},
+					{e_h, "h"},
+					{e_l, "l"},
+					{e_ll, "ll"},
+					{e_bigl, "L"},
+					{e_j, "j"},
+					{e_z, "z"},
+					{e_t, "t"}};
+	size_t const	len = sizeof(mods) / sizeof(mods[0]);
+	int				i;
 
 	if (*in)
 	{
@@ -99,13 +108,13 @@ char	*percent_conversion_length_mod(char const *in)
 
 char	*percent_conversion_specifier(char const *in)
 {
-	t_s_pct *	const p_pct = ((t_s_cw*)g_ps.chunks.content)->data;
-	char const	*specifiers = "aAcdeEfFgGinoupsxX"
-	char		*p_str;
+	t_s_pct * const	p_pct = get_p_pct();
+	char const *	specifiers = "aAcdeEfFgGinoupsxX"
+	char *			p_str;
 
 	if (*in && (p_str = ft_strchr(specifiers, *in)))
 	{
-		p_pct->specifier = (t_e_cs)(p_str - specifiers);
+		p_pct->specifier = (t_e_cs)(p_str - specifiers + 1);
 		in++;
 	}
 	else

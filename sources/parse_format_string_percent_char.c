@@ -2,7 +2,7 @@
 
 char	*percent_char(char const *in)
 {
-	t_s_cw *	const wrap = (t_s_cw*)g_ps.chunks.content;
+	t_s_cw *	const wrap = ((t_list*)g_ps.chunks.content)->content;
 	t_s_char	*p_chunk;
 
 	if (*in == '%')

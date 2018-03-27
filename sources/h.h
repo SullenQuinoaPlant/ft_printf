@@ -30,13 +30,15 @@ typedef struct	s_character {
 	char	c;
 }				t_s_char;
 
-/*the position of e_no_len is used to declare array widths.
-**	should remain at end of enumeration*/
+/*length of enumeration is relied upon for array declarations
+**	change with care
+*/
 typedef enum	e_length_modifiers {
+	e_no_len,
 	e_hh, e_h, e_l, e_ll,
 	e_bigl,
 	e_j, e_z, e_t,
-	e_no_len
+	e_lm_sz
 }				t_e_lm;
 
 typedef struct	s_length_mod_and_pattern {
@@ -44,9 +46,12 @@ typedef struct	s_length_mod_and_pattern {
 	char	*str;
 }				t_s_lmp;
 
-/*the position of e_no_specifier is used to declare array widths.
-**	should remain at end of enumeration*/
+/*order of the enumeration is relied upon in percent_conversion_specifier()
+**length of enumeration is relied upon for array declarations
+**	change with care
+*/
 typedef enum	e_conversion_specifiers {
+	e_no_specifier,
 	e_a, e_A,
 	e_c,
 	e_d,
@@ -60,19 +65,24 @@ typedef enum	e_conversion_specifiers {
 	e_p,
 	e_s,
 	e_x, e_X,
-	e_no_specifier
+	e_cs_sz
 }				t_e_cs;
 
 typedef enum	e_types {
+	e_notype,
 	e_char, e_uchar,
-	e_short, e_ushort,
+	e_double, e_longdouble,
+	e_float,
 	e_int,	e_uint,
+	e_intmax_t, e_uintmax_t,
 	e_long, e_ulong,
 	e_longlong, e_ulonglong,
-	e_float,
-	e_double,
+	e_ptrdiff_t,
+	e_short, e_ushort,
 	e_size_t, e_ssize_t,
-	e_notype
+	e_voidptr,
+	e_wchar_t, e_wint_t,
+	e_types_sz
 }				t_e_t;
 
 typedef struct	s_va_arg {
