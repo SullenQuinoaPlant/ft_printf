@@ -1,8 +1,10 @@
 NAME = ft_printf
 TARGETS =
 
-OBJ_DIR = ./objects
-SRC_DIR = ./sources
+ifndef ROOT
+	ROOT = .
+	include $(ROOT)/make_vars.mk
+endif
 
 OBJS := $(patsubst %,$(OBJ_DIR)/%.o,$(TARGETS))
 

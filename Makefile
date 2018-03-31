@@ -11,8 +11,6 @@ include Makefile.mk
 ########
 #OTHER :
 
-include make_vars.mk
-
 #######
 #LIBS :
 
