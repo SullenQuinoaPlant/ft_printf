@@ -87,7 +87,10 @@ typedef enum	e_types {
 
 typedef struct	s_va_arg {
 	t_e_t		type;
-	int			position;
+	union		{
+		int			position;
+		int			count_uses;
+				};
 	void const	*p_arg;
 }				t_s_arg;
 
@@ -124,8 +127,7 @@ typedef struct	s_parse_state {
 	t_list			chunks;
 	t_list			*p_req_args;
 	t_list			*p_literal_vals;
-	t_list			*p_converted_vals;
-	int				arg_index;
+	unsigned int	free_arg_count;
 	unsigned int	dollar_count;
 	unsigned int	max_arg_pos;
 	size_t			out_str_len;
