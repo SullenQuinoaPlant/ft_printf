@@ -34,7 +34,7 @@ static void refresh_parse_state()
 		ft_lstdel(&g_ps.p_req_args, my_clean_free);
 	if (g_ps.p_literal_vals)
 		ft_lstdel(&g_ps.p_literal_vals, my_clean_free);
-	g_ps.arg_count = 0;
+	g_ps.free_arg_count = 0;
 	g_ps.dollar_count = 0;
 	g_ps.max_arg_pos = 0;
 	g_ps.errored = 0;
@@ -62,7 +62,7 @@ t_e_dc	get_parse_dollar_convention(t_s_ps *s)
 {
 	if (g_ps.dollar_count)
 	{
-		if (g_ps.arg_count > g_ps.dollar_count)
+		if (free_arg_count && dollar_count)
 			return (e_mix_dollar);
 		else
 			return (e_all_dollar);

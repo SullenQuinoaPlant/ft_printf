@@ -87,10 +87,7 @@ typedef enum	e_types {
 
 typedef struct	s_va_arg {
 	t_e_t		type;
-	union		{
-		int			position;
-		int			count_uses;
-				};
+	int			position;
 	void const	*p_arg;
 }				t_s_arg;
 
@@ -109,6 +106,7 @@ typedef struct	s_percent {
 	t_e_lm		len_mod;
 	t_e_cs		specifier;
 	t_s_arg		*convertee;
+	char const	*str_result;
 }				t_s_pct;
 
 
@@ -126,16 +124,18 @@ typedef struct	s_parse_state {
 	t_list			chunks;
 	t_list			*p_req_args;
 	t_list			*p_literal_vals;
-	unsigned int	arg_count;
+	t_list			*p_converted_vals;
+	int				arg_index;
 	unsigned int	dollar_count;
 	unsigned int	max_arg_pos;
+	size_t			out_str_len;
 	int				errored;
 }				t_s_ps;
 
 extern t_s_ps g_ps;
 
 typedef enum	e_dollar_convention {
-	e_no_status,
+	e_no_dollar_convention,
 	e_no_dollar,
 	e_mix_dollar,
 	e_all_dollar
