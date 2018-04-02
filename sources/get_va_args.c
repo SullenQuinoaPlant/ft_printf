@@ -1,6 +1,6 @@
 #include "h.h"
 
-void const	*(*f_ar[e_types_sz])(va_list) = {
+void const	*(*f_ar[e_types_sz])(va_list*) = {
 			vaarg_notype,
 			vaarg_char,
 			vaarg_uchar,
@@ -53,7 +53,7 @@ static void	fill_vaarg_ar(t_s_ps *parsed, t_s_arg *ar)
 	}
 }
 
-static void resolve_vaargs(va_lis vaargs, t_s_arg *ar, unsigned int	len)
+static void resolve_vaargs(va_list *vaargs, t_s_arg *ar, unsigned int	len)
 {
 	size_t	i;
 
@@ -92,7 +92,7 @@ static void	check_arg_use(t_s_arg *used_args, unsigned int len, t_s_ps *parsed)
 		}
 }
 
-int		get_va_args(va_list vaargs, t_s_ps *parsed)
+int		get_va_args(va_list *vaargs, t_s_ps *parsed)
 {
 	unsigned int	len = parsed->max_arg_pos;
 	size_t	const	ar_sz = len * sizeof(t_s_arg);
