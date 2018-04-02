@@ -143,9 +143,4 @@ typedef enum	e_dollar_convention {
 	e_all_dollar
 }				t_e_dc;
 
-typedef struct	s_va_arg_array_info {
-	size_t			length;
-	t_s_arg const	*array;
-}				t_s_args;
-
 #endif
