@@ -61,19 +61,19 @@ typedef enum	e_conversion_specifiers {
 	e_i,
 	e_n,
 	e_o,
-	e_u,
 	e_p,
 	e_s,
+	e_u,
 	e_x, e_X,
 	e_cs_sz
 }				t_e_cs;
 
 typedef enum	e_types {
 	e_notype,
-	e_char, e_uchar,
+	e_char, e_uchar, e_charptr,
 	e_double, e_longdouble,
 	e_float,
-	e_int,	e_uint,
+	e_int,	e_uint, e_intptr,
 	e_intmax_t, e_uintmax_t,
 	e_long, e_ulong,
 	e_longlong, e_ulonglong,
@@ -81,7 +81,8 @@ typedef enum	e_types {
 	e_short, e_ushort,
 	e_size_t, e_ssize_t,
 	e_voidptr,
-	e_wchar_t, e_wint_t,
+	e_wchar_t, e_wchar_tptr,
+	e_wint_t,
 	e_types_sz
 }				t_e_t;
 
@@ -114,14 +115,14 @@ typedef struct	s_percent {
 
 
 
-/*parse status
- **	chunks starts a list of string-building chunks
+/*parse state
+**	chunks starts a list of string-building chunks
 **		chunk types are listed in enum e_chunk_types
 **		the t_list.content is used to store the list's last element's address
 **	p_req_args points to a list of arguments to retrieve from the va_list
 **	p_literal_vals is a list that stores conversion information retrieved from
 **	 the formatting string, values are allocated on the heap
-**	enum e_dollar_convention	dollar, indicates use of dollar sign
+**	enum e_dollar_convention indicates use of dollar sign
 */
 typedef struct	s_parse_state {
 	t_list			chunks;
@@ -130,7 +131,6 @@ typedef struct	s_parse_state {
 	unsigned int	free_arg_count;
 	unsigned int	dollar_count;
 	unsigned int	max_arg_pos;
-	size_t			out_str_len;
 	int				errored;
 }				t_s_ps;
 
@@ -143,4 +143,13 @@ typedef enum	e_dollar_convention {
 	e_all_dollar
 }				t_e_dc;
 
+/*output state
+**	p_chunks' content fields point to strings that form output once appended
+**	p_memallocs is a list of malloced memory that holds the chunks
+**	out_str_len holds current output string length
+typedef struct	s_output_state {
+	t_list		*p_chunks;
+	t_list		*p_memallocs;
+	size_t		out_str_len;
+}				t_s_os;
 #endif

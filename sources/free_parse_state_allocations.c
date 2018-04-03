@@ -25,7 +25,7 @@ static void	clean_free_cw(void *ptr, size_t whatever)
 
 void 	free_parse_state_lists(t_s_ps *to_free)
 {
-	if (ps->out_bits_anchor.next)
+	if (ps->chunks.next)
 		ft_lstdel(&ps->chunks.next, clean_free_cw);
 	ps->chunks.content = 0;
 	if (ps->p_req_args)

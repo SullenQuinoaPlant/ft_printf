@@ -4,11 +4,13 @@ void const	*(*f_ar[e_types_sz])(va_list*) = {
 			vaarg_notype,
 			vaarg_char,
 			vaarg_uchar,
+			vaarg_charptr,
 			vaarg_double,
 			vaarg_longdouble,
 			vaarg_float,
 			vaarg_int,
 			vaarg_uint,
+			vaarg_intptr,
 			vaarg_intmax_t,
 			vaarg_uintmax_t,
 			vaarg_long,
@@ -22,6 +24,7 @@ void const	*(*f_ar[e_types_sz])(va_list*) = {
 			vaarg_ssize_t,
 			vaarg_voidptr,
 			vaarg_wchar_t,
+			vaarg_wchar_tptr,
 			vaarg_wint_t
 			};
 

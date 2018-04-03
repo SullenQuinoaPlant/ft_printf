@@ -7,17 +7,19 @@ void const	*vaarg_notype(va_list *p_va_l)
 
 void const	*vaarg_char(va_list *p_va_l)
 {
-	void const	*p_ret;
-
-	p_ret = &va_arg(*p_va_l, char);
-	return (p_ret);
+	return (0);
 }
 	
 void const	*vaarg_uchar(va_list *p_va_l)
 {
+	return (0);
+}
+
+void const	*vaarg_charptr(va_list *p_va_l)
+{
 	void const	*p_ret;
 
-	p_ret = &va_arg(*p_va_l, unsigned char);
+	p_ret = &va_arg(*p_va_l, char*);
 	return (p_ret);
 }
 
@@ -39,10 +41,7 @@ void const	*vaarg_longdouble(va_list *p_va_l)
 
 void const	*vaarg_float(va_list *p_va_l)
 {
-	void const	*p_ret;
-
-	p_ret = &va_arg(*p_va_l, float);
-	return (p_ret);
+	return (0);
 }
 
 void const	*vaarg_int(va_list *p_va_l)
@@ -60,6 +59,16 @@ void const	*vaarg_uint(va_list *p_va_l)
 	p_ret = &va_arg(*p_va_l, unsigned int);
 	return (p_ret);
 }
+
+void const	*vaarg_intptr(va_list *p_va_l)
+{
+	void const =p_ret;
+
+	p_ret = &va_arg(*p_va_l, int*);
+	return (p_ret);
+}
+
+
 void const	*vaarg_intmax_t(va_list *p_va_l)
 {
 	void const	*p_ret;
@@ -96,7 +105,7 @@ void const	*vaarg_longlong(va_list *p_va_l)
 {
 	void const	*p_ret;
 
-	p_ret = &va_arg(*p_va_l, ssize_t);
+	p_ret = &va_arg(*p_va_l, long long);
 	return (p_ret);
 }
 
@@ -104,7 +113,7 @@ void const	*vaarg_ulonglong(va_list *p_va_l)
 {
 	void const	*p_ret;
 
-	p_ret = &va_arg(*p_va_l, unsigned long);
+	p_ret = &va_arg(*p_va_l, unsigned long long);
 	return (p_ret);
 }
 
@@ -118,18 +127,12 @@ void const	*vaarg_ptrdiff_t(va_list *p_va_l)
 
 void const	*vaarg_short(va_list *p_va_l)
 {
-	void const	*p_ret;
-
-	p_ret = &va_arg(*p_va_l, short);
-	return (p_ret);
+	return (0);
 }
 
 void const	*vaarg_ushort(va_list *p_va_l)
 {
-	void const	*p_ret;
-
-	p_ret = &va_arg(*p_va_l, unsigned short);
-	return (p_ret);
+	return (0);
 }
 
 void const	*vaarg_size_t(va_list *p_va_l)
@@ -161,6 +164,14 @@ void const	*vaarg_wchar_t(va_list *p_va_l)
 	void const	*p_ret;
 
 	p_ret = &va_arg(*p_va_l, wchar_t);
+	return (p_ret);
+}
+
+void const	*vaarg_wchar_tptr(va_list *p_va_l)
+{
+	void const	*p_ret;
+
+	p_ret = &va_arg(*p_va_l, wchar_t*);
 	return (p_ret);
 }
 

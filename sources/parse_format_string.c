@@ -4,8 +4,7 @@ t_s_ps	g_ps;
 
 static void refresh_parse_state()
 {
-	if (g_ps.out_bits_anchor.next)
-	g_ps.out_bits_anchor = (t_list){0,0,0};
+	g_ps.chunks = (t_list){0,0,0};
 	g_ps.p_req_args = 0;
 	g_ps.p_literal_vals = 0;
 	g_ps.free_arg_count = 0;
