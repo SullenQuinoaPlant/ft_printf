@@ -7,19 +7,25 @@ void const	*vaarg_notype(va_list *p_va_l)
 
 void const	*vaarg_char(va_list *p_va_l)
 {
-	return (0);
+	void const	*p_ret;
+
+	p_ret = &va_arg(*p_va_l, int);
+	return (p_ret);
 }
 	
 void const	*vaarg_uchar(va_list *p_va_l)
 {
-	return (0);
+	void const	*p_ret;
+
+	p_ret = &va_arg(*p_va_l, int);
+	return (p_ret);
 }
 
 void const	*vaarg_charptr(va_list *p_va_l)
 {
 	void const	*p_ret;
 
-	p_ret = &va_arg(*p_va_l, char*);
+	p_ret = &va_arg(*p_va_l, char *);
 	return (p_ret);
 }
 
@@ -37,11 +43,6 @@ void const	*vaarg_longdouble(va_list *p_va_l)
 
 	p_ret = &va_arg(*p_va_l, long double);
 	return (p_ret);
-}
-
-void const	*vaarg_float(va_list *p_va_l)
-{
-	return (0);
 }
 
 void const	*vaarg_int(va_list *p_va_l)
@@ -67,7 +68,6 @@ void const	*vaarg_intptr(va_list *p_va_l)
 	p_ret = &va_arg(*p_va_l, int*);
 	return (p_ret);
 }
-
 
 void const	*vaarg_intmax_t(va_list *p_va_l)
 {
@@ -101,6 +101,14 @@ void const	*vaarg_ulong(va_list *p_va_l)
 	return (p_ret);
 }
 
+void const	*vaarg_longptr(va_list *p_va_l)
+{
+	void const	*p_ret;
+
+	p_ret = &va_arg(*p_va_l, long *);
+	return (p_ret);
+}
+
 void const	*vaarg_longlong(va_list *p_va_l)
 {
 	void const	*p_ret;
@@ -117,6 +125,14 @@ void const	*vaarg_ulonglong(va_list *p_va_l)
 	return (p_ret);
 }
 
+void const	*vaarg_longlongptr(va_list *p_va_l)
+{
+	void const	*p_ret;
+
+	p_ret = &va_arg(*p_va_l, long long *);
+	return (p_ret);
+}
+
 void const	*vaarg_ptrdiff_t(va_list *p_va_l)
 {
 	void const	*p_ret;
@@ -127,13 +143,28 @@ void const	*vaarg_ptrdiff_t(va_list *p_va_l)
 
 void const	*vaarg_short(va_list *p_va_l)
 {
-	return (0);
+	void const	*p_ret;
+
+	p_ret = &va_arg(*p_va_l, int);
+	return (p_ret);
 }
 
 void const	*vaarg_ushort(va_list *p_va_l)
 {
-	return (0);
+	void const	*p_ret;
+
+	p_ret = &va_arg(*p_va_l, int);
+	return (p_ret);
 }
+
+void const	*vaarg_shortptr(va_list *p_va_l)
+{
+	void const	*p_ret;
+
+	p_ret = &va_arg(*p_va_l, short *);
+	return (p_ret);
+}
+
 
 void const	*vaarg_size_t(va_list *p_va_l)
 {

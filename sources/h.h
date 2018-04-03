@@ -18,7 +18,7 @@ typedef enum	e_chunk_types {
 
 typedef struct	s_chunk_wrapper {
 	t_e_cts	type;
-	void	*data;
+	void	*chk;
 }				t_s_cw;
 
 typedef struct	s_text_chunk {
@@ -72,13 +72,12 @@ typedef enum	e_types {
 	e_notype,
 	e_char, e_uchar, e_charptr,
 	e_double, e_longdouble,
-	e_float,
-	e_int,	e_uint, e_intptr,
+	e_int, e_uint, e_intptr,
 	e_intmax_t, e_uintmax_t,
-	e_long, e_ulong,
-	e_longlong, e_ulonglong,
+	e_long, e_ulong, e_longptr,
+	e_longlong, e_ulonglong, e_longlongptr,
 	e_ptrdiff_t,
-	e_short, e_ushort,
+	e_short, e_ushort, e_shortptr,
 	e_size_t, e_ssize_t,
 	e_voidptr,
 	e_wchar_t, e_wchar_tptr,
@@ -110,9 +109,7 @@ typedef struct	s_percent {
 	t_e_lm		len_mod;
 	t_e_cs		specifier;
 	t_s_arg		*convertee;
-	char const	*str_result;
 }				t_s_pct;
-
 
 
 /*parse state
@@ -144,12 +141,8 @@ typedef enum	e_dollar_convention {
 }				t_e_dc;
 
 /*output state
-**	p_chunks' content fields point to strings that form output once appended
-**	p_memallocs is a list of malloced memory that holds the chunks
 **	out_str_len holds current output string length
 typedef struct	s_output_state {
-	t_list		*p_chunks; //unused
-	t_list		*p_memallocs; //unused
 	size_t		out_str_len;
 	int			out_stream;
 	int			errored;

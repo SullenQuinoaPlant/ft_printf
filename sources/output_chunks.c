@@ -27,16 +27,16 @@ static void	output_char_chk(t_s_char const * const chk)
 static void	output_chunk(t_s_cw *p_cw)
 {
 	t_e_cts 	type;
-	void const	*data;
+	void const	*chk;
 
-	if (p_cw && (type = p_cw->type) && (data = p_cw->data))
+	if (p_cw && (type = p_cw->type) && (chk = p_cw->chk))
 	{
 		if (type == e_txt_c)
-			output_txt_chk(data);
+			output_txt_chk(chk);
 		else if (type == e_char_c)
-			output_char_chk(data);
+			output_char_chk(chk);
 		else if (type == e_pct_c)
-			output_pct_chk(data);
+			output_pct_chk(chk);
 	}
 	else
 		g_os.errored++;

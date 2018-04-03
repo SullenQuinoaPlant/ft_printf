@@ -17,8 +17,8 @@ static void	clean_free_cw(void *ptr, size_t whatever)
 		sz = sizeof(t_s_char);
 	else if (*p == e_pct_c)
 		sz = sizeof(t_s_pct);
-	if (p_cw->data)
-		my_clean_free(p_cw->data, sz);
+	if (p_cw->chk)
+		my_clean_free(p_cw->chk, sz);
 	*p_cw = (t_s_cw){0,0};
 	free(p_cw);
 }
