@@ -134,7 +134,7 @@ typedef struct	s_parse_state {
 	int				errored;
 }				t_s_ps;
 
-extern t_s_ps g_ps;
+extern t_s_ps	g_ps;
 
 typedef enum	e_dollar_convention {
 	e_no_dollar_convention,
@@ -148,8 +148,13 @@ typedef enum	e_dollar_convention {
 **	p_memallocs is a list of malloced memory that holds the chunks
 **	out_str_len holds current output string length
 typedef struct	s_output_state {
-	t_list		*p_chunks;
-	t_list		*p_memallocs;
+	t_list		*p_chunks; //unused
+	t_list		*p_memallocs; //unused
 	size_t		out_str_len;
+	int			out_stream;
+	int			errored;
 }				t_s_os;
+
+extern t_s_os	g_os;
+
 #endif
