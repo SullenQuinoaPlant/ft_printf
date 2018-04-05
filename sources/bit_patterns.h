@@ -8,18 +8,18 @@ typedef union	u_double {
 	struct	{
 		unsigned long long	sign : 1;
 		unsigned long long	exponent : 11;
-		unsigned long long	significand : 52;
-	}		decomposition;
+		unsigned long long	mantissa : 52;
+	}		parts;
 }				t_u_d;
 # elif defined B
 typedef union	u_double {
 	double	d;
 	char	ar[sizeof(double)];
 	struct	{
-		unsigned long long	significand : 52;
+		unsigned long long	mantissa : 52;
 		unsigned long long	exponent : 11;
 		unsigned long long	sign : 1;
-	}		decomposition;
+	}		parts;
 }				t_u_d;
 # endif
 #endif

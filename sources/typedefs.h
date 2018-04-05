@@ -141,4 +141,11 @@ typedef struct	s_output_state {
 	int			errored;
 }				t_s_os;
 
+size_t const	g_biggest = sizeof(uintmax_t) * 8;
+
+typedef struct	s_indexed_buffer {
+	size_t  len;
+	char	b[g_biggest];
+}				t_s_ib;
+
 #endif

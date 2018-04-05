@@ -1,6 +1,6 @@
 #include "h.h"
 
-static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
+static ssize_t	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	a_conversion,
 	biga_conversion,
 	c_conversion,
@@ -21,7 +21,13 @@ static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	bigx_conversion
 };
 
-void	output_pct_chk(t_s_pct *chk)
+void			output_pct_chk(t_s_pct *chk)
 {
-	f_ar[chk->convertee->type](chk);
+	ssize_t	i;
+
+	i = f_ar[chk->convertee->type](chk);
+	if (i < 0)
+		g_os.errored++;
+	else
+		g_os.out_str_len += (size_t)i;
 }

@@ -7,9 +7,13 @@
 
 # include "typedefs.h"
 # include "functions.h"
-# include "type_formats"
+# include "bit_patterns.h"
 
-extern t_s_ps	g_ps;
-extern t_s_os	g_os;
+extern t_s_ps		g_ps;
+extern t_s_os		g_os;
+extern char const	g_octals[]
+extern char const	g_decimals[]
+extern char const	g_hex[]
+extern char const	g_big_hexs[]
 
 #endif
