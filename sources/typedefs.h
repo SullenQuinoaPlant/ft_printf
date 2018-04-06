@@ -90,12 +90,12 @@ typedef struct	s_va_arg {
 }				t_s_arg;
 
 # define NO_FLAGS 0X00
-# define #_FLAG 0X01
-# define 0_FLAG 0X02
-# define -_FLAG 0X04
-# define sp_FLAG 0X08
-# define +_FLAG 0X10
-# define '_FLAG 0X20
+# define HASH_FLAG 0X01
+# define ZERO_FLAG 0X02
+# define MINUS_FLAG 0X04
+# define SPACE_FLAG 0X08
+# define PLUS_FLAG 0X10
+# define APSTR_FLAG 0X20
 
 typedef struct	s_percent {
 	char		flags;
@@ -135,17 +135,18 @@ typedef enum	e_dollar_convention {
 
 /*output state
 **	out_str_len holds current output string length
+*/
 typedef struct	s_output_state {
 	size_t		out_str_len;
 	int			out_stream;
 	int			errored;
 }				t_s_os;
 
-size_t const	g_biggest = sizeof(uintmax_t) * 8;
+#define BIGGEST_BASE2 (sizeof(uintmax_t) * 8)
 
 typedef struct	s_indexed_buffer {
 	size_t  len;
-	char	b[g_biggest];
+	char	b[BIGGEST_BASE2];
 }				t_s_ib;
 
 #endif

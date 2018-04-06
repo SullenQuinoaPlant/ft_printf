@@ -25,6 +25,7 @@ void			output_pct_chk(t_s_pct *chk)
 {
 	ssize_t	i;
 
+	filter_flags(chk);
 	i = f_ar[chk->convertee->type](chk);
 	if (i < 0)
 		g_os.errored++;
