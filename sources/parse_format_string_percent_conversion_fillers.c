@@ -69,8 +69,9 @@ char	*percent_conversion_precision(char const *in)
 	if (*in == '.')
 	{
 		p_str = ++in;
-		if ((in = percent_conversion_star(in, p_res)) == p_str)
-			in = parse_store_int_literal(in, p_res);
+		if ((in = percent_conversion_star(in, p_res)) == p_str &&
+			(in = parse_store_int_literal(in, p_res)) == p_str)
+			ps_storer_integer(0, &p_res);
 	}
 	return (in);
 }

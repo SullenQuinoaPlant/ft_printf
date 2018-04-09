@@ -41,14 +41,8 @@ char	*parse_store_int_literal(char const *in, int *** const p_res)
 
 	if ((p_str = parse_literal_integer(in, &val)) != in)
 	{
-		if ((new_val = ft_lstnew(&val, sizeof(int))))
-		{
-			in = p_str;
-			ft_lstadd(&g_ps.p_literal_vals, new_val);
-			*p_res = &new_val->content;
-		}
-		else
-			g_ps.errored++;
+		ps_store_integer(val, p_res);
+		in = p_str;
 	}
 	return (in);
 }

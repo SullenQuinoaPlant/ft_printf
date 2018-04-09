@@ -13,7 +13,7 @@ typedef enum	e_chunk_types {
 
 typedef struct	s_chunk_wrapper {
 	t_e_cts	type;
-	void	*chk;
+	void	*p_chk;
 }				t_s_cw;
 
 typedef struct	s_text_chunk {
@@ -134,10 +134,10 @@ typedef enum	e_dollar_convention {
 }				t_e_dc;
 
 /*output state
-**	out_str_len holds current output string length
+**	output_len holds current output string length
 */
 typedef struct	s_output_state {
-	size_t		out_str_len;
+	size_t		output_len
 	int			out_stream;
 	int			errored;
 }				t_s_os;

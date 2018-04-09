@@ -21,14 +21,30 @@ static ssize_t	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	bigx_conversion
 };
 
-void			output_pct_chk(t_s_pct *chk)
+static void	filter_flags(t_s_pct *p_chk)
 {
-	ssize_t	i;
+	char	f_cpy;
 
-	filter_flags(chk);
-	i = f_ar[chk->convertee->type](chk);
-	if (i < 0)
-		g_os.errored++;
-	else
-		g_os.out_str_len += (size_t)i;
+	f_cpy = p_chk->flags;
+	if (f_cpy & ZERO_FLAG && f_cpy & MINUS_FLAG)
+		f_cpy |= ~(ZERO_FLAG);
+	if (f_cpy & SPACE_FLAG && f_cpy & PLUS_FLAG)
+		f_cpy |= ~(SPACE_FLAG);
+	p_chk->flags = f_cpy;
+}
+
+static void	filter_width(t_s_pct *p_chk)
+{
+	if (p_chk->width < 0)
+	{
+		p_chk->flags |= MINUS_FLAG;
+		p_chk->width = width == INT_MIN ? -(width + 1) : -width;
+	}
+}
+
+void			output_pct_chk(t_s_pct *p_chk)
+{
+	filter_width(p_chk);
+	filter_flags(p_chk);
+	f_ar[p_chk->convertee->type](p_chk);
 }
