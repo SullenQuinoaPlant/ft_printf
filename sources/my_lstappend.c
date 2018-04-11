@@ -4,6 +4,9 @@ void	my_lstappend(t_lst **last, t_list *new)
 {
 	t_list	*nxt;
 
+	nxt = *last;
+	while ((nxt = nxt->next))
+		*last = nxt;
 	(**last).next = new;
 	while ((nxt = new->next))
 		new = nxt;

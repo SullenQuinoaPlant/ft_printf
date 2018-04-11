@@ -46,5 +46,5 @@ void			output_pct_chk(t_s_pct *p_chk)
 {
 	filter_width(p_chk);
 	filter_flags(p_chk);
-	f_ar[p_chk->convertee->type](p_chk);
+	f_ar[p_chk->vaarg->type](p_chk);
 }

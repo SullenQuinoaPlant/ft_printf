@@ -85,14 +85,14 @@ int		output_minusinf(t_s_pct *p_chk)
 int		output_nan_inf(t_u_d *val, t_s_pct *p_chk)
 {
 	t_u_d const	ref = (t_u_d){.parts = {.exponent = ~0}};
-	ssize_t		ret;
+	int			r;
 
-	ret = 0;
-	if (t->parts.exponent == ref.parts.exponent &&
-		((val->parts.mantissa && (ret = output_nan(p_chk))) ||
-		(!val->parts.sign && (ret = output_plusinf(p_chk))) ||
-		(val->parts.sign && (ret = output_minusinf(p_chk))) ||
-		(ret = -1)))
+	r = 0;
+	if (t->parts.exp == ref.parts.exponent &&
+	((val->parts.mant && (r = output_nan(p_chk))) ||
+	(!val->parts.sign && (r = output_plusinf(p_chk))) ||
+	(val->parts.sign && (r = output_minusinf(p_chk))) ||
+	(r = -1)))
 		;
-	return (ret);
+	return (r);
 }

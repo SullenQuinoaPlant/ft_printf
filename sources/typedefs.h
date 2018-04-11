@@ -103,7 +103,7 @@ typedef struct	s_percent {
 	int			**precision;
 	t_e_lm		len_mod;
 	t_e_cs		specifier;
-	t_s_arg		*convertee;
+	t_s_arg		*vaarg;
 }				t_s_pct;
 
 
@@ -117,7 +117,7 @@ typedef struct	s_percent {
 **	enum e_dollar_convention indicates use of dollar sign
 */
 typedef struct	s_parse_state {
-	t_list			chunks;
+	t_applist		chunks;
 	t_list			*p_req_args;
 	t_list			*p_literal_vals;
 	unsigned int	free_arg_count;

@@ -16,7 +16,7 @@ char	*parse_text(char const *in)
 			while ((c = in[i]) != '%' && c)
 				i++;
 			*p_chunk = (t_s_txt){in, i};
-			my_lstappend(&g_ps.chunks.content, p_wrap);
+			my_lstappend(&g_ps.chunks.tail, p_wrap);
 			in += i;
 		}
 		else

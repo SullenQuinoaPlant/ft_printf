@@ -80,7 +80,7 @@ char		*parse_conversion(char const *in)
 				e_no_specifier,
 				0,
 				0};
-	t_s_cw *	const p_cw = ((t_list*)g_ps.chunks.content)->content;
+	t_s_cw *	const p_cw = ((t_list*)g_ps.chunks.tail)->content;
 	t_s_pct		*p_chk;
 	t_list		*p_arg;
 
@@ -91,12 +91,12 @@ char		*parse_conversion(char const *in)
 	{
 		ft_lstadd(&g_ps.p_req_args, p_arg);
 		*p_chk = default;
-		p_chk->convertee = p_arg->content;
+		p_chk->vaarg = p_arg->content;
 		*p_cw = (t_s_cw){e_pct_c, p_chk};
 		in = attempt_all(in, f_str);
-		if (! p_chk->convertee->position)
-			p_chk->convertee->position = (++g_ps.free_arg_count);
-		p_chk->convertee->type = g_in_types[p_chk->specifier][p_chk->len_mod];
+		if (! p_chk->vaarg->position)
+			p_chk->vaarg->position = (++g_ps.free_arg_count);
+		p_chk->vaarg->type = g_in_types[p_chk->specifier][p_chk->len_mod];
 	}
 	else
 	{

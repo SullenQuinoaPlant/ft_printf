@@ -12,7 +12,7 @@ char		*parse_percent(char const *in)
 	{
 		if ((p_wrap = ft_lstnew(&(t_s_cw){e_no_c_type, 0}, sizeof(t_e_cts))))
 		{
-			my_lstappend(&g_ps.chunks.content, p_wrap);
+			my_lstappend(&g_ps.chunks.tail, p_wrap);
 			in++;
 			in = until_progress(in, f_str);
 		}

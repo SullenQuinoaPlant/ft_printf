@@ -2,7 +2,7 @@
 
 static t_s_pct 	*get_p_pct()
 {
-	t_list * const	p1 = (t_list*)g_ps.chunks.content;
+	t_list * const	p1 = (t_list*)g_ps.chunks.tail;
 	t_s_cw * const	p2 = p1->content;
 	t_s_pct * const	p3 = p2->chk;
 
