@@ -16,6 +16,17 @@ typedef union	u_double {
 	}		parts;
 }				t_u_d;
 
+typedef union	u_ldouble {
+	long double	d;
+	char		ar[sizeof(long double)];
+	struct		{
+		unsigned long long	mant : 52;
+		unsigned long long	mant : 52;
+		unsigned long long	exp : 11;
+		unsigned long long	sign : 1;
+	}			parts;
+}				t_u_d;
+
 typedef struct	s_decomposed_floating_point {
 	unsigned int		flags;
 	unsigned int		exp;
