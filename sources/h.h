@@ -9,8 +9,8 @@
 # include "libft.h"
 # include "appendable_list.h"
 # include "typedefs.h"
-# include "functions.h"
 # include "bit_patterns.h"
+# include "functions.h"
 
 extern t_s_ps		g_ps;
 extern t_s_os		g_os;

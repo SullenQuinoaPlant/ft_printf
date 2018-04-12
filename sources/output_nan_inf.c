@@ -82,17 +82,17 @@ int		output_minusinf(t_s_pct *p_chk)
 	return (r ? r : -1);
 }
 
-int		output_nan_inf(t_u_d *val, t_s_pct *p_chk)
+int		output_nan_inf(t_s_dfp *val, t_s_pct *p_chk)
 {
-	t_u_d const	ref = (t_u_d){.parts = {.exponent = ~0}};
-	int			r;
+	int		const flg = val->flags;
+	int		r;
 
 	r = 0;
-	if (t->parts.exp == ref.parts.exponent &&
-	((val->parts.mant && (r = output_nan(p_chk))) ||
-	(!val->parts.sign && (r = output_plusinf(p_chk))) ||
-	(val->parts.sign && (r = output_minusinf(p_chk))) ||
-	(r = -1)))
-		;
+	if (flg & (~SIGN_F) &&
+	!((flg & NAN_F && (r = output_nan(p_chk))) ||
+	(flg & INF_F &&
+	((flg & SIGN_F && (r = output_minusinf(p_chk))) ||
+	(r = output_plusinf(p_chk))))))
+		r = -1;
 	return (r);
 }

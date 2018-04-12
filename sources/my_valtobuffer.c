@@ -13,7 +13,7 @@ size_t	my_valtobuffer(uintmax_t val,
 	size_t				i;
 
 	i = 0;
-	while (val || i = 0)
+	while (val || i == 0)
 	{
 		*(b_end - i++) = basestr[val % r];
 		val /= r;
