@@ -10,11 +10,16 @@ include make_vars.mk
 #CORE :
 
 .PHONY : $(NAME) $(OBJ_DIR)/%.o clean fclean re
-$(NAME) clean fclean re :
-	git status
-	$(MAKE) -f Makefile.mk $(MAKECMDGOALS)
+$(NAME) clean fclean re d:
+	$(MAKE) -f Makefile.mk \
+	LIBFT_IDIR=$(LIBS_I) LIBFT_LDIR=$(LIBS_L) \
+	LIBFT_DIR=$(LIB_DIR) \
+	$@
 $(OBJ_DIR)%.o :
-	$(MAKE) -f Makefile.mk $(MAKECMDGOALS)
+	$(MAKE) -f Makefile.mk \
+	LIBFT_IDIR=$(LIBS_I) LIBFT_LDIR=$(LIBS_L) \
+	LIBFT_DIR=$(LIB_DIR) \
+	$@
 
 
 #######

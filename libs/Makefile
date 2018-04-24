@@ -5,18 +5,20 @@ endif
 
 BUILD_DIR = oaeuhtns
 
+build_dir :
+	if [ -d $(BUILD_DIR) ];then exit 1; fi
+
 nop :
 	@:
 
 
-libft : $(LIBS_I)/libft.h $(LIBS_L)/libft.a
-	-rm -rf $(BUILD_DIR)
+libft.% : $(LIBS_I)/libft.h $(LIBS_L)/libft.a | build_dir
 	git clone --single-branch -b the_lib https://github.com/SullenQuinoaPlant/Libft.git $(BUILD_DIR)/
-	$(MAKE) -C $(BUILD_DIR)/
+	$(MAKE) -C $(BUILD_DIR)/ $@
 	cp $(BUILD_DIR)/libft.a $(LIBS_L)
 	cp $(BUILD_DIR)/libft.h $(LIBS_I)
 	rm -rf $(BUILD_DIR)
-	touch libft
+	touch $(LIB_DIR)/libft
 
 $(LIBS_I)/libft.h :
 	@:
