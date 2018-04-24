@@ -31,7 +31,7 @@ include unit-tests/Makefile
 #########
 #OUTPUT :
 
-OUT = NAME
+OUT = $(subst $(NAME), out_$(NAME), $(NAME))
 .PHONY : clean-ft_printf
 clean-ft_printf :
 	if ! [ -d $(OUT) ]; then mkdir $(OUT); fi
