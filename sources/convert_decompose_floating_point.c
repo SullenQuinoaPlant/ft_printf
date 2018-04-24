@@ -1,6 +1,24 @@
 #include "h.h"
 
-# ifdef A
+# ifdef ARCH_A
+static reverse(unsigned long long this,
+					unsigned long long max_mark,
+					unsigned long long p_to_res)
+{
+	unsigned long long	mark;
+	unsigned long long	res;
+
+	res = 0;
+	mark = 0x01ull;
+	while (mark <= max_mark)
+	{
+		res <<= 1;
+		res += mark & this ? 1 : 0;
+		mark <<= 1;
+	}
+	*p_to_res = res;
+}
+
 static t_s_dfp	decompose_double(void *p_val)
 {
 	size_t	const sz = sizeof(double);
@@ -8,8 +26,9 @@ static t_s_dfp	decompose_double(void *p_val)
 	t_u_d	arg;
 	
 	ft_memcpy(&arg, p_chk->vaarg->p_arg, sz);
-	ret = (t_s_dfp){arg.sign, arg.exp, arg.mant};
-	if (arg.exp = ~0)
+	ret = (t_s_dfp){arg.sign, arg.exp, 0};
+	reverse(arg.mant, max_mark, &ret.mant);
+	if (arg.exp == ~0)
 	{
 		if (arg.mant)
 			ret.flags |= NAN_F;
@@ -19,14 +38,16 @@ static t_s_dfp	decompose_double(void *p_val)
 	return (ret);
 }
 
-static t_s_dfp	decompose_ldouble(void *p_val)
+t_s_dfp	decompose_ldouble(void *p_val)
 {
+	unsigned long long	max_mark = 0x01 << 63;
 	size_t	const sz = sizeof(long double);
 	t_s_dfp	ret;
 	t_u_ld	arg;
 	
 	ft_memcpy(&arg, p_chk->vaarg->p_arg, sz);
-	ret = (t_s_dfp){arg.sign, arg.exp, arg.mant};
+	ret = (t_s_dfp){arg.sign, arg.exp, 0};
+	reverse(arg.mant, max_mark, &ret.mant);
 	if (arg.exp = ~0)
 	{
 		if (arg.mant)
