@@ -7,18 +7,18 @@ SRC_DIR = ./sources
 OBJS := $(patsubst %,$(OBJ_DIR)/%.o,$(TARGETS))
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-CFLAGS_MORE =
-
+ifndef
+	CFLAGS = -Wall -Wextra -Werror
+endif
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(CFLAGS_MORE)\
+	$(CC) $(CFLAGS)\
 		-o $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | objdir
-	$(CC) $(CFLAGS) $(CFLAGS_MORE)\
+	$(CC) $(CFLAGS)\
 		-o $@ -c $<
 
 .PHONY : objdir

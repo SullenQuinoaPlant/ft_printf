@@ -1,15 +1,18 @@
-#######
+all :
+	git status
+
+############
+#VARIABLES :
+
+include make_vars.mk
+
 #######
 #CORE :
 
-include make_vars.mk
-include Makefile.mk
+$(NAME) $(OBJ_DIR)/%.o clean fclean re :
+	git status
+	$(MAKE) -f Makefile.mk $(MAKECMDGOALS)
 
-
-
-########
-########
-#OTHER :
 
 #######
 #LIBS :
@@ -18,18 +21,27 @@ include libs/Makefile
 
 ########
 #TESTS :
-
-.PHONY : libproject 
 	
 include unit-tests/Makefile
-
 
 
 #########
 #OUTPUT :
 
-OUT = ft_printf
+OUT = NAME
 clean-ft_printf :
 	if ! [ -d $(OUT) ]; then mkdir $(OUT); fi
 	cp auteur $(OUT)/
 	git clone -b the_lib --single-branch https://github.com/SullenQuinoaPlant/Libft.git $(OUT)/libft
+	cp Makefile.mk $(OUT)/Makefile
+#cp -r $(SRC_DIR)/ $(OUT)/
+
+
+################
+#MISCELLANEOUS :
+
+c :
+	git commit -a -m i
+
+p :
+	git push
