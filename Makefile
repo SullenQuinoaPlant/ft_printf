@@ -9,6 +9,8 @@ include make_vars.mk
 #######
 #CORE :
 
+.PHONY :
+.PHONY : $(NAME) $(OBJ_DIR)/%.o clean fclean re
 $(NAME) $(OBJ_DIR)/%.o clean fclean re :
 	git status
 	$(MAKE) -f Makefile.mk $(MAKECMDGOALS)
