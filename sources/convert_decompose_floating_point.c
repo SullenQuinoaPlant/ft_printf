@@ -1,9 +1,9 @@
 #include "h.h"
 
 # ifdef ARCH_A
-static reverse(unsigned long long this,
+static void	reverse(unsigned long long this,
 					unsigned long long max_mark,
-					unsigned long long p_to_res)
+					unsigned long long *p_to_res)
 {
 	unsigned long long	mark;
 	unsigned long long	res;
@@ -21,13 +21,13 @@ static reverse(unsigned long long this,
 
 static t_s_dfp	decompose_double(void *p_val)
 {
+	unsigned long long	const max_mark = 0x1ull << 52;
 	size_t	const sz = sizeof(double);
 	t_s_dfp	ret;
 	t_u_d	arg;
 	
-	ft_memcpy(&arg, p_chk->vaarg->p_arg, sz);
-	ret = (t_s_dfp){arg.sign, arg.exp, 0};
-	reverse(arg.mant, max_mark, &ret.mant);
+	ft_memcpy(&arg, p_val, sz);
+	ret = (t_s_dfp){arg.sign, arg.exp, arg.mant};
 	if (arg.exp == ~0)
 	{
 		if (arg.mant)
@@ -40,15 +40,14 @@ static t_s_dfp	decompose_double(void *p_val)
 
 t_s_dfp	decompose_ldouble(void *p_val)
 {
-	unsigned long long	max_mark = 0x01 << 63;
+	unsigned long long	const max_mark = 0x1ull << 63;
 	size_t	const sz = sizeof(long double);
 	t_s_dfp	ret;
 	t_u_ld	arg;
 	
-	ft_memcpy(&arg, p_chk->vaarg->p_arg, sz);
-	ret = (t_s_dfp){arg.sign, arg.exp, 0};
-	reverse(arg.mant, max_mark, &ret.mant);
-	if (arg.exp = ~0)
+	ft_memcpy(&arg, p_val, sz);
+	ret = (t_s_dfp){arg.sign, arg.exp, arg.mant};
+	if (arg.exp == ~0)
 	{
 		if (arg.mant)
 			ret.flags |= NAN_F;
@@ -59,7 +58,7 @@ t_s_dfp	decompose_ldouble(void *p_val)
 }
 # endif
 
-t_s_dfp		decompose_fpval(void *p_val, t_e_t typ)
+t_s_dfp		decompose_fpval(void *p_val, t_e_t type)
 {
 	t_s_dfp	ret;
 

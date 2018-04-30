@@ -138,7 +138,7 @@ typedef enum	e_dollar_convention {
 **	output_len holds current output string length
 */
 typedef struct	s_output_state {
-	size_t		output_len
+	size_t		output_len;
 	int			out_stream;
 	int			errored;
 }				t_s_os;
@@ -150,7 +150,7 @@ typedef struct	s_indexed_buffer {
 	char	b[BIGGEST_BASE2 + 1];
 }				t_s_ib;
 
-typeedf struct	s_possibly_allocated {
+typedef struct	s_possibly_allocated {
 	int		*is_alloc;
 	void	*data;
 }				t_s_pa;

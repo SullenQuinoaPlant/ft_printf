@@ -13,7 +13,7 @@ typedef union	u_double {
 		unsigned long long	mant : 52;
 		unsigned long long	exp : 11;
 		unsigned long long	sign : 1;
-	}		parts;
+	};
 }				t_u_d;
 
 typedef union	u_ldouble {
@@ -23,7 +23,7 @@ typedef union	u_ldouble {
 		unsigned long long	mant : 64;
 		unsigned int		exp : 15;
 		unsigned int		sign : 1;
-	}			parts;
+	};
 }				t_u_ld;
 # endif
 

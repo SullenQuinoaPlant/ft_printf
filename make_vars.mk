@@ -13,5 +13,10 @@ LIBS_I := $(LIB_DIR)/includes
 UTEST_DIR := $(ROOT)/unit-tests
 
 CC := gcc
-CFLAGS = -Wall -Wextra -Werror
+ifndef CFLAGS
+	CFLAGS = -Wall -Wextra -Werror
+endif
 CFLAGS_MORE =
+ifndef ARCH
+	ARCH = ARCH_A
+endif

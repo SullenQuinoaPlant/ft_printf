@@ -11,7 +11,7 @@ EXECUTION_STAMPS := $(TEST_OBJS:.o=.execution.stamp)
 CC = gcc
 CFLAGS_MORE =
 CFLAGS_UTEST = -fno-builtin #-Wall -Wextra -Werror
-CFLAGS_UTEST += $(CFLAGS) $(CFLAGS_MORE)
+CFLAGS_UTEST += $(CFLAGS_MORE) #$(CFLAGS) were annoying the hell out of me
 
 
 
@@ -31,7 +31,7 @@ build_tests : cmocka $(TEST_OBJS)
 cmocka : 
 	if $(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -L $(LIBS_L)\
-	 	$(UTEST_DIR)/boilerplate.c\
+	 	$(UTEST_DIR)/check_install.c\
 		 -lcmocka -o test.o; then\
 			rm test.o;\
 			echo "cmocka already installed";\
@@ -45,6 +45,7 @@ cmocka :
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
+		-D $(ARCH)\
 		-include $(SRC_DIR)/$*.c\
 		$<\
 		-L $(LIBS_L)\
@@ -57,6 +58,7 @@ cmocka :
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(SRC_DIR)\
 		-I $(LIBS_I)\
+		-D $(ARCH)\
 		$<\
 		-L $(LIBS_L)\
 		-lcmocka -lft\

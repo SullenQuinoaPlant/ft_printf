@@ -14,6 +14,6 @@ $(SOURCE_DIR) :
 	
 
 clean :
-	rm libcmocka.so*
-	rm cmocka.h
+	-rm libcmocka.so*
+	-rm cmocka.h
 	rm -rf $(BUILD_DIR)
