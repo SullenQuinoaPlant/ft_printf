@@ -11,7 +11,7 @@ char		*percent_conversion_star(char const *in, int ***p_res)
 		if ((new_arg = ft_lstnew(&(t_s_arg){e_int, 0, 0}, sizeof(t_s_arg)))
 		{
 			ft_lstadd(&g_ps.p_req_args, new_arg);
-			*p_res = &((t_s_arg*)new_arg->content)->p_arg;
+			*p_res = &((t_s_arg*)new_arg->content)->p_val;
 			in++;
 			p_pos = &((t_s_arg*)new_arg->content)->position;
 			in = parse_fill_literal_int_dollar(in, p_pos);

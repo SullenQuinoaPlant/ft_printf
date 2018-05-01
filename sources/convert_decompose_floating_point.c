@@ -9,12 +9,12 @@ static void	reverse(unsigned long long this,
 	unsigned long long	res;
 
 	res = 0;
-	mark = 0x01ull;
-	while (mark <= max_mark)
+	mark = 1;
+	while (max_mark)
 	{
-		res <<= 1;
-		res += mark & this ? 1 : 0;
+		res |= max_mark & this ? mark : 0ull;
 		mark <<= 1;
+		max_mark >>= 1;
 	}
 	*p_to_res = res;
 }
@@ -27,13 +27,14 @@ static t_s_dfp	decompose_double(void *p_val)
 	t_u_d	arg;
 	
 	ft_memcpy(&arg, p_val, sz);
-	ret = (t_s_dfp){arg.sign, arg.exp, arg.mant};
+	ret = (t_s_dfp){arg.sign, arg.exp, arg.mant, 0};
+	reverse(arg.mant, max_mark, &ret.rmant);
 	if (arg.exp == ~0)
+		ret.flags |= arg.mant ? NAN_F : INF_F;
+	else if (arg.exp)
 	{
-		if (arg.mant)
-			ret.flags |= NAN_F;
-		else
-			ret.flags |= INF_F;
+		ret.mant |= max_mark;
+		ret.rmant += 1;
 	}
 	return (ret);
 }
@@ -46,14 +47,10 @@ t_s_dfp	decompose_ldouble(void *p_val)
 	t_u_ld	arg;
 	
 	ft_memcpy(&arg, p_val, sz);
-	ret = (t_s_dfp){arg.sign, arg.exp, arg.mant};
+	ret = (t_s_dfp){arg.sign, arg.exp, arg.mant, 0};
+	reverse(arg.mant, max_mark, &ret.rmant);
 	if (arg.exp == ~0)
-	{
-		if (arg.mant)
-			ret.flags |= NAN_F;
-		else
-			ret.flags |= INF_F;
-	}
+		ret.flags |= arg.mant ? NAN_F : INF_F;
 	return (ret);
 }
 # endif

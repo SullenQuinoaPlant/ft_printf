@@ -86,7 +86,7 @@ typedef struct	s_va_arg {
 		int			position;
 		int			count_uses;
 				};
-	void const	*p_arg;
+	void const	*p_val;
 }				t_s_arg;
 
 # define NO_FLAGS 0X00

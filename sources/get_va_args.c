@@ -58,13 +58,13 @@ static void	fill_vaarg_ar(t_s_ps *parsed, t_s_arg *ar)
 	}
 }
 
-static void resolve_vaargs(va_list *vaargs, t_s_arg *ar, unsigned int	len)
+static void resolve_vaargs(va_list *vaargs, t_s_arg *ar, unsigned int len)
 {
 	size_t	i;
 
 	i = ~0;
 	while (++i < len)
-		ar[i].p_arg = f_ar[ar[i].type](vaargs);
+		ar[i].p_val = f_ar[ar[i].type](vaargs);
 }
 
 static void	fulfill_arg_reqs(t_s_arg *resolved, t_s_ps *parsed)
@@ -79,7 +79,7 @@ static void	fulfill_arg_reqs(t_s_arg *resolved, t_s_ps *parsed)
 		p_out_arg = (t_s_arg*)p_list->content;
 		p_ar_arg = resolved + p_out_arg->position;
 		p_ar_arg->count_uses++;
-		p_out_arg->p_arg = p_ar_arg->p_arg;
+		p_out_arg->p_val = p_ar_arg->p_val;
 		p_list = p_list->next;
 	}
 }

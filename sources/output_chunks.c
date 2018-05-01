@@ -51,11 +51,11 @@ static void	refresh_g_os(int fd)
 
 ssize_t	output_chunks(int fd, t_s_ps *p_parsed)
 {
-	t_list	*p_chk;
+	t_list	*p_link;
 
 	refresh_g_os(fd);
-	p_chk = &p_parsed->chunks;
-	while((p_chk = p_chk->next))
-		output_chunk(p_chk->content);
+	p_link = &p_parsed->chunks;
+	while((p_link = p_link->next))
+		output_chunk(p_link->content);
 	return (g_os.errored ? -1 : g_os.out_str_len);
 }
