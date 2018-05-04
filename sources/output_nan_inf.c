@@ -18,17 +18,16 @@ int		output_nan(t_s_pct *p_chk)
 	r = 1;
 	if ((pad = **p_chk->width - str_len) > 0 &&
 		p_chk->flags & MINUS_FLAG &&
-		(r = output_padding(pad, ' ') > 0))
+		(r = output_padding(pad, ' ')))
 		pad = 0;
 	writ = 0;
 	if (r &&
-		(r = (writ = write(g_os.out_stream, str, str_len)) > 0))
-		g_os.output_len += writ;
-	else
-		g_os.errored += writ ? 1 : 0;
+		(!(r = (writ = write(g_os.out_stream, str, str_len)) == str_len)))
+		g_os.errored++;
+	g_os.output_len += writ;
 	if (pad > 0 && r && output_padding(pad, ' ') < 0)
 		r = 0;
-	return (r ? r : -1);
+	return (r);
 }
 
 int		output_plusinf(t_s_pct *p_chk)
@@ -65,7 +64,7 @@ int		output_minusinf(t_s_pct *p_chk)
 	ssize_t	r;
 	int		pad;
 
-	len = 1 + ft_strlen((s = wants_big(p_chk) ? g_biginf : g_inf;
+	len = 1 + ft_strlen((s = wants_big(p_chk) ? g_biginf : g_inf));
 	r = 1;
 	if ((pad = **p_chk->width - str_len) > 0 &&
 		p_chk->flags & MINUS_FLAG &&
