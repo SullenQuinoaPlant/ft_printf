@@ -31,5 +31,6 @@ typedef struct	s_decomposed_floating_point {
 	unsigned int		flags;
 	unsigned int		exp;
 	unsigned long long	mant;
+	unsigned long long	aligned_sgfcd;
 }				t_s_dfp;
 #endif

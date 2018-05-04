@@ -20,3 +20,22 @@ size_t	my_valtobuffer(uintmax_t val,
 	}
 	return (i);
 }
+
+size_t	my_lowvaltobuffer(uintmax_t val,
+					char const * const basestr,
+					char *b_end)
+{
+	unsigned char	r;
+	size_t			i;
+
+	r = ft_strlen(basestr);
+	while (!(val % r) && val)
+		val /= r;
+	i = 0;
+	while (val)
+	{
+		*(b_end - i++) = basestr[val % r];
+		val /= r;
+	}
+	return (i);
+}
