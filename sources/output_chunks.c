@@ -21,7 +21,7 @@ static void	output_char_chk(t_s_char const * const chk)
 	if (i < 0)
 		g_os.errored++;
 	else
-		g_os.out_str_len += (size_t)i;
+		g_os.out_str_len += 1;
 }
 
 static void	output_chunk(t_s_cw *p_cw)

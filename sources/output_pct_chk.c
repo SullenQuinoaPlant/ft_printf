@@ -1,6 +1,6 @@
 #include "h.h"
 
-static ssize_t	(* const f_ar[e_cs_sz])(t_s_pct *) = {
+static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	a_conversion,
 	biga_conversion,
 	c_conversion,
@@ -42,7 +42,7 @@ static void	filter_width(t_s_pct *p_chk)
 	}
 }
 
-void			output_pct_chk(t_s_pct *p_chk)
+void		output_pct_chk(t_s_pct *p_chk)
 {
 	filter_width(p_chk);
 	filter_flags(p_chk);

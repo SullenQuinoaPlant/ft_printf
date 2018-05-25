@@ -4,6 +4,11 @@
 # define SIGN_F 0x01
 # define INF_F 0x02
 # define NAN_F 0x04
+# define OVER_F 0x08
+# define DNORM_F 0x10
+
+# define DB_E_BIAS 1023
+# define LDB_E_BIAS 16383
 
 # ifdef ARCH_A
 typedef union	u_double {
