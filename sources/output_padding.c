@@ -1,15 +1,12 @@
 #include "h.h"
 
-int		output_padding(int yay_much, char of_this)
+int		output_padding(size_t yay_much, char of_this)
 {
-	int		const much_yay = yay_much;
-	int		outputten;
+	ssize_t	outputten;
 
-	outputten = 0;
-	while (yay_much-- > 0)
-		outputten += write(g_os.out_stream, &of_this, 1);
+	outputten = write(g_os.out_stream, &of_this, yay_much);
 	g_os.output_len += outputten;
-	if (outputten < much_yay)
+	if (outputten < yay_much)
 	{
 		g_os.errored++;
 		return (0);
@@ -30,5 +27,31 @@ int		output_padnstuff(size_t len, t_s_pct *p_chk,
 		pad = 0;
 	if (r && (r = (*outputer)(stuff)) && pad > len)
 		r = output_padding(pad, ' ');
+	return (r);
+}
+
+int		output_padnbuffer(char *buffer, size_t prefix_len, size_t len,
+			t_s_pct *p_chk)
+{
+	ssize_t	out;
+	int		r;
+	int		pad;
+
+	if (prefix_len > len && (g_os.errored += 1))
+		return (0);
+	r = 1;
+	if (!((out = write(g_os.out_stream, buffer, prefix_len)) >= 0 &&
+		(g_os.output_len += out) && (r |= out == prefix_len))
+		g_os.errored += 1
+	if (r && (pad = **p_chk->width) > 0 &&
+		pad > len && (pad -= len) &&
+		p_chk->flags & (MINUS_FLAG | ZERO_FLAG) &&
+		(r |= output_padding(pad, ZERO_FLAG ? '0' : ' ')))
+		pad = 0;
+	if (r &&
+		!((out = write(g_os.out_stream, buffer + prefix_len, len)) >= 0 &&
+		(g_os.output_len += out) && r |= out == len))
+		g_os.errored += 1;
+	if (r && pad && (r |= output_padding(pad, ' ')))
 	return (r);
 }

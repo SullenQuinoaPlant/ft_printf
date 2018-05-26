@@ -13,7 +13,7 @@ static void	convert_double(char *base, t_s_pct *p_chk)
 	if (output_nan_inf(&arg, p_chk))
 		return;
 	val.len = my_valtobuffer(arg.aligned, base, val.b);
-	exp.len = my_valtobuffer(arg.ex, g_dec, exp.b);
+	exp.len = my_valtobuffer(arg.ex, g_dec, exp.b, ALL_SIGNED);
 	
 	
 }
