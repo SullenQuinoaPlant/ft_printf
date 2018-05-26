@@ -43,12 +43,14 @@ size_t	my_lowvaltobuffer(uintmax_t val,
 size_t	my_signedvaltobuffer(intmax_t val,
 						char const * const basestr,
 						char *b_end,
-						unsigned int sign_flag)
+						unsigned int sign_f)
 {
 	size_t		i;
 	int			sign;
 
 	sign = val < 0 ? -1 : 1;
 	i = my_valtobuffer((val * sign), basestr, b_end);
-	if sign < 0 
+	*(b_end - i) = sign < 0 ? '-' : '+';
+	if (val < 0 || sign_f == ALL_SIGNED || (val && sign_f == ABS_SIGNED))
+		i++;
 }
