@@ -99,18 +99,18 @@ static void	check_arg_use(t_s_arg *used_args, unsigned int len, t_s_ps *parsed)
 
 int		get_va_args(va_list *vaargs, t_s_ps *parsed)
 {
-	unsigned int	len = parsed->max_arg_pos;
-	size_t	const	ar_sz = len * sizeof(t_s_arg);
-	t_s_arg	*p_ar;
+	size_t			const ar_sz = len * sizeof(t_s_arg);
+	unsigned int	len;
+	t_s_arg			*p_ar;
 
-	if ((p_ar = malloc(ar_sz))
-	{
-		init_t_s_arg_array(len, p_ar);
-		fill_vaarg_ar(parsed, p_ar);
-		resolve_vaargs(vaargs, p_ar);
-		fulfill_arg_reqs(p_ar, parsed);
-		check_arg_use(p_ar, len, parsed);
-		my_clean_free(p_ar, ar_sz);
-	}
-	return (p_ar ? 0 : 1);
+	len = parsed->max_arg_pos;
+	if (!(p_ar = malloc(ar_sz)))
+		return (0);
+	init_t_s_arg_array(len, p_ar);
+	fill_vaarg_ar(parsed, p_ar);
+	resolve_vaargs(vaargs, p_ar);
+	fulfill_arg_reqs(p_ar, parsed);
+	check_arg_use(p_ar, len, parsed);
+	my_super_clean_free(*p_ar, ar_sz);
+	return (1);
 }
