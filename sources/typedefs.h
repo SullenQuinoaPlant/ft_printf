@@ -142,26 +142,3 @@ typedef struct	s_output_state {
 	int			out_stream;
 	int			errored;
 }				t_s_os;
-
-#define BIGGEST_BASE2 (sizeof(uintmax_t) * 8)
-
-typedef struct	s_indexed_buffer {
-	size_t  len;
-	char	b[BIGGEST_BASE2 + 1];
-}				t_s_ib;
-
-typedef struct	s_possibly_allocated {
-	int		*is_alloc;
-	void	*data;
-}				t_s_pa;
-
-typedef struct	s_conversion_chunk t_s_cc;
-typedef int		(*cc_fun)(t_s_pct *p_chk, t_s_cc *p_owner);
-struct			s_conversion_chunk {
-	size_t	len;
-	t_s_pa	*output_data;
-	cc_fun	compute_len;
-	cc_fun	output_stuff;
-};
-	
-#endif

@@ -1,7 +1,7 @@
 #include "h.h"
 
 /*base should be a power of 2 between 2 and 64*/
-static void	convert_double(char *base, t_s_pct *p_chk)
+static void	convert_a(t_s_pct *p_chk)
 {
 	t_s_dfp		fpd;
 	t_s_ib		val;
@@ -12,7 +12,7 @@ static void	convert_double(char *base, t_s_pct *p_chk)
 	decompose_fpval(p_arg->p_val, p_arg->type, &fpd);
 	if (output_nan_inf(&arg, p_chk))
 		return;
-	val.len = my_valtobuffer(arg.aligned, base, val.b);
+	val.len = my_lowvaltobuffer(fpd.aligned, g_hex, val.b);
 	exp.len = my_valtobuffer(arg.ex, g_dec, exp.b, ALL_SIGNED);
 	
 	

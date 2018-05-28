@@ -48,11 +48,10 @@ int		output_nan_inf(t_s_dfp *val, t_s_pct *p_chk)
 	int		r;
 
 	r = 0;
-	if (flg & (~SIGN_F) &&
+	if (flg & ~SIGN_F &&
 	!((flg & NAN_F && (r = output_nan(p_chk))) ||
-	(flg & INF_F &&
-	((flg & SIGN_F && (r = output_minusinf(p_chk))) ||
-	(r = output_plusinf(p_chk))))))
+	(flg & (SIGN_F | INF_F) && (r = output_minusinf(p_chk))) ||
+	(flg & INF_F && (r = output_plusinf(p_chk))))
 		r = -1;
 	return (r);
 }

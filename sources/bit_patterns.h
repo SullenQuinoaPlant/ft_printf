@@ -34,7 +34,7 @@ typedef union	u_ldouble {
 
 typedef struct	s_decomposed_floating_point {
 	unsigned int		flags;
-	unsigned int		exp;
+	int					exp;
 	unsigned long long	mant;
 	unsigned long long	aligned;
 }				t_s_dfp;
