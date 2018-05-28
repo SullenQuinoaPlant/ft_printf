@@ -1,5 +1,17 @@
 #include "h.h"
 
+void	sign_to_buffer(int sign, t_s_pct *p_chk, t_s_cb *b)
+{
+	if (p_chk->flags & PLUS_FLAG)
+		b->b = sign < 0 ? '-' : '+';
+	else if (p_chk->flags & SPACE_FLAG)
+		b->b = sign < 0 ? '-' : ' ';
+	else
+		b->b =  sign < 0 ? '-' : 0;
+	b->len = b->b ? 1 : 0;
+}
+
+/*unused function*/
 int		output_sign(int sign, t_s_pct *p_chk)
 {
 	int		r;

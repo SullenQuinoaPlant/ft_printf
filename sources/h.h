@@ -7,10 +7,10 @@
 # include <stdarg.h>
 
 # include "libft.h"
-# include "appendable_list.h"
+# include "my_lstappend_appendable_list.h"
+# include "convert_decompose_floating_point_bit_patterns.h"
 # include "typedefs.h"
-# include "bit_patterns.h"
-# include "functions.h"
+# include "all_functions.h"
 
 extern t_s_ps		g_ps;
 extern t_s_os		g_os;

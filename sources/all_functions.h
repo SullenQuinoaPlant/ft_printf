@@ -5,18 +5,19 @@ int
 	get_va_args(
 		va_list *vaargs, t_s_ps *parsed);
 
+void
+	my_clean_free(
+		void *data, size_t sz);
+
 size_t
 	my_lowvaltobuffer(
 		uintmax_t val, char const * const basestr,
 		char *b_end);
 
-# define NEG_SIGNED 0x00
-# define ALL_SIGNED 0x01
-# define ABS_SIGNED 0x02
 size_t
 	my_signedvaltobuffer(
 		intmax_t val, char const * const basestr,
-		char *b_end, unsigned int sign_flag);
+		char *b_end, t_e_sp sign_f);
 
 void
 	my_super_clean_free(
@@ -26,6 +27,23 @@ size_t
 	my_valtobuffer(
 		uintmax_t val, char const * const basestr,
 		char *b_end);
+
+void
+	output_char_chk(
+		t_s_char const * const chk);
+
+void
+	output_padnstuff(
+		size_t len, t_s_pct *p_chk,
+		t_outputter f[], void *stuff)
+
+void
+	output_txt_chk(
+		t_s_txt const * const chk);
+
+int
+	register_status(
+		ssize_t writ, size_t expected);
 
 void const	*vaarg_char(va_list *p_va_l);
 void const	*vaarg_charptr(va_list *p_va_l);

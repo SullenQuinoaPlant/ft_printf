@@ -63,6 +63,9 @@ typedef enum	e_conversion_specifiers {
 	e_cs_sz
 }				t_e_cs;
 
+/*length of enumeration is relied upon for array declarations
+**	change with care
+*/
 typedef enum	e_types {
 	e_notype,
 	e_char, e_uchar, e_charptr,
@@ -111,11 +114,10 @@ typedef struct	s_percent {
 /*parse state
 **	chunks starts a list of string-building chunks
 **		chunk types are listed in enum e_chunk_types
-**		the t_list.content is used to store the list's last element's address
+**		t_applist is a union with t_list
+**			where the t_list.content is used to store the list's last element's address
 **	p_req_args points to a list of arguments to retrieve from the va_list
-**	p_literal_vals is a list that stores conversion information retrieved from
-**	 the formatting string, values are allocated on the heap
-**	enum e_dollar_convention indicates use of dollar sign
+**	p_literal_vals is a list that stores conversion information retrieved from the formatting string
 */
 typedef struct	s_parse_state {
 	t_applist		chunks;
@@ -135,10 +137,19 @@ typedef enum	e_dollar_convention {
 }				t_e_dc;
 
 /*output state
-**	output_len holds current output string length
+**	output_len holds number of chars written since lasst reset.
 */
 typedef struct	s_output_state {
 	size_t		output_len;
 	int			out_stream;
 	int			errored;
 }				t_s_os;
+
+typedef int		(*t_outputter)(t_s_pct *p_chk, void *stuff);
+
+/*enum length is relied upon to declare arrays*/
+enum			e_outputter_index {
+	e_oi_prefix,
+	e_oi_body,
+	e_oi_sz
+};
