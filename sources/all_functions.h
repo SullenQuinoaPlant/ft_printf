@@ -6,29 +6,6 @@ int
 		va_list *vaargs, t_s_ps *parsed);
 
 void
-	my_clean_free(
-		void *data, size_t sz);
-
-size_t
-	my_lowvaltobuffer(
-		uintmax_t val, char const * const basestr,
-		char *b_end);
-
-size_t
-	my_signedvaltobuffer(
-		intmax_t val, char const * const basestr,
-		char *b_end, t_e_sp sign_f);
-
-void
-	my_super_clean_free(
-		void **data, size_t sz);
-
-size_t
-	my_valtobuffer(
-		uintmax_t val, char const * const basestr,
-		char *b_end);
-
-void
 	output_char_chk(
 		t_s_char const * const chk);
 
@@ -44,6 +21,10 @@ void
 int
 	register_status(
 		ssize_t writ, size_t expected);
+
+int
+	sign_to_b(
+		int sign, t_s_pct *p_chk, t_s_cb *b);
 
 void const	*vaarg_char(va_list *p_va_l);
 void const	*vaarg_charptr(va_list *p_va_l);

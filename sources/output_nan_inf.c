@@ -11,7 +11,7 @@ int		output_nan(t_s_pct *p_chk)
 	int		r;
 	char	*str;
 
-	str = wants_big(p_chk) ? g_bignan : g_nan;
+	str = p_chk->flags & BIGCS_FLAG ? g_bignan : g_nan;
 	str_len = ft_strlen(str);
 	r = output_padnbuffer(str, 0, str_len, p_chk);
 	return (r);
@@ -23,7 +23,7 @@ int		output_plusinf(t_s_pct *p_chk)
 	size_t	str_len;
 	int		r;
 
-	s = wants_big(p_chk) ? g_biginf : g_inf;
+ 	str = p_chk->flags & BIGCS_FLAG ? g_biginf : g_inf;
 	str_len = ft_strlen(str);
 	str_len += p_chk->flags & (PLUS_FLAG | SPACE_FLAG) ? 1 : 0;
 	r = output_padnbuffer(str, 0, str_len, p_chk);
@@ -36,7 +36,7 @@ int		output_minusinf(t_s_pct *p_chk)
 	size_t	str_len;
 	int		r;
 
-	str = wants_big(p_chk) ? g_biginf : g_inf;
+ 	str = p_chk->flags & BIGCS_FLAG ? g_biginf : g_inf;
 	str_len = ft_strlen(str);
 	r = output_padnbuffer(str, 0, str_len, p_chk);
 	return (r);

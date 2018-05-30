@@ -1,5 +1,6 @@
 #include "h.h"
 
+/*this seems stupid, not going to use it*/
 int		wants_bigc(t_s_pct *p_chk)
 {
 	t_e_cs	we_be_big[] = {e_A, e_E, e_F, e_G, e_X};

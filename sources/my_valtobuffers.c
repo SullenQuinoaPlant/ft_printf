@@ -1,4 +1,4 @@
-#include "h.h"
+#include "my_valtobuffers.h"
 
 char const	g_oct[] = {'0', '1', '2', '3', '4', '5', '6', '7'};
 char const	g_dec[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -21,7 +21,7 @@ size_t	my_valtobuffer(uintmax_t val,
 	return (i);
 }
 
-size_t	my_lowvaltobuffer(uintmax_t val,
+size_t	my_lowvaltob(uintmax_t val,
 					char const * const basestr,
 					char *b_end)
 {
@@ -40,7 +40,7 @@ size_t	my_lowvaltobuffer(uintmax_t val,
 	return (i);
 }
 
-size_t	my_signedvaltobuffer(intmax_t val,
+size_t	my_signvaltob(intmax_t val,
 						char const * const basestr,
 						char *b_end,
 						t_e_sp sign_f)
@@ -51,7 +51,8 @@ size_t	my_signedvaltobuffer(intmax_t val,
 	sign = val < 0 ? -1 : 1;
 	i = my_valtobuffer((val * sign), basestr, b_end);
 	*(b_end - i) = sign < 0 ? '-' : '+';
-	if (val < 0 || sign_f == e_all_signed ||
-		(val && sign_f == e_abs_signed))
+	if (val < 0 || sign_f == e_all_sign ||
+		(val && sign_f == e_abs_sign))
 		i++;
+	return (i);
 }

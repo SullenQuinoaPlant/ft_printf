@@ -1,3 +1,5 @@
+write ca_prefix and ca_body
+create functions that assign buffers with length and return length, for valb and sign
 fix output_nan_inf, there is place, it should be more legible
 finish writing the valtobuffer functions, use them in convert_a.c
 rewrite the output_nan and output_inf using callbacks with output_padnstuff
