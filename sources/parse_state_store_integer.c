@@ -1,8 +1,8 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
 int		**ps_store_integer(int val, int *** const p_res)
 {
-	t_list	new_val;
+	t_list	*new_val;
 
 	p_res = 0;
 	if ((new_val = ft_lstnew(&val, sizeof(int))))

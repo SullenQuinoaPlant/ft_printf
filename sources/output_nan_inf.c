@@ -1,11 +1,11 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
 static char	*g_nan = "nan";
 static char	*g_bignan = "NAN*";
 static char *g_inf = "inf";
 static char *g_biginf = "INF";
 
-int		output_nan(t_s_pct *p_chk)
+static int	output_nan(t_s_pct *p_chk)
 {
 	int		str_len;
 	int		r;
@@ -17,7 +17,7 @@ int		output_nan(t_s_pct *p_chk)
 	return (r);
 }
 
-int		output_plusinf(t_s_pct *p_chk)
+static int	output_plusinf(t_s_pct *p_chk)
 {
 	char	*str;
 	size_t	str_len;
@@ -30,7 +30,7 @@ int		output_plusinf(t_s_pct *p_chk)
 	return (r);
 }
 
-int		output_minusinf(t_s_pct *p_chk)
+static int	output_minusinf(t_s_pct *p_chk)
 {
 	char	*str;
 	size_t	str_len;

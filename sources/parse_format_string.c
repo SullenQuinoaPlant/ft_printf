@@ -1,8 +1,8 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
 t_s_ps	g_ps;
 
-static void refresh_parse_state()
+static void 	init_parse_state()
 {
 	g_ps.chunks = (t_list){0,0,&g_ps.chunks.tail_init};
 	g_ps.p_req_args = 0;
@@ -13,7 +13,7 @@ static void refresh_parse_state()
 	g_ps.errored = 0;
 }
 
-t_e_dc	get_parse_dollar_convention(t_s_ps *s)
+static t_e_dc	get_parse_dollar_convention(t_s_ps *s)
 {
 	if (g_ps.dollar_count)
 	{
@@ -25,7 +25,7 @@ t_e_dc	get_parse_dollar_convention(t_s_ps *s)
 	return (e_no_dollar);
 }
 
-t_s_ps	parse_format_string(char const *in)
+int				parse_format_string(char const *in)
 {
 	char	*(* const f_str[])(char const *) = {
 			parse_percent,
@@ -33,7 +33,7 @@ t_s_ps	parse_format_string(char const *in)
 			0};
 	char	* const strt = in;
 
-	refresh_parse_state();
+	init_parse_state();
 	in = while_progress(strt, f_str);
 	if (in == strt || *in)
 		g_ps.errored++;
@@ -41,5 +41,5 @@ t_s_ps	parse_format_string(char const *in)
 		g_ps.errored++;
 	if (g_ps.free_arg_count > g_ps.max_arg_pos)
 		g_ps.max_arg_pos = free_arg_count;
-	return (g_ps);
+	return (g_ps.errored ? 0 : 1);
 }

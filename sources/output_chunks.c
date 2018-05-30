@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
 t_s_os	g_os;
 
@@ -32,20 +32,20 @@ static void	output_chunk(t_s_cw *p_cw)
 		g_os.errored++;
 }
 
-static void	refresh_g_os(int fd)
+static void	init_g_os(int fd)
 {
 	g_os.out_str_len = 0;
 	g_os.out_stream = fd;
 	g_os.errored = 0;
 }
 
-ssize_t	output_chunks(int fd, t_s_ps *p_parsed)
+int			output_chunks(int fd, t_s_ps *p_parsed)
 {
 	t_list	*p_link;
 
-	refresh_g_os(fd);
+	init_g_os(fd);
 	p_link = &p_parsed->chunks;
 	while((p_link = p_link->next) && !g_os.errored)
 		output_chunk(p_link->content);
-	return (g_os.errored ? -1 : g_os.out_str_len);
+	return (g_os.errored ? 0 : 1);
 }

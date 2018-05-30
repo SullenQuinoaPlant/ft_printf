@@ -1,6 +1,6 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
-int		output_padding(size_t yay_much, char of_this)
+static int	output_padding(size_t yay_much, char of_this)
 {
 	size_t	much_yay;
 
@@ -15,7 +15,7 @@ int		output_padding(size_t yay_much, char of_this)
 	return (yay_much == 0);
 }
 
-void	output_padnstuff(size_t len, t_s_pct *p_chk,
+void		output_padnstuff(size_t len, t_s_pct *p_chk,
 					t_outputter f[], void *stuff)
 {
 	unsigned int	flags;

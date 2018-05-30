@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
 static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	a_conversion,

@@ -1,6 +1,8 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
-char	*while_progress(char const *in, char* (*f_str[])(char const *))
+char	*while_progress(
+			char const *in,
+			char* (*f_str[])(char const *))
 {
 	int		i;
 	char	*prev;
@@ -18,7 +20,9 @@ char	*while_progress(char const *in, char* (*f_str[])(char const *))
 	return (in);
 }
 
-char	*attempt_while_progess(char const *in, char* (*f_str[])(char const *))
+char	*attempt_while_progess(
+			char const *in,
+			char* (*f_str[])(char const *))
 {
 	int		i;
 	char	*prev;

@@ -5,7 +5,7 @@
 typedef char	*(t_parser)(char const *);
 
 typedef enum	e_chunk_types {
-	e_no_c_type,
+	e_no_chk,
 	e_txt_c,
 	e_char_c,
 	e_pct_c

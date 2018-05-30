@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
 char		*parse_percent(char const *in)
 {
@@ -6,14 +6,14 @@ char		*parse_percent(char const *in)
 			percent_char,
 			percent_conversion,
 			0};
-	t_list	*p_wrap;
+	t_list	*p;
 
 	if (*in == '%')
 	{
-		if ((p_wrap = ft_lstnew(&(t_s_cw){e_no_c_type, 0}, sizeof(t_e_cts))))
+		in++;
+		if ((p = ft_lstnew(&(t_s_cw){e_no_chk, 0}, sizeof(t_s_cw))))
 		{
-			my_lstappend(&g_ps.chunks.tail, p_wrap);
-			in++;
+			my_lstappend(&g_ps.chunks.tail, p);
 			in = until_progress(in, f_str);
 		}
 		else

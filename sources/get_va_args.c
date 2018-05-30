@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
 void const	*(*f_ar[e_types_sz])(va_list*) = {
 			vaarg_notype,
@@ -28,11 +28,11 @@ void const	*(*f_ar[e_types_sz])(va_list*) = {
 			vaarg_wchar_t,
 			vaarg_wchar_tptr,
 			vaarg_wint_t
-			};
+};
 
 static void	init_t_s_arg_array(unsigned int len, t_s_arg *ar)
 {
-	size_t			i;
+	size_t	i;
 
 	i = ~0;
 	while (++i < len)
@@ -97,7 +97,7 @@ static void	check_arg_use(t_s_arg *used_args, unsigned int len, t_s_ps *parsed)
 		}
 }
 
-int		get_va_args(va_list *vaargs, t_s_ps *parsed)
+int			get_va_args(va_list *vaargs, t_s_ps *parsed)
 {
 	size_t			const ar_sz = len * sizeof(t_s_arg);
 	unsigned int	len;

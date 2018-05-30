@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
 static t_e_t const	g_in_types[e_cs_sz][e_lm_sz] =
 {
@@ -78,25 +78,25 @@ char		*parse_conversion(char const *in)
 				0,
 				e_no_len,
 				e_no_specifier,
-				0,
 				0};
-	t_s_cw *	const p_cw = ((t_list*)g_ps.chunks.tail)->content;
-	t_s_pct		*p_chk;
+	t_s_cw 		* const cw = ((t_list*)g_ps.chunks.tail)->content;
+	t_s_pct		*chk;
 	t_list		*p_arg;
 
 	if (! *in)
 		return (in);
-	if ((p_arg = ft_lstnew(&((t_s_arg){e_notype, 0, 0}), sizeof(t_s_arg))) &&
-		(p_chk = malloc(sizeof(t_s_pct))))
+	if ((p_arg =
+		ft_lstnew(&((t_s_arg){e_notype, 0, 0}), sizeof(t_s_arg))) &&
+	 	(chk = malloc(sizeof(t_s_pct))))
 	{
+		*cw = (t_s_cw){e_pct_c, chk};
 		ft_lstadd(&g_ps.p_req_args, p_arg);
-		*p_chk = default;
-		p_chk->vaarg = p_arg->content;
-		*p_cw = (t_s_cw){e_pct_c, p_chk};
+		*chk = default;
+		chk->vaarg = p_arg->content;
 		in = attempt_all(in, f_str);
-		if (! p_chk->vaarg->position)
-			p_chk->vaarg->position = (++g_ps.free_arg_count);
-		p_chk->vaarg->type = g_in_types[p_chk->specifier][p_chk->len_mod];
+		if (! chk->vaarg->position)
+			chk->vaarg->position = (++g_ps.free_arg_count);
+		p_chk->vaarg->type = g_in_types[chk->specifier][chk->len_mod];
 	}
 	else
 	{

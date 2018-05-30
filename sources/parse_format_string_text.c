@@ -1,30 +1,29 @@
-#include "ft_printf.h"
+#include "ft_printf_inner.h"
 
 char	*parse_text(char const *in)
 {
 	size_t	i;
 	char	c;
-	t_list	*p_wrap;
-	t_s_txt	*p_chunk;
+	t_list	*p_cw;
+	t_s_txt	*chk;
 
-	if (*in && *in != '%')
+	if (!*in || *in == '%')
+		return (in);
+	if ((chk = malloc(sizeof(t_s_txt))) &&
+		(p_cw = ft_lstnew(&(t_s_cw){e_ts_txt, chk}, sizeof(t_s_cw))))
 	{
-		if ((p_chunk = malloc(sizeof(t_s_txt))) &&
-			(p_wrap = ft_lstnew(&(t_s_cw){e_ts_txt, p_chunk}, sizeof(t_s_cw))))
-		{
-			i = 1;
-			while ((c = in[i]) != '%' && c)
-				i++;
-			*p_chunk = (t_s_txt){in, i};
-			my_lstappend(&g_ps.chunks.tail, p_wrap);
-			in += i;
-		}
-		else
-		{
-			g_ps.errored++;
-			if (p_chunk)
-				my_clean_free(p_chunk, sizeof(t_s_txt));
-		}
+		i = 1;
+		while ((c = in[i]) != '%' && c)
+			i++;
+		*chk = (t_s_txt){in, i};
+		my_lstappend(&g_ps.chunks.tail, p_cw);
+		in += i;
 	}
-	return (in + i);
+	else
+	{
+		g_ps.errored++;
+		if (chk)
+			my_clean_free(chk, sizeof(t_s_txt));
+	}
+	return (in);
 }
