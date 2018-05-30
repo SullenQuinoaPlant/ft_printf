@@ -1,7 +1,5 @@
 #include "ft_printf_inner.h"
 
-t_s_os	g_os;
-
 int			gos_update(ssize_t writ, size_t expected)
 {
 	if (writ > 0)

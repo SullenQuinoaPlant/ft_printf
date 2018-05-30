@@ -1,7 +1,5 @@
 #include "ft_printf_inner.h"
 
-t_s_ps	g_ps;
-
 static void 	init_parse_state()
 {
 	g_ps.chunks = (t_list){0,0,&g_ps.chunks.tail_init};
