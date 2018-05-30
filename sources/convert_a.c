@@ -15,7 +15,7 @@ static void	ca_prefix(t_s_pct *p_chk, void *stf)
 	}
 	prefix[2] = p_chk->flags & BIGCS_FLAG ? 'X' : 'x';
 	len = l - offset;
-	return (register_status(
+	return (gos_update(
 		write(g_os.out_stream, prefix + offset, len),
 		len));
 }
@@ -27,13 +27,13 @@ static void	ca_body(t_s_pct *p_chk, void *stf)
 	char	* const e = stf->e.b + e_mib_offset - stf->e.len + 1;
 	char	const p = p_chk->flags & BIGCS_FLAG ? 'P' : 'p';
 
-	if (register_status(write(out, &stf->zero, 1)) &&
-		stf->sep && register_status(write(out, &stf->sep, 1)) &&
+	if (gos_update(write(out, &stf->zero, 1)) &&
+		stf->sep && gos_update(write(out, &stf->sep, 1)) &&
 		stf->m.len &&
-		register_status(write(out, m, stf->m.len)))
+		gos_update(write(out, m, stf->m.len)))
 		;
-	if (register_status(write(out, &p, 1)) &&
-		register_status(write(out, e, stf->e.len)))
+	if (gos_update(write(out, &p, 1)) &&
+		gos_update(write(out, e, stf->e.len)))
 		;
 }
 

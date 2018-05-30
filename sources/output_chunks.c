@@ -2,7 +2,7 @@
 
 t_s_os	g_os;
 
-int			register_status(ssize_t writ, size_t expected)
+int			gos_update(ssize_t writ, size_t expected)
 {
 	if (writ > 0)
 		g_os.output_len += writ;

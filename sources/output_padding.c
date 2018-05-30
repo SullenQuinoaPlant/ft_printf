@@ -53,14 +53,14 @@ void	output_padnbuffer(char *buffer, size_t prefix_len,
 	if (!r)
 		return;
 	out = write(g_os.out_stream, buffer, prefix_len);
-	if (!(r = register_status(out, prefix_len)))
+	if (!(r = gos_update(out, prefix_len)))
 		return;
 	if (pad && flags & ZERO_FLAG)
 		pad = (r = output_padding(pad, '0')) ? pad : 0;
 	if (!r)
 		return;
 	out = write(g_os.out_stream, buffer + prefix_len, len);
-	if(!(r = register_status(out, len)))
+	if(!(r = gos_update(out, len)))
 		return;
 	if (pad)
 		r = output_padding(pad, ' ');
