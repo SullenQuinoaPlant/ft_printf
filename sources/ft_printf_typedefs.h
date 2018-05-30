@@ -1,5 +1,5 @@
-#ifndef TYPEDEFS_H
-# define TYPEDEFS_H
+#ifndef FT_PRINTF_TYPEDEFS_H
+# define FT_PRINTF_TYPEDEFS_H
 
 /*input string parsing:*/
 typedef char	*(t_parser)(char const *);
@@ -26,7 +26,6 @@ typedef struct	s_character {
 }				t_s_char;
 
 /*length of enumeration is relied upon for array declarations
-**	change with care
 */
 typedef enum	e_length_modifiers {
 	e_no_len,
@@ -43,7 +42,6 @@ typedef struct	s_length_mod_and_pattern {
 
 /*order of the enumeration is relied upon in percent_conversion_specifier()
 **length of enumeration is relied upon for array declarations
-**	change with care
 */
 typedef enum	e_conversion_specifiers {
 	e_no_specifier,
@@ -64,7 +62,6 @@ typedef enum	e_conversion_specifiers {
 }				t_e_cs;
 
 /*length of enumeration is relied upon for array declarations
-**	change with care
 */
 typedef enum	e_types {
 	e_notype,

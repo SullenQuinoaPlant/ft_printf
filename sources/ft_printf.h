@@ -12,8 +12,8 @@
 # include "my_cleanfree.h"
 # include "convert_decompose_floating_point_bit_patterns.h"
 # include "convert_outputters_stuffs.h"
-# include "typedefs.h"
-# include "all_functions.h"
+# include "ft_printf_typedefs.h"
+# include "ft_printf_functions.h"
 
 extern t_s_ps		g_ps;
 extern t_s_os		g_os;
