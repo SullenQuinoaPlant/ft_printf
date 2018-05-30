@@ -1,4 +1,4 @@
-#include "h.h"
+#include "ft_printf.h"
 
 void	my_lstappend(t_lst **last, t_list *new)
 {

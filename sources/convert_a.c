@@ -1,4 +1,4 @@
-#include "h.h"
+#include "ft_printf.h"
 
 static void	ca_prefix(t_s_pct *p_chk, void *stf)
 {
@@ -22,7 +22,19 @@ static void	ca_prefix(t_s_pct *p_chk, void *stf)
 
 static void	ca_body(t_s_pct *p_chk, void *stf)
 {
-	
+	int		const out = g_os.out_stream;
+	char	* const m = stf->m.b + e_mib_offset - stf->m.len + 1;
+	char	* const e = stf->e.b + e_mib_offset - stf->e.len + 1;
+	char	const p = p_chk->flags & BIGCS_FLAG ? 'P' : 'p';
+
+	if (register_status(write(out, &stf->zero, 1)) &&
+		stf->sep && register_status(write(out, &stf->sep, 1)) &&
+		stf->m.len &&
+		register_status(write(out, m, stf->m.len)))
+		;
+	if (register_status(write(out, &p, 1)) &&
+		register_status(write(out, e, stf->e.len)))
+		;
 }
 
 void		a_conversion(t_s_pct *p_chk)
@@ -39,10 +51,11 @@ void		a_conversion(t_s_pct *p_chk)
 		return;
 	len = ft_strlen("0x1p");
 	len += sign_to_b(fpd.flags & SIGN_F ? -1 : 1, p_chk, &stf.s);
-	len += my_lowv_tob(fpd.aligned, g_hex, &stf.m);
-	len += my_v_tob(fpd.exp, g_dec, &stf.e, e_all_sign);
+	stf.zero = fpd.flags & DNORM_F ? '0' : '1';
 	stf.sep = fpd.aligned || p_chk->flags & HASH_FLAG ? '.' : 0;
 	len += stf.sep ? 1 : 0;
+	len += my_lowv_tob(fpd.aligned, g_hex, &stf.m);
+	len += my_v_tob(fpd.exp, g_dec, &stf.e, e_all_sign);
 	output_padnstuff(len, p_chk, fs, &stf);
 }
 

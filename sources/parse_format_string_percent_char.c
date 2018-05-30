@@ -1,4 +1,4 @@
-#include "h.h"
+#include "ft_printf.h"
 
 char	*percent_char(char const *in)
 {

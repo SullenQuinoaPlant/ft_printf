@@ -1,4 +1,4 @@
-#include "h.h"
+#include "ft_printf.h"
 
 /*this seems stupid, not going to use it*/
 int		wants_bigc(t_s_pct *p_chk)

@@ -1,5 +1,5 @@
-#ifndef H_H
-# define H_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <unistd.h>
 # include <stdint.h>
