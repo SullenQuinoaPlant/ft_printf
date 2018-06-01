@@ -6,6 +6,8 @@ all : $(NAME).a
 
 $(NAME).a : $(OBJS)
 		-ar rcs $@ $(OBJS)
+		mv $@ $(LIBS_L)/
+		cp $(SRC_DIR)/$(NAME).h $(LIBS_I)/
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | objdir
 	$(CC) $(CFLAGS)\
