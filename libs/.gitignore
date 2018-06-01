@@ -2,3 +2,5 @@ objects/
 !objects/.where_objects_dwell
 includes/
 !includes/.headers_live_here
+!Makefile
+*
