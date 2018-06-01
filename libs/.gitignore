@@ -1,4 +1,4 @@
 objects/
-!objects/lib_objects_live_here
+!objects/.where_objects_dwell
 includes/
-!includes/where_headers_dwell
+!includes/.headers_live_here

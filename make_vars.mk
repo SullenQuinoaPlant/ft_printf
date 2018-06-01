@@ -10,13 +10,16 @@ LIB_DIR := $(ROOT)/libs
 LIBS_L := $(LIB_DIR)/objects
 LIBS_I := $(LIB_DIR)/includes
 
-UTEST_DIR := $(ROOT)/unit-tests
+include $(SRC_DIR)/targets.mk
 
 CC := gcc
 ifndef CFLAGS
 	CFLAGS = -Wall -Wextra -Werror
 endif
 CFLAGS_MORE =
+
+UTEST_DIR := $(ROOT)/unit-tests
+
 ifndef ARCH
 	ARCH = ARCH_A
 endif

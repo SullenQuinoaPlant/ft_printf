@@ -1,25 +1,15 @@
-all :
+def :
 	git status
 
 ############
 #VARIABLES :
 
-include make_vars.mk
+#include make_vars.mk #included in core.
 
 #######
 #CORE :
 
-.PHONY : $(NAME) $(OBJ_DIR)/%.o clean fclean re
-$(NAME) clean fclean re d:
-	$(MAKE) -f Makefile.mk \
-	LIBFT_IDIR=$(LIBS_I) LIBFT_LDIR=$(LIBS_L) \
-	LIBFT_DIR=$(LIB_DIR) \
-	$@
-$(OBJ_DIR)%.o :
-	$(MAKE) -f Makefile.mk \
-	LIBFT_IDIR=$(LIBS_I) LIBFT_LDIR=$(LIBS_L) \
-	LIBFT_DIR=$(LIB_DIR) \
-	$@
+include Makefile.mk
 
 
 #######
@@ -36,7 +26,8 @@ include unit-tests/Makefile
 #########
 #OUTPUT :
 
-OUT = $(subst $(NAME), out_$(NAME), $(NAME))
+OUT = out_$(NAME)
+
 .PHONY : clean-ft_printf
 clean-ft_printf :
 	if ! [ -d $(OUT) ]; then mkdir $(OUT); fi
@@ -56,3 +47,7 @@ c :
 .PHONY : p
 p :
 	git push
+
+.PHONY : cp
+cp :
+	git commit -a -m i; git push;

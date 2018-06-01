@@ -8,16 +8,12 @@ TEST_OBJS := $(TEST_SRCS:.c=.o)
 BUILD_STAMPS := $(TEST_OBJS:.o=.build.stamp)
 EXECUTION_STAMPS := $(TEST_OBJS:.o=.execution.stamp)
 
-CC = gcc
-CFLAGS_MORE =
 CFLAGS_UTEST = -fno-builtin #-Wall -Wextra -Werror
 CFLAGS_UTEST += $(CFLAGS_MORE) #$(CFLAGS) were annoying the hell out of me
 
 
-
 .PHONY : unit-tests ut
 unit-tests ut : list_tests build_tests run_tests
-
 
 
 

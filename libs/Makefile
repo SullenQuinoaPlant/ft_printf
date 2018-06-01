@@ -3,13 +3,10 @@ ifndef ROOT
 	include $(ROOT)/make_vars.mk
 endif
 
-BUILD_DIR = oaeuhtns
+BUILD_DIR = winterwindswouldwindwistfullywhencewantonwhorshipperswailed
 
 build_dir :
 	if [ -d $(BUILD_DIR) ];then exit 1; fi
-
-nop :
-	@:
 
 
 libft.% : $(LIBS_I)/libft.h $(LIBS_L)/libft.a | build_dir
