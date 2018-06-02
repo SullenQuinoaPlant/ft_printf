@@ -33,7 +33,7 @@ static void	output_chunk(t_s_cw *p_cw)
 static void	init_g_os(int fd)
 {
 	g_os.out_str_len = 0;
-	g_os.out_stream = fd;
+	g_os.fd = fd;
 	g_os.errored = 0;
 }
 

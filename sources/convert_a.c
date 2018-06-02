@@ -1,9 +1,9 @@
 #include "ft_printf_inner.h"
 
+#define PREFIX_LEN 3
 static int	ca_prefix(t_s_pct *p_chk, void *stf)
 {
-	const int		l = 3;
-	char			prefix[3] = {0 ,'0', 0};
+	char			prefix[PREFIX_LEN] = {0 ,'0', 0};
 	int				offset;
 	unsigned int	len;
 	
@@ -14,28 +14,27 @@ static int	ca_prefix(t_s_pct *p_chk, void *stf)
 		offset = 0;
 	}
 	prefix[2] = p_chk->flags & BIGCS_FLAG ? 'X' : 'x';
-	len = l - offset;
+	len = PREFIX_LEN - offset;
 	return (gos_update(
-		write(g_os.out_stream, prefix + offset, len),
+		write(g_os.fd, prefix + offset, len),
 		len));
 }
+#undef PREFIX_LEN
 
 static int	ca_body(t_s_pct *p_chk, void *p_stf)
 {
 	t_s_acs	* const stf = (t_s_acs*)p_stf;
-	int		const out = g_os.out_stream;
 	char	* const m = stf->m.b + e_mib_offset - stf->m.len + 1;
 	char	* const e = stf->e.b + e_mib_offset - stf->e.len + 1;
 	char	const p = p_chk->flags & BIGCS_FLAG ? 'P' : 'p';
+	int		r;
 
-	if (gos_update(write(out, &stf->zero, 1), 1) &&
-		stf->sep && gos_update(write(out, &stf->sep, 1), 1) &&
-		stf->m.len &&
-		gos_update(write(out, m, stf->m.len), stf->m.len))
-		;
-	if (gos_update(write(out, &p, 1), 1) &&
-		gos_update(write(out, e, stf->e.len), stf->e.len))
-		;
+	r = gos_update(write(g_os.fd, &stf->zero, 1), 1);
+	r |= gos_update(write(g_os.df, &stf->sep, 1), 1);
+	r |= gos_update(write(g_os.fd, m, stf->m.len), stf->m.len);
+	r |= gos_update(write(g_os.fd, &p, 1), 1);
+	r |= gos_update(write(g_os.fd, e, stf->e.len), stf->e.len);
+	return (r);
 }
 
 void		a_conversion(t_s_pct *p_chk)

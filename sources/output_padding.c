@@ -6,7 +6,7 @@ static int	output_padding(size_t yay_much, char of_this)
 
 	much_yay = yay_much;
 	while (yay_much--)
-		if (write(g_os.out_stream, &of_this, 1) != 1)
+		if (write(g_os.fd, &of_this, 1) != 1)
 		{
 			g_os.errored++;
 			break;
@@ -52,14 +52,14 @@ void	output_padnbuffer(char *buffer, size_t prefix_len,
 		pad = (r = output_padding(pad, ' ')) ? pad : 0;
 	if (!r)
 		return;
-	out = write(g_os.out_stream, buffer, prefix_len);
+	out = write(g_os.fd, buffer, prefix_len);
 	if (!(r = gos_update(out, prefix_len)))
 		return;
 	if (pad && flags & ZERO_FLAG)
 		pad = (r = output_padding(pad, '0')) ? pad : 0;
 	if (!r)
 		return;
-	out = write(g_os.out_stream, buffer + prefix_len, len);
+	out = write(g_os.fd, buffer + prefix_len, len);
 	if(!(r = gos_update(out, len)))
 		return;
 	if (pad)

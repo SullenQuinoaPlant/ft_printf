@@ -24,7 +24,7 @@ int		output_sign(int sign, t_s_pct *p_chk)
 	else
 		c =  sign < 0 ? '-' : 0;
 	r = 0;
-	if (c && (r = write(g_os.out_stream, &c, 1)) > 0)
+	if (c && (r = write(g_os.fd, &c, 1)) > 0)
 		g_os.output_len++;
 	else
 		g_os.errored += c ? 1 : 0;
