@@ -1,16 +1,16 @@
 #include "ft_printf_inner.h"
 
-static void	ca_prefix(t_s_pct *p_chk, void *stf)
+static int	ca_prefix(t_s_pct *p_chk, void *stf)
 {
-	int				const l = 3;
-	char			prefix[l] = {0 ,'0', 0};
+	const int		l = 3;
+	char			prefix[3] = {0 ,'0', 0};
 	int				offset;
 	unsigned int	len;
 	
 	offset = 1;
-	if (stf->s.len)
+	if (((t_s_acs*)stf)->s.len)
 	{
-		prefix[0] = stf->s.b;
+		prefix[0] = ((t_s_acs*)stf)->s.b;
 		offset = 0;
 	}
 	prefix[2] = p_chk->flags & BIGCS_FLAG ? 'X' : 'x';
@@ -20,20 +20,21 @@ static void	ca_prefix(t_s_pct *p_chk, void *stf)
 		len));
 }
 
-static void	ca_body(t_s_pct *p_chk, void *stf)
+static int	ca_body(t_s_pct *p_chk, void *p_stf)
 {
+	t_s_acs	* const stf = (t_s_acs*)p_stf;
 	int		const out = g_os.out_stream;
 	char	* const m = stf->m.b + e_mib_offset - stf->m.len + 1;
 	char	* const e = stf->e.b + e_mib_offset - stf->e.len + 1;
 	char	const p = p_chk->flags & BIGCS_FLAG ? 'P' : 'p';
 
-	if (gos_update(write(out, &stf->zero, 1)) &&
-		stf->sep && gos_update(write(out, &stf->sep, 1)) &&
+	if (gos_update(write(out, &stf->zero, 1), 1) &&
+		stf->sep && gos_update(write(out, &stf->sep, 1), 1) &&
 		stf->m.len &&
-		gos_update(write(out, m, stf->m.len)))
+		gos_update(write(out, m, stf->m.len), stf->m.len))
 		;
-	if (gos_update(write(out, &p, 1)) &&
-		gos_update(write(out, e, stf->e.len)))
+	if (gos_update(write(out, &p, 1), 1) &&
+		gos_update(write(out, e, stf->e.len), stf->e.len))
 		;
 }
 

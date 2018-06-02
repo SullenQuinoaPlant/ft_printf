@@ -60,7 +60,7 @@ void
 void
 	output_padnstuff(
 		size_t len, t_s_pct *p_chk,
-		t_outputter f[], void *stuff)
+		t_outputter f[], void *stuff);
 
 void
 	output_pct_chk(

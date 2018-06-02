@@ -150,3 +150,4 @@ enum			e_outputter_index {
 	e_oi_body,
 	e_oi_sz
 };
+#endif
