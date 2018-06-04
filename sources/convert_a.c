@@ -30,7 +30,7 @@ static int	ca_body(t_s_pct *p_chk, void *p_stf)
 	int		r;
 
 	r = gos_update(write(g_os.fd, &stf->zero, 1), 1);
-	r |= gos_update(write(g_os.df, &stf->sep, 1), 1);
+	r |= gos_update(write(g_os.fd, &stf->sep, 1), 1);
 	r |= gos_update(write(g_os.fd, m, stf->m.len), stf->m.len);
 	r |= gos_update(write(g_os.fd, &p, 1), 1);
 	r |= gos_update(write(g_os.fd, e, stf->e.len), stf->e.len);
@@ -47,7 +47,7 @@ void		a_conversion(t_s_pct *p_chk)
 
 	p_arg = p_chk->vaarg;
 	decompose_fpval(p_arg->p_val, p_arg->type, &fpd);
-	if (output_nan_inf(&arg, p_chk))
+	if (output_nan_inf(&fpd, p_chk))
 		return;
 	len = ft_strlen("0x1p");
 	len += sign_to_b(fpd.flags & SIGN_F ? -1 : 1, p_chk, &stf.s);

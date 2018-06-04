@@ -11,7 +11,7 @@ static void	clean_free_cw(void *ptr, size_t whatever)
 	if (p_cw->chk)
 	{
 		if (p == e_txt_c)
-			sz = sizeof(t_s_text);
+			sz = sizeof(t_s_txt);
 		else if (p == e_char_c)
 			sz = sizeof(t_s_char);
 		else

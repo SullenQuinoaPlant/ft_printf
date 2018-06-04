@@ -2,6 +2,7 @@
 
 void const	*vaarg_notype(va_list *p_va_l)
 {
+	(void)p_va_l;
 	return (0);
 }
 

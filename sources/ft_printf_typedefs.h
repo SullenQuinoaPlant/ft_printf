@@ -13,7 +13,7 @@ typedef enum	e_chunk_types {
 
 typedef struct	s_chunk_wrapper {
 	t_e_cts	type;
-	void	*p_chk;
+	void	*chk;
 }				t_s_cw;
 
 typedef struct	s_text_chunk {

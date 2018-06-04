@@ -36,7 +36,7 @@ static void	init_t_s_arg_array(unsigned int len, t_s_arg *ar)
 
 	i = ~0;
 	while (++i < len)
-		p_ar[i] = (t_s_arg){e_notype, 0, (void*)0};
+		ar[i] = (t_s_arg){e_notype, {0}, (void*)0};
 }
 
 static void	fill_vaarg_ar(t_s_ps *parsed, t_s_arg *ar)
@@ -50,9 +50,9 @@ static void	fill_vaarg_ar(t_s_ps *parsed, t_s_arg *ar)
 	{
 		p_req_arg = p1->content;
 		pos = p_req_arg->position;
-		if (ar[pos] == e_notype)
+		if (ar[pos].type == e_notype)
 			ar[pos].type = p_req_arg->type;
-		else if (ar[pos]->type != p_req_arg->type)
+		else if (ar[pos].type != p_req_arg->type)
 			parsed->errored++;
 		p1 = p1->next;
 	}
@@ -99,18 +99,19 @@ static void	check_arg_use(t_s_arg *used_args, unsigned int len, t_s_ps *parsed)
 
 int			get_va_args(va_list *vaargs, t_s_ps *parsed)
 {
-	size_t			const ar_sz = len * sizeof(t_s_arg);
 	unsigned int	len;
+	size_t			ar_sz;
 	t_s_arg			*p_ar;
 
 	len = parsed->max_arg_pos;
+	ar_sz = len * sizeof(t_s_arg);
 	if (!(p_ar = malloc(ar_sz)))
 		return (0);
 	init_t_s_arg_array(len, p_ar);
 	fill_vaarg_ar(parsed, p_ar);
-	resolve_vaargs(vaargs, p_ar);
+	resolve_vaargs(vaargs, p_ar, len);
 	fulfill_arg_reqs(p_ar, parsed);
 	check_arg_use(p_ar, len, parsed);
-	my_super_clean_free(*p_ar, ar_sz);
+	my_clean_free(p_ar, ar_sz);
 	return (1);
 }

@@ -13,13 +13,12 @@ LIBS_I := $(LIB_DIR)/includes
 include $(SRC_DIR)/targets.mk
 
 CC := gcc
+ifndef ARCH
+	ARCH := ARCH_A
+endif
 ifndef CFLAGS
-	CFLAGS = -Wall -Wextra -Werror
+	CFLAGS := -Wall -Wextra -Werror -D $(ARCH)
 endif
 CFLAGS_MORE =
 
 UTEST_DIR := $(ROOT)/unit-tests
-
-ifndef ARCH
-	ARCH = ARCH_A
-endif

@@ -17,9 +17,9 @@ void
 	biga_conversion(
 		t_s_pct *p_chk);
 
-t_s_dfp
+void
 		decompose_fpval(
-			void *p_val, t_e_t type, t_s_dfp *p_ret);
+			void const *p_val, t_e_t type, t_s_dfp *p_ret);
 
 void
 	free_parse_state_lists(
@@ -60,7 +60,7 @@ void
 void
 	output_padnstuff(
 		size_t len, t_s_pct *p_chk,
-		t_outputter f[], void *stuff);
+		t_outputter const f[], void *stuff);
 
 void
 	output_pct_chk(

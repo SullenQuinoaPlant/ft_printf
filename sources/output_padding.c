@@ -16,7 +16,7 @@ static int	output_padding(size_t yay_much, char of_this)
 }
 
 void		output_padnstuff(size_t len, t_s_pct *p_chk,
-					t_outputter f[], void *stuff)
+					t_outputter const f[], void *stuff)
 {
 	unsigned int	flags;
 	int				r;
