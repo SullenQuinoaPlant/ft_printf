@@ -114,12 +114,12 @@ typedef struct	s_percent {
 **		t_applist is a union with t_list
 **			where the t_list.content is used to store the list's last element's address
 **	p_req_args points to a list of arguments to retrieve from the va_list
-**	p_literal_vals is a list that stores conversion information retrieved from the formatting string
+**	p_known_vals is a list that stores conversion information retrieved from the formatting string
 */
 typedef struct	s_parse_state {
 	t_applist		chunks;
 	t_list			*p_req_args;
-	t_list			*p_literal_vals;
+	t_list			*p_known_vals;
 	unsigned int	free_arg_count;
 	unsigned int	dollar_count;
 	unsigned int	max_arg_pos;

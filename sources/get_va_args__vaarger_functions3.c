@@ -2,40 +2,80 @@
 
 void const	*vaarg_uintmax_t(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list		*known_val;
+	uintmax_t	val;
 
-	p_ret = &va_arg(*p_va_l, uintmax_t);
-	return (p_ret);
+	val = va_arg(*p_va_l, uintmax_t);
+	if((known_val = ft_lstnew(&val, sizeof(uintmax_t))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 
 void const	*vaarg_long(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list	*known_val;
+	long	val;
 
-	p_ret = &va_arg(*p_va_l, long);
-	return (p_ret);
+	val = va_arg(*p_va_l, long);
+	if((known_val = ft_lstnew(&val, sizeof(long))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 
 void const	*vaarg_ulong(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list			*known_val;
+	unsigned long	val;
 
-	p_ret = &va_arg(*p_va_l, unsigned long);
-	return (p_ret);
+	val = va_arg(*p_va_l, unsigned long);
+	if((known_val = ft_lstnew(&val, sizeof(unsigned long))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 
 void const	*vaarg_longptr(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list	*known_val;
+	long	*val;
 
-	p_ret = &va_arg(*p_va_l, long *);
-	return (p_ret);
+	val = va_arg(*p_va_l, long*);
+	if((known_val = ft_lstnew(&val, sizeof(long*))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 
 void const	*vaarg_longlong(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list		*known_val;
+	long long	val;
 
-	p_ret = &va_arg(*p_va_l, long long);
-	return (p_ret);
+	val = va_arg(*p_va_l, long long);
+	if((known_val = ft_lstnew(&val, sizeof(long long))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }

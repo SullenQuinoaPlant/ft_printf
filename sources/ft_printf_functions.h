@@ -27,7 +27,7 @@ void
 
 int
 	get_va_args(
-		va_list *vaargs, t_s_ps *parsed);
+		va_list *vaargs);
 
 int
 	gos_update(

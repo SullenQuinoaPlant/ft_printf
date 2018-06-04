@@ -28,7 +28,7 @@ void 		free_parse_state_lists(t_s_ps *ps)
 		ft_lstdel(&ps->chunks.head, clean_free_cw);
 	if (ps->p_req_args)
 		ft_lstdel(&ps->p_req_args, my_clean_free);
-	if (ps->p_literal_vals)
-		ft_lstdel(&ps->p_literal_vals, my_clean_free);
+	if (ps->p_known_vals)
+		ft_lstdel(&ps->p_known_vals, my_clean_free);
 	ft_bzero((void*)ps, sizeof(t_s_ps));
 }

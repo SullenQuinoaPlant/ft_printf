@@ -2,14 +2,34 @@
 
 void const	*vaarg_shortptr(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list		*known_val;
+	short		*val;
 
-	p_ret = &va_arg(*p_va_l, short *);
-	return (p_ret);
+	val = va_arg(*p_va_l, typeof(val));
+	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 
 void const	*vaarg_size_t(va_list *p_va_l)
 {
+	t_list		*known_val;
+	size_t		val;
+
+	val = va_arg(*p_va_l, typeof(val));
+	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 	void const	*p_ret;
 
 	p_ret = &va_arg(*p_va_l, size_t);
@@ -18,24 +38,48 @@ void const	*vaarg_size_t(va_list *p_va_l)
 
 void const	*vaarg_ssize_t(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list		*known_val;
+	ssizet_t	val;
 
-	p_ret = &va_arg(*p_va_l, ssize_t);
-	return (p_ret);
+	val = va_arg(*p_va_l, typeof(val));
+	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 
 void const	*vaarg_voidptr(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list		*known_val;
+	void		*val;
 
-	p_ret = &va_arg(*p_va_l, void *);
-	return (p_ret);
+	val = va_arg(*p_va_l, typeof(val));
+	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 
 void const	*vaarg_wchar_t(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list		*known_val;
+	wchar_t		val;
 
-	p_ret = &va_arg(*p_va_l, wchar_t);
-	return (p_ret);
+	val = va_arg(*p_va_l, typeof(val));
+	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }

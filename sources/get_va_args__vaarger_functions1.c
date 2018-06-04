@@ -8,32 +8,64 @@ void const	*vaarg_notype(va_list *p_va_l)
 
 void const	*vaarg_char(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list		*known_val;
+	int			val;
 
-	p_ret = &va_arg(*p_va_l, int);
-	return (p_ret);
+	val = va_arg(*p_va_l, int);
+	if((known_val = ft_lstnew(&val, sizeof(int))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 	
 void const	*vaarg_uchar(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list	*known_val;
+	int		val;
 
-	p_ret = &va_arg(*p_va_l, int);
-	return (p_ret);
+	val = va_arg(*p_va_l, int);
+	if((known_val = ft_lstnew(&val, sizeof(int))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 
 void const	*vaarg_charptr(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list	*known_val;
+	char	*val;
 
-	p_ret = &va_arg(*p_va_l, char *);
-	return (p_ret);
+	val = va_arg(*p_va_l, char*);
+	if((known_val = ft_lstnew(&val, sizeof(char*))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 
 void const	*vaarg_double(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list	*known_val;
+	double	val;
 
-	p_ret = &va_arg(*p_va_l, double);
-	return (p_ret);
+	val = va_arg(*p_va_l, double);
+	if((known_val = ft_lstnew(&val, sizeof(double))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }

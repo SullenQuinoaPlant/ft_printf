@@ -30,7 +30,7 @@ void const	*(*f_ar[e_types_sz])(va_list*) = {
 			vaarg_wint_t
 };
 
-static void	init_t_s_arg_array(unsigned int len, t_s_arg *ar)
+static void	init_t_s_arg_array(size_t len, t_s_arg *ar)
 {
 	size_t	i;
 
@@ -39,26 +39,27 @@ static void	init_t_s_arg_array(unsigned int len, t_s_arg *ar)
 		ar[i] = (t_s_arg){e_notype, {0}, (void*)0};
 }
 
-static void	fill_vaarg_ar(t_s_ps *parsed, t_s_arg *ar)
+static void	fill_vaarg_ar(t_s_arg *ar)
 {
-	t_list			*p1;
-	t_s_arg			*p_req_arg;
+	t_list			*parsed;
+	t_s_arg			*req_arg;
 	unsigned int	pos;
 
-	p1 = parsed->p_req_args;
-	while (p1)
+	parsed = g_ps.p_req_args;
+	while (parsed)
 	{
-		p_req_arg = p1->content;
-		pos = p_req_arg->position;
+		req_arg = parsed->content;
+		pos = req_arg->position;
 		if (ar[pos].type == e_notype)
-			ar[pos].type = p_req_arg->type;
-		else if (ar[pos].type != p_req_arg->type)
-			parsed->errored++;
-		p1 = p1->next;
+			ar[pos].type = req_arg->type;
+		else if (ar[pos].type != req_arg->type)
+			g_ps.errored++;
+		parsed = parsed->next;
 	}
 }
 
-static void resolve_vaargs(va_list *vaargs, t_s_arg *ar, unsigned int len)
+static void resolve_vaargs(
+	va_list *vaargs, t_s_arg *ar, size_t len)
 {
 	size_t	i;
 
@@ -67,24 +68,25 @@ static void resolve_vaargs(va_list *vaargs, t_s_arg *ar, unsigned int len)
 		ar[i].p_val = f_ar[ar[i].type](vaargs);
 }
 
-static void	fulfill_arg_reqs(t_s_arg *resolved, t_s_ps *parsed)
+static void	fulfill_arg_reqs(t_s_arg *resolved)
 {
-	t_list	*p_list;
-	t_s_arg	*p_ar_arg;
-	t_s_arg	*p_out_arg;
+	t_list	*parsed;
+	t_s_arg	*required_arg;
+	t_s_arg	*known_val;
 
-	p_list = parsed->p_req_args;
+	parsed = g_ps.p_req_args;
 	while(p_list)
 	{
-		p_out_arg = (t_s_arg*)p_list->content;
-		p_ar_arg = resolved + p_out_arg->position;
-		p_ar_arg->count_uses++;
-		p_out_arg->p_val = p_ar_arg->p_val;
-		p_list = p_list->next;
+		required_arg = (t_s_arg*)parsed->content;
+		known = resolved + required_arg->position;
+		known->count_uses++;
+		required_arg->p_val = known->p_val;
+		parsed = parsed->next;
 	}
 }
 
-static void	check_arg_use(t_s_arg *used_args, unsigned int len, t_s_ps *parsed)
+static void	check_arg_use(
+	t_s_arg *used_args, size_t len)
 {
 	size_t	i;
 
@@ -92,26 +94,26 @@ static void	check_arg_use(t_s_arg *used_args, unsigned int len, t_s_ps *parsed)
 	while (++i < len)
 		if (! used_args[i].count_uses)
 		{
-			parsed->errored++;
+			g_ps.errored++;
 			break;
 		}
 }
 
-int			get_va_args(va_list *vaargs, t_s_ps *parsed)
+int			get_va_args(va_list *vaargs)
 {
 	unsigned int	len;
 	size_t			ar_sz;
 	t_s_arg			*p_ar;
 
-	len = parsed->max_arg_pos;
+	len = g_ps.max_arg_pos;
 	ar_sz = len * sizeof(t_s_arg);
 	if (!(p_ar = malloc(ar_sz)))
 		return (0);
 	init_t_s_arg_array(len, p_ar);
-	fill_vaarg_ar(parsed, p_ar);
+	fill_vaarg_ar(p_ar);
 	resolve_vaargs(vaargs, p_ar, len);
-	fulfill_arg_reqs(p_ar, parsed);
-	check_arg_use(p_ar, len, parsed);
+	fulfill_arg_reqs(p_ar);
+	check_arg_use(p_ar, len);
 	my_clean_free(p_ar, ar_sz);
 	return (1);
 }

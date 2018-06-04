@@ -2,16 +2,32 @@
 
 void const	*vaarg_wchar_tptr(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list		*known_val;
+	wchar_t		*val;
 
-	p_ret = &va_arg(*p_va_l, wchar_t*);
-	return (p_ret);
+	val = va_arg(*p_va_l, typeof(val));
+	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }
 
 void const	*vaarg_wint_t(va_list *p_va_l)
 {
-	void const	*p_ret;
+	t_list		*known_val;
+	win_t		val;
 
-	p_ret = &va_arg(*p_va_l, wint_t);
-	return (p_ret);
+	val = va_arg(*p_va_l, typeof(val));
+	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
+	{
+		ft_lstadd(&g_ps.known_vals, known_val);
+		return (known_val->content);
+	}
+	else
+		g_ps.errored++;
+	return (0);
 }

@@ -4,7 +4,7 @@ static void 	init_parse_state()
 {
 	g_ps.chunks = (t_list){0,0,&g_ps.chunks.tail_init};
 	g_ps.p_req_args = 0;
-	g_ps.p_literal_vals = 0;
+	g_ps.p_known_vals = 0;
 	g_ps.free_arg_count = 0;
 	g_ps.dollar_count = 0;
 	g_ps.max_arg_pos = 0;
