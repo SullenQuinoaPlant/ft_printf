@@ -1,6 +1,6 @@
 #include "ft_printf_inner.h"
 
-char	*percenconvert_t_length_mod(char const *in)
+char	*percent_convert_length_mod(char const *in)
 {
 	t_s_pct * const	p_pct = get_p_pct();
 	t_s_lmp const	mods[] = {
@@ -31,7 +31,7 @@ char	*percenconvert_t_length_mod(char const *in)
 	return (in);
 }
 
-char	*percenconvert_t_specifier(char const *in)
+char	*percent_convert_specifier(char const *in)
 {
 	t_s_pct * const	p_pct = get_p_pct();
 	char const *	specifiers = "aAcdeEfFgGinoupsxX"

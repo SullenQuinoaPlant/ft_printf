@@ -40,7 +40,7 @@ typedef struct	s_length_mod_and_pattern {
 	char	*str;
 }				t_s_lmp;
 
-/*order of the enumeration is relied upon in percenconvert_t_specifier()
+/*order of the enumeration is relied upon in percent_convert_specifier()
 **length of enumeration is relied upon for array declarations
 */
 typedef enum	convert_e_specifiers {

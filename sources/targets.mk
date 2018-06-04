@@ -24,9 +24,9 @@ TARGETS = \
 	parse_format_string \
 	parse_format_string_percent \
 	parse_format_string_percent_char \
-	parse_format_string_percenconvert_t \
-	parse_format_string_percenconvert_t_fillers1 \
-	parse_format_string_percenconvert_t_fillers2 \
+	parse_format_string_percent_convert \
+	parse_format_string_percent_convert_fillers1 \
+	parse_format_string_percent_convert_fillers2 \
 	parse_format_string_text \
 	parse_literal_integer \
 	parse_loops \

@@ -11,7 +11,7 @@ int		ft_printf(const char *format, ...)
 	va_start(va_p, format);
 	r = -1;
 	if (parse_format_string(format) &&
-		get_va_args(&va_p, &g_ps) &&
+		get_va_args(&va_p) &&
 		output_chunks(1, &g_ps))
 		r = (int)g_os.output_len;
 	free_parse_state_lists(&g_ps);

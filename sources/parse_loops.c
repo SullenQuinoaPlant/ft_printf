@@ -2,7 +2,7 @@
 
 char	*while_progress(
 			char const *in,
-			char* (*f_str[])(char const *))
+			char* (*const *f_str)(char const *))
 {
 	int		i;
 	char	*prev;
@@ -22,7 +22,7 @@ char	*while_progress(
 
 char	*attempt_while_progess(
 			char const *in,
-			char* (*f_str[])(char const *))
+			char* (*const *f_str)(char const *))
 {
 	int		i;
 	char	*prev;
@@ -37,7 +37,9 @@ char	*attempt_while_progess(
 	return (in);
 }
 
-char	*attempt_all(char const *in, char* (*f_str[])(char const *))
+char	*attempt_all(
+	char const *in,
+	char* (*const *f_str)(char const *))
 {
 	int		i;
 
@@ -49,7 +51,9 @@ char	*attempt_all(char const *in, char* (*f_str[])(char const *))
 	return (in);
 }
 
-char	*until_progess(char const *in, char* (*f_str[])(char const *))
+char	*until_progess(
+	char const *in,
+	char* (*const *f_str)(char const *))
 {
 	int		i;
 	char	*prev;

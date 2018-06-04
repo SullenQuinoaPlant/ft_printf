@@ -2,15 +2,15 @@
 
 static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	convert_a,
-	bigconvert_a,
+	convert_a_big,
 	convert_c,
 	convert_d,
 	convert_e,
-	bigconvert_e,
+	convert_e_big,
 	convert_f,
-	bigconvert_f,
+	convert_f_big,
 	convert_g,
-	bigconvert_g,
+	convert_g_big,
 	convert_i,
 	convert_n,
 	convert_o,
@@ -18,7 +18,7 @@ static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	convert_s,
 	convert_u,
 	convert_x,
-	bigconvert_x
+	convert_x_big
 };
 
 static void	filter_flags(t_s_pct *p_chk)
@@ -35,10 +35,13 @@ static void	filter_flags(t_s_pct *p_chk)
 
 static void	filter_width(t_s_pct *p_chk)
 {
-	if (p_chk->width < 0)
+	int		width;
+
+	width = **p_chk->width;
+	if (width < 0)
 	{
 		p_chk->flags |= MINUS_FLAG;
-		p_chk->width = width == INT_MIN ? -(width + 1) : -width;
+		width = width == INT_MIN ? -(width + 1) : -width;
 	}
 }
 

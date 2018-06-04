@@ -59,7 +59,7 @@ void		convert_a(t_s_pct *p_chk)
 	output_padnstuff(len, p_chk, fs, &stf);
 }
 
-void		bigconvert_a(t_s_pct *p_chk)
+void		convert_a_big(t_s_pct *p_chk)
 {
 	p_chk->flags |= BIGCS_FLAG;
 	convert_a(p_chk);

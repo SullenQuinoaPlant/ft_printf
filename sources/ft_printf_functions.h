@@ -1,25 +1,91 @@
 #ifndef FT_PRINTF_FUNCTIONS_H
 # define FT_PRINTF_FUNCTIONS_H
 
+char *
+	attempt_all(
+		char const *in,
+		char* (*const *f_str)(char const *));
+
+char *
+	attempt_while_progess(
+		char const *in,
+		char* (* const *f_str)(char const *));
+
 void
 	convert_a(
 		t_s_pct *p_chk);
 
-char *
-	attempt_all(
-		char const *in, char* (*f_str[])(char const *));
-
-char *
-	attempt_while_progess(
-		char const *in, char* (*f_str[])(char const *));
+void
+	convert_a_big(
+		t_s_pct *p_chk);
 
 void
-	bigconvert_a(
+	convert_c(
+		t_s_pct *p_chk);
+
+void
+	convert_d(
+		t_s_pct *p_chk);
+
+void
+	convert_e(
+		t_s_pct *p_chk);
+
+void
+	convert_e_big(
+		t_s_pct *p_chk);
+
+void
+	convert_f(
+		t_s_pct *p_chk);
+
+void
+	convert_f_big(
+		t_s_pct *p_chk);
+
+void
+	convert_g(
+		t_s_pct *p_chk);
+
+void
+	convert_g_big(
+		t_s_pct *p_chk);
+
+void
+	convert_i(
+		t_s_pct *p_chk);
+
+void
+	convert_n(
+		t_s_pct *p_chk);
+
+void
+	convert_o(
+		t_s_pct *p_chk);
+
+void
+	convert_p(
+		t_s_pct *p_chk);
+
+void
+	convert_s(
+		t_s_pct *p_chk);
+
+void
+	convert_u(
+		t_s_pct *p_chk);
+
+void
+	convert_x(
+		t_s_pct *p_chk);
+
+void
+	convert_x_big(
 		t_s_pct *p_chk);
 
 void
 	decompose_fpval(
-			void const *p_val, t_e_t type, t_s_dfp *p_ret);
+		void const *p_val, t_e_t type, t_s_dfp *p_ret);
 
 void
 	free_parse_state_lists(
@@ -71,7 +137,7 @@ void
 		t_s_txt const * const chk);
 
 char *
-	parsconvert_e(
+	parse_convert(
 		char const *in);
 
 char *
@@ -103,31 +169,31 @@ char *
 		char const *in);
 
 char *
-	percenconvert_t_dollar_arg(
+	percent_convert_dollar_arg(
 		char const *in);
 
 char *
-	percenconvert_t_flags(
+	percent_convert_flags(
 		char const *in);
 
 char *
-	percenconvert_t_length_mod(
+	percent_convert_length_mod(
 		char const *in);
 
 char *
-	percenconvert_t_precision(
+	percent_convert_precision(
 		char const *in);
 
 char *
-	percenconvert_t_specifier(
+	percent_convert_specifier(
 		char const *in);
 
 char *
-	percenconvert_t_star(
+	percent_convert_star(
 		char const *in, int ***p_res);
 
 char *
-	percenconvert_t_width(
+	percent_convert_width(
 		char const *in);
 
 int	 **
@@ -140,7 +206,7 @@ int
 
 char *
 	until_progess(
-		char const *in, char* (*f_str[])(char const *));
+		char const *in, char* (*const *f_str)(char const *));
 
 void const
 	*vaarg_char(
@@ -226,6 +292,7 @@ void const
 
 char *
 	while_progress(
-		char const *in, char* (*f_str[])(char const *));
+		char const *in,
+		char* (*const *f_str)(char const *));
 
 #endif

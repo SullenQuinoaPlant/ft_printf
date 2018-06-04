@@ -12,4 +12,8 @@ typedef union	u_appendable_list {
 	};
 }				t_applist;
 
+void
+	my_lstappend(
+		t_list **last, t_list *new);
+
 #endif
