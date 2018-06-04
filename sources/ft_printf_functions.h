@@ -2,7 +2,7 @@
 # define FT_PRINTF_FUNCTIONS_H
 
 void
-	a_conversion(
+	convert_a(
 		t_s_pct *p_chk);
 
 char *
@@ -14,11 +14,11 @@ char *
 		char const *in, char* (*f_str[])(char const *));
 
 void
-	biga_conversion(
+	bigconvert_a(
 		t_s_pct *p_chk);
 
 void
-		decompose_fpval(
+	decompose_fpval(
 			void const *p_val, t_e_t type, t_s_dfp *p_ret);
 
 void
@@ -52,7 +52,7 @@ int
 	output_nan_inf(
 		t_s_dfp *val, t_s_pct *p_chk);
 
-void
+int
 	output_padnbuffer(
 		char *buffer, size_t prefix_len,
 		size_t len, t_s_pct *p_chk);
@@ -71,7 +71,7 @@ void
 		t_s_txt const * const chk);
 
 char *
-	parse_conversion(
+	parsconvert_e(
 		char const *in);
 
 char *
@@ -103,31 +103,31 @@ char *
 		char const *in);
 
 char *
-	percent_conversion_dollar_arg(
+	percenconvert_t_dollar_arg(
 		char const *in);
 
 char *
-	percent_conversion_flags(
+	percenconvert_t_flags(
 		char const *in);
 
 char *
-	percent_conversion_length_mod(
+	percenconvert_t_length_mod(
 		char const *in);
 
 char *
-	percent_conversion_precision(
+	percenconvert_t_precision(
 		char const *in);
 
 char *
-	percent_conversion_specifier(
+	percenconvert_t_specifier(
 		char const *in);
 
 char *
-	percent_conversion_star(
+	percenconvert_t_star(
 		char const *in, int ***p_res);
 
 char *
-	percent_conversion_width(
+	percenconvert_t_width(
 		char const *in);
 
 int	 **

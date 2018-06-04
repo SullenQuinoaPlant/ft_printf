@@ -75,12 +75,12 @@ static void	fulfill_arg_reqs(t_s_arg *resolved)
 	t_s_arg	*known_val;
 
 	parsed = g_ps.p_req_args;
-	while(p_list)
+	while(parsed)
 	{
 		required_arg = (t_s_arg*)parsed->content;
-		known = resolved + required_arg->position;
-		known->count_uses++;
-		required_arg->p_val = known->p_val;
+		known_val = resolved + required_arg->position;
+		known_val->count_uses++;
+		required_arg->p_val = known_val->p_val;
 		parsed = parsed->next;
 	}
 }

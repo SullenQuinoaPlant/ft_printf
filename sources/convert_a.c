@@ -37,7 +37,7 @@ static int	ca_body(t_s_pct *p_chk, void *p_stf)
 	return (r);
 }
 
-void		a_conversion(t_s_pct *p_chk)
+void		convert_a(t_s_pct *p_chk)
 {
 	t_outputter const	fs[e_oi_sz] = {ca_prefix, ca_body};
 	t_s_dfp		fpd;
@@ -59,8 +59,8 @@ void		a_conversion(t_s_pct *p_chk)
 	output_padnstuff(len, p_chk, fs, &stf);
 }
 
-void		biga_conversion(t_s_pct *p_chk)
+void		bigconvert_a(t_s_pct *p_chk)
 {
 	p_chk->flags |= BIGCS_FLAG;
-	a_conversion(p_chk);
+	convert_a(p_chk);
 }

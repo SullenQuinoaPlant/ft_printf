@@ -1,24 +1,24 @@
 #include "ft_printf_inner.h"
 
 static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
-	a_conversion,
-	biga_conversion,
-	c_conversion,
-	d_conversion,
-	e_conversion,
-	bige_conversion,
-	f_conversion,
-	bigf_conversion,
-	g_conversion,
-	bigg_conversion,
-	i_conversion,
-	n_conversion,
-	o_conversion,
-	p_conversion,
-	s_conversion,
-	u_conversion,
-	x_conversion,
-	bigx_conversion
+	convert_a,
+	bigconvert_a,
+	convert_c,
+	convert_d,
+	convert_e,
+	bigconvert_e,
+	convert_f,
+	bigconvert_f,
+	convert_g,
+	bigconvert_g,
+	convert_i,
+	convert_n,
+	convert_o,
+	convert_p,
+	convert_s,
+	convert_u,
+	convert_x,
+	bigconvert_x
 };
 
 static void	filter_flags(t_s_pct *p_chk)

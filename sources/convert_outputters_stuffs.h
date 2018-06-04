@@ -3,7 +3,7 @@
 
 # include "ft_printf_inner.h"
 
-typedef struct	s_a_conversion_stuff {
+typedef struct	s_convert_a_stuff {
 	t_s_cb	s;
 	char	zero;
 	char	sep;

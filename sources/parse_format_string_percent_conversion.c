@@ -62,15 +62,15 @@ static t_e_t const	g_in_types[e_cs_sz][e_lm_sz] =
 };
 
 
-char		*parse_conversion(char const *in)
+char		*parsconvert_e(char const *in)
 {
 	char		*(* const f_str[])(char const *) = {
-				percent_conversion_dollar_arg,
-				percent_conversion_flags,
-				percent_conversion_width,
-				percent_conversion_precision,
-				percent_conversion_length_mod,
-				percent_conversion_specifier,
+				percenconvert_t_dollar_arg,
+				percenconvert_t_flags,
+				percenconvert_t_width,
+				percenconvert_t_precision,
+				percenconvert_t_length_mod,
+				percenconvert_t_specifier,
 				0};
 	t_s_pct		const default = {
 				NO_FLAGS,

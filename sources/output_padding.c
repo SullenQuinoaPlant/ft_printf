@@ -15,15 +15,28 @@ static int	output_padding(size_t yay_much, char of_this)
 	return (yay_much == 0);
 }
 
-void		output_padnstuff(size_t len, t_s_pct *p_chk,
-					t_outputter const f[], void *stuff)
+static int	get_padlen(t_s_pct *p_chk, size_t len)
+{
+	int		pad;
+
+	pad = **p_chk->width;
+	if (pad > 0 && (size_t)pad > len)
+		pad -= len;
+	else
+		pad = 0;
+	return (pad);
+}
+
+void		output_padnstuff(
+	size_t len, t_s_pct *p_chk,
+	t_outputter const f[], void *stuff)
 {
 	unsigned int	flags;
 	int				r;
 	int				pad;
 
 	flags = p_chk->flags;
-	pad = **p_chk->width > 0 && pad > len ? pad - len : 0;
+	pad = get_padlen(p_chk, len);
 	if (pad && flags & MINUS_FLAG && !(pad = 0))
 		if (!(r = output_padding(pad, ' ')))
 			return;
@@ -38,8 +51,9 @@ void		output_padnstuff(size_t len, t_s_pct *p_chk,
 		output_padding(pad, ' ');
 }
 
-void	output_padnbuffer(char *buffer, size_t prefix_len,
-				size_t len, t_s_pct *p_chk)
+int			output_padnbuffer(
+	char *buffer, size_t prefix_len,
+	size_t len, t_s_pct *p_chk)
 {
 	ssize_t			out;
 	unsigned int	flags;
@@ -47,21 +61,21 @@ void	output_padnbuffer(char *buffer, size_t prefix_len,
 	int				pad;
 
 	flags = p_chk->flags;
-	pad = **p_chk->width > 0 && pad > len ? pad - len : 0;
+	pad = get_padlen(p_chk, prefix_len + len);
+	r = 1;
 	if (pad && flags & MINUS_FLAG)
 		pad = (r = output_padding(pad, ' ')) ? pad : 0;
 	if (!r)
-		return;
+		return (0);
 	out = write(g_os.fd, buffer, prefix_len);
-	if (!(r = gos_update(out, prefix_len)))
-		return;
-	if (pad && flags & ZERO_FLAG)
+	r = gos_update(out, prefix_len);
+	if (r && pad && flags & ZERO_FLAG)
 		pad = (r = output_padding(pad, '0')) ? pad : 0;
 	if (!r)
-		return;
+		return (0);
 	out = write(g_os.fd, buffer + prefix_len, len);
-	if(!(r = gos_update(out, len)))
-		return;
-	if (pad)
+	r = gos_update(out, len);
+	if (pad && r)
 		r = output_padding(pad, ' ');
+	return (r);
 }

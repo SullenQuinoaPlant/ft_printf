@@ -6,9 +6,9 @@ typedef struct	s_possibly_allocated {
 	void	*data;
 }				t_s_pa;
 
-typedef struct	s_conversion_chunk t_s_cc;
+typedef struct	convert_s_chunk t_s_cc;
 typedef int		(*cc_fun)(t_s_pct *p_chk, t_s_cc *p_owner);
-struct			s_conversion_chunk {
+struct			convert_s_chunk {
 	size_t	len;
 	t_s_pa	*output_data;
 	cc_fun	compute_len;

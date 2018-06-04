@@ -1,6 +1,7 @@
 #ifndef MY_BUFFERS_H
 # define MY_BUFFERS_H
 
+# include <stdint.h>
 # include "libft.h"
 
 extern char const	g_oct[];

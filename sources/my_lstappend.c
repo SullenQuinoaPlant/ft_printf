@@ -1,6 +1,6 @@
 #include "ft_printf_inner.h"
 
-void	my_lstappend(t_lst **last, t_list *new)
+void	my_lstappend(t_list **last, t_list *new)
 {
 	t_list	*nxt;
 

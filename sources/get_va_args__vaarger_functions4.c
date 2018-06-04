@@ -8,7 +8,7 @@ void const	*vaarg_ulonglong(va_list *p_va_l)
 	val = va_arg(*p_va_l, unsigned long long);
 	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
 	{
-		ft_lstadd(&g_ps.known_vals, known_val);
+		ft_lstadd(&g_ps.p_known_vals, known_val);
 		return (known_val->content);
 	}
 	else
@@ -24,7 +24,7 @@ void const	*vaarg_longlongptr(va_list *p_va_l)
 	val = va_arg(*p_va_l, typeof(val));
 	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
 	{
-		ft_lstadd(&g_ps.known_vals, known_val);
+		ft_lstadd(&g_ps.p_known_vals, known_val);
 		return (known_val->content);
 	}
 	else
@@ -40,7 +40,7 @@ void const	*vaarg_ptrdiff_t(va_list *p_va_l)
 	val = va_arg(*p_va_l, typeof(val));
 	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
 	{
-		ft_lstadd(&g_ps.known_vals, known_val);
+		ft_lstadd(&g_ps.p_known_vals, known_val);
 		return (known_val->content);
 	}
 	else
@@ -56,7 +56,7 @@ void const	*vaarg_short(va_list *p_va_l)
 	val = va_arg(*p_va_l, typeof(val));
 	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
 	{
-		ft_lstadd(&g_ps.known_vals, known_val);
+		ft_lstadd(&g_ps.p_known_vals, known_val);
 		return (known_val->content);
 	}
 	else
@@ -72,14 +72,10 @@ void const	*vaarg_ushort(va_list *p_va_l)
 	val = va_arg(*p_va_l, typeof(val));
 	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
 	{
-		ft_lstadd(&g_ps.known_vals, known_val);
+		ft_lstadd(&g_ps.p_known_vals, known_val);
 		return (known_val->content);
 	}
 	else
 		g_ps.errored++;
 	return (0);
-	void const	*p_ret;
-
-	p_ret = &va_arg(*p_va_l, int);
-	return (p_ret);
 }

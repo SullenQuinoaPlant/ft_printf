@@ -4,7 +4,7 @@ char		*parse_percent(char const *in)
 {
 	char	*(* const f_str[])(char const *) = {
 			percent_char,
-			percent_conversion,
+			percenconvert_t,
 			0};
 	t_list	*p;
 

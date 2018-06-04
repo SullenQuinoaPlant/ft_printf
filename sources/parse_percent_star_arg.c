@@ -1,6 +1,6 @@
 #include "ft_printf_inner.h"
 
-char		*percent_conversion_star(char const *in, int ***p_res)
+char		*percenconvert_t_star(char const *in, int ***p_res)
 {
 	char	*p_str;
 	t_list	*p_arg;
