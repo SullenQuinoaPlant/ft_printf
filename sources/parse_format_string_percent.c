@@ -1,6 +1,7 @@
 #include "ft_printf_inner.h"
 
-static char	*(* const g_f_str[])(char const *) = {
+static char const *
+	(* const g_f_str[])(char const *) = {
 		percent_char,
 		parse_convert,
 		0};

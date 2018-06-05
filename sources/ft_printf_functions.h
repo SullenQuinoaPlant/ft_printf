@@ -149,8 +149,8 @@ int
 		char const *in);
 
 char const *
-	parse_literal_integer(
-		char const *in, int	*p_res);
+	parse_literal_uint(
+		char const *in, unsigned int *p_res);
 
 char const *
 	parse_percent(
