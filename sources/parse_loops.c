@@ -1,6 +1,6 @@
 #include "ft_printf_inner.h"
 
-char	*while_progress(
+char const	*while_progress(
 			char const *in,
 			char* (*const *f_str)(char const *))
 {
@@ -20,7 +20,7 @@ char	*while_progress(
 	return (in);
 }
 
-char	*attempt_while_progess(
+char const	*attempt_while_progress(
 			char const *in,
 			char* (*const *f_str)(char const *))
 {
@@ -37,7 +37,7 @@ char	*attempt_while_progess(
 	return (in);
 }
 
-char	*attempt_all(
+char const	*attempt_all(
 	char const *in,
 	char* (*const *f_str)(char const *))
 {
@@ -51,7 +51,7 @@ char	*attempt_all(
 	return (in);
 }
 
-char	*until_progess(
+char const	*until_progess(
 	char const *in,
 	char* (*const *f_str)(char const *))
 {

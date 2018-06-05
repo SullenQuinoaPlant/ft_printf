@@ -1,8 +1,8 @@
 #include "ft_printf_inner.h"
 
-char	*percent_char(char const *in)
+char const	*percent_char(char const *in)
 {
-	t_s_cw		* const cw = ((t_list*)g_ps.chunks.tail)->content;
+	t_s_cw		* const cw = g_ps.chunks.tail->content;
 	t_s_char	*chunk;
 
 	if (*in == '%')

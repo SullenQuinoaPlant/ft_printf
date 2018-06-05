@@ -24,7 +24,7 @@ static t_e_dc	get_dollar_convention()
 	return (e_no_dollar);
 }
 
-static char*
+static char const *
 	(*const g_f_str[])(char const *) = {
 		parse_percent,
 		parse_text,

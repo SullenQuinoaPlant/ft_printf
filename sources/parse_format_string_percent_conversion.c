@@ -1,6 +1,7 @@
 #include "ft_printf_inner.h"
 
-static t_e_t const	g_in_types[e_cs_sz][e_lm_sz] =
+static t_e_t const
+	g_types[e_cs_sz][e_lm_sz] =
 {
 	//e_no_specifier
 	{e_notype, e_notype, e_notype, e_notype, e_notype, e_notype, e_notype,
@@ -61,27 +62,28 @@ static t_e_t const	g_in_types[e_cs_sz][e_lm_sz] =
 		e_size_t, e_ptrdiff_t}
 };
 
+static char const *
+	(* const g_f_str[])(char const *) = {
+			percent_convert_dollar_arg,
+			percent_convert_flags,
+			percent_convert_width,
+			percent_convert_precision,
+			percent_convert_length_mod,
+			percent_convert_specifier,
+			0};
 
-char		*parse_convert(char const *in)
+char const	*parse_convert(char const *in)
 {
-	char		*(* const f_str[])(char const *) = {
-				percent_convert_dollar_arg,
-				percent_convert_flags,
-				percent_convert_width,
-				percent_convert_precision,
-				percent_convert_length_mod,
-				percent_convert_specifier,
-				0};
-	t_s_pct		const default = {
+	t_s_pct	const init = {\
 				NO_FLAGS,
 				0,
 				0,
 				e_no_len,
 				e_no_specifier,
 				0};
-	t_s_cw 		* const cw = ((t_list*)g_ps.chunks.tail)->content;
-	t_s_pct		*chk;
-	t_list		*p_arg;
+	t_s_cw 	* const cw = g_ps.chunks.tail->content;
+	t_s_pct	*chk;
+	t_list	*p_arg;
 
 	if (! *in)
 		return (in);
@@ -91,12 +93,12 @@ char		*parse_convert(char const *in)
 	{
 		*cw = (t_s_cw){e_pct_c, chk};
 		ft_lstadd(&g_ps.p_req_args, p_arg);
-		*chk = default;
+		*chk = init;
 		chk->vaarg = p_arg->content;
-		in = attempt_all(in, f_str);
+		in = attempt_all(in, g_f_str);
 		if (! chk->vaarg->position)
 			chk->vaarg->position = (++g_ps.free_arg_count);
-		p_chk->vaarg->type = g_in_types[chk->specifier][chk->len_mod];
+		chk->vaarg->type = g_types[chk->specifier][chk->len_mod];
 	}
 	else
 	{

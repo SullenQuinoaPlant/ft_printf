@@ -6,7 +6,7 @@
 typedef union	u_appendable_list {
 	t_list	tail_init;
 	struct	{
-		void	*tail;
+		t_list	*tail;
 		size_t	unused;
 		t_list	*head;
 	};

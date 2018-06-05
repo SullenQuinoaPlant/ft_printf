@@ -1,7 +1,8 @@
 #include "ft_printf_inner.h"
 
-char	*parse_text(char const *in)
+char canst	*parse_text(char const *in)
 {
+	size_t	const sz = sizeof(t_s_cw);
 	size_t	i;
 	char	c;
 	t_list	*p_cw;
@@ -10,7 +11,7 @@ char	*parse_text(char const *in)
 	if (!*in || *in == '%')
 		return (in);
 	if ((chk = malloc(sizeof(t_s_txt))) &&
-		(p_cw = ft_lstnew(&(t_s_cw){e_ts_txt, chk}, sizeof(t_s_cw))))
+		(p_cw = ft_lstnew(&(t_s_cw){e_ts_txt, chk}, sz)))
 	{
 		i = 1;
 		while ((c = in[i]) != '%' && c)

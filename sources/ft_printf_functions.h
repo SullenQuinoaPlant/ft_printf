@@ -1,15 +1,15 @@
 #ifndef FT_PRINTF_FUNCTIONS_H
 # define FT_PRINTF_FUNCTIONS_H
 
-char *
+char const *
 	attempt_all(
 		char const *in,
-		char* (*const *f_str)(char const *));
+		char const * (*const *f_str)(char const *));
 
-char *
-	attempt_while_progess(
+char const *
+	attempt_while_progress(
 		char const *in,
-		char* (* const *f_str)(char const *));
+		char const * (* const *f_str)(char const *));
 
 void
 	convert_a(
@@ -136,7 +136,7 @@ void
 	output_txt_chk(
 		t_s_txt const * const chk);
 
-char *
+char const *
 	parse_convert(
 		char const *in);
 
@@ -152,7 +152,7 @@ char *
 	parse_literal_integer(
 		char const *in, int	*p_res);
 
-char *
+char const *
 	parse_percent(
 		char const *in);
 
@@ -160,39 +160,39 @@ char *
 	parse_store_int_literal(
 		char const *in, int *** const p_res);
 
-char *
+char const *
 	parse_text(
 		char const *in);
 
-char *
+char const *
 	percent_char(
 		char const *in);
 
-char *
+char const *
 	percent_convert_dollar_arg(
 		char const *in);
 
-char *
+char const *
 	percent_convert_flags(
 		char const *in);
 
-char *
+char const *
 	percent_convert_length_mod(
 		char const *in);
 
-char *
+char const *
 	percent_convert_precision(
 		char const *in);
 
-char *
+char const *
 	percent_convert_specifier(
 		char const *in);
 
-char *
+char const *
 	percent_convert_star(
 		char const *in, int ***p_res);
 
-char *
+char const *
 	percent_convert_width(
 		char const *in);
 
@@ -204,9 +204,10 @@ int
 	sign_to_b(
 		int sign, t_s_pct *p_chk, t_s_cb *b);
 
-char *
-	until_progess(
-		char const *in, char* (*const *f_str)(char const *));
+char const *
+	until_progress(
+		char const *in,
+		char const * (*const *f_str)(char const *));
 
 void const
 	*vaarg_char(
@@ -290,9 +291,9 @@ void const
 	*vaarg_wint_t(
 		va_list *p_va_l);
 
-char *
+char const *
 	while_progress(
 		char const *in,
-		char* (*const *f_str)(char const *));
+		char const * (*const *f_str)(char const *));
 
 #endif

@@ -1,23 +1,24 @@
 #include "ft_printf_inner.h"
 
-char		*parse_percent(char const *in)
+static char	*(* const g_f_str[])(char const *) = {
+		percent_char,
+		parse_convert,
+		0};
+
+char const	*parse_percent(char const *in)
 {
-	char	*(* const f_str[])(char const *) = {
-			percent_char,
-			percent_convert,
-			0};
+	size_t const	sz = sizeof(t_s_cw);
 	t_list	*p;
 
-	if (*in == '%')
+	if (*in != '%')
+		return (in);
+	in++;
+	if ((p = ft_lstnew(&(t_s_cw){e_no_chk, 0}, sz)))
 	{
-		in++;
-		if ((p = ft_lstnew(&(t_s_cw){e_no_chk, 0}, sizeof(t_s_cw))))
-		{
-			my_lstappend(&g_ps.chunks.tail, p);
-			in = until_progress(in, f_str);
-		}
-		else
-			g_ps.errored++;
+		my_lstappend(&g_ps.chunks.tail, p);
+		in = until_progress(in, g_f_str);
 	}
+	else
+		g_ps.errored++;
 	return (in);
 }
