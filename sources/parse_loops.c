@@ -51,7 +51,7 @@ char const	*attempt_all(
 	return (in);
 }
 
-char const	*until_progess(
+char const	*until_progress(
 	char const *in,
 	char* (*const *f_str)(char const *))
 {

@@ -17,8 +17,8 @@ typedef struct	s_chunk_wrapper {
 }				t_s_cw;
 
 typedef struct	s_text_chunk {
-	char	*strt;
-	size_t	len;
+	char const	*strt;
+	size_t		len;
 }				t_s_txt;
 
 typedef struct	s_character {
@@ -36,8 +36,11 @@ typedef enum	e_length_modifiers {
 }				t_e_lm;
 
 typedef struct	s_length_mod_and_pattern {
-	t_e_lm	mod;
-	char	*str;
+	t_e_lm		mod;
+	union		{
+		char		*str;
+		char		*s;
+				};
 }				t_s_lmp;
 
 /*order of the enumeration is relied upon in percent_convert_specifier()

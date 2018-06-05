@@ -1,45 +1,53 @@
 #include "ft_printf_inner.h"
 
-char	*percent_convert_length_mod(char const *in)
-{
-	t_s_pct * const	p_pct = get_p_pct();
-	t_s_lmp const	mods[] = {
-					{e_hh, "hh"},
-					{e_h, "h"},
-					{e_l, "l"},
-					{e_ll, "ll"},
-					{e_bigl, "L"},
-					{e_j, "j"},
-					{e_z, "z"},
-					{e_t, "t"}};
-	size_t const	len = sizeof(mods) / sizeof(mods[0]);
-	int				i;
+static t_s_lmp const
+	g_mods[] = {
+		{e_hh, {"hh"}},
+		{e_h, {"h"}},
+		{e_l, {"l"}},
+		{e_ll, {"ll"}},
+		{e_bigl, {"L"}},
+		{e_j, {"j"}},
+		{e_z, {"z"}},
+		{e_t, {"t"}}};
 
-	if (*in)
+#define MODS_COUNT 8
+char const	*percent_convert_length_mod(char const *in)
+{
+	t_s_pct	*p_pct;
+	size_t	i;
+	size_t	len;
+
+	if (!*in)
+		return (in);
+	p_pct = get_p_pct();
+	i = -1;
+	while (++i < MODS_COUNT)
 	{
-		i = -1;
-		while (++i < len)
-			if (! ft_strncmp(mods[i].str, in, ft_strlen(mods[i].str)))
-			{
-				p_pct->len_mod = mods[i].mod;
-				in += ft_strlen(mods[i].str);
-				break;
-			}
-		if (i == len)
-			p_pct->len_mod = e_no_len;
+		len = ft_strlen(g_mods[i].s);
+		if (!ft_strncmp(g_mods[i].s, in, len))
+		{
+			p_pct->len_mod = g_mods[i].mod;
+			in += len;
+			break;
+		}
 	}
+	if (i == len)
+		p_pct->len_mod = e_no_len;
 	return (in);
 }
+#undef MODS_COUNT
 
-char	*percent_convert_specifier(char const *in)
+char const	*percent_convert_specifier(char const *in)
 {
-	t_s_pct * const	p_pct = get_p_pct();
-	char const *	specifiers = "aAcdeEfFgGinoupsxX"
-	char *			p_str;
+	char const	*specifiers = "aAcdeEfFgGinoupsxX";
+	t_s_pct 	*p_pct;
+	char		*p_c;
 
-	if (*in && (p_str = ft_strchr(specifiers, *in)))
+	p_pct = get_p_pct();
+	if (*in && (p_c = ft_strchr(specifiers, *in)))
 	{
-		p_pct->specifier = (t_e_cs)(p_str - specifiers + 1);
+		p_pct->specifier = (t_e_cs)(p_c - specifiers + 1);
 		in++;
 	}
 	else

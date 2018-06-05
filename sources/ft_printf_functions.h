@@ -140,7 +140,7 @@ char const *
 	parse_convert(
 		char const *in);
 
-char *
+char const *
 	parse_fill_literal_int_dollar(
 		char const *in, int * const to_fill);
 
@@ -148,7 +148,7 @@ int
 	parse_format_string(
 		char const *in);
 
-char *
+char const *
 	parse_literal_integer(
 		char const *in, int	*p_res);
 
@@ -156,7 +156,7 @@ char const *
 	parse_percent(
 		char const *in);
 
-char *
+char const *
 	parse_store_int_literal(
 		char const *in, int *** const p_res);
 
@@ -196,7 +196,7 @@ char const *
 	percent_convert_width(
 		char const *in);
 
-int	 **
+int **
 	ps_store_integer(
 		int val, int *** const p_res);
 
