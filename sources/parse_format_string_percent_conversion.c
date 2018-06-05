@@ -72,39 +72,53 @@ static char const *
 			percent_convert_specifier,
 			0};
 
-char const	*parse_convert(char const *in)
+static t_s_arg	*req_arg_init()
 {
-	t_s_pct	const init = {\
-				NO_FLAGS,
-				0,
-				0,
-				e_no_len,
-				e_no_specifier,
-				0};
+	t_list	*p_arg;
+	t_s_arg	init;
+
+	init = (t_s_arg){e_notype, 0, 0};
+	if ((p_arg = ft_lstnew(&init, sizeof(init))))
+		ft_lstadd(&g_ps.p_req_args, p_arg);
+	return (p_arg);
+}
+
+static t_s_pct	*pct_chk_init()
+{
+	t_s_pct	*pct_chk;
+
+	if ((pct_chk = malloc(sizeof(t_s_pct))))
+	{
+		pct_chk->flags = NO_FLAGS;
+		pct_chk->width = 0;
+		pct_chk->precision = 0;
+		pct_chk->len_mod = e_no_len;
+		pct_chk->specifier = e_no_specifier;
+		pct_chk->vaarg = 0;
+	}
+	return (pct_chk);
+}
+
+char const		*parse_convert(char const *in)
+{
 	t_s_cw 	* const cw = g_ps.chunks.tail->content;
 	t_s_pct	*chk;
-	t_list	*p_arg;
+	t_s_arg	*arg;
+	
 
-	if (! *in)
+	if (!*in)
 		return (in);
-	if ((p_arg =
-		ft_lstnew(&((t_s_arg){e_notype, 0, 0}), sizeof(t_s_arg))) &&
-	 	(chk = malloc(sizeof(t_s_pct))))
+	if ((arg = req_arg_init()) &&
+		(chk = pct_chk_init()))
 	{
-		*cw = (t_s_cw){e_pct_c, chk};
-		ft_lstadd(&g_ps.p_req_args, p_arg);
-		*chk = init;
-		chk->vaarg = p_arg->content;
+		*cw = (t_s_cw){e_pct_c, chk}
+		chk->vaarg = arg;
 		in = attempt_all(in, g_f_str);
-		if (! chk->vaarg->position)
-			chk->vaarg->position = (++g_ps.free_arg_count);
-		chk->vaarg->type = g_types[chk->specifier][chk->len_mod];
+		if (!arg->position)
+			arg->position = (++g_ps.free_arg_count);
+		arg->type = g_types[chk->specifier][chk->len_mod];
 	}
 	else
-	{
-		if (p_arg)
-			my_clean_free(p_arg, sizeof(t_s_arg));
 		g_ps.errored++;
-	}
 	return (in);
 }

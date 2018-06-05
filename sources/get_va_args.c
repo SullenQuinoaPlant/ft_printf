@@ -49,7 +49,7 @@ static void	fill_vaarg_ar(t_s_arg *ar)
 	while (parsed)
 	{
 		req_arg = parsed->content;
-		pos = req_arg->position;
+		pos = req_arg->position - 1;
 		if (ar[pos].type == e_notype)
 			ar[pos].type = req_arg->type;
 		else if (ar[pos].type != req_arg->type)
@@ -72,15 +72,15 @@ static void	fulfill_arg_reqs(t_s_arg *resolved)
 {
 	t_list	*parsed;
 	t_s_arg	*required_arg;
-	t_s_arg	*known_val;
+	t_s_arg	*val;
 
 	parsed = g_ps.p_req_args;
 	while(parsed)
 	{
 		required_arg = (t_s_arg*)parsed->content;
-		known_val = resolved + required_arg->position;
-		known_val->count_uses++;
-		required_arg->p_val = known_val->p_val;
+		val = resolved + required_arg->position - 1;
+		val->count_uses++;
+		required_arg->p_val = val->p_val;
 		parsed = parsed->next;
 	}
 }
