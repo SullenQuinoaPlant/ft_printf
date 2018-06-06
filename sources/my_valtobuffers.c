@@ -21,16 +21,26 @@ size_t	my_valtobuffer(uintmax_t val,
 	return (i);
 }
 
+/*only works with bases that are powers of 2*/
 size_t	my_lowvaltob(uintmax_t val,
 					char const * const basestr,
 					char *b_end)
 {
 	unsigned char	r;
+	unsigned char	rmask;
 	size_t			i;
+	uintmax_t		mask;
 
 	r = ft_strlen(basestr);
+	i = 0;
+	while (i < r)
+		rmask |= 1 << i++;
+	mask = 0;
+	while (!(mask & val))
+		mask = mask << 
 	while (!(val % r) && val)
-		val /= r;
+		r *= r;
+		//val /= r;
 	i = 0;
 	while (val)
 	{

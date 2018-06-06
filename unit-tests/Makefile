@@ -38,6 +38,7 @@ cmocka :
 	fi
 
 %.test.o $(UTEST_DIR)/%.test.o : $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
+	echo "$(LIBS_I)"
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
@@ -75,7 +76,7 @@ cmocka :
 run_tests : $(EXECUTION_STAMPS)
 
 %.execution.stamp : %.build.stamp
-	./$*.o "$$(readlink -e $(UTEST_DIR))"
+	-./$*.o "$$(readlink -e $(UTEST_DIR))"
 	touch $@
 
 %.build.stamp :
@@ -88,7 +89,7 @@ run_tests : $(EXECUTION_STAMPS)
 #MISCELLANEOUS:
 
 .PHONY : all_unit_tests aut
-all_unit_tests aut : clean-tests test
+all_unit_tests aut : clean-tests ut
 
 
 
