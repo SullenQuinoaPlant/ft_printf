@@ -6,8 +6,8 @@ all : $(NAME).a
 
 $(NAME).a : $(OBJS)
 		-ar rcs $@ $(OBJS)
-		mv $@ $(LIBS_L)/
-		cp $(SRC_DIR)/$(NAME).h $(LIBS_I)/
+		mv $@ $(OUT_DIR_LIB)/
+		cp $(SRC_DIR)/$(NAME).h $(OUT_DIR_H)/
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | objdir
 	$(CC) $(CFLAGS)\
@@ -24,7 +24,8 @@ clean :
 	-rm $(OBJS)
 
 fclean : clean
-	-rm $(NAME)
+	-rm $(OUT_DIR_LIB)/$(NAME).a
+	-rm $(OUT_DIR_H)/$(NAME).h
 
 re : fclean all
 

@@ -29,10 +29,8 @@ size_t	my_lowvaltob(uintmax_t val,
 					char *b_end)
 {
 	unsigned char	r;
-	unsigned char	rmask;
 	size_t			i;
 	uintmax_t		mask;
-	int				shift;
 
 	r = ft_strlen(basestr);
 	mask = ~0 << my_log2(r);

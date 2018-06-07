@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define printf_diff(...)\
+#define printf_diff(...) \
 {\
 	int		save_fd;\
 	FILE	*a_fd;\
