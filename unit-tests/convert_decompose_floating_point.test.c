@@ -26,8 +26,8 @@ int		main(void)
 
 		for (i = 0; i < len; i++)
 		{
-			dds[i] = decompose_double(ds + i);
-			assert_memory_equal(dds + i, ref + i, sizeof(t_s_dfp));
+			decompose_double(ds + i, &dds[i]);
+			assert_memory_equal(&dds[i], ref + i, sizeof(t_s_dfp));
 		}
 	)
 
@@ -49,8 +49,8 @@ int		main(void)
 
 		for (i = 0; i < len; i++)
 		{
-			dds[i] = decompose_ldouble(ds + i);
-			assert_memory_equal(dds + i, ref + i, sizeof(t_s_dfp));
+			decompose_ldouble(ds + i, &dds[i]);
+			assert_memory_equal(&dds[i], ref + i, sizeof(t_s_dfp));
 		}
 	)
 
