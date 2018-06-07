@@ -21,7 +21,7 @@ static void	reverse(unsigned long long this,
 }
 */
 
-static void	decompose_double(void const *p_val, t_s_dfp *p_ret)
+static void	decompose_double(double const *p_val, t_s_dfp *p_ret)
 {
 	t_u_d	arg;
 	
@@ -31,12 +31,15 @@ static void	decompose_double(void const *p_val, t_s_dfp *p_ret)
 	if (arg.exp == ~0)
 		p_ret->flags |= arg.mant ? NAN_F : INF_F;
 	else if (arg.exp == 0)
-		p_ret->flags |= arg.sign ? OVER_F : DNORM_F;
-	else if (arg.exp)
+	{
+		p_ret->flags |= DNORM_F; 
+		p_ret->exp += 1;
+	}
+	else
 		p_ret->mant |= 1ull<<52;
 }
 
-static void	decompose_ldouble(void const *p_val, t_s_dfp *p_ret)
+static void	decompose_ldouble(long double const *p_val, t_s_dfp *p_ret)
 {
 	t_u_ld	arg;
 	
@@ -46,7 +49,10 @@ static void	decompose_ldouble(void const *p_val, t_s_dfp *p_ret)
 	if (arg.exp == ~0)
 		p_ret->flags |= arg.mant ? NAN_F : INF_F;
 	else if (arg.exp == 0)
-		p_ret->flags |= arg.sign ? OVER_F : DNORM_F;
+	{
+		p_ret->flags |= DNORM_F
+		p_ret->exp += 1;
+	}
 }
 # endif
 

@@ -1,9 +1,29 @@
-#include "h.h"
-
+#define ARCH_A
 #include "convert_decompose_floating_point.c"
 
 int		main()
 {
+	{
+		double	*ds;
+		t_s_dfp	*ref;
+		size_t	const len = 5;
+		t_s_dfp	dds[len];
+		size_t	i;
+
+		(ds = (double[]){0.0, 1.0, 2.0, 1.5, 3.0});
+		(ref = (t_s_dfp[]){
+			{0, 0, 0, 0},
+			{0, 0x3ff, 1ull << 52, 0},
+			{0, 0x400, 1ull << 52, 0},
+			{0, 0x3ff, 1ull << 51 | 1ull << 52, 0x1ull << 63},
+			{0, 0x400, 1ull << 51 | 1ull << 52, 0x1ull << 63}
+		});
+
+		for (i = 0; i < len; i++)
+		{
+			decompose_double(ds + i, &dds[i]);
+		}
+	}
 	{
 		long double	*ds;
 		t_s_dfp		*ref;
@@ -22,28 +42,8 @@ int		main()
 
 		for (i = 0; i < len; i++)
 		{
-			dds[i] = decompose_ldouble(ds + i);
+			decompose_ldouble(ds + i, &dds[i]);
 		}
-	}
-
-	double	*ds;
-	t_s_dfp	*ref;
-	size_t	const len = 5;
-	t_s_dfp	dds[len];
-	size_t	i;
-
-	(ds = (double[]){0.0, 1.0, 2.0, 1.5, 3.0});
-	(ref = (t_s_dfp[]){
-		{0, 0, 0},
-		{0, 0x3ff, 0},
-		{0, 0x400, 0},
-		{0, 0x3ff, 0x1ull << 52},
-		{0, 0x400, 0x1ull << 52}
-	});
-
-	for (i = 0; i < len; i++)
-	{
-		dds[i] = decompose_double(ds + i);
 	}
 	return (0);
 }

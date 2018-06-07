@@ -17,15 +17,16 @@ int		main(void)
 
 		(ds = (double[]){0.0, 1.0, 2.0, 1.5, 3.0});
 		(ref = (t_s_dfp[]){
-			{0, 0, 0},
-			{0, 0x3ff, 0},
-			{0, 0x400, 0},
-			{0, 0x3ff, 0x1ull << 51},
-			{0, 0x400, 0x1ull << 51}
+			{0, 0, 0, 0},
+			{0, 0x3ff, 1ull << 52, 0},
+			{0, 0x400, 1ull << 52, 0},
+			{0, 0x3ff, 1ull << 51 | 1ull << 52, 0x1ull << 63},
+			{0, 0x400, 1ull << 51 | 1ull << 52, 0x1ull << 63}
 		});
 
 		for (i = 0; i < len; i++)
 		{
+			printf("%d\n", i);
 			decompose_double(ds + i, &dds[i]);
 			assert_memory_equal(&dds[i], ref + i, sizeof(t_s_dfp));
 		}
