@@ -34,6 +34,9 @@ typedef struct	s_char_buffer {
 	char			b;
 }				t_s_cb;
 
+/*only works with bases that are powers of 2,
+**most significant bits set to 0 should be avoided
+*/
 size_t
 	my_lowv_tob(
 		uintmax_t val,

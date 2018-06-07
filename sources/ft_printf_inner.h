@@ -10,10 +10,11 @@
 # include <wchar.h>
 
 # include "libft.h"
+# include "my_stupidmath.h"
 # include "my_lstappend.h"
 # include "my_valtobuffers.h"
 # include "my_cleanfree.h"
-# include "convert_decompose_floating_point_bit_patterns.h"
+# include "floating_point_bit_patterns.h"
 # include "convert_outputters_stuffs.h"
 # include "ft_printf_typedefs.h"
 # include "ft_printf_functions.h"

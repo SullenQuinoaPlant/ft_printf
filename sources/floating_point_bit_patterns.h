@@ -1,5 +1,5 @@
-#ifndef BIT_PATTERNS_H
-# define BIT_PATTERNS_H
+#ifndef FLOATING_POINT_BIT_PATTERNS_H
+# define FLOATING_POINT_BIT_PATTERNS_H
 
 # define SIGN_F 0x01
 # define INF_F 0x02
