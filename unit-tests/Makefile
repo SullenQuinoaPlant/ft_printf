@@ -59,6 +59,7 @@ cmocka :
 		$<\
 		-L $(LIBS_L)\
 		-lcmocka -lft\
+		-lft_printf
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L));\
 		touch $(UTEST_DIR)/$(*F).test.build.stamp
