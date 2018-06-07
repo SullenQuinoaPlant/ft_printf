@@ -8,7 +8,7 @@ TEST_OBJS := $(TEST_SRCS:.c=.o)
 BUILD_STAMPS := $(TEST_OBJS:.o=.build.stamp)
 EXECUTION_STAMPS := $(TEST_OBJS:.o=.execution.stamp)
 
-CFLAGS_UTEST = -fno-builtin #-Wall -Wextra -Werror
+CFLAGS_UTEST = -fno-builtin
 CFLAGS_UTEST += $(CFLAGS_MORE) #$(CFLAGS) were annoying the hell out of me
 
 
