@@ -10,7 +10,7 @@
 # include <wchar.h>
 
 # include "libft.h"
-# include "my_stupidmath.h"
+/*# include "my_stupidmath.h"//used in my_valtobuffers.c*/
 # include "my_lstappend.h"
 # include "my_valtobuffers.h"
 # include "my_cleanfree.h"

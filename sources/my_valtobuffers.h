@@ -3,11 +3,12 @@
 
 # include <stdint.h>
 # include "libft.h"
+# include "my_stupidmath.h"
 
-extern char const	g_oct[];
-extern char const	g_dec[];
-extern char const	g_hex[];
-extern char const	g_bhex[];
+extern char const	* const g_oct;
+extern char const	* const g_dec;
+extern char const	* const g_hex;
+extern char const	* const g_bhex;
 
 # define BIGGEST_BASE2 (sizeof(uintmax_t) * 8)
 # define BIGGEST_SIGNED BIGGEST_BASE2 + 1
