@@ -25,16 +25,18 @@ build_tests : cmocka $(TEST_OBJS)
 
 .PHONY : cmocka
 cmocka : 
-	if $(CC) $(CFLAGS_UTEST)\
+	@if $(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -L $(LIBS_L)\
 	 	$(UTEST_DIR)/check_install.c\
 		 -lcmocka -o test.o; then\
 			rm test.o;\
 			echo "cmocka already installed";\
 	else\
+		echo "installing cmocka";\
 		$(MAKE) -C $(UTEST_DIR)/cmocka/;\
 		mv $(UTEST_DIR)/cmocka/libcmocka* $(LIBS_L)/;\
 		mv $(UTEST_DIR)/cmocka/cmocka.h $(LIBS_I)/;\
+		echo "cmocka installed";\
 	fi
 
 %.test.o $(UTEST_DIR)/%.test.o : $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
@@ -58,8 +60,8 @@ cmocka :
 		-D $(ARCH)\
 		$<\
 		-L $(LIBS_L)\
+		-lftprintf\
 		-lcmocka -lft\
-		-lft_printf
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L));\
 		touch $(UTEST_DIR)/$(*F).test.build.stamp
@@ -96,6 +98,7 @@ all_unit_tests aut : clean-tests ut
 
 .PHONY : clean-tests
 clean-tests :
+	$(MAKE) -C $(ROOT)
 	-rm $(UTEST_DIR)/*.o
 	-rm $(UTEST_DIR)/*.stamp
 

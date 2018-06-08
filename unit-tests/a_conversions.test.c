@@ -1,7 +1,7 @@
 #define HOW_MANY_TESTS 10
 #include "cmocka/my_macro_overlay.h"
 
-#include "printf_diff.c"
+#include "printf_diff.h"
 
 int		main(void)
 {
@@ -11,8 +11,10 @@ int		main(void)
 		d = 0.0;
 		printf_diff("%a", d);
 	)
-    return (\
-		_cmocka_run_group_tests("TEST_ARR", TEST_ARR,\
-					test_index, 0, 0)\
+
+    return (
+		_cmocka_run_group_tests(
+			"TEST_ARR", TEST_ARR,
+			test_index, 0, 0)
 	);
 }

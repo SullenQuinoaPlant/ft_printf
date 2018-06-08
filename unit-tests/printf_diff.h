@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "libftprintf.h"
+
 #define printf_diff(...) \
 {\
 	int		save_fd;\
@@ -22,7 +24,7 @@
 		ft_printf(__VA_ARGS__) >= 0 &&\
 		fprintf(a_fd, __VA_ARGS__) >= 0)\
 	{\
-		fclose(a_fd);\//in case we need to flush
+		fclose(a_fd);/*in case we need to flush*/\
 		system("diff a.txt b.txt > res.txt");\
 		if ((diff_fd = open("res.txt", O_RDONLY)) > 0)\
 		{\

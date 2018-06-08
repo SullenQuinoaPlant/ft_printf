@@ -2,7 +2,8 @@ ifndef ROOT
 	ROOT = .
 endif
 
-NAME = ft_printf
+NAME = ftprintf
+LIBNAME = libftprintf
 
 SRC_DIR	:= $(ROOT)/sources
 OBJ_DIR := $(ROOT)/objects

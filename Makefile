@@ -1,5 +1,4 @@
-def :
-	git status
+def : targets all
 
 ############
 #VARIABLES :
@@ -10,6 +9,12 @@ def :
 #CORE :
 
 include Makefile.mk
+
+
+##########
+#TARGETS :
+
+include sources/Makefile
 
 
 #######
