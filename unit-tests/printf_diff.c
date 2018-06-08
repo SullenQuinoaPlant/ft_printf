@@ -18,7 +18,7 @@ static int	restore_fd1(int save_fd)
 int	printf_diff(char const * format, ...) 
 {
 	va_list	a_l, b_l;
-	int		save_fd, b_fd, diff_fd = -1, -1, -1;
+	int		save_fd = -1, diff_fd = -1, b_fd = -1;
 	FILE	*a_fd;
 	int		system_failure;
 	ssize_t	a_res, b_res;
