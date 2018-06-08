@@ -53,7 +53,7 @@ cmocka :
 		-Wl,-rpath=$$(readlink -e $(LIBS_L));\
 		touch $(UTEST_DIR)/$*.test.build.stamp
 
-%.test.o : %.test.c
+%.test.o : %.test.c $(UTEST_DIR)/printf_diff.h
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(SRC_DIR)\
 		-I $(LIBS_I)\

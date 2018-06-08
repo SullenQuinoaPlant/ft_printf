@@ -13,32 +13,39 @@
 	FILE	*a_fd;\
 	int		b_fd;\
 	int		diff_fd;\
-	int		passed;\
+	int		system_failure;\
+	ssize_t	a_res, b_res;\
 \
 	save_fd = 0;\
-	passed = 0;\
+	system_failure = 1;\
 	if ((save_fd = dup(1)) > 0 &&\
 		(a_fd = fopen("a.txt", "w")) &&\
 		(b_fd = creat("b.txt", S_IRUSR)) > 0 &&\
 		dup2(b_fd, 1) > 0 &&\
-		ft_printf(__VA_ARGS__) >= 0 &&\
-		fprintf(a_fd, __VA_ARGS__) >= 0)\
+		(a_res = fprintf(a_fd, __VA_ARGS__)) &&\
+		!fclose(a_fd))\
 	{\
-		fclose(a_fd);/*in case we need to flush*/\
-		system("diff a.txt b.txt > res.txt");\
-		if ((diff_fd = open("res.txt", O_RDONLY)) > 0)\
+		b_res = ft_printf(__VA_ARGS__);\
+		dup2(save_fd, 1);\
+		close(save_fd);\
+		save_fd = 0;\
+		assert_true(a_res == b_res);\
+		if ((system("diff a.txt b.txt > res.txt") > 0) &&\
+		((diff_fd = open("res.txt", O_RDONLY)) > 0))\
 		{\
-			passed = 1;\
 			char	dummy[1];\
 			int		res;\
-			res = read(diff_fd, dummy, 1);\
+			if ((res = read(diff_fd, dummy, 1)) >= 0)\
+			{\
+				assert_false(res);\
+				system_failure = 0;\
+			}\
 			close(diff_fd);\
-			assert_false(res);\
 		}\
 	}\
 	if (b_fd > 0)\
 		close(b_fd);\
-	if (!passed)\
+	if (system_failure)\
 	{\
 		fprintf(\
 			stderr,\
