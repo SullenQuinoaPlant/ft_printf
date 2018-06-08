@@ -1,7 +1,7 @@
 #define HOW_MANY_TESTS 10
 #include "cmocka/my_macro_overlay.h"
 
-#include "printf_diff.h"
+#include "printf_diff.c"
 
 int		main(void)
 {
