@@ -34,9 +34,10 @@ int	printf_diff(char const * format, ...)
 		b_res = ft_vprintf(format, b_l);
 		save_fd = restore_fd1(save_fd);
 		assert_true(a_res == b_res);
-		if ((system("diff a.txt b.txt > res.txt") > 0) &&
+		if ((system("diff a.txt b.txt > res.txt") >= 0) &&
 		((diff_fd = open("res.txt", O_RDONLY)) > 0))
 		{
+printf("we were here\n");
 			char	dummy[1];
 			int		res;
 			if ((res = read(diff_fd, dummy, 1)) >= 0)
