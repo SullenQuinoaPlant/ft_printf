@@ -50,10 +50,11 @@ cmocka :
 		-L $(LIBS_L)\
 		-lcmocka -lft\
 		-o $@\
-		-Wl,-rpath=$$(readlink -e $(LIBS_L));\
+		-Wl,-rpath=$$(readlink -e $(LIBS_L))\
+			&&\
 		touch $(UTEST_DIR)/$*.test.build.stamp
 
-%.test.o : %.test.c $(UTEST_DIR)/printf_diff.c
+%.test.o : %.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(SRC_DIR)\
 		-I $(LIBS_I)\
@@ -63,7 +64,8 @@ cmocka :
 		-lftprintf\
 		-lcmocka -lft\
 		-o $@\
-		-Wl,-rpath=$$(readlink -e $(LIBS_L));\
+		-Wl,-rpath=$$(readlink -e $(LIBS_L))\
+			&&\
 		touch $(UTEST_DIR)/$(*F).test.build.stamp
 
 %.test.c : $(UTEST_DIR)/cmocka/my_macro_overlay.h
@@ -79,8 +81,8 @@ cmocka :
 run_tests : $(EXECUTION_STAMPS)
 
 %.execution.stamp : %.build.stamp
-	-./$*.o "$$(readlink -e $(UTEST_DIR))"
-	touch $@
+	-./$*.o "$$(readlink -e $(UTEST_DIR))"\
+		&& touch $@
 
 %.build.stamp :
 	@:

@@ -20,10 +20,9 @@ int	printf_diff(char const * format, ...)
 	va_list	a_l, b_l;
 	int		save_fd = -1, diff_fd = -1, b_fd = -1;
 	FILE	*a_fd;
-	int		system_failure;
+	int		system_failure = 1;
 	ssize_t	a_res, b_res;
 
-	system_failure = 1;
 	va_start(a_l, format);
 	va_copy(b_l, a_l);
 	if ((save_fd = dup(1)) > 0 &&
