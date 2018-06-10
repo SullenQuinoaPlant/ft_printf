@@ -21,31 +21,32 @@ int	printf_diff(char const * format, ...)
 	int		save_fd = -1, diff_fd = -1, b_fd = -1;
 	FILE	*a_fd;
 	int		system_failure = 1;
-	ssize_t	a_res, b_res;
+	ssize_t	res = 0, a_res, b_res;
 
 	va_start(a_l, format);
 	va_copy(b_l, a_l);
-	if ((save_fd = dup(1)) > 0 &&
+	if (
 		(a_fd = fopen("a.txt", "w")) &&
-		(b_fd = creat("b.txt", S_IRUSR)) > 0 &&
-		dup2(b_fd, 1) > 0 &&
-		(a_res = vfprintf(a_fd, format, a_l)))
+		(a_res = vfprintf(a_fd, format, a_l)) &&
+		!fclose(a_fd) && !(a_fd = 0) &&
+		(save_fd = dup(1)) > 0 &&
+		(b_fd = creat("b.txt", S_IRUSR | S_IWUSR)) > 0 &&
+		dup2(b_fd, 1) > 0)
 	{
 		b_res = ft_vprintf(format, b_l);
 		save_fd = restore_fd1(save_fd);
-		assert_true(a_res == b_res);
 		if ((system("diff a.txt b.txt > res.txt") >= 0) &&
 		((diff_fd = open("res.txt", O_RDONLY)) > 0))
 		{
-printf("we were here\n");
 			char	dummy[1];
-			int		res;
 			if ((res = read(diff_fd, dummy, 1)) >= 0)
-			{
-				assert_false(res);
 				system_failure = 0;
-			}
 			close(diff_fd);
+			if (res > 0)
+			{
+				printf("ref file a.txt and test file b.txt have different contents; diff is :\n");
+				system("cat res.txt");
+			}
 		}
 	}
 	if (b_fd >= 0)
@@ -61,6 +62,9 @@ printf("we were here\n");
 			stderr,
 			"file comparison failed for %s\n",
 			format);
+		skip();
+	} else {
+		assert_false(res);
 	}
 	return (system_failure);
 }
