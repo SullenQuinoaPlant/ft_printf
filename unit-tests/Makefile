@@ -5,15 +5,12 @@ endif
 
 TEST_SRCS := $(wildcard $(UTEST_DIR)/*.test.c)
 TEST_OBJS := $(TEST_SRCS:.c=.o)
-BUILD_STAMPS := $(TEST_OBJS:.o=.build.stamp)
+#BUILD_STAMPS := $(TEST_OBJS:.o=.build.stamp)
 EXECUTION_STAMPS := $(TEST_OBJS:.o=.execution.stamp)
 
 CFLAGS_UTEST = -fno-builtin
 CFLAGS_UTEST += $(CFLAGS_MORE) #$(CFLAGS) were annoying the hell out of me
 
-
-.PHONY : unit-tests ut
-unit-tests ut : list_tests build_tests run_tests
 
 
 
@@ -50,9 +47,7 @@ cmocka :
 		-L $(LIBS_L)\
 		-lcmocka -lft\
 		-o $@\
-		-Wl,-rpath=$$(readlink -e $(LIBS_L))\
-			&&\
-		touch $(UTEST_DIR)/$*.test.build.stamp
+		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 
 %.test.o : %.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 	$(CC) $(CFLAGS_UTEST)\
@@ -64,9 +59,7 @@ cmocka :
 		-lftprintf\
 		-lcmocka -lft\
 		-o $@\
-		-Wl,-rpath=$$(readlink -e $(LIBS_L))\
-			&&\
-		touch $(UTEST_DIR)/$(*F).test.build.stamp
+		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 
 %.test.c : $(UTEST_DIR)/cmocka/my_macro_overlay.h
 	@:
@@ -74,18 +67,19 @@ cmocka :
 
 
 
+
 ############
 #RUN TESTS :
+
+.PHONY : unit-tests ut
+unit-tests ut : list_tests build_tests run_tests
 
 .PHONY : run_tests
 run_tests : $(EXECUTION_STAMPS)
 
-%.execution.stamp : %.build.stamp
+%.execution.stamp : %.o
 	-./$*.o "$$(readlink -e $(UTEST_DIR))"\
 		&& touch $@
-
-%.build.stamp :
-	@:
 
 
 
