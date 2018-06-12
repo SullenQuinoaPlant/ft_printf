@@ -27,6 +27,11 @@ include libs/Makefile
 	
 include unit-tests/Makefile
 
+########
+#DEBUG :
+
+include debug/Makefile
+
 
 #########
 #OUTPUT :

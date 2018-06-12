@@ -11,11 +11,9 @@ char const	*while_progress(
 	while (prev != in)
 	{
 		i = -1;
-		while (f_str[++i] && prev != in)
-		{
-			prev = in;
+		prev = in;
+		while (f_str[++i] && prev == in)
 			in = f_str[i](prev);
-		}
 	}
 	return (in);
 }

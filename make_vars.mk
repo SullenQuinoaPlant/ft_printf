@@ -19,9 +19,11 @@ CC := gcc
 ifndef ARCH
 	ARCH := ARCH_A
 endif
+CFLAGS_MORE =
 ifndef CFLAGS
 	CFLAGS := -Wall -Wextra -Werror -D $(ARCH)
 endif
-CFLAGS_MORE =
+CFLAGS += $(CFLAGS_MORE)
 
 UTEST_DIR := $(ROOT)/unit-tests
+DEBUG_DIR := $(ROOT)/debug

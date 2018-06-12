@@ -42,7 +42,7 @@ int			output_chunks(int fd, t_s_ps *p_parsed)
 	t_list	*p_link;
 
 	init_g_os(fd);
-	p_link = &p_parsed->chunks.tail_init;
+	p_link = &p_parsed->chunks.head;
 	while((p_link = p_link->next) && !g_os.errored)
 		output_chunk(p_link->content);
 	return (g_os.errored ? 0 : 1);

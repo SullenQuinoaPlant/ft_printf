@@ -2,8 +2,8 @@
 
 static void 	init_parse_state()
 {
-	g_ps.chunks.tail = 0;
-	g_ps.chunks.head = &g_ps.chunks.tail_init;
+	g_ps.chunks.head.next = 0;
+	g_ps.chunks.tail = &g_ps.chunks.head;
 	g_ps.p_req_args = 0;
 	g_ps.p_known_vals = 0;
 	g_ps.free_arg_count = 0;

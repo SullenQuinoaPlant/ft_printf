@@ -12,6 +12,11 @@ $(LIBNAME).a : $(OBJ_DIR)/$(NAME).o
 $(OBJ_DIR)/$(NAME).o : $(OBJS)
 	ld -r $^ -o $@
 
+#specifc file dependencies:
+$(SRC_DIR)/parse_format_string.c \
+$(SRC_DIR)/my_lstappend.c : $(SRC_DIR)/my_lstappend.h
+	touch $@
+
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | objdir
 	$(CC) $(CFLAGS)\
 		-I $(LIBS_I)\
