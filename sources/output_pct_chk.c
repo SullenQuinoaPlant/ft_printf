@@ -1,6 +1,7 @@
 #include "ft_printf_inner.h"
 
 static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
+	convert_nospec,
 	convert_a,
 	convert_a_big,
 	convert_c,
@@ -35,13 +36,16 @@ static void	filter_flags(t_s_pct *p_chk)
 
 static void	filter_width(t_s_pct *p_chk)
 {
-	int		width;
+	int		wd;
 
-	width = **p_chk->width;
-	if (width < 0)
+	if (!p_chk->width)
+		return;
+	wd = **p_chk->width;
+	if (wd < 0)
 	{
 		p_chk->flags |= MINUS_FLAG;
-		width = width == INT_MIN ? -(width + 1) : -width;
+		wd = wd == INT_MIN ? -(1 + wd) : -wd;
+		**p_chk->width = wd;
 	}
 }
 
@@ -49,5 +53,5 @@ void		output_pct_chk(t_s_pct *p_chk)
 {
 	filter_width(p_chk);
 	filter_flags(p_chk);
-	f_ar[p_chk->vaarg->type](p_chk);
+	f_ar[p_chk->specifier](p_chk);
 }

@@ -62,16 +62,6 @@ static t_e_t const
 		e_size_t, e_ptrdiff_t}
 };
 
-static char const *
-	(* const g_f_str[])(char const *) = {
-			percent_convert_dollar_arg,
-			percent_convert_flags,
-			percent_convert_width,
-			percent_convert_precision,
-			percent_convert_length_mod,
-			percent_convert_specifier,
-			0};
-
 static t_s_arg	*req_arg_init()
 {
 	t_list	*p_arg;
@@ -98,6 +88,16 @@ static t_s_pct	*pct_chk_init()
 	}
 	return (pct_chk);
 }
+
+static char const *
+	(* const g_f_str[])(char const *) = {
+			percent_convert_dollar_arg,
+			percent_convert_flags,
+			percent_convert_width,
+			percent_convert_precision,
+			percent_convert_length_mod,
+			percent_convert_specifier,
+			0};
 
 char const		*parse_convert(char const *in)
 {

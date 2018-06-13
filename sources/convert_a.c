@@ -54,7 +54,8 @@ void		convert_a(t_s_pct *p_chk)
 	stf.zero = fpd.flags & DNORM_F ? '0' : '1';
 	stf.sep = fpd.aligned || p_chk->flags & HASH_FLAG ? '.' : 0;
 	len += stf.sep ? 1 : 0;
-	len += my_lowv_tob(fpd.aligned, g_hex, &stf.m);
+	if (fpd.aligned)
+		len += my_lowv_tob(fpd.aligned, g_hex, &stf.m);
 	len += my_v_tob(fpd.exp, g_dec, &stf.e, e_all_sign);
 	output_padnstuff(len, p_chk, fs, &stf);
 }

@@ -60,6 +60,9 @@ void
 		t_s_pct *p_chk);
 
 void
+	convert_nospec(
+		t_s_pct *p_chk);
+void
 	convert_o(
 		t_s_pct *p_chk);
 
@@ -101,10 +104,6 @@ int
 
 t_s_pct	*
 	get_p_pct();
-
-int
-	sign_to_b(
-		int sign, t_s_pct *p_chk, t_s_cb *b);
 
 void
 	output_char_chk(
@@ -200,7 +199,7 @@ int **
 	ps_store_integer(
 		int val, int *** const p_res);
 
-int
+int 
 	sign_to_b(
 		int sign, t_s_pct *p_chk, t_s_cb *b);
 

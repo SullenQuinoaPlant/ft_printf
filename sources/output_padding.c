@@ -19,8 +19,8 @@ static int	get_padlen(t_s_pct *p_chk, size_t len)
 {
 	int		pad;
 
-	pad = **p_chk->width;
-	if (pad > 0 && (size_t)pad > len)
+	pad = p_chk->width ? **p_chk->width : 0;
+	if ((size_t)pad > len)
 		pad -= len;
 	else
 		pad = 0;

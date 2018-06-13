@@ -9,6 +9,7 @@ TARGETS := \
 	convert_g \
 	convert_i \
 	convert_n \
+	convert_nospec \
 	convert_o \
 	convert_p \
 	convert_s \

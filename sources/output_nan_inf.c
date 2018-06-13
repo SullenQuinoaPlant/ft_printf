@@ -42,16 +42,26 @@ static int	output_minusinf(t_s_pct *p_chk)
 	return (r);
 }
 
+/*of r: output functions called from output_nan_inf
+**	return 1 on success, 0 on failure.
+**	output_nan_inf returns different values:
+**		1 on success,
+**		0 when no output was attempted,
+**		-1 on error.
+*/
 int		output_nan_inf(t_s_dfp *val, t_s_pct *p_chk)
 {
 	int		const flg = val->flags;
 	int		r;
 
-	r = 0;
-	if (flg & ~SIGN_F &&
-	!((flg & NAN_F && (r = output_nan(p_chk))) ||
-	(flg & (SIGN_F | INF_F) && (r = output_minusinf(p_chk))) ||
-	(flg & INF_F && (r = output_plusinf(p_chk)))))
-		r = -1;
+	r = -1;
+	if (flg & NAN_F)
+		r += 2 * output_nan(p_chk);
+	else if (flg & SIGN_F && flg & INF_F)
+		r += 2 * output_minusinf(p_chk);
+	else if (flg & INF_F)
+		r += 2 * output_plusinf(p_chk);
+	else
+		r = 0;
 	return (r);
 }
