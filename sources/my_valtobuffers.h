@@ -16,11 +16,10 @@ extern char const	* const g_bhex;
 
 enum			e_max_buffer_offsets {
 	e_mib_offset = BIGGEST_SIGNED_STRING - 1,
-	e_cb_offset = 0
 };
 
 /*max int buffer*/
-typedef char	t_s_mib[BIGGEST_SIGNED_STRING];
+typedef char	t_mib[BIGGEST_SIGNED_STRING];
 
 typedef enum	e_sign_policy {
 	e_neg_sign,
@@ -28,19 +27,19 @@ typedef enum	e_sign_policy {
 	e_abs_sign
 }				t_e_sp;
 
-typedef struct	s_char_buffer {
-	unsigned int	len;
-	char			b;
-}				t_s_cb;
+typedef struct	s_contiguous_chars {
+	char	*c;
+	size_t	len;
+}				t_s_cc;
 
 /*only works with bases that are powers of 2,
 **most significant bits set to 0 should be avoided
 */
-size_t
+t_s_cc
 	my_lowv_tob(
 		uintmax_t val,
 		char const * const basestr,
-		t_s_mib *b);
+		t_mib *b);
 
 size_t
 	my_lowvaltob(
@@ -55,17 +54,17 @@ size_t
 		char *b_end,
 		t_e_sp sign_f);
 
-size_t
+t_s_cc
 	my_uv_tob(
 		uintmax_t val,
 		char const * const basestr,
-		t_s_mib *b);
+		t_mib *b);
 
-size_t
+t_s_cc
 	my_v_tob(
 		intmax_t val,
 		char const * const basestr,
-		t_s_mib *b,
+		t_mib *b,
 		t_e_sp sign_f);
 
 size_t

@@ -1,32 +1,44 @@
 #include "my_valtobuffers.h"
 
-size_t	my_uv_tob(uintmax_t val,
+t_s_cc	my_uv_tob(uintmax_t val,
 					char const * const basestr,
-					t_s_mib *b)
+					t_mib *b)
 {
+	t_s_cc	ret;
 	char	*b_end;
 
 	b_end = b->b + e_mib_offset;
-	return (my_valtobuffer(val, basestr, b_end));
+	*b_end = 0;
+	ret.len = my_valtobuffer(val, basestr, b_end - 1);
+	ret.c = b_end - ret.len;
+	return (ret);
 }
 
-size_t	my_lowv_tob(uintmax_t val,
+t_s_cc	my_lowv_tob(uintmax_t val,
 					char const * const basestr,
-					t_s_mib *b)
+					t_mib *b)
 {
+	t_s_cc	ret;
 	char	*b_end;
 
 	b_end = b->b + e_mib_offset;
-	return (my_lowvaltob(val, basestr, b_end));
+	*b_end = 0;
+	ret.len = my_lowvaltob(val, basestr, b_end - 1);
+	ret.c = b_end - ret.len;
+	return (ret);
 }
 
 size_t	my_v_tob(intmax_t val,
 				char const * const basestr,
-				t_s_mib *b,
+				t_mib *b,
 				t_e_sp sign_f)
 {
+	t_s_cc	ret;
 	char	*b_end;
 
 	b_end = b->b + e_mib_offset;
-	return (my_signvaltob(val, basestr, b_end, sign_f));
+	*b_end-- = 0;
+	ret.len = my_signvaltob(val, basestr, b_end, sign_f);
+	ret.c = b_end - ret.len + 1;
+	return (ret);
 }

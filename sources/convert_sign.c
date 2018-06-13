@@ -1,14 +1,19 @@
 #include "ft_printf_inner.h"
 
-int		sign_to_b(int sign, t_s_pct *p_chk, t_s_cb *b)
+t_s_cc	sign_to_b(int sign, t_s_pct *p_chk, char *b)
 {
+	t_s_cc	ret;
+
+	ret = (t_s_cc){b, 1};
 	if (p_chk->flags & PLUS_FLAG)
-		b->b = sign < 0 ? '-' : '+';
+		*b = sign < 0 ? '-' : '+';
 	else if (p_chk->flags & SPACE_FLAG)
-		b->b = sign < 0 ? '-' : ' ';
+		*b = sign < 0 ? '-' : ' ';
+	else if (sign < 0)
+		*b = '-';
 	else
-		b->b =  sign < 0 ? '-' : 0;
-	return (b->len = b->b ? 1 : 0);
+		ret.len = 0;
+	return (ret);
 }
 
 /*unused function*/

@@ -199,9 +199,9 @@ int **
 	ps_store_integer(
 		int val, int *** const p_res);
 
-int 
+t_s_cc
 	sign_to_b(
-		int sign, t_s_pct *p_chk, t_s_cb *b);
+		int sign, t_s_pct *p_chk, char *b);
 
 char const *
 	until_progress(
