@@ -19,10 +19,8 @@ enum			e_max_buffer_offsets {
 	e_cb_offset = 0
 };
 
-typedef struct	s_maxint_buffer {
-	size_t  len;
-	char	b[BIGGEST_SIGNED_STRING];
-}				t_s_mib;
+/*max int buffer*/
+typedef char	t_s_mib[BIGGEST_SIGNED_STRING];
 
 typedef enum	e_sign_policy {
 	e_neg_sign,
