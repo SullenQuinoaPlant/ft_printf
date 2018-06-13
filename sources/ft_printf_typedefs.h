@@ -148,9 +148,17 @@ typedef struct	s_output_state {
 typedef int		(*t_outputter)(t_s_pct *p_chk, void *stuff);
 
 /*enum length is relied upon to declare arrays*/
-enum			e_outputter_index {
-	e_oi_prefix,
-	e_oi_body,
+enum			e_output_index {
+	e_prefix,
+	e_root,
 	e_oi_sz
+};
+
+/*enum length is relied upon to declare arrays*/
+enum			e_pad_index {
+	e_pad_front,
+	e_pad_middle,
+	e_pad_end,
+	e_pad_sz
 };
 #endif

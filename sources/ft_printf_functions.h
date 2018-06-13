@@ -105,6 +105,10 @@ int
 t_s_pct	*
 	get_p_pct();
 
+int
+	output(
+		t_s_cc this);
+
 void
 	output_char_chk(
 		t_s_char const * const chk);
@@ -119,8 +123,7 @@ int
 
 int
 	output_padnbuffer(
-		char *buffer, size_t prefix_len,
-		size_t len, t_s_pct *p_chk);
+		char *b, size_t len[], t_s_pct *p_chk);
 
 void
 	output_padnstuff(

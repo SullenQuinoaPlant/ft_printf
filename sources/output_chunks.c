@@ -1,17 +1,5 @@
 #include "ft_printf_inner.h"
 
-int			gos_update(ssize_t writ, size_t expected)
-{
-	if (writ > 0)
-		g_os.output_len += writ;
-	if (writ < 0 || (size_t)writ < expected)
-	{
-		g_os.errored++;
-		return (0);
-	}
-	return (1);
-}
-
 static void	output_chunk(t_s_cw *p_cw)
 {
 	t_e_cts	type;

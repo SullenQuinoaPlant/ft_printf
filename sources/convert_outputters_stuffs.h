@@ -3,12 +3,15 @@
 
 # include "ft_printf_inner.h"
 
+# define A_SYLLABLES 1000
 typedef struct	s_convert_a_stuff {
-	char	s;
-	char	zero;
-	char	sep;
-	t_mib	m;
-	t_mib	e;
+	int const	indexes[e_oi_sz] = {10, A_SYLLABLES};
+	t_s_cc 		syllables[A_SYLLABLES];
+	char		s;
+	char		zero;
+	char		sep;
+	t_mib		m;
+	t_mib		e;
 }				t_s_acs;
 
 #endif

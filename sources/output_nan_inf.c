@@ -5,40 +5,40 @@ static char	*g_bignan = "NAN*";
 static char *g_inf = "inf";
 static char *g_biginf = "INF";
 
-static int	output_nan(t_s_pct *p_chk)
+static int	output_nan(t_s_pct *chk)
 {
-	int		str_len;
+	char	*s;
+	size_t	l;
 	int		r;
-	char	*str;
 
-	str = p_chk->flags & BIGCS_FLAG ? g_bignan : g_nan;
-	str_len = ft_strlen(str);
-	r = output_padnbuffer(str, 0, str_len, p_chk);
+	s = chk->flags & BIGCS_FLAG ? g_bignan : g_nan;
+	l = ft_strlen(str);
+	r = output_padnbuffer(s, (char[e_oi_sz]){0, l}, chk);
 	return (r);
 }
 
-static int	output_plusinf(t_s_pct *p_chk)
+static int	output_plusinf(t_s_pct *chk)
 {
-	char	*str;
-	size_t	str_len;
 	int		r;
+	size_t	l;
+	char	*s;
 
- 	str = p_chk->flags & BIGCS_FLAG ? g_biginf : g_inf;
-	str_len = ft_strlen(str);
-	str_len += p_chk->flags & (PLUS_FLAG | SPACE_FLAG) ? 1 : 0;
-	r = output_padnbuffer(str, 0, str_len, p_chk);
+ 	s = chk->flags & BIGCS_FLAG ? g_biginf : g_inf;
+	l = ft_strlen(s);
+	l += chk->flags & (PLUS_FLAG | SPACE_FLAG) ? 1 : 0;
+	r = output_padnbuffer(s, (char[e_oi_sz]){0, l}, chk);
 	return (r);
 }
 
-static int	output_minusinf(t_s_pct *p_chk)
+static int	output_minusinf(t_s_pct *chk)
 {
-	char	*str;
-	size_t	str_len;
+	char	*s;
+	size_t	l;
 	int		r;
 
- 	str = p_chk->flags & BIGCS_FLAG ? g_biginf : g_inf;
-	str_len = ft_strlen(str);
-	r = output_padnbuffer(str, 0, str_len, p_chk);
+ 	s = chk->flags & BIGCS_FLAG ? g_biginf : g_inf;
+	l = ft_strlen(s);
+	r = output_padnbuffer(s, (char[e_oi_sz]){0, l}, chk);
 	return (r);
 }
 
@@ -49,18 +49,18 @@ static int	output_minusinf(t_s_pct *p_chk)
 **		0 when no output was attempted,
 **		-1 on error.
 */
-int		output_nan_inf(t_s_dfp *val, t_s_pct *p_chk)
+int		output_nan_inf(t_s_dfp *val, t_s_pct *chk)
 {
 	int		const flg = val->flags;
 	int		r;
 
 	r = -1;
 	if (flg & NAN_F)
-		r += 2 * output_nan(p_chk);
+		r += 2 * output_nan(chk);
 	else if (flg & SIGN_F && flg & INF_F)
-		r += 2 * output_minusinf(p_chk);
+		r += 2 * output_minusinf(chk);
 	else if (flg & INF_F)
-		r += 2 * output_plusinf(p_chk);
+		r += 2 * output_plusinf(chk);
 	else
 		r = 0;
 	return (r);

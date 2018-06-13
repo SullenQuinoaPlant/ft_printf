@@ -28,53 +28,52 @@ static int	get_padlen(t_s_pct *p_chk, size_t len)
 }
 
 void		output_padnstuff(
-	size_t len, t_s_pct *p_chk,
+	size_t len, t_s_pct *chk,
 	t_outputter const f[], void *stuff)
 {
-	unsigned int	flags;
 	int				r;
 	int				pad;
 
-	flags = p_chk->flags;
-	pad = get_padlen(p_chk, len);
-	if (pad && flags & MINUS_FLAG && !(pad = 0))
-		if (!(r = output_padding(pad, ' ')))
-			return;
-	if (!(r = f[e_oi_prefix](p_chk, stuff)))
-		return;
-	if (pad && flags & ZERO_FLAG && !(pad = 0))
-		if (!(r = output_padding(pad, ' ')))
-			return;
-	if (!(r = f[e_oi_body](p_chk, stuff)))
-		return;
-	if (pad)
+	pad = get_padlen(chk, len);
+	r = 1;
+	if (pad && chk->flags & MINUS_FLAG)
+	{
+		pad = 0;
+		r = output_padding(pad, ' ');
+	}
+	if (r)
+		r = f[e_oi_prefix](chk, stuff);
+	if (pad && chk->flags & ZERO_FLAG && r)
+	{
+		pad = 0;
+		r = output_padding(pad, ' ');
+	}
+	if (r)
+		r = f[e_oi_body](chk, stuff);
+	if (pad && r)
 		output_padding(pad, ' ');
 }
 
 int			output_padnbuffer(
-	char *buffer, size_t prefix_len,
-	size_t len, t_s_pct *p_chk)
+	char *b, size_t len[], t_s_pct *chk)
 {
 	ssize_t			out;
-	unsigned int	flags;
 	int				r;
 	int				pad;
 
-	flags = p_chk->flags;
-	pad = get_padlen(p_chk, prefix_len + len);
+	pad = get_padlen(chk, len[e_prefix] + len[e_root]);
 	r = 1;
-	if (pad && flags & MINUS_FLAG)
-		pad = (r = output_padding(pad, ' ')) ? pad : 0;
-	if (!r)
-		return (0);
-	out = write(g_os.fd, buffer, prefix_len);
-	r = gos_update(out, prefix_len);
-	if (r && pad && flags & ZERO_FLAG)
-		pad = (r = output_padding(pad, '0')) ? pad : 0;
-	if (!r)
-		return (0);
-	out = write(g_os.fd, buffer + prefix_len, len);
-	r = gos_update(out, len);
+	if (pad && chk->flags & MINUS_FLAG &&
+		(r = output_padding(pad, ' ')))
+		pad = 0;
+	if (r)
+		r = output((t_s_cc){b, len[e_prefix]});
+	if (pad && r && chk->flags & ZERO_FLAG &&
+		(r = output_padding(pad, '0')))
+		pad = 0;
+	b += len[e_prefix];
+	if (r)
+		r = output((t_s_cc){b, len[e_root]});
 	if (pad && r)
 		r = output_padding(pad, ' ');
 	return (r);
