@@ -67,8 +67,9 @@ int			output_padnbuffer(
 		(r = output_padding(pad, ' ')))
 		pad = 0;
 	if (r)
+		r = output_raw(b, len[e_prefix]);
 		r = output((t_s_cc){b, len[e_prefix]});
-	if (pad && r && chk->flags & ZERO_FLAG &&
+	if (pad && chk->flags & ZERO_FLAG && r &&
 		(r = output_padding(pad, '0')))
 		pad = 0;
 	b += len[e_prefix];

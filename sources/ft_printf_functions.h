@@ -105,10 +105,6 @@ int
 t_s_pct	*
 	get_p_pct();
 
-int
-	output(
-		t_s_cc this);
-
 void
 	output_char_chk(
 		t_s_char const * const chk);
@@ -133,6 +129,14 @@ void
 void
 	output_pct_chk(
 		t_s_pct *p_chk);
+
+int
+	output_raw(
+		char *b, size_t len);
+
+int
+	output_tscc(
+		t_s_cc this);
 
 void
 	output_txt_chk(

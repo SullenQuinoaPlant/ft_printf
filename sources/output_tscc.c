@@ -12,14 +12,22 @@ int		gos_update(ssize_t writ, size_t expected)
 	return (1);
 }
 
-int		output(t_s_cc this)
+int		output_raw(char *b, size_t len)
 {
-	int		r;
-	ssize_t	out;
+	size_t	len1;
+	size_t	len2;
 
-	if (!this.len)
+	if (!len)
 		return (1);
-	out = write(g_os.fd, this.c, this.len);
-	r = gos_update(out, this.len);
-	return (r);
+	len1 = len / 2;
+	len2 = len & 0x1 ? len1 + 1 : len1;
+	if (gos_update(write(g_os.fd, b, len1), len1) &&
+		gos_update(write(g_os.fd, b + len1, len2), len2))
+		return (1);
+	return (0);
+}
+
+int		output_tscc(t_s_cc this)
+{
+	return (output_raw(this.c, this.len));
 }
