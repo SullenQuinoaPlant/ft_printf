@@ -12,7 +12,23 @@ int		gos_update(ssize_t writ, size_t expected)
 	return (1);
 }
 
-int		output(char *b, size_t len)
+int		output_c(size_t yay_much, char ofthis)
+{
+	size_t	much_yay;
+
+	much_yay = yay_much;
+	while (yay_much--)
+		if (write(g_os.fd, &of_this, 1) != 1)
+		{
+			g_os.errored++;
+			break;
+		}
+	g_os.output_len += much_yay - ++yay_much;
+	return (yay_much == 0);
+	
+}
+
+int		output_cc(char *b, size_t len)
 {
 	size_t	len1;
 	size_t	len2;

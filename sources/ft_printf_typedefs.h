@@ -152,7 +152,16 @@ enum			e_output_index {
 	e_oi_sz
 };
 
-typedef int		(*t_outputter)(t_s_pct *p_chk, void *stuff);
+/*enum is relied upon for array declaration*/
+enum			e_pad_pos {
+	e_left,
+	e_middle,
+	e_right,
+	e_pp_sz
+};
+
+typedef int
+	(*t_outputter)(t_s_pct *p_chk, void *stuff);
 
 /*t_outputter_array*/
 typedef t_outputter const
@@ -180,4 +189,10 @@ typedef struct	s_syllable_output {
 		char		c;
 				};
 }				t_s_so;
+
+typedef void
+	(*t_syllable_stuffer)(
+		int syllable, void *stf, t_s_pct *chk);
+typedef t_syllable_stuffer
+	t_ss;
 #endif
