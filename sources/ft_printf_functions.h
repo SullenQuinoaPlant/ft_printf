@@ -131,12 +131,16 @@ void
 		t_s_pct *p_chk);
 
 int
-	output_raw(
+	output(
 		char *b, size_t len);
 
 int
 	output_tscc(
 		t_s_cc this);
+
+int
+	output_tsccs(
+		t_s_cc *these, int count);
 
 void
 	output_txt_chk(
@@ -209,6 +213,10 @@ int **
 t_s_cc
 	sign_to_b(
 		int sign, t_s_pct *p_chk, char *b);
+
+size_t
+	tscc_stack_len(
+		t_s_cc stack[], int len);
 
 char const *
 	until_progress(

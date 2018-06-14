@@ -5,7 +5,7 @@
 
 # define A_SYLLABLES 1000
 typedef struct	s_convert_a_stuff {
-	int const	indexes[e_oi_sz] = {10, A_SYLLABLES};
+	t_sgb		const sgb = {10, A_SYLLABLES};
 	t_s_cc 		syllables[A_SYLLABLES];
 	char		s;
 	char		zero;
@@ -13,5 +13,6 @@ typedef struct	s_convert_a_stuff {
 	t_mib		m;
 	t_mib		e;
 }				t_s_acs;
+# undef A_SYLLABLES
 
 #endif

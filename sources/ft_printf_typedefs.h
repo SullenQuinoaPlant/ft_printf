@@ -145,8 +145,6 @@ typedef struct	s_output_state {
 	int			errored;
 }				t_s_os;
 
-typedef int		(*t_outputter)(t_s_pct *p_chk, void *stuff);
-
 /*enum length is relied upon to declare arrays*/
 enum			e_output_index {
 	e_prefix,
@@ -154,11 +152,32 @@ enum			e_output_index {
 	e_oi_sz
 };
 
-/*enum length is relied upon to declare arrays*/
-enum			e_pad_index {
-	e_pad_front,
-	e_pad_middle,
-	e_pad_end,
-	e_pad_sz
+typedef int		(*t_outputter)(t_s_pct *p_chk, void *stuff);
+
+/*t_outputter_array*/
+typedef t_outputter const
+				(t_oa)[e_oi_sz];
+
+/*t_syllable_group_boundaries*/
+typedef int const
+				(t_sgb)[e_oi_sz];
+
+/*e_syllable_output_type 
+**two types of output:
+**	contiguous characters (cc)
+**	character (c)
+*/
+enum			e_sot {
+	e_sot_cc,
+	e_sot_c
 };
+
+typedef struct	s_syllable_output {
+	size_t		len;
+	e_sot		type;
+	union 		{
+		char		*cc;
+		char		c;
+				};
+}				t_s_so;
 #endif
