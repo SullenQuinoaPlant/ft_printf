@@ -56,10 +56,11 @@ static void	decompose_ldouble(long double const *p_val, t_s_dfp *p_ret)
 }
 # endif
 
-void		decompose_fpval(
-	void const *p_val,
-	t_e_t type,
-	t_s_dfp *p_ret)
+void
+	decompose_fpval(
+		void const *p_val,
+		t_e_t type,
+		t_s_dfp *p_ret)
 {
 	if (type == e_double)
 		decompose_double(p_val, p_ret);
@@ -67,4 +68,14 @@ void		decompose_fpval(
 		decompose_ldouble(p_val, p_ret);
 	else
 		*p_ret = (t_s_dfp){0, 0, 0, 0};
+}
+
+void
+	set_dfp(
+		t_s_pct *chk, t_s_dfp *p_ret)
+{
+	t_s_arg	*arg;
+
+	arg = chk->vaarg;
+	decompose_fpval(arg->p_val, arg->type, p_ret);
 }

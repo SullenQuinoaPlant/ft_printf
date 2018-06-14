@@ -1,25 +1,42 @@
 #include "ft_printf_inner.h"
 
-void	stuff_syllables(
-	t_stuffer *f_str, t_s_pct *chk,
-	void *p_stf, int pad_pos[])
+static t_s_so
+	init_pad_syllables(
+		int *pad_i, t_s_so *syl_ar)
 {
-	t_stuffer	f;
-	e_pad_pos	pad;
-	int			i;
+	e_pad_pos	pp;
+	t_s_so		init;
 
-	pad = e_left;
-	i = -1;
-	while ((f = f_str[++i]))
-		if (f == &pad_syllable)
-			pad_pos[pad++] = i;
-		else
-			(*f)(i, p_stf, chk);
+	init = (t_s_so) {0, e_sot_c};
+	init.c = ' ';
+	pp = e_pp_left;
+	while (pp < e_pp_sz)
+		syl_ar[pad_i[pp++]] = init;
+	return (init);
 }
 
-void	pad_syllable(int i, void *v, t_s_pct *t)
+void
+	set_pct_pad_syllables(
+		t_s_pct *chk, int *pad_i,
+		int	syl_count, t_s_so *syl_ar)
 {
-	(void)i;
-	(void)v;
-	(void)t;
+	size_t		len;
+	char		const flags = chk->flags;	
+	t_s_so		set;
+
+	
+	set = init_pad_syllables(pad_i, syl_ar);
+	len = tssos_outlen(syl_ar, syl_count);
+	set.len = get_padlen(chk, len);
+	if (!set.len)
+		;
+	else if (flags & MINUS_FLAG)
+		syl_ar[pad_i[e_pp_left]] = set;
+	else if (flags & ZERO_FLAG)
+	{
+		set.c = '0';
+		syl_ar[pad_i[e_pp_middle]] = set;
+	}
+	else
+		syl_ar[pad_i[e_pp_left]] = set;
 }

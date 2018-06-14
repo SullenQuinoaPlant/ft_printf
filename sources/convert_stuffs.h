@@ -5,9 +5,9 @@
 
 # define A_SYLLABLES 1000
 typedef struct	s_convert_a_stuff {
-	t_s_dfp		fpd;
+	t_s_pct		*chk;
 	t_s_so 		syllables[A_SYLLABLES];
-	int			pad_pos[
+	t_s_dfp		fpd;
 	char		s;
 	char		zero;
 	char		sep;

@@ -91,6 +91,10 @@ void
 		void const *p_val, t_e_t type, t_s_dfp *p_ret);
 
 void
+	dummy_stuffer(
+		int i, void *v);
+
+void
 	free_parse_state_lists(
 		t_s_ps *ps);
 
@@ -214,9 +218,23 @@ int **
 	ps_store_integer(
 		int val, int *** const p_res);
 
+void
+	set_dfp(
+		t_s_pct *chk, t_s_dfp *p_ret);
+
+void
+	set_pct_pad_syllables(
+		t_s_pct *chk, int *pad_i,
+		int	syl_count, t_s_so *syl_ar);
+
 t_s_cc
 	sign_to_b(
 		int sign, t_s_pct *p_chk, char *b);
+
+void
+	stuff_stuff(
+		t_stuffer *f_str, void *p_stf,
+		int *dummy_indexes);
 
 char const *
 	until_progress(

@@ -1,6 +1,6 @@
 #include "ft_printf_inner.h"
 
-static int	get_padlen(t_s_pct *p_chk, size_t len)
+int		get_padlen(t_s_pct *p_chk, size_t len)
 {
 	int		pad;
 

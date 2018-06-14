@@ -154,9 +154,9 @@ enum			e_output_index {
 
 /*enum is relied upon for array declaration*/
 enum			e_pad_pos {
-	e_left,
-	e_middle,
-	e_right,
+	e_pp_left,
+	e_pp_middle,
+	e_pp_right,
 	e_pp_sz
 };
 
@@ -191,8 +191,6 @@ typedef struct	s_syllable_output {
 }				t_s_so;
 
 typedef void
-	(*t_syllable_stuffer)(
-		int syllable, void *stf, t_s_pct *chk);
-typedef t_syllable_stuffer
-	t_ss;
+	(*t_stuffer)(
+		int index, void *stf, t_s_pct *chk);
 #endif
