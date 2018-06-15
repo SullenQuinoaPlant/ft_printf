@@ -53,14 +53,31 @@ void	ca_separator(int syl, void *p)
 
 void	ca_mantissa(int syl, void *p)
 {
-	t_s_pct	* const chk = ((t_s_acs*)p)->chk;
-	int*	* const pre = ((t_s_acs*)p)->chk->precision;
+	t_s_acs	* stf = (t_s_acs*) p;
+	char	* base;
+	t_s_so	set;
+	int		precise;
+
+	base = stf->chk->flags & BIGCS_FLAG ? g_bhex : g_hex;
+	set = syl_lowv_tob(stf->fpd.aligned, base, &stf->m);
+	precise = -1;
+	if (stf->chk->precision)
+		precise = **stf->chk->precision;
+	stf->excess = precise > 0 ? precise - set.len : 0;
+	if (stf->excess < 0)
+		set.len += stf->excess;
+	stf->syllables[syl] = set;
+}
+
+void	ca_excess_precision(int syl, void *p)
+{
+	t_s_acs	* stf = (t_s_acs*) p;
 	t_s_so	set;
 
-	precision = ? **pre : INT_MAX;
-	set.type = e_sot_cc;
-	digits = my_lowv_tob(
-	set.len = 
+	set.type = e_sot_c;
+	set.c = '0';
+	if (stf->excess_precision > 0)
+		set.len = stf->excess_precision;
 	else
 		set.len = 0;
 	stf->syllables[syl] = set;

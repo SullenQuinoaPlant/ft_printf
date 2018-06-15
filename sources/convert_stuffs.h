@@ -10,6 +10,7 @@ typedef struct	s_convert_a_stuff {
 	t_s_dfp		fpd;
 	char		prefix[3];
 	t_mib		m;
+	int			excess_precision;
 	t_mib		e;
 }				t_s_acs;
 
@@ -17,6 +18,7 @@ void	ca_prefix(int, void*);
 void	ca_power0(int, void*);
 void	ca_separator(int, void*);
 void	ca_mantissa(int, void*);
+void	ca_excess_precision(int, void*);
 void	ca_exponent(int, void*);
 
 #endif
