@@ -33,7 +33,7 @@ static void	decompose_double(double const *p_val, t_s_dfp *p_ret)
 	else if (arg.exp == 0)
 	{
 		p_ret->flags |= DNORM_F; 
-		p_ret->exp += 1;
+		p_ret->exp += arg.mant ? 1 : DB_E_BIAS;
 	}
 	else
 		p_ret->mant |= 1ull<<52;
@@ -51,7 +51,7 @@ static void	decompose_ldouble(long double const *p_val, t_s_dfp *p_ret)
 	else if (arg.exp == 0)
 	{
 		p_ret->flags |= DNORM_F;
-		p_ret->exp += 1;
+		p_ret->exp += arg.mant ? 1 : LDB_E_BIAS;
 	}
 }
 # endif

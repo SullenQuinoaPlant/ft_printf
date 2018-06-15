@@ -192,5 +192,5 @@ typedef struct	s_syllable_output {
 
 typedef void
 	(*t_stuffer)(
-		int index, void *stf, t_s_pct *chk);
+		int index, void *stf);
 #endif

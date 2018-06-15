@@ -8,11 +8,15 @@ typedef struct	s_convert_a_stuff {
 	t_s_pct		*chk;
 	t_s_so 		syllables[A_SYLLABLES];
 	t_s_dfp		fpd;
-	char		s;
-	char		zero;
-	char		sep;
+	char		prefix[3];
 	t_mib		m;
 	t_mib		e;
 }				t_s_acs;
+
+void	ca_prefix(int, void*);
+void	ca_power0(int, void*);
+void	ca_separator(int, void*);
+void	ca_mantissa(int, void*);
+void	ca_exponent(int, void*);
 
 #endif

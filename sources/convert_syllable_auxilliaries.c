@@ -1,5 +1,16 @@
 #include "ft_printf_inner.h"
 
+size_t	tssos_outlen(t_s_so stack[], int len)
+{
+	t_s_so	* const limit = stack + len;
+	size_t	ret;
+
+	ret = 0;
+	while (stack++ < limit)
+		ret += stack->len;
+	return (ret);
+}
+
 static t_s_so
 	init_pad_syllables(
 		int *pad_i, t_s_so *syl_ar)

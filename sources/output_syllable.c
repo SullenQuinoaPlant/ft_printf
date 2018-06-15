@@ -20,14 +20,3 @@ int		output_syllables(t_s_so *these, int count)
 		r |= output_syllable(these++)
 	return (r);
 }
-
-size_t	tssos_outlen(t_s_so stack[], int len)
-{
-	t_s_so	* const limit = stack + len;
-	size_t	ret;
-
-	ret = 0;
-	while (stack++ < limit)
-		ret += stack->len;
-	return (ret);
-}

@@ -1,32 +1,67 @@
 #include "ft_printf_inner.h"
 
-#define PREFIX_LEN 3
-static int	ca_prefix(t_s_pct *p_chk, void *stf)
+void	ca_prefix(int syl, void *p)
 {
-	char			prefix[PREFIX_LEN] = {0 ,'0', 0};
-	t_s_cc			out;
-	
-	prefix[0] = ((t_s_acs*)stf)->s;
-	out.len = prefix[0] ? PREFIX_LEN : PREFIX_LEN - 1;
-	prefix[2] = p_chk->flags & BIGCS_FLAG ? 'X' : 'x';
-	return(output(out));
+	t_s_acs	* const stf = (t_s_acs*)p;
+	t_s_pct * const chk = p->chk;
+	int		offset;
+	t_s_so	set;
+
+	offset = 0;
+	if (stf->fpd.flags & SIGN_F)
+		stf->prefix[0] = '-';
+	else if (chk->flags & SPACE_FLAG)
+		stf->prefix[0] = ' ';
+	else if (chk->flags & PLUS_FLAG)
+		stf->prefix[0] = '+';
+	else
+		offset = 1;
+	stf->prefix[1] = '0';
+	stf->prefix[2] = chk->flags & BIGCS_FLAG ? 'X' : 'x';
+	set.len = sizeof(stf->prefix) - offset;
+	set.type = e_sot_cc;
+	set.cc = &stf->prefix + offset;
+	stf->syllables[syl] = set;
 }
-#undef PREFIX_LEN
 
-static int	ca_body(t_s_pct *p_chk, void *p_stf)
+void	ca_power0(int syl, void *p)
 {
-	t_s_acs	* const stf = (t_s_acs*)p_stf;
-	int		i;
+	t_s_acs	* const stf = (t_s_acs*)p;
+	t_s_so	set;
 
-	char	* const m = stf->m.b + e_mib_offset - stf->m.len + 1;
-	char	* const e = stf->e.b + e_mib_offset - stf->e.len + 1;
-	char	const p = p_chk->flags & BIGCS_FLAG ? 'P' : 'p';
-	int		r;
+	set.len = 1;
+	set.type = e_sot_c;
+	set.c = p->fdp.flags & DNORM_F ? '0' : '1';
+	stf->syllables[syl] = set;
+}
 
-	r = gos_update(write(g_os.fd, &stf->zero, 1), 1);
-	r |= gos_update(write(g_os.fd, &stf->sep, 1), 1);
-	r |= gos_update(write(g_os.fd, m, stf->m.len), stf->m.len);
-	r |= gos_update(write(g_os.fd, &p, 1), 1);
-	r |= gos_update(write(g_os.fd, e, stf->e.len), stf->e.len);
-	return (r);
+void	ca_separator(int syl, void *p)
+{
+	t_s_acs	* const stf = (t_s_acs*)p;
+	t_s_so	set;
+	int*	* const precision = p->chk->precision;
+
+	set.c = '.';
+	set.type = e_sot_c;
+	set.len = 0;
+	if (stf->chk->flags & HASH_FLAG ||
+		(precision && **precision) ||
+		(!precision && p->fpd.aligned))
+		set.len = 1;
+	stf->syllables[syl] = set;
+}
+
+void	ca_mantissa(int syl, void *p)
+{
+	t_s_pct	* const chk = ((t_s_acs*)p)->chk;
+	int*	* const pre = ((t_s_acs*)p)->chk->precision;
+	t_s_so	set;
+
+	precision = ? **pre : INT_MAX;
+	set.type = e_sot_cc;
+	digits = my_lowv_tob(
+	set.len = 
+	else
+		set.len = 0;
+	stf->syllables[syl] = set;
 }

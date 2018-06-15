@@ -28,7 +28,7 @@ t_s_cc	my_lowv_tob(uintmax_t val,
 	return (ret);
 }
 
-size_t	my_v_tob(intmax_t val,
+t_s_cc	my_v_tob(intmax_t val,
 				char const * const basestr,
 				t_mib *b,
 				t_e_sp sign_f)
