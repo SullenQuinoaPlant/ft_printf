@@ -1,44 +1,44 @@
 #include "ft_printf_inner.h"
 
 static char	*g_nan = "nan";
-static char	*g_bignan = "NAN*";
+static char	*g_bignan = "NAN";
 static char *g_inf = "inf";
 static char *g_biginf = "INF";
 
-static int	output_nan(t_s_pct *chk)
+static int	output_nan(t_s_pct *p)
 {
 	char	*s;
 	size_t	l;
 	int		r;
 
-	s = chk->flags & BIGCS_FLAG ? g_bignan : g_nan;
-	l = ft_strlen(str);
-	r = output_padnbuffer(s, (char[e_oi_sz]){0, l}, chk);
+	s = p->flags & BIGCS_FLAG ? g_bignan : g_nan;
+	l = ft_strlen(s);
+	r = output_padnbuffer(s, (size_t[e_oi_sz]){0, l}, p);
 	return (r);
 }
 
-static int	output_plusinf(t_s_pct *chk)
+static int	output_plusinf(t_s_pct *p)
 {
 	int		r;
 	size_t	l;
 	char	*s;
 
- 	s = chk->flags & BIGCS_FLAG ? g_biginf : g_inf;
+ 	s = p->flags & BIGCS_FLAG ? g_biginf : g_inf;
 	l = ft_strlen(s);
-	l += chk->flags & (PLUS_FLAG | SPACE_FLAG) ? 1 : 0;
-	r = output_padnbuffer(s, (char[e_oi_sz]){0, l}, chk);
+	l += p->flags & (PLUS_FLAG | SPACE_FLAG) ? 1 : 0;
+	r = output_padnbuffer(s, (size_t[e_oi_sz]){0, l}, p);
 	return (r);
 }
 
-static int	output_minusinf(t_s_pct *chk)
+static int	output_minusinf(t_s_pct *p)
 {
 	char	*s;
 	size_t	l;
 	int		r;
 
- 	s = chk->flags & BIGCS_FLAG ? g_biginf : g_inf;
+ 	s = p->flags & BIGCS_FLAG ? g_biginf : g_inf;
 	l = ft_strlen(s);
-	r = output_padnbuffer(s, (char[e_oi_sz]){0, l}, chk);
+	r = output_padnbuffer(s, (size_t[e_oi_sz]){0, l}, p);
 	return (r);
 }
 

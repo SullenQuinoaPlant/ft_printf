@@ -15,10 +15,10 @@ static t_s_so
 	init_pad_syllables(
 		int *pad_i, t_s_so *syl_ar)
 {
-	e_pad_pos	pp;
-	t_s_so		init;
+	enum e_pad_pos	pp;
+	t_s_so			init;
 
-	init = (t_s_so) {0, e_sot_c};
+	init = (t_s_so) {0, e_sot_c, {0}};
 	init.c = ' ';
 	pp = e_pp_left;
 	while (pp < e_pp_sz)
@@ -27,7 +27,7 @@ static t_s_so
 }
 
 void
-	set_pct_pad_syllables(
+	set_pad_syl(
 		t_s_pct *chk, int *pad_i,
 		int	syl_count, t_s_so *syl_ar)
 {

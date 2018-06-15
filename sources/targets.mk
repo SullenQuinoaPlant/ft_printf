@@ -1,6 +1,7 @@
 TARGETS := \
 	convert_a \
-	convert_bigcharsets \
+	convert_a_stuffers1 \
+	convert_a_stuffers2 \
 	convert_c \
 	convert_d \
 	convert_decompose_floating_point \
@@ -9,11 +10,14 @@ TARGETS := \
 	convert_g \
 	convert_i \
 	convert_n \
-	convert_nospec \
+	convert_nospecifier \
 	convert_o \
 	convert_p \
 	convert_s \
 	convert_sign \
+	convert_stuffers_auxilliaries \
+	convert_syllable_auxilliaries \
+	convert_tscc_to_syllable \
 	convert_u \
 	convert_x \
 	free_parse_state_allocations \
@@ -28,13 +32,15 @@ TARGETS := \
 	my_cleanfree \
 	my_lstappend \
 	my_stupidmath \
-	my_valtobuffers \
-	my_valtomybuffers \
+	my_valtobuffers_raw \
+	my_valtobuffers_tscc \
 	output_chunks \
+	output_generic \
 	output_nan_inf \
 	output_padding \
-	output_pct_chk \
+	output_percent_chunk \
 	output_simple_chunks \
+	output_syllable \
 	parse_format_string \
 	parse_format_string_percent \
 	parse_format_string_percent_char \

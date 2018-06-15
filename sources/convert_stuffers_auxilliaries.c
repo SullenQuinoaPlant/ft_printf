@@ -22,6 +22,5 @@ void	dummy_stuffer(int i, void *v)
 {
 	(void)i;
 	(void)v;
-	(void)t;
 }
 

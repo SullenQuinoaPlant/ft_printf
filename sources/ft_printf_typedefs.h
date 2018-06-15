@@ -183,7 +183,7 @@ enum			e_sot {
 
 typedef struct	s_syllable_output {
 	size_t		len;
-	e_sot		type;
+	enum e_sot	type;
 	union 		{
 		char		*cc;
 		char		c;
