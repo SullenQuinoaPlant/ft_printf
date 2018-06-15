@@ -86,21 +86,21 @@ int		main(void)
 		double	d;
 
 		d = 1.0;
-		printf_diff("%a", d);
+		printf_diff("%a", d010,10);
 	)
 
 	T(test13,
 		double	d;
 
-		d = 1.0;
+		d = 13.13;
 		printf_diff("%a", d);
 	)
 
 	T(test14,
 		double	d;
 
-		d = 1.0;
-		printf_diff("%a", d);
+		d = 13.13;
+		printf_diff("%2.2a", d);
 	)
 
     return (
