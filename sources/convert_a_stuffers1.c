@@ -53,7 +53,7 @@ void	ca_separator(int syl, void *p)
 
 void	ca_mantissa(int syl, void *p)
 {
-	t_s_acs	* stf = (t_s_acs*) p;
+	t_s_acs	* stf = (t_s_acs*)p;
 	char	* base;
 	t_s_so	set;
 	int		precise;

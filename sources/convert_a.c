@@ -7,6 +7,8 @@ t_stuffer	g_fstr[A_SYLLABLES + 1] = {
 	ca_power0,
 	ca_separator,
 	ca_mantissa,
+	ca_excess_precision,
+	ca_to_the_power,
 	ca_exponent,
 	dummy_stuffer,
 	0
