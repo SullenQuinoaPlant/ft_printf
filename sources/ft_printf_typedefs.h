@@ -2,7 +2,12 @@
 # define FT_PRINTF_TYPEDEFS_H
 
 /*input string parsing:*/
-typedef char	*(t_parser)(char const *);
+typedef
+char const		*(*t_parser)(char const *);
+
+/*inpt string parsing loops:*/
+typedef
+char const		*(*t_pl)(char const *, t_parser[]);
 
 typedef enum	e_chunk_types {
 	e_no_chk,

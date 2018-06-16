@@ -1,14 +1,14 @@
 #include "ft_printf_inner.h"
 
 char const	*while_progress(
-			char const *in,
-			char const * (*const *f_str)(char const *))
+		char const *in,
+		char const * (*const *f_str)(char const *))
 {
 	int			i;
 	char const	*prev;
 
 	prev = 0;
-	while (prev != in)
+	while (prev != in && *in)
 	{
 		i = -1;
 		prev = in;
@@ -18,16 +18,16 @@ char const	*while_progress(
 	return (in);
 }
 
-char const	*attempt_while_progress(
-			char const *in,
-			char const * (*const *f_str)(char const *))
+char const	*until_no_progress(
+		char const *in,
+		char const * (*const *f_str)(char const *))
 {
 	int			i;
 	char const 	*prev;
 
 	i = -1;
 	prev = 0;
-	while (f_str[++i] && prev != in)
+	while (f_str[++i] && prev != in && *in)
 	{
 		prev = in;
 		in = f_str[i](prev);
@@ -42,10 +42,8 @@ char const	*attempt_all(
 	int		i;
 
 	i = -1;
-	while (f_str[++i])
-	{
+	while (f_str[++i] && *in)
 		in = f_str[i](in);
-	}
 	return (in);
 }
 
@@ -56,9 +54,24 @@ char const	*until_progress(
 	int			i;
 	char const	*prev;
 
-	prev = in;
-	i = -1;
-	while (f_str[++i] && prev == in)
-		in = f_str[i](in);
+	if (*in)
+	{
+		prev = in;
+		i = -1;
+		while (f_str[++i] && prev == in)
+			in = f_str[i](in);
+	}
+	return (in);
+}
+
+char const
+	*loop_with_fallback(
+		t_parser loop_these[], t_parser fallback,
+		t_pl loop, char const *in)
+{
+	char const	* const save = in;
+
+	if ((in = (*loop)(in, loop_these)) == save)
+		in = (*fallback)(save - 1);
 	return (in);
 }

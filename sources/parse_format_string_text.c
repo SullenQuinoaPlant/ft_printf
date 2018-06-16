@@ -23,8 +23,6 @@ char const	*parse_text(char const *in)
 	char	c;
 	t_s_txt	*chk;
 
-	if (!*in || *in == '%')
-		return (in);
 	if ((chk = init_cw()))
 	{
 		i = 1;
@@ -35,5 +33,12 @@ char const	*parse_text(char const *in)
 	}
 	else
 		g_ps.errored++;
+	return (in);
+}
+
+char const	*parse_text_strict(char const *in)
+{
+	if (*in == '%')
+		in = parse_text(in);
 	return (in);
 }
