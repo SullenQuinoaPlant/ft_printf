@@ -25,9 +25,11 @@ cmocka :
 	@if $(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -L $(LIBS_L)\
 	 	$(UTEST_DIR)/cmocka/check_install.c\
-		 -lcmocka -o test.o; then\
-			rm test.o;\
-			echo "cmocka already installed";\
+		 -lcmocka -o test.o\
+		-Wl,-rpath=$$(readlink -e $(LIBS_L))\
+		&& ./test.o;\
+	then\
+		echo "cmocka already installed";\
 	else\
 		echo "installing cmocka";\
 		$(MAKE) -C $(UTEST_DIR)/cmocka/;\
@@ -35,6 +37,7 @@ cmocka :
 		mv $(UTEST_DIR)/cmocka/cmocka.h $(LIBS_I)/;\
 		echo "cmocka installed";\
 	fi
+	-@rm ./test.o
 
 %.test.o $(UTEST_DIR)/%.test.o : $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
 	echo "$(LIBS_I)"
