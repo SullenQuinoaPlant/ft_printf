@@ -44,7 +44,8 @@ int	printf_diff(char const * format, ...)
 			close(diff_fd);
 			if (res > 0)
 			{
-				printf("ref file a.txt and test file b.txt have different contents; diff is :\n");
+				printf("ref file a.txt and test file b.txt have different contents"
+					" for : %s\n diff is :\n", format);
 				system("cat res.txt");
 				fflush(stdout);
 //				printf("\n ref file a.txt is :\n");

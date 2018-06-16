@@ -19,7 +19,7 @@
 # define TEST_ARR tests
 
 struct CMUnitTest	TEST_ARR[HOW_MANY_TESTS];
-size_t				test_index = 0;
+size_t				g_test_index = 0;
 
 //This didn't work (sad) can't forward declare functions within functions
 // the forward declared function gets promoted to 'static' and 
@@ -27,18 +27,18 @@ size_t				test_index = 0;
 // couldn't figure out a way to make the forward declaration work
 //# define T(x) \
 //			void x(void* *);\
-//			TEST_ARR[test_index++] = (struct CMUnitTest)cmocka_unit_test(x);\
+//			TEST_ARR[g_test_index++] = (struct CMUnitTest)cmocka_unit_test(x);\
 //			void x(void* *state){
 
 # define T(test_name, test_code) \
 	void	test_name(void* *state) {\
 		test_code\
-	};TEST_ARR[test_index++] = (struct CMUnitTest)cmocka_unit_test(test_name);
+	};TEST_ARR[g_test_index++] = (struct CMUnitTest)cmocka_unit_test(test_name);
 
 # define T_D(test_name, tear_down, test_code) \
 	void	test_name(void* *state) {\
 		test_code\
-	};TEST_ARR[test_index++] = (struct CMUnitTest)cmocka_unit_test_teardown(test_name, tear_down);
+	};TEST_ARR[g_test_index++] = (struct CMUnitTest)cmocka_unit_test_teardown(test_name, tear_down);
 
 
 
@@ -47,7 +47,7 @@ static int		search_test_arr_by_name(const char *t_name)
 	size_t	i;
 
 	i = 0;
-	while (i < HOW_MANY_TESTS)
+	while (i < g_test_index)
 	{
 		if (!strcmp(t_name, TEST_ARR[i].name))
 			return (i);
@@ -63,17 +63,18 @@ static int		search_test_arr(const char *search_for)
 	if ((ret = search_test_arr_by_name(search_for)))
 		return (ret);
 	else
-		return ((ret = atoi(search_for)) < HOW_MANY_TESTS ? ret : 0);
+		return ((ret = atoi(search_for)) < g_test_index ? ret : 0);
 }
 
 static int		run_test_arr(int ac, char *av[])
 {
+	//start at 2 because of call argument, see Makefile
 	if (ac == 2)
 	{
 	    return (
 			_cmocka_run_group_tests(
 						"TEST_ARR", TEST_ARR,
-						test_index, 0, 0
+						g_test_index, 0, 0
 			)
 		);
 	}

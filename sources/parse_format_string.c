@@ -36,7 +36,7 @@ int				parse_format_string(char const *in)
 
 	init_parse_state();
 	in = while_progress(strt, g_f_str);
-	if (in == strt || *in)
+	if (*in)
 		g_ps.errored++;
 	if (get_dollar_convention(&g_ps) == e_mix_dollar)
 		g_ps.errored++;

@@ -24,7 +24,7 @@ build_tests : cmocka $(TEST_OBJS)
 cmocka : 
 	@if $(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -L $(LIBS_L)\
-	 	$(UTEST_DIR)/check_install.c\
+	 	$(UTEST_DIR)/cmocka/check_install.c\
 		 -lcmocka -o test.o; then\
 			rm test.o;\
 			echo "cmocka already installed";\
@@ -78,7 +78,7 @@ unit-tests ut : list_tests build_tests run_tests
 run_tests : $(EXECUTION_STAMPS)
 
 %.execution.stamp : %.o
-	-./$*.o "$$(readlink -e $(UTEST_DIR))"\
+	-./$*.o "$$(readlink -e $(UTEST_DIR))" \
 		&& touch $@
 
 

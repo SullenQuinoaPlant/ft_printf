@@ -6,13 +6,11 @@
 #include "cmocka/my_macro_overlay.h"
 
 
-int		main(void)
+int		main(int ac, char ** av)
 {
 	T(nop,
 		(void)state;
 	)
-    return (\
-		_cmocka_run_group_tests("TEST_ARR", TEST_ARR,\
-					test_index, 0, 0)\
-	);
+
+	return (run_test_arr(ac, av));
 }

@@ -3,7 +3,7 @@
 
 #include "printf_diff.c"
 
-int		main(void)
+int		main(int ac, char** av)
 {
 	T(test1,
 		double	d;
@@ -103,9 +103,61 @@ int		main(void)
 		printf_diff("%2.2a", d);
 	)
 
-    return (
-		_cmocka_run_group_tests(
-			"TEST_ARR", TEST_ARR,
-			test_index, 0, 0)
-	);
+	T(test15,
+		double	d;
+
+		d = 13.13;
+		printf_diff("%-2.2a", d);
+	)
+
+	T(test16,
+		double	d;
+
+		d = 13.13;
+		printf_diff("%*.2a", -2, d);
+	)
+
+	T(test17,
+		double	d;
+
+		d = 0.0;
+		printf_diff("%-2.2a", d);
+	)
+
+	T(test18,
+		double	d;
+
+		d = 0.0;
+		printf_diff("%*.2a", -2, d);
+	)
+
+	T(test19,
+		double	d;
+
+		d = 0.0;
+		printf_diff("%2.*a", -3, d);
+	)
+
+	T(test20,
+		double	d;
+
+		d = 1234.1234;
+		printf_diff("%.*a", -2, d);
+	)
+
+	T(test21,
+		double	d;
+
+		d = 1234.1234;
+		printf_diff("%.*a", 3, d);
+	)
+
+	T(test22,
+		double	d;
+
+		d = 1234.1234;
+		printf_diff("%.*a", 13, d);
+	)
+
+	return (run_test_arr(ac, av));
 }

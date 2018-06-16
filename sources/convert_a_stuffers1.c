@@ -53,13 +53,16 @@ void	ca_separator(int syl, void *p)
 
 void	ca_mantissa(int syl, void *p)
 {
-	t_s_acs		* stf = (t_s_acs*)p;
-	char const	* base;
-	t_s_so		set;
-	int			precise;
+	t_s_acs				* const stf = (t_s_acs*)p;
+	char const			*r;
+	unsigned long long	v;
+	t_s_so				set;
+	int					precise;
 
-	base = stf->chk->flags & BIGCS_FLAG ? g_bhex : g_hex;
-	set = syl_lowv_tob(stf->fpd.aligned, base, &stf->m);
+	r = stf->chk->flags & BIGCS_FLAG ? g_bhex : g_hex;
+	set.len = 0;
+	if ((v = stf->fpd.aligned))
+		set = syl_lowv_tob(v, r, &stf->m);
 	precise = -1;
 	if (stf->chk->precision)
 		precise = **stf->chk->precision;
