@@ -86,7 +86,7 @@ int		main(void)
 		double	d;
 
 		d = 1.0;
-		printf_diff("%a", d010,10);
+		printf_diff("%010.10a", d);
 	)
 
 	T(test13,

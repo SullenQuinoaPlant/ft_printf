@@ -1,4 +1,6 @@
-def : targets all
+.PHONY : def
+def :
+	$(MAKE) targets && $(MAKE) all
 
 ############
 #VARIABLES :

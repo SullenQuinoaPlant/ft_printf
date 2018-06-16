@@ -18,7 +18,7 @@ int		output_c(size_t yay_much, char ofthis)
 
 	much_yay = yay_much;
 	while (yay_much--)
-		if (write(g_os.fd, &of_this, 1) != 1)
+		if (write(g_os.fd, &ofthis, 1) != 1)
 		{
 			g_os.errored++;
 			break;

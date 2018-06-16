@@ -36,12 +36,9 @@ char const	*parse_text(char const *in)
 	return (in);
 }
 
-char const
-	*parse_text_strict(
-		char const *in)
+char const	*parse_text_strict(char const *in)
 {
-	if (*in == '%')
-		return (in);
-	else
-		return (parse_text(in));
+	if (*in != '%')
+		in = parse_text(in);
+	return (in);
 }

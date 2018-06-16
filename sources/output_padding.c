@@ -27,14 +27,14 @@ void		output_padnstuff(
 		r = output_c(pad, ' ');
 	}
 	if (r)
-		r = f[e_oi_prefix](chk, stuff);
+		r = f[e_prefix](chk, stuff);
 	if (pad && chk->flags & ZERO_FLAG && r)
 	{
 		pad = 0;
 		r = output_c(pad, ' ');
 	}
 	if (r)
-		r = f[e_oi_body](chk, stuff);
+		r = f[e_root](chk, stuff);
 	if (pad && r)
 		output_c(pad, ' ');
 }
@@ -42,7 +42,6 @@ void		output_padnstuff(
 int			output_padnbuffer(
 	char *b, size_t len[], t_s_pct *chk)
 {
-	ssize_t			out;
 	int				r;
 	int				pad;
 
@@ -52,12 +51,12 @@ int			output_padnbuffer(
 		(r = output_c(pad, ' ')))
 		pad = 0;
 	if (r)
-		r = output(b, len[e_prefix]);
+		r = output_cc(b, len[e_prefix]);
 	if (pad && chk->flags & ZERO_FLAG && r &&
 		(r = output_c(pad, '0')))
 		pad = 0;
 	if (r)
-		r = output(b + len[e_prefix], len[e_root])
+		r = output_cc(b + len[e_prefix], len[e_root]);
 	if (pad && r)
 		r = output_c(pad, ' ');
 	return (r);
