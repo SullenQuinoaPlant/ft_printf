@@ -101,13 +101,11 @@ static char const *
 
 char const		*parse_convert(char const *in)
 {
-	t_s_cw 	* const cw = g_ps.chunks.tail->content;
-	t_s_pct	*chk;
-	t_s_arg	*arg;
-	
+	char const	* const save = in;
+	t_s_cw 		* const cw = g_ps.chunks.tail->content;
+	t_s_pct		*chk;
+	t_s_arg		*arg;
 
-	if (!*in)
-		return (in);
 	if ((arg = req_arg_init()) &&
 		(chk = pct_chk_init()))
 	{
@@ -117,6 +115,8 @@ char const		*parse_convert(char const *in)
 		if (!arg->position)
 			arg->position = (++g_ps.free_arg_count);
 		arg->type = g_types[chk->specifier][chk->len_mod];
+		if (arg->type == e_notype)
+			in = save;
 	}
 	else
 		g_ps.errored++;

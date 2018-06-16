@@ -182,6 +182,10 @@ char const *
 	parse_text(
 		char const *in);
 
+char const
+	*parse_text_strict(
+		char const *in);
+
 char const *
 	percent_char(
 		char const *in);
