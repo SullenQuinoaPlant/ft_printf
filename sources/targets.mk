@@ -41,6 +41,7 @@ TARGETS := \
 	output_percent_chunk \
 	output_simple_chunks \
 	output_syllable \
+	parse_auxilliaries \
 	parse_format_string \
 	parse_format_string_percent \
 	parse_format_string_percent_char \
@@ -49,6 +50,5 @@ TARGETS := \
 	parse_format_string_percent_conversion_fillers2 \
 	parse_format_string_text \
 	parse_literal_integer \
-	parse_loops \
 	parse_percent_star_arg \
 	parse_state_store_integer

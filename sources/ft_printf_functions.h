@@ -108,11 +108,6 @@ int
 	get_va_args(
 		va_list *vaargs);
 
-char const
-	*loop_with_fallback(
-		t_parser loop_these[], t_parser fallback,
-		t_pl loop, char const *in);
-
 int
 	output_c(
 		size_t yay_much, char ofthis);
@@ -189,6 +184,12 @@ char const *
 char const
 	*parse_text_strict(
 		char const *in);
+
+char const *
+	pctl_fallback(
+		t_parser const loop_these[],
+		t_parser fallback,
+		t_pctl pctl, char const *in);
 
 char const *
 	percent_char(

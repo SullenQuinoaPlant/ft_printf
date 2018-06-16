@@ -5,9 +5,9 @@
 typedef
 char const		*(*t_parser)(char const *);
 
-/*inpt string parsing loops:*/
+/*inpt string parsing controls:*/
 typedef
-char const		*(*t_pl)(char const *, t_parser[]);
+char const		*(*t_pctl)(char const *, const t_parser[]);
 
 typedef enum	e_chunk_types {
 	e_no_chk,

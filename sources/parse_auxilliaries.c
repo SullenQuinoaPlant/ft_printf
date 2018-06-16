@@ -65,13 +65,13 @@ char const	*until_progress(
 }
 
 char const
-	*loop_with_fallback(
-		t_parser loop_these[], t_parser fallback,
-		t_pl loop, char const *in)
+	*pctl_fallback(
+		t_parser const parsers[], t_parser fallback,
+		t_pctl pctl, char const *in)
 {
 	char const	* const save = in;
 
-	if ((in = (*loop)(in, loop_these)) == save)
+	if ((in = (*pctl)(in, parsers)) == save)
 		in = (*fallback)(save - 1);
 	return (in);
 }
