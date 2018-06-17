@@ -1,38 +1,40 @@
 .PHONY : def
-def :
-	$(MAKE) targets && $(MAKE) all
+def : targets all
 
 ############
 #VARIABLES :
 
-#include make_vars.mk #included in core.
+ifndef ROOT
+	ROOT = .
+	#make_vars.mk included in core.
+endif
 
 #######
 #CORE :
 
-include Makefile.mk
+include $(ROOT)/Makefile.mk
 
 
 ##########
 #TARGETS :
 
-include sources/Makefile
+include $(SRC_DIR)/Makefile
 
 
 #######
 #LIBS :
 
-include libs/Makefile
+include $(LIB_DIR)/Makefile
 
 ########
 #TESTS :
 	
-include unit-tests/Makefile
+include $(UTEST_DIR)/Makefile
 
 ########
 #DEBUG :
 
-include debug/Makefile
+include $(DEBUG_DIR)/Makefile
 
 
 #########

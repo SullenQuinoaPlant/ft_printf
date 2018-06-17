@@ -40,6 +40,62 @@ int		main(int ac, char** av)
 		printf_diff("%.0a", d);
 	)
 
+	T(test5_0,
+		double	d;
+
+		d = 15;
+		printf_diff("%.0a", d);
+	)
+
+	T(test5_1,
+		double	d;
+
+		for (d = 1.5; d < 120.0; d += 1.0)
+			printf_diff("%.0a", d);
+	)
+
+	T(test5_2,
+		double	d;
+
+		d = 0.53125;
+		printf_diff("%.0a", d);
+	)
+
+	T(test5_3,
+		double	d;
+
+		d = 1.53125;
+		printf_diff("%.0a", d);
+	)
+
+	T(test5_4,
+		double	d;
+
+		d = 15.53125;
+		printf_diff("%.0a", d);
+	)
+
+	T(test5_5,
+		double	d;
+
+		d = 0.53125;
+		printf_diff("%.1a", d);
+	)
+
+	T(test5_6,
+		double	d;
+
+		d = 1.53125;
+		printf_diff("%.1a", d);
+	)
+
+	T(test5_7,
+		double	d;
+
+		d = 1.4;
+		printf_diff("%.0a", d);
+	)
+
 	T(test6,
 		double	d;
 
@@ -157,6 +213,76 @@ int		main(int ac, char** av)
 
 		d = 1234.1234;
 		printf_diff("%.*a", 13, d);
+	)
+
+	T(test23,
+		double	d;
+
+		d = 2.0;
+		printf_diff("%a", d);
+		printf_diff("%0a", d);
+		printf_diff("%1a", d);
+		printf_diff("%30a", d);
+	)
+
+	T(test24,
+		double	d;
+
+		d = 2.0;
+		printf_diff("%.a", d);
+		printf_diff("%0.a", d);
+		printf_diff("%1.a", d);
+		printf_diff("%30.a", d);
+	)
+
+	T(test25,
+		double	d;
+
+		d = 2.0;
+		printf_diff("%.0a", d);
+		printf_diff("%0.0a", d);
+		printf_diff("%1.0a", d);
+		printf_diff("%30.0a", d);
+	)
+
+	T(test26,
+		double	d;
+
+		d = 2.0;
+		printf_diff("%.6a", d);
+		printf_diff("%0.6a", d);
+		printf_diff("%1.6a", d);
+		printf_diff("%30.6a", d);
+	)
+
+	T(test27,
+		double	d;
+
+		d = 2.0;
+		printf_diff("%.*a", 0, d);
+		printf_diff("%0.*a", 0, d);
+		printf_diff("%1.*a", 0, d);
+		printf_diff("%30.*a", 0, d);
+	)
+
+	T(test28,
+		double	d;
+
+		d = 2.0;
+		printf_diff("%.*a", 13, d);
+		printf_diff("%0.*a", 13, d);
+		printf_diff("%1.*a", 13, d);
+		printf_diff("%30.*a", 13, d);
+	)
+
+	T(test29,
+		double	d;
+
+		d = 2.0;
+		printf_diff("%2$.*1$a", 13, d);
+		printf_diff("%02$.*1$a", 13, d);
+		printf_diff("%12$.*1$a", 13, d);
+		printf_diff("%302$.*1$a", 13, d);
 	)
 
 	return (run_test_arr(ac, av));

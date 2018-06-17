@@ -17,6 +17,6 @@ int		main(void)
 	)
     return (\
 		_cmocka_run_group_tests("TEST_ARR", TEST_ARR,\
-					test_index, 0, 0)\
+					g_test_index, 0, 0)\
 	);
 }

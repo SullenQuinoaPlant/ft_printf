@@ -51,3 +51,19 @@ void
 	else
 		syl_ar[pad_i[e_pp_left]] = set;
 }
+
+int
+	round_ccsyl(
+		size_t at,
+		t_s_so *syl,
+		char * const base)
+{
+	if (at >= syl->len)
+		return (1);
+	syl->len = at;
+	if (!at)
+		return (-1);
+	if (syl->cc[at] >= base[ft_strlen(base) / 2])
+		syl->cc[at - 1]++;
+	return (0);
+}

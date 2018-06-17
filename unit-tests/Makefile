@@ -1,6 +1,7 @@
 ifndef ROOT
 	ROOT = ..
-	include $(ROOT)/make_vars.mk
+	include $(ROOT)/Makefile
+#	include $(ROOT)/make_vars.mk
 endif
 
 TEST_SRCS := $(wildcard $(UTEST_DIR)/*.test.c)
@@ -18,7 +19,7 @@ CFLAGS_UTEST += $(CFLAGS_MORE) #$(CFLAGS) were annoying the hell out of me
 #BUILD TESTS
 
 .PHONY : build_tests
-build_tests : cmocka $(TEST_OBJS)
+build_tests : def cmocka $(TEST_OBJS)
 
 .PHONY : cmocka
 cmocka : 

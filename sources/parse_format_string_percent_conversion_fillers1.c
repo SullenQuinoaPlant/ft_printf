@@ -31,9 +31,9 @@ char const	*percent_convert_flags(char const *in)
 	i = 0;
 	while (*in && i < FLAG_COUNT)
 	{
-		i = 0;
-		while (i < FLAG_COUNT)
-			if (*in == flags[i++])
+		i = -1;
+		while (++i < FLAG_COUNT)
+			if (*in == flags[i])
 			{
 				*p_res |= (0x01 << i);
 				in++;

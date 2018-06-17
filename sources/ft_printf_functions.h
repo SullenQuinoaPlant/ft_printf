@@ -227,6 +227,12 @@ int **
 	ps_store_integer(
 		int val, int *** const p_res);
 
+int
+	round_ccsyl(
+		size_t at,
+		t_s_so *syl,
+		char * const base);
+
 void
 	set_dfp(
 		t_s_pct *chk, t_s_dfp *p_ret);

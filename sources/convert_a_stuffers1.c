@@ -30,8 +30,9 @@ void	ca_power0(int syl, void *p)
 	t_s_so	set;
 
 	set.len = 1;
-	set.type = e_sot_c;
-	set.c = stf->fpd.flags & DNORM_F ? '0' : '1';
+	set.type = e_sot_cc;
+	set.cc = &stf->zero;
+	stf->zero = stf->fpd.flags & DNORM_F ? '0' : '1';
 	stf->syllables[syl] = set;
 }
 
@@ -51,26 +52,30 @@ void	ca_separator(int syl, void *p)
 	stf->syllables[syl] = set;
 }
 
+#define MID_BASE 8
 void	ca_mantissa(int syl, void *p)
 {
-	t_s_acs				* const stf = (t_s_acs*)p;
-	char const			*r;
-	unsigned long long	v;
-	t_s_so				set;
-	int					precise;
+	t_s_acs		* const stf = (t_s_acs*)p;
+	char const	*r;
+	uint64_t	v;
+	t_s_so		set;
+	int			precise;
 
 	r = stf->chk->flags & BIGCS_FLAG ? g_bhex : g_hex;
 	set.len = 0;
 	if ((v = stf->fpd.aligned))
 		set = syl_lowv_tob(v, r, &stf->m);
-	precise = -1;
-	if (stf->chk->precision)
-		precise = **stf->chk->precision;
-	stf->excess = precise > 0 ? precise - set.len : 0;
-	if (stf->excess < 0)
-		set.len += stf->excess;
+	stf->excess = 0;
+	if (stf->chk->precision &&
+		(precise = **stf->chk->precision) >= 0))
+		if (!round_ccsyl((size_t)precise, &set, r))
+			stf->excess = (size_t)precise - set.len;
+		else if (!precise &&
+			*set.cc >= r[MID_BASE])
+			stf->zero++;
 	stf->syllables[syl] = set;
 }
+#undef MID_BASE
 
 void	ca_excess_precision(int syl, void *p)
 {

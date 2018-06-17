@@ -9,6 +9,7 @@ typedef struct	s_convert_a_stuff {
 	t_s_so 		syllables[A_SYLLABLES];
 	t_s_dfp		fpd;
 	char		prefix[3];
+	char		zero;
 	t_mib		m;
 	int			excess;
 	char		midfix[2];

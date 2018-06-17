@@ -2,12 +2,12 @@
 
 # ifdef ARCH_A
 /*unused function
-static void	reverse(unsigned long long this,
-					unsigned long long max_mark,
-					unsigned long long *p_to_res)
+static void	reverse(uint64_t this,
+					uint64_t max_mark,
+					uint64_t *p_to_res)
 {
-	unsigned long long	mark;
-	unsigned long long	res;
+	uint64_t	mark;
+	uint64_t	res;
 
 	res = 0;
 	mark = 1;
@@ -27,7 +27,7 @@ static void	decompose_double(double const *p_val, t_s_dfp *p_ret)
 	
 	ft_memcpy(&arg, p_val, sizeof(double));
 	*p_ret = (t_s_dfp){arg.sign, arg.exp - DB_E_BIAS,
-						arg.mant, arg.mant << 12};
+				arg.mant, (uint64_t)arg.mant << 12};
 	if (arg.exp == ~0)
 		p_ret->flags |= arg.mant ? NAN_F : INF_F;
 	else if (arg.exp == 0)

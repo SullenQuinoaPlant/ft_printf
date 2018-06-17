@@ -1,4 +1,8 @@
-include make_vars.mk
+ifndef ROOT
+	ROOT = .
+endif
+
+include $(ROOT)/make_vars.mk
 
 OBJS := $(patsubst %,$(OBJ_DIR)/%.o,$(TARGETS))
 
@@ -24,7 +28,7 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | objdir
 
 .PHONY : objdir
 objdir :
-	if [ ! -d $(OBJ_DIR) ]; then\
+	@if [ ! -d $(OBJ_DIR) ]; then\
 		mkdir $(OBJ_DIR);\
 	fi
 
