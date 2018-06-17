@@ -67,12 +67,14 @@ void	ca_mantissa(int syl, void *p)
 		set = syl_lowv_tob(v, r, &stf->m);
 	stf->excess = 0;
 	if (stf->chk->precision &&
-		(precise = **stf->chk->precision) >= 0))
+		(precise = **stf->chk->precision) >= 0)
+	{
 		if (!round_ccsyl((size_t)precise, &set, r))
 			stf->excess = (size_t)precise - set.len;
 		else if (!precise &&
 			*set.cc >= r[MID_BASE])
 			stf->zero++;
+	}
 	stf->syllables[syl] = set;
 }
 #undef MID_BASE

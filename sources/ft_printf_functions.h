@@ -231,7 +231,7 @@ int
 	round_ccsyl(
 		size_t at,
 		t_s_so *syl,
-		char * const base);
+		char const * base);
 
 void
 	set_dfp(
