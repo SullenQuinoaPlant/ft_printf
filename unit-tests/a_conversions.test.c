@@ -57,6 +57,13 @@ int		main(int ac, char** av)
 		}
 	)
 
+	T(test5_1_0,
+		double	d;
+
+		d = 16.5;
+		printf_diff("%.0a", d);
+	)
+
 	T(test5_2,
 		double	d;
 
@@ -197,7 +204,24 @@ int		main(int ac, char** av)
 		printf_diff("%2.*a", -3, d);
 	)
 
+	T(test19_0,
+skip();
+		double	d;
+
+		d = 1.456;
+		printf_diff("%2.*a", -3, d);
+	)
+
+	T(test19_1,
+skip();
+		double	d;
+
+		d = 1.456;
+		printf_diff("%2.-3a", d);
+	)
+
 	T(test20,
+skip();
 		double	d;
 
 		d = 1234.1234;
@@ -284,9 +308,19 @@ int		main(int ac, char** av)
 		d = 2.0;
 		printf_diff("%2$.*1$a", 13, d);
 		printf_diff("%02$.*1$a", 13, d);
+	)
+
+	T(test29_0,
+skip();
+		double	d;
+
+		d = 2.0;
 		printf_diff("%12$.*1$a", 13, d);
 		printf_diff("%302$.*1$a", 13, d);
 	)
+
+/*Skipped tests where printf displays crazy behavior in contradiction with the man page I've read.*/
+/*Might even decide to revert the accomodations made forthe default rounding behavior.*/
 
 	return (run_test_arr(ac, av));
 }

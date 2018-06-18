@@ -19,13 +19,14 @@ t_s_so
 t_s_so
 	syl_lowv_tob(
 		uintmax_t val,
+		int val_sz,
 		char const * basestr,
 		t_mib *b)
 {
 	t_s_cc	inter;
 	t_s_so	ret;
 
-	inter = my_lowv_tob(val, basestr, b);
+	inter = my_lowv_tob(val, val_sz, basestr, b);
 	ret.len = inter.len;
 	ret.type = e_sot_cc;
 	ret.cc = inter.c;

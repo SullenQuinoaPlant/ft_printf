@@ -59,21 +59,19 @@ void	ca_mantissa(int syl, void *p)
 	char const	*r;
 	uint64_t	v;
 	t_s_so		set;
-	int			precise;
+	int			pr;
 
 	r = stf->chk->flags & BIGCS_FLAG ? g_bhex : g_hex;
 	set.len = 0;
 	if ((v = stf->fpd.aligned))
-		set = syl_lowv_tob(v, r, &stf->m);
+		set = syl_lowv_tob(v, sizeof(v), r, &stf->m);
 	stf->excess = 0;
 	if (stf->chk->precision &&
-		(precise = **stf->chk->precision) >= 0)
+		**stf->chk->precision >= 0)
 	{
-		if (!round_ccsyl((size_t)precise, &set, r))
-			stf->excess = (size_t)precise - set.len;
-		else if (!precise &&
-			*set.cc >= r[MID_BASE])
-			stf->zero++;
+		pr = (size_t)**stf->chk->precision;
+		if (!round_ccsyl(pr, &set, r, &stf->zero))
+			stf->excess = pr - set.len;
 	}
 	stf->syllables[syl] = set;
 }

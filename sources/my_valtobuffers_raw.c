@@ -23,27 +23,46 @@ size_t	my_valtobuffer(uintmax_t val,
 
 /*only works with bases that are powers of 2,
 **most significant bits set to 0 should be avoided
+**ijk array:
+**	i digits are trailing zeros
+**	j digits are yummy
+**	k digits may represent any uintmax_t
 */
-size_t	my_lowvaltob(uintmax_t val,
-					char const * const basestr,
-					char *b_end)
+#define I 0
+#define J 1
+#define K 2
+size_t
+	my_lowvaltob(
+		uintmax_t val, int val_sz,
+		char const * const basestr,
+		char *b_end)
 {
 	unsigned char	r;
-	size_t			i;
+	int				log2;
+	size_t			ijk[3];
 	uintmax_t		mask;
 
 	r = ft_strlen(basestr);
-	mask = ~0 << my_log2(r);
-	while (!(~mask & val) && val)
-		val /= r;
-	i = 0;
-	while (val || i == 0)
+	log2 = my_log2(r);
+	ijk[K] = (val_sz * 8) / log2;
+	mask = ~0 << log2;
+	ijk[I] = 0;
+	while (!(~mask & val) && (ijk[I] < ijk[K]))
 	{
-		*(b_end - i++) = basestr[val % r];
+		ijk[I]++;
 		val /= r;
 	}
-	return (i);
+	ijk[J] = 0;
+	while ((ijk[I] + ijk[J]) < ijk[K] || ijk[J] == 0)
+	{
+		*(b_end - ijk[J]++) = basestr[val % r];
+		val /= r;
+	}
+	return (ijk[J]);
 }
+#undef I
+#undef J
+#undef K
 
 size_t	my_signvaltob(intmax_t val,
 						char const * const basestr,

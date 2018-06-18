@@ -38,12 +38,14 @@ typedef struct	s_contiguous_chars {
 t_s_cc
 	my_lowv_tob(
 		uintmax_t val,
+		int val_sz,
 		char const * const basestr,
 		t_mib *b);
 
 size_t
 	my_lowvaltob(
 		uintmax_t val,
+		int val_sz,
 		char const * const basestr,
 		char *b_end);
 

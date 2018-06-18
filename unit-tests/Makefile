@@ -8,7 +8,7 @@ TEST_OBJS := $(TEST_SRCS:.c=.o)
 #BUILD_STAMPS := $(TEST_OBJS:.o=.build.stamp)
 EXECUTION_STAMPS := $(TEST_OBJS:.o=.execution.stamp)
 
-CFLAGS_UTEST = -fno-builtin
+CFLAGS_UTEST = -fno-builtin -g
 CFLAGS_UTEST += $(CFLAGS_MORE) #$(CFLAGS) were annoying the hell out of me
 
 
@@ -18,7 +18,12 @@ CFLAGS_UTEST += $(CFLAGS_MORE) #$(CFLAGS) were annoying the hell out of me
 #BUILD TESTS
 
 .PHONY : build_tests
-build_tests : def cmocka $(TEST_OBJS)
+build_tests : set_utest_flags def cmocka $(TEST_OBJS)
+
+.PHONY : set_utest_flags
+set_utest_flags :
+	@echo "setting utest flags, this is cool!"
+	$(eval CFLAGS += $(CFLAGS_UTEST))
 
 .PHONY : cmocka
 cmocka : 

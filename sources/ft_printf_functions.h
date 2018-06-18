@@ -231,7 +231,8 @@ int
 	round_ccsyl(
 		size_t at,
 		t_s_so *syl,
-		char const * base);
+		char const * base,
+		char *overflow);
 
 void
 	set_dfp(
@@ -254,6 +255,7 @@ void
 t_s_so
 	syl_lowv_tob(
 		uintmax_t val,
+		int val_sz,
 		char const * basestr,
 		t_mib *b);
 

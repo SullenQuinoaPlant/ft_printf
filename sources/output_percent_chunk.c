@@ -51,15 +51,9 @@ static void	filter_width(t_s_pct *p_chk)
 
 static void	filter_precision(t_s_pct *chk)
 {
-	int	precision;
-
-	if (chk->precision)
-	{
-		precision = **chk->precision;
-		if (precision < 0)
-			precision = -precision;
-		**chk->precision = precision;
-	}
+	if (chk->precision &&
+		**chk->precision < 0)
+			**chk->precision = 0;
 }
 
 void		output_pct_chk(t_s_pct *p_chk)

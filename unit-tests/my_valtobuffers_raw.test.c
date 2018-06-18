@@ -57,13 +57,13 @@ int		main(void)
 		for (a = 0; a < 10; a++) {
 			my_lowvaltob(a, g_hex, tst_b + pos);
 			sprintf(ref_b + pos, "%1x", a);
-			//printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
+			printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
 			assert_string_equal(tst_b, ref_b);
 		}
 		for (a = 0; a < 10; a++) {
 			my_lowvaltob(a << 16, g_hex, tst_b + pos);
 			sprintf(ref_b + pos, "%1x", a);
-			//printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
+			printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
 			assert_string_equal(tst_b, ref_b);
 		}
 		for (a = 17; a < 100; a++) {
@@ -71,7 +71,7 @@ int		main(void)
 				continue;
 			my_lowvaltob(a << 16, g_hex, tst_b + pos + 1);
 			sprintf(ref_b + pos, "%x", a);
-			//printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
+			printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
 			assert_string_equal(tst_b, ref_b);
 		}
 	)

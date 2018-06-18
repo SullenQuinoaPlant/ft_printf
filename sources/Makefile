@@ -1,6 +1,6 @@
 ifndef ROOT
 	ROOT = ..
-	include $(ROOT)/make_vars.mk
+	include $(ROOT)/Makefile
 endif
 
 targets :
