@@ -22,9 +22,9 @@ enum			e_max_buffer_offsets {
 typedef char	t_mib[BIGGEST_SIGNED_STRING];
 
 typedef enum	e_sign_policy {
-	e_neg_sign,
-	e_all_sign,
-	e_abs_sign
+	e_neg,
+	e_all,
+	e_abs
 }				t_e_sp;
 
 typedef struct	s_contiguous_chars {

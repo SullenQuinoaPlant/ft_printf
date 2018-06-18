@@ -1,7 +1,3 @@
-ifndef ROOT
-	ROOT = .
-endif
-
 NAME = ftprintf
 LIBNAME = libftprintf
 

@@ -1,7 +1,6 @@
 ifndef ROOT
-	ROOT = ..
-	include $(ROOT)/Makefile
-#	include $(ROOT)/make_vars.mk
+ ROOT := ..
+ include $(ROOT)/Makefile
 endif
 
 TEST_SRCS := $(wildcard $(UTEST_DIR)/*.test.c)

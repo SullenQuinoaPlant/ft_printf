@@ -1,13 +1,16 @@
 .PHONY : def
 def : targets all
 
+
 ############
 #VARIABLES :
 
 ifndef ROOT
-	ROOT = .
-	#make_vars.mk included in core.
+ ROOT := .
 endif
+
+include $(ROOT)/make_vars.mk
+
 
 #######
 #CORE :

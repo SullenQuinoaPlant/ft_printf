@@ -1,16 +1,16 @@
 ifndef ROOT
-	ROOT = .
+ ROOT := .
+ include $(ROOT)/make_vars.mk
 endif
 
-include $(ROOT)/make_vars.mk
 
 OBJS := $(patsubst %,$(OBJ_DIR)/%.o,$(TARGETS))
 
-all : lib$(NAME).a
+all : $(OUT_DIR_LIB)/$(LIBNAME).a
 
-$(LIBNAME).a : $(OBJ_DIR)/$(NAME).o
+$(OUT_DIR_LIB)/$(LIBNAME).a : $(OBJ_DIR)/$(NAME).o
 	-ar rcs $@ $<
-	mv $@ $(OUT_DIR_LIB)/
+#	mv $@ $(OUT_DIR_LIB)/
 	cp $(SRC_DIR)/$(NAME).h $(OUT_DIR_H)/$(LIBNAME).h
 
 $(OBJ_DIR)/$(NAME).o : $(OBJS)

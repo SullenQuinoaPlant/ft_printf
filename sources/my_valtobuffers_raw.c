@@ -56,8 +56,8 @@ size_t	my_signvaltob(intmax_t val,
 	sign = val < 0 ? -1 : 1;
 	i = my_valtobuffer((val * sign), basestr, b_end);
 	*(b_end - i) = sign < 0 ? '-' : '+';
-	if (val < 0 || sign_f == e_all_sign ||
-		(val && sign_f == e_abs_sign))
+	if (val < 0 || sign_f == e_all ||
+		(val && sign_f == e_abs))
 		i++;
 	return (i);
 }

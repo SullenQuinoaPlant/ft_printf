@@ -12,7 +12,6 @@ typedef struct	s_convert_a_stuff {
 	char		zero;
 	t_mib		m;
 	int			excess;
-	char		midfix[2];
 	t_mib		e;
 }				t_s_acs;
 

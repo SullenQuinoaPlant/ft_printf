@@ -87,7 +87,7 @@ int		main(void)
 		int				a;
 
 		for (a = -9; a < 10; a++) {
-			my_signvaltob(a, g_dec, tst_b + pos + 1, e_all_sign);
+			my_signvaltob(a, g_dec, tst_b + pos + 1, e_all);
 			sprintf(ref_b + pos, "%+1d", a);
 			assert_string_equal(tst_b, ref_b);
 		}
@@ -105,12 +105,12 @@ int		main(void)
 		size_t			ret;
 
 		for (a = 0; a < 10; a++) {
-			ret = my_signvaltob(a, g_dec, tst_b + B_LEN - 2, e_neg_sign);
+			ret = my_signvaltob(a, g_dec, tst_b + B_LEN - 2, e_neg);
 			sprintf(ref_b + pos, "%1d", a);
 			assert_string_equal(tst_b + B_LEN - 1 - ret, ref_b + pos);
 		}
 		for (a = -9; a < 0; a++) {
-			ret = my_signvaltob(a, g_dec, tst_b + B_LEN - 2, e_neg_sign);
+			ret = my_signvaltob(a, g_dec, tst_b + B_LEN - 2, e_neg);
 			sprintf(ref_b + pos, "%1d", a);
 			assert_string_equal(tst_b + B_LEN - 1 - ret, ref_b + pos);
 		}
@@ -119,6 +119,6 @@ int		main(void)
 
     return (
 		_cmocka_run_group_tests(
-			"TEST_ARR", TEST_ARR, test_index, 0, 0)
+			"TEST_ARR", TEST_ARR, g_test_index, 0, 0)
 	);
 }

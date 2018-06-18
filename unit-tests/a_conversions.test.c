@@ -51,7 +51,10 @@ int		main(int ac, char** av)
 		double	d;
 
 		for (d = 1.5; d < 120.0; d += 1.0)
+		{
+			printf("d is : %f\n", d);
 			printf_diff("%.0a", d);
+		}
 	)
 
 	T(test5_2,
