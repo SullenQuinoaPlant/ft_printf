@@ -40,7 +40,7 @@ int		main(void)
 		for (i = 0; i < sizeof(b); i++) {
 			b[i] = 0;
 		}
-		my_lowvaltob(1 << 3, g_oct, b);
+		my_lowvaltob(1 << 3, sizeof(int), g_oct, b);
 		//printf("b is now : %s\n", b);
 		assert_true(1);
 	)
@@ -51,27 +51,28 @@ int		main(void)
 			(tst_b = (char[B_LEN]){0xff, 0xff});
 		char			*ref_b;
 			(ref_b = (char[B_LEN]){0xff, 0xff});
-		unsigned int	const pos = 2;
+		unsigned int	const pos = B_LEN - 1;
 		int				a;
+		int				const a_sz = sizeof(a);
 
 		for (a = 0; a < 10; a++) {
-			my_lowvaltob(a, g_hex, tst_b + pos);
+			my_lowvaltob(a, a_sz, g_hex, tst_b + pos);
 			sprintf(ref_b + pos, "%1x", a);
-			printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
+			//printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
 			assert_string_equal(tst_b, ref_b);
 		}
 		for (a = 0; a < 10; a++) {
-			my_lowvaltob(a << 16, g_hex, tst_b + pos);
+			my_lowvaltob(a << 16, a_sz,
+				g_hex, tst_b + pos);
 			sprintf(ref_b + pos, "%1x", a);
-			printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
+			//printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
 			assert_string_equal(tst_b, ref_b);
 		}
 		for (a = 17; a < 100; a++) {
-			if (!(a % 16))
-				continue;
-			my_lowvaltob(a << 16, g_hex, tst_b + pos + 1);
-			sprintf(ref_b + pos, "%x", a);
-			printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
+			my_lowvaltob(a << 16, a_sz,
+				g_hex, tst_b + pos);
+			sprintf(ref_b + pos - 1, "%x", a);
+			//printf("tst is : %s, ref is : %s\n", tst_b, ref_b);
 			assert_string_equal(tst_b, ref_b);
 		}
 	)
