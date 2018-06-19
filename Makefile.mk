@@ -17,10 +17,16 @@ $(OBJ_DIR)/$(NAME).o : $(OBJS)
 	@ld -r $^ -o $@
 
 #specifc file dependencies:
+
 $(SRC_DIR)/parse_format_string.c \
 $(SRC_DIR)/my_lstappend.c : $(SRC_DIR)/my_lstappend.h
 	touch $@
 
+$(SRC_DIR)/my_utf8.c : $(SRC_DIR)/my_utf8_inner.h
+	touch $@
+
+
+#compilation :
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | objdir
 	$(CC) $(CFLAGS)\
 		-I $(LIBS_I)\

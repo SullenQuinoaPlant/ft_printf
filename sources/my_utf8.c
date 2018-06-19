@@ -39,5 +39,23 @@ int
 	true_utf8seq(
 		wchar_t val, char *put)
 {
-	return (as_utf8seq(val, UTF8_MAX_CHARS, put));
+	return (as_utf8seq(val, g_utf8_max, put));
+}
+
+size_t
+	str_to_utf8(
+		wchar_t * const	*str,
+		char 			*put,
+		size_t 			len)
+{
+	char	* const lim = put + len - g_utf8_max;
+	char	* const save = put;
+	wchar_t	*p;
+
+	if (!(str && *str))
+		return (0);
+	p = *str;
+	while (*p && put < lim)
+		put += true_utf8seq(*p++, put);
+	return (put - save);
 }
