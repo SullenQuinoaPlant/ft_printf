@@ -32,6 +32,7 @@ TARGETS := \
 	my_cleanfree \
 	my_lstappend \
 	my_stupidmath \
+	my_utf8 \
 	my_valtobuffers_raw \
 	my_valtobuffers_tscc \
 	output_chunks \

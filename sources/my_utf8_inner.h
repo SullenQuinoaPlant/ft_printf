@@ -12,5 +12,6 @@
 # define UTF8_01X ('\1' << CHAR_HBIT)
 
 # define UNICODE_LIM 0x10FFFF
+# define UTF8_MAX_CHARS 4
 
 #endif

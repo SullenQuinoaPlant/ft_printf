@@ -20,14 +20,14 @@ int
 	{
 		while (val && sz < CHAR_HBIT)
 		{
-			pc[-sz++] = UTF8_01X | val & ~UTF8_BMASK;
+			pc[-sz++] = UTF8_01X | (val & ~UTF8_BMASK);
 			val >>= UTF8_BITS;
 		}
 		c = pc[-(sz - 1)];
-		if (my_log2(c & ~UTF8_01X) + sz + 1 > CHAR_BIT)
-			c = ~0 << CHAR_BIT - (sz + 1);
+		if (my_log2(c & ~UTF8_01X) + sz + 2 > CHAR_BIT)
+			c = ~0 << (CHAR_BIT - (sz + 1));
 		else
-			c |= ~0 << CHAR_BIT - sz--;
+			c |= ~0 << (CHAR_BIT - sz--);
 	}
 	pc[-sz++] = c;
 	if ((sz = sz <= char_lim ? sz : 0))
