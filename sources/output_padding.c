@@ -47,7 +47,8 @@ int			output_padnbuffer(
 
 	pad = get_padlen(chk, len[e_prefix] + len[e_root]);
 	r = 1;
-	if (pad && !(chk->flags & (MINUS_FLAG | ZERO_FLAG)) &&
+	if (pad &&
+		!(chk->flags & (MINUS_FLAG | ZERO_FLAG)) &&
 		(r = output_c(pad, ' ')))
 		pad = 0;
 	if (r)
