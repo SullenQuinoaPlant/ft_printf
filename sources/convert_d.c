@@ -1,17 +1,31 @@
 #include "ft_printf_inner.h"
 
-#define D 0
-#define PRE 1
-static void
-	set_d(t_s_pct *chk, t_s_dcs *stf)
+static intmax_t
+	get_d(t_s_pct *chk)
 {
 	t_s_arg		* const arg = chk->vaarg;
-	t_s_so		* const d_so = &stf->syllables[D];
 	intmax_t	d;
+	size_t		dsz;
+
+	dsz = g_etsz[arg->type];
+	d = 0;
+	ft_memcpy(&d, arg->p_val, dsz);
+	if (d & (((intmax_t)1) << ((CHAR_BIT * dsz) - 1)))
+		d |= ~((intmax_t)0) << (CHAR_BIT * dsz);
+	return (d);
+}
+
+#define D 0
+#define PRE 1
+static size_t
+	set_syls(
+		t_s_pct *chk, intmax_t d,
+		t_s_dcs *stf)
+{
+	t_s_so		* const d_so = &stf->syllables[D];
 	int			pre;
 
-	d = 0;
-	ft_memcpy(&d, arg->p_val, g_etsz[arg->type]);
+	init_syls(e_sot_c, D_SYLLABLES, stf->syllables);
 	pre = chk->precision ? **chk->precision : -1;
 	if (d || pre)
 	{
@@ -28,6 +42,7 @@ static void
 			d_so->len--;
 		}
 	}
+	return (tssos_outlen(stf->syllables, D_SYLLABLES));
 }
 #undef D
 #undef PRE
@@ -55,8 +70,6 @@ void		convert_d(t_s_pct *chk)
 	t_s_dcs		stf;
 	size_t		len;
 	
-	init_syls(e_sot_c, D_SYLLABLES, stf.syllables);
-	set_d(chk, &stf);
-	len = tssos_outlen(stf.syllables, D_SYLLABLES);
+	len = set_syls(chk, get_d(chk), &stf);
 	output_padnstuff(len, chk, g_d_outputters, &stf);
 }
