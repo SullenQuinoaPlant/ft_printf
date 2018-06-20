@@ -108,6 +108,10 @@ int
 	get_va_args(
 		va_list *vaargs);
 
+void
+	init_syls(
+		e_sot type, int how_many, t_s_so *ar);
+
 int
 	output_c(
 		size_t yay_much, char ofthis);
@@ -152,6 +156,10 @@ int
 void
 	output_txt_chk(
 		t_s_txt const * const chk);
+
+int
+	outputter_nop(
+		t_s_pct *what, void *ever);
 
 char const *
 	parse_convert(

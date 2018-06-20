@@ -15,7 +15,7 @@ extern char const	* const g_bhex;
 # define BIGGEST_SIGNED_STRING BIGGEST_SIGNED + 1
 
 enum			e_max_buffer_offsets {
-	e_mib_offset = BIGGEST_SIGNED_STRING - 1,
+	e_mbo_mib = BIGGEST_SIGNED_STRING - 1,
 };
 
 /*max int buffer*/

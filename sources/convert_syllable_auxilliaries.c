@@ -114,3 +114,18 @@ int
 	}
 	return (at ? 1 : -1);
 }
+
+void
+	init_syls(
+		e_sot type, int how_many, t_s_so *ar)
+{
+	t_s_so const init;
+
+	init.len = 0;
+	init.type = type;
+	init.c = 0;
+	if (type = e_sot_cc)
+		init.cc = 0;
+	while (how_many--)
+		*ar++ = init;
+}
