@@ -1,8 +1,12 @@
 #ifndef SIZEOF_E_TYPES_H
 # define SIZEOF_E_TYPES_H
 
-size_t const
-	g_etsz[e_types_sz] = {
+# include <stdint.h>
+# include <wchar.h>
+# include <stddef.h>
+# include <stdio.h>
+
+size_t	g_etsz[] = {
 		0,
 		sizeof(char),
 		sizeof(unsigned char),

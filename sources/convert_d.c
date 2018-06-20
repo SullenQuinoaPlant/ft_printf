@@ -13,7 +13,7 @@ static void
 	d = 0;
 	ft_memcpy(&d, arg->p_val, g_etsz[arg->type]);
 	pre = chk->precision ? **chk->precision : -1;
-	if (d || pre > 0)
+	if (d || pre)
 	{
 		*d_so = syl_v_tob(d, g_dec, &stf->b, e_all);
 		if (pre > 0 && d_so->len - 1 < (size_t)pre &&

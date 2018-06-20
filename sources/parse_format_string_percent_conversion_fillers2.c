@@ -4,8 +4,8 @@ static t_s_lmp const
 	g_mods[] = {
 		{e_hh, {"hh"}},
 		{e_h, {"h"}},
-		{e_l, {"l"}},
 		{e_ll, {"ll"}},
+		{e_l, {"l"}},
 		{e_bigl, {"L"}},
 		{e_j, {"j"}},
 		{e_z, {"z"}},

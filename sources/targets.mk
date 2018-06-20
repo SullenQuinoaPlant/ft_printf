@@ -53,4 +53,5 @@ TARGETS := \
 	parse_format_string_text \
 	parse_literal_integer \
 	parse_percent_star_arg \
-	parse_state_store_integer
+	parse_state_store_integer \
+	sizeof_e_types
