@@ -1,6 +1,10 @@
 #ifndef FT_PRINTF_FUNCTIONS_H
 # define FT_PRINTF_FUNCTIONS_H
 
+size_t
+	apstr_len(
+		size_t len, t_s_pct *chk);
+
 char const *
 	attempt_all(
 		char const *in,
@@ -160,6 +164,11 @@ void
 int
 	outputter_nop(
 		t_s_pct *what, void *ever);
+
+int
+	out_syl_inter(
+		t_s_so* ar, size_t ar_sz,
+		char sep, int interval);
 
 char const *
 	parse_convert(

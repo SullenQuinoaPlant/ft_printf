@@ -109,6 +109,14 @@ typedef struct	s_va_arg {
 # define APSTR_FLAG 0X20
 # define BIGCS_FLAG 0X40
 
+/*number of digits to group by for
+**APSTR_FLAG
+*/
+# define THOUSAND_GROUP 3
+# define AF_G THOUSAND_GROUP
+# define THOUSAND_SEPARATOR '.'
+# define AF_S THOUSAND_SEPARATOR
+
 typedef struct	s_percent {
 	char		flags;
 	int			**width;

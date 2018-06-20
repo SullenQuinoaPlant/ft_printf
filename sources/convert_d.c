@@ -15,8 +15,9 @@ static intmax_t
 	return (d);
 }
 
-#define D 0
-#define PRE 1
+#define S 0
+#define D 1
+#define PRE 2
 static size_t
 	set_syls(
 		t_s_pct *chk, intmax_t d,
@@ -34,28 +35,28 @@ static size_t
 			(pre -= d_so->len - 1))
 			stf->syllables[PRE].len = pre;
 		if (chk->flags & SPACE_FLAG && d >= 0)
-			*d_so->cc = ' ';
-		if (d >= 0 &&
-			!(chk->flags & (SPACE_FLAG | PLUS_FLAG)))
-		{
-			d_so->cc++;
-			d_so->len--;
-		}
+			*d_so->cc++ = ' ';
+		d_so->len--;
+		stf->syllables[S].c = *d_so->cc;
+		if (d < 0 ||
+			(chk->flags & (SPACE_FLAG | PLUS_FLAG)))
+			stf->syllables[S].len = 1;
 	}
 	return (tssos_outlen(stf->syllables, D_SYLLABLES));
 }
-#undef D
-#undef PRE
 
 static int
 	cd_body(
 		t_s_pct *chk, void *s)
 {
 	t_s_dcs	* const stf = (t_s_dcs*)s;
+	t_s_so	* const syl = stf->syllables;
 	int		r;
 
-	(void)chk;
-	r = output_syllables(stf->syllables, D_SYLLABLES);
+	if (!(chk->flags & APSTR_FLAG))
+		return (output_syllables(syl, D_SYLLABLES));
+	r = output_syllable(syl[S])
+	r &= out_sylinter(&syl[D], (PRE - S), '.', THSD);
 	return (r);
 }
 
@@ -71,5 +72,10 @@ void		convert_d(t_s_pct *chk)
 	size_t		len;
 	
 	len = set_syls(chk, get_d(chk), &stf);
+	if (chk->flags & APSTR_FLAG)
+		len += (len - stf.syllables[S].len) / 3;
 	output_padnstuff(len, chk, g_d_outputters, &stf);
 }
+#undef S
+#undef D
+#undef PRE
