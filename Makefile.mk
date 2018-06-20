@@ -22,7 +22,7 @@ $(SRC_DIR)/parse_format_string.c \
 $(SRC_DIR)/my_lstappend.c : $(SRC_DIR)/my_lstappend.h
 	touch $@
 
-$(SRC_DIR)/my_utf8.c : $(SRC_DIR)/my_utf8_inner.h
+$(SRC_DIR)/my_utf8.c : $(SRC_DIR)/my_utf8.h
 	touch $@
 
 

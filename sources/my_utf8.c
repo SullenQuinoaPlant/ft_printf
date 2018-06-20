@@ -1,4 +1,4 @@
-#include "my_utf8_inner.h"
+#include "my_utf8.h"
 
 /*To utf-8 format; raw, no checks, can get bigger
 ** than the standard 4 bytes; will fail should
@@ -39,7 +39,7 @@ int
 	true_utf8seq(
 		wchar_t val, char *put)
 {
-	return (as_utf8seq(val, g_utf8_max, put));
+	return (as_utf8seq(val, UTF8_MAX_CHARS, put));
 }
 
 size_t
@@ -48,7 +48,7 @@ size_t
 		char 			*put,
 		size_t 			len)
 {
-	char	* const lim = put + len - g_utf8_max;
+	char	* const lim = put + len - UTF8_MAX_CHARS;
 	char	* const save = put;
 	wchar_t	*p;
 

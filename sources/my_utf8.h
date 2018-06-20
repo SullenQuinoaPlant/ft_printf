@@ -36,4 +36,4 @@ int
 	true_utf8seq(
 		wchar_t val, char *put);
 
-endif
+#endif

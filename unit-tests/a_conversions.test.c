@@ -319,6 +319,13 @@ skip();
 		printf_diff("%302$.*1$a", 13, d);
 	)
 
+	T(text_double_text,
+		double	d;
+
+		d = 2.0;
+		printf_diff("text_%2$.*1$a_text", 13, d);
+	)
+
 /*Skipped tests where printf displays crazy behavior in contradiction with the man page I've read.*/
 /*Might even decide to revert the accomodations made forthe default rounding behavior.*/
 

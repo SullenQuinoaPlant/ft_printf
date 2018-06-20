@@ -12,17 +12,18 @@ void		convert_c(t_s_pct *chk)
 	size_t	lens[e_oi_sz];
 	char	ar[UTF8_MAX_CHARS];
 
+	filter_flags(chk);
 	lens[e_prefix] = 0;
 	if (chk->vaarg->type == e_wint_t)
 	{
-		if ((c = *(wint_t*)chk->vaarg->p_val) < 0)
+		if ((c = *(wint_t*)chk->vaarg->p_val) == WEOF)
 			lens[e_root] = 0;
 		else
 			lens[e_root] = true_utf8seq(c, ar);
 	}
 	else
 	{
-		*ar = *(unsigned char*);
+		*ar = *(unsigned char*)chk->vaarg->p_val;
 		lens[e_root] = 1;
 	}
 	output_padnbuffer(ar, lens, chk);
