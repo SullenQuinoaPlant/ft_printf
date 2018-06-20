@@ -117,14 +117,14 @@ int
 
 void
 	init_syls(
-		e_sot type, int how_many, t_s_so *ar)
+		enum e_sot type, int how_many, t_s_so *ar)
 {
-	t_s_so const init;
+	t_s_so	init;
 
 	init.len = 0;
 	init.type = type;
 	init.c = 0;
-	if (type = e_sot_cc)
+	if (type == e_sot_cc)
 		init.cc = 0;
 	while (how_many--)
 		*ar++ = init;

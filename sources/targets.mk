@@ -42,6 +42,7 @@ TARGETS := \
 	output_percent_chunk \
 	output_simple_chunks \
 	output_syllable \
+	outputter_auxilliaries \
 	parse_auxilliaries \
 	parse_format_string \
 	parse_format_string_percent \

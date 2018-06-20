@@ -22,7 +22,6 @@ build_tests : set_utest_flags def cmocka $(TEST_OBJS)
 
 .PHONY : set_utest_flags
 set_utest_flags :
-	@echo "setting utest flags, this is cool!"
 	$(eval CFLAGS += $(CFLAGS_UTEST))
 
 .PHONY : cmocka

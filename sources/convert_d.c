@@ -1,40 +1,31 @@
 #include "ft_printf_inner.h"
 
-static void
-	filter_flags(
-		t_s_pct *chk)
-{
-	chk->flags &= ~HASH_FLAG;
-}
-
 #define D 0
 #define PRE 1
-static int
+static void
 	set_d(t_s_pct *chk, t_s_dcs *stf)
 {
 	t_s_arg		* const arg = chk->vaarg;
-	char		* const p = stf.b + e_mbo_mib;
-	t_s_so		* const d_so = stf.syllables[D];
+	t_s_so		* const d_so = &stf->syllables[D];
 	intmax_t	d;
 	int			pre;
 
 	d = 0;
-	ft_memcpy(&d, arg.p_val, g_etsz[arg.type]);
+	ft_memcpy(&d, arg->p_val, g_etsz[arg->type]);
 	pre = chk->precision ? **chk->precision : -1;
 	if (d || pre > 0)
 	{
-		p = 
-		d_so = syl_v_tob(d, g_dec, b_end, e_all);
-		if (pre > 0 && d_so.len - 1 < pre &&
-			(pre -= d_so.len - 1)
-			stf.syllables[PRE].len = pre;
+		*d_so = syl_v_tob(d, g_dec, &stf->b, e_all);
+		if (pre > 0 && d_so->len - 1 < (size_t)pre &&
+			(pre -= d_so->len - 1))
+			stf->syllables[PRE].len = pre;
 		if (chk->flags & SPACE_FLAG && d >= 0)
-			*d_so.cc = ' ';
+			*d_so->cc = ' ';
 		if (d >= 0 &&
-			!(chk->flags & (SPACE_FLAG | PLUS_FLAG))
+			!(chk->flags & (SPACE_FLAG | PLUS_FLAG)))
 		{
-			d_so.cc++;
-			d_so.len--;
+			d_so->cc++;
+			d_so->len--;
 		}
 	}
 }
@@ -48,7 +39,8 @@ static int
 	t_s_dcs	* const stf = (t_s_dcs*)s;
 	int		r;
 
-	r = output_syllables(stf.syllables, D_SYLLABLES);
+	(void)chk;
+	r = output_syllables(stf->syllables, D_SYLLABLES);
 	return (r);
 }
 
@@ -61,10 +53,8 @@ static t_oa
 void		convert_d(t_s_pct *chk)
 {
 	t_s_dcs		stf;
-	int			pre;
 	size_t		len;
 	
-	filter_flags();
 	init_syls(e_sot_c, D_SYLLABLES, stf.syllables);
 	set_d(chk, &stf);
 	len = tssos_outlen(stf.syllables, D_SYLLABLES);

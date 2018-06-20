@@ -110,7 +110,7 @@ int
 
 void
 	init_syls(
-		e_sot type, int how_many, t_s_so *ar);
+		enum e_sot type, int how_many, t_s_so *ar);
 
 int
 	output_c(
@@ -279,6 +279,10 @@ t_s_so
 		char const * basestr,
 		t_mib *b,
 		t_e_sp sign_f);
+
+size_t
+	tssos_outlen(
+		t_s_so stack[], int len);
 
 char const *
 	until_no_progress(
