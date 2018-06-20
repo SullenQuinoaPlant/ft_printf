@@ -29,8 +29,8 @@ static void	filter_flags(t_s_pct *p_chk)
 	f_cpy = p_chk->flags;
 	if (f_cpy & MINUS_FLAG || p_chk->precision)
 		f_cpy &= ~(ZERO_FLAG);
-	if (f_cpy & SPACE_FLAG && f_cpy & PLUS_FLAG)
-		f_cpy |= ~(SPACE_FLAG);
+	if (f_cpy & PLUS_FLAG)
+		f_cpy &= ~(SPACE_FLAG);
 	p_chk->flags = f_cpy;
 }
 

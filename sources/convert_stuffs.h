@@ -23,4 +23,10 @@ void	ca_excess_precision(int, void*);
 void	ca_to_the_power(int, void*);
 void	ca_exponent(int, void*);
 
+#define D_SYLLABLES 2
+typedef struct	s_convert_d_stuff {
+	t_s_so	syllables[D_SYLLABLES];
+	t_mib	b;
+}				t_s_dcs;
+
 #endif
