@@ -52,12 +52,12 @@ int			output_padnbuffer(
 		(r = output_c(pad, ' ')))
 		pad = 0;
 	if (r)
-		r = output_cc(b, len[e_prefix]);
+		r = output_cc(len[e_prefix], b);
 	if (pad && chk->flags & ZERO_FLAG && r &&
 		(r = output_c(pad, '0')))
 		pad = 0;
 	if (r)
-		r = output_cc(b + len[e_prefix], len[e_root]);
+		r = output_cc(len[e_root], b + len[e_prefix]);
 	if (pad && r)
 		r = output_c(pad, ' ');
 	return (r);

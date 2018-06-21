@@ -28,7 +28,7 @@ int		output_c(size_t yay_much, char ofthis)
 	
 }
 
-int		output_cc(char *b, size_t len)
+int		output_cc(size_t len, char *b)
 {
 	size_t	len1;
 	size_t	len2;

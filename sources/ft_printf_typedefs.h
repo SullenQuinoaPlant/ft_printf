@@ -158,6 +158,8 @@ typedef enum	e_dollar_convention {
 typedef struct	s_output_state {
 	size_t		output_len;
 	int			fd;
+	int			apstr_grp;
+	char		apstr_c;
 	int			errored;
 }				t_s_os;
 
@@ -192,10 +194,10 @@ typedef int const
 **	contiguous characters (cc)
 **	character (c)
 */
-enum			e_sot {
+typedef enum	e_sot {
 	e_sot_cc,
 	e_sot_c
-};
+}				t_e_sot;
 
 typedef struct	s_syllable_output {
 	size_t		len;

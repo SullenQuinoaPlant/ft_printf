@@ -53,7 +53,7 @@ static int
 	t_s_so	* const syl = stf->syllables;
 
 	(void)chk;
-	return (output_syllable(syl[S]));
+	return (output_syllable(&syl[S]));
 }
 
 static int

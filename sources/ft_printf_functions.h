@@ -122,7 +122,7 @@ int
 
 int
 	output_cc(
-		char *b, size_t len);
+		size_t len, char *b);
 
 void
 	output_char_chk(
@@ -151,7 +151,7 @@ void
 
 int
 	output_syllable(
-		t_s_so this);
+		t_s_so *this);
 
 int
 	output_syllables(

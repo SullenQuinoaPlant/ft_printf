@@ -1,12 +1,18 @@
 #include "ft_printf_inner.h"
 
-int		output_syllable(t_s_so this)
+int		output_syllable(t_s_so *this)
 {
 	enum e_sot	const type = this.type;
+	int			r;
 
 	if (type == e_sot_cc)
-		return (output_cc(this.cc, this.len));
-	return (output_c(this.len, this.c));
+		r = output_cc(this->len, this->cc);
+	else if (type == e_sot_c)
+		r = output_c(this->len, this->c);
+	else if (type == e_sot_apstr_c ||
+		type == e_sot_apstr_cc)
+		r = out_apstr_syl(this);
+	return (r);
 }
 
 int		output_syllables(t_s_so *these, int count)
@@ -16,7 +22,7 @@ int		output_syllables(t_s_so *these, int count)
 
 	r = 1;
 	while (these < limit && r)
-		r = output_syllable(*these++);
+		output_syllable(these++);
 	return (r);
 }
 
