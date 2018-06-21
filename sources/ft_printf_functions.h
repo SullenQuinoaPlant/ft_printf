@@ -10,6 +10,10 @@ size_t
 		t_s_so *syl_ar, unsigned int count,
 		size_t grp_sz);
 
+void
+	apstr_pad_adjust(
+		t_s_so *pad, t_s_sgb *grps);
+
 char const *
 	attempt_all(
 		char const *in,

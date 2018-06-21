@@ -26,10 +26,7 @@ void		convert_a(t_s_pct *chk)
 	if (output_nan_inf(&stf.fpd, chk))
 		return;
 	stuff_stuff(g_fstr, &stf, pads);
-	set_pad_syl(chk, pads, A_SYLLABLES, stf.syllables);
-	if (chk->flags & APSTR_FLAG &&
-		(zpad = stf.syllables[pads[e_pp_middle]])->len)
-		apstr_pad(&stf.sylgrps[A_ZGRP], zpad);
+	set_pad_syl(chk, pads, stf.syl_groups, A_SYLLABLES);
 	out_syl_groups
 	//output_syllables(stf.syllables, A_SYLLABLES);
 }

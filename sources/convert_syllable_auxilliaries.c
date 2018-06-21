@@ -11,45 +11,54 @@ size_t	tssos_outlen(t_s_so stack[], int len)
 	return (ret);
 }
 
-static t_s_so
+static void
 	init_pad_syllables(
 		int *pad_i, t_s_so *syl_ar)
 {
 	enum e_pad_pos	pp;
 	t_s_so			init;
+	int				mid_pad;
+	t_esot			type;
 
 	init = (t_s_so) {0, e_sot_c, {0}};
 	init.c = ' ';
 	pp = e_pp_left;
 	while (pp < e_pp_sz)
 		syl_ar[pad_i[pp++]] = init;
-	return (init);
+	mid_pad = pad_i[e_pp_middle];
+	type = syl_ar[mid_pad + 1].type;
+	if (type == e_sot_apstr_cc ||
+		type == e_sot_apstr_c)
+		syl_ar[mid_pad].type = e_sot_apstr_c;
 }
 
 void
 	set_pad_syl(
 		t_s_pct *chk, int *pad_i,
-		int	syl_count, t_s_so *syl_ar)
+		t_s_so *syl_grps, int count)
 {
-	size_t		len;
+	t_s_so		* const syl_ar = syl_grps->first;
 	char		const flags = chk->flags;	
-	t_s_so		set;
+	size_t		len;
+	int			i;
 
 	
-	set = init_pad_syllables(pad_i, syl_ar);
-	len = tssos_outlen(syl_ar, syl_count);
-	set.len = get_padlen(chk, len);
-	if (!set.len)
-		;
-	else if (flags & MINUS_FLAG)
-		syl_ar[pad_i[e_pp_left]] = set;
+	init_pad_syllables(pad_i, syl_ar);
+	len = get_padlen(chk, tssos_outlen(syl_ar, count));
+	if (!len)
+		return;
+	if (flags & MINUS_FLAG)
+		syl_ar[pad_i[e_pp_left]].len = len;
 	else if (flags & ZERO_FLAG)
 	{
 		set.c = '0';
-		syl_ar[pad_i[e_pp_middle]] = set;
+		i = pad_i[e_pp_middle];
+		syl_ar[i].len = len;
+		if (syl_ar[i].type == e_sot_apstr_c)
+			apstr_pad_adjust(&syl_ar[i], syl_grps);
 	}
 	else
-		syl_ar[pad_i[e_pp_left]] = set;
+		syl_ar[pad_i[e_pp_left]].len = len;
 }
 
 /*had to change rounding policy to accomodate printf,

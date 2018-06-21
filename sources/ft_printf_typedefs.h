@@ -197,7 +197,9 @@ typedef int const
 */
 typedef enum	e_sot {
 	e_sot_cc,
-	e_sot_c
+	e_sot_c,
+	e_sot_apstr_cc,
+	e_sot_apstr_c
 }				t_e_sot;
 
 typedef struct	s_syllable_output {

@@ -39,3 +39,37 @@ size_t
 	}
 	return (added);
 }
+
+/*Fearlessly casting between int and size_t because 
+**values ought to be small and positive at all times.
+**grp size bigger than t_mib size would be useless,
+**padding can't be more than MAX_INT.
+*/
+void
+	apstr_pad_adjust(
+		t_s_so *pad, t_s_sgb *grps)
+{
+	size_t	grp;
+	size_t	pos;
+	size_t	len;
+	size_t	a;
+	size_t	b;
+
+	while (pad > grps->first)
+		grps++;
+	grp_sz = grps->apstr_grp;
+	pos = (size_t)grps->apstr_pos;
+	len = pad->len;
+	if (pos >= len)
+		pos -= len;
+	else
+	{
+		a = (len - pos);
+		b = a % (grp + 1);
+		pos = b ? grp - (b - 1) : 0;
+		len = a / (grp + 1) * grp;
+		len += pos ? b - 1 : 0;
+	}
+	pad->len = len;
+	grps->apstr_pos = (int);
+}
