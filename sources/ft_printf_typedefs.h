@@ -158,7 +158,8 @@ typedef enum	e_dollar_convention {
 typedef struct	s_output_state {
 	size_t		output_len;
 	int			fd;
-	int			apstr_grp;
+	size_t		apstr_grp;
+	int			apstr_pos;
 	char		apstr_c;
 	int			errored;
 }				t_s_os;

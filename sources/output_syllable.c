@@ -1,5 +1,30 @@
 #include "ft_printf_inner.h"
 
+int
+	out_apstr_syl(
+		t_s_so* syl)
+{
+	char	*p;
+	char	*p_lim;
+	int		pos;
+	int		r;
+
+	r = (pos = g_os.apstr_pos) ? 1 : 0;
+	if (syl->type == e_sot_apstr_cc)	
+		p = syl->cc;
+	else
+		p = &syl->c;
+	p_lim = p + syl->len;
+	while (p < p_lim && r &&
+		(pos || (r = output_c(1, sep))))
+	{
+		r &= output_c(1, *p++);
+		pos = (pos + 1) % interval;
+	}
+	g_os.apst_pos = pos;
+	return (r);
+}
+
 int		output_syllable(t_s_so *this)
 {
 	enum e_sot	const type = this.type;
@@ -23,35 +48,5 @@ int		output_syllables(t_s_so *these, int count)
 	r = 1;
 	while (these < limit && r)
 		output_syllable(these++);
-	return (r);
-}
-
-int
-	out_sylinter(
-		t_s_so* ar, size_t ar_sz,
-		char sep, int interval)
-{
-	t_s_so	* const ar_lim = ar + ar_sz;
-	char	*p;
-	char	*p_lim;
-	int		pos;
-	int		r;
-
-	pos = interval > 0 ? -interval : THOUSAND_GROUP;
-	r = 1;
-	while (ar < ar_lim && r)
-	{
-		if (ar->type == e_sot_cc)	
-			p = ar->cc;
-		else
-			p = &ar->c;
-		p_lim = p + (ar++)->len;
-		while (p < p_lim && r &&
-			(pos || (r = output_c(1, sep))))
-		{
-			r &= output_c(1, *p++);
-			pos = (pos + 1) % interval;
-		}
-	}
 	return (r);
 }

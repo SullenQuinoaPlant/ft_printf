@@ -2,8 +2,13 @@
 # define FT_PRINTF_FUNCTIONS_H
 
 size_t
-	apstr_len(
-		size_t len, t_s_pct *chk);
+	apstr_len_raw(
+		size_t len, size_t grp_sz);
+
+size_t
+	apstr_len_syl(
+		t_s_so *syl_ar, unsigned int count,
+		size_t grp_sz);
 
 char const *
 	attempt_all(
@@ -117,6 +122,11 @@ void
 		enum e_sot type, int how_many, t_s_so *ar);
 
 int
+	out_apstr_syl(
+		t_s_so* ar, size_t ar_sz,
+		char sep, int interval);
+
+int
 	output_c(
 		size_t yay_much, char ofthis);
 
@@ -164,11 +174,6 @@ void
 int
 	outputter_nop(
 		t_s_pct *what, void *ever);
-
-int
-	out_sylinter(
-		t_s_so* ar, size_t ar_sz,
-		char sep, int interval);
 
 char const *
 	parse_convert(
