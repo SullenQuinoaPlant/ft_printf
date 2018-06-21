@@ -4,9 +4,11 @@
 # include "ft_printf_inner.h"
 
 # define A_SYLLABLES 10
+# define A_SYLGRPS 6
 typedef struct	s_convert_a_stuff {
 	t_s_pct		*chk;
 	t_s_so 		syllables[A_SYLLABLES];
+	t_s_sgd		syl_groups[A_SYLGRPS];
 	t_s_dfp		fpd;
 	char		prefix[3];
 	char		zero;

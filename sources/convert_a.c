@@ -18,6 +18,7 @@ void		convert_a(t_s_pct *chk)
 {
 	int			* const pads = (int[e_pp_sz]){0};
 	t_s_acs		stf;
+	t_s_so		*zpad;
 	
 
 	stf.chk = chk;
@@ -26,7 +27,11 @@ void		convert_a(t_s_pct *chk)
 		return;
 	stuff_stuff(g_fstr, &stf, pads);
 	set_pad_syl(chk, pads, A_SYLLABLES, stf.syllables);
-	output_syllables(stf.syllables, A_SYLLABLES);
+	if (chk->flags & APSTR_FLAG &&
+		(zpad = stf.syllables[pads[e_pp_middle]])->len)
+		apstr_pad(&stf.sylgrps[A_ZGRP], zpad);
+	out_syl_groups
+	//output_syllables(stf.syllables, A_SYLLABLES);
 }
 
 void		convert_a_big(t_s_pct *p_chk)

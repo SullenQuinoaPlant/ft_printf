@@ -50,3 +50,7 @@ int		output_syllables(t_s_so *these, int count)
 		output_syllable(these++);
 	return (r);
 }
+
+int
+	out_syl_groups(
+		
