@@ -165,5 +165,35 @@ int		main(int ac, char ** av)
 		printf_diff("%.0d", t);
 	)
 
+	T(test27,
+		int		t = 1000;
+
+		printf_compare("d_test27.ref", "%'d", t);
+	)
+
+	T(test28,
+		int		t = -1000;
+
+		printf_compare("d_test28.ref", "%'d", t);
+	)
+
+	T(test29,
+		int		t = 12;
+
+		printf_compare("d_test29.ref", "%'d", t);
+	)
+
+	T(test30,
+		int		t = 12;
+
+		printf_compare("d_test30.ref", "%'012d", t);
+	)
+
+	T(test31,
+		int		t = 12;
+
+		printf_compare("d_test30.ref", "%'.12d", t);
+	)
+
 	return (run_test_arr(ac, av));
 }
