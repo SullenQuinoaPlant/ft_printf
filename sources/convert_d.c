@@ -72,8 +72,7 @@ void		convert_d(t_s_pct *chk)
 	size_t		len;
 	
 	len = set_syls(chk, get_d(chk), &stf);
-	if (chk->flags & APSTR_FLAG)
-		len += (len - stf.syllables[S].len) / 3;
+	len += apstr_len(len - stf.syllables[S].len, chk);
 	output_padnstuff(len, chk, g_d_outputters, &stf);
 }
 #undef S
