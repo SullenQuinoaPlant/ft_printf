@@ -75,6 +75,7 @@ int	printf_diff(char const * format, ...)
 	return (system_failure);
 }
 
+#define COMMAND_BUFFER 256
 int
 	printf_compare(
 		char const * ref_name,
@@ -85,14 +86,17 @@ int
 	int		system_failure = 1;
 	ssize_t	res = 0, b_res;
 
-	va_start(b_l);
+	va_start(b_l, format);
 	if ((save_fd = dup(1)) > 0 &&
 		(b_fd = creat("b.txt", S_IRUSR | S_IWUSR)) > 0 &&
 		dup2(b_fd, 1) > 0)
 	{
 		b_res = ft_vprintf(format, b_l);
 		save_fd = restore_fd1(save_fd);
-		if ((system("diff %s b.txt > res.txt", ref_name) >= 0) &&
+		char	command_buffer[COMMAND_BUFFER];
+		snprintf(command_buffer, COMMAND_BUFFER,
+			"diff %s b.txt > res.txt", ref_name);
+		if ((system(command_buffer) >= 0) &&
 		((diff_fd = open("res.txt", O_RDONLY)) > 0))
 		{
 			char	dummy[1];

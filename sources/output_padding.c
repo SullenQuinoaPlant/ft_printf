@@ -23,15 +23,15 @@ void		output_padnstuff(
 	r = 1;
 	if (pad && !(chk->flags & (MINUS_FLAG | ZERO_FLAG)))
 	{
-		pad = 0;
 		r = output_c(pad, ' ');
+		pad = 0;
 	}
 	if (r)
 		r = f[e_prefix](chk, stuff);
 	if (pad && chk->flags & ZERO_FLAG && r)
 	{
+		r = output_c(pad, '0');
 		pad = 0;
-		r = output_c(pad, ' ');
 	}
 	if (r)
 		r = f[e_root](chk, stuff);

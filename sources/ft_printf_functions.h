@@ -166,7 +166,7 @@ int
 		t_s_pct *what, void *ever);
 
 int
-	out_syl_inter(
+	out_sylinter(
 		t_s_so* ar, size_t ar_sz,
 		char sep, int interval);
 

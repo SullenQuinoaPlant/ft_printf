@@ -35,6 +35,7 @@ TARGETS := \
 	my_utf8 \
 	my_valtobuffers_raw \
 	my_valtobuffers_tscc \
+	output_apostrophe_grouping \
 	output_chunks \
 	output_generic \
 	output_nan_inf \

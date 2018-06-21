@@ -5,6 +5,6 @@ size_t
 		size_t len, t_s_pct *chk)
 {
 	if (chk->flags & APSTR_FLAG)
-		return (len / THOUSAND_GROUP)
+		return (len / THOUSAND_GROUP);
 	return (0);
 }
