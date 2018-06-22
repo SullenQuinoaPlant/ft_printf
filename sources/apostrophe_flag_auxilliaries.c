@@ -12,6 +12,15 @@ size_t
 	return (len / grp_sz);
 }
 
+int
+	apstr_pos_offset(
+		size_t len, size_t grp)
+{
+	if (!grp)
+		return (0);
+	return (grp - (len % grp));
+}
+
 size_t
 	apstr_len_syl(
 		t_s_so *syl, unsigned int count, size_t grp_sz)

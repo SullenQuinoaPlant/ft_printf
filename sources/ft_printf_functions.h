@@ -14,6 +14,10 @@ void
 	apstr_pad_adjust(
 		t_s_so *pad, t_s_sgb *grps);
 
+int
+	apstr_pos_offset(
+		size_t len, size_t grp);
+
 char const *
 	attempt_all(
 		char const *in,
@@ -129,6 +133,10 @@ int
 	out_apstr_syl(
 		t_s_so* ar, size_t ar_sz,
 		char sep, int interval);
+
+int
+	out_syl_groups(
+		t_s_sgd *grp, int count);
 
 int
 	output_c(

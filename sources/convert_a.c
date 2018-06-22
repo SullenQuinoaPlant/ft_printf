@@ -14,6 +14,20 @@ t_stuffer	g_fstr[A_SYLLABLES + 1] = {
 	0
 };
 
+static void	set_syl_grps(t_s_acs *stf)
+{
+	t_s_so	* const syls = stf->syllables;
+	t_s_sgd	ar[A_SYLGRPS] = {
+			{&syllables[0], 2, 0, 0, '\0'},
+			{&syllables[2], 2, 2, 1, '_'},
+			{&syllables[4], 1, 0, 0, '\0'},
+			{&syllables[5], 2, 2, 0, '_'},
+			{&syllables[7], 1, 0, 0, '\0'},
+			{&syllables[8], 1, 3, 0, '\''}};
+
+	ft_memcpy(stf->syl_groups, ar, sizeof(ar));
+}
+
 void		convert_a(t_s_pct *chk)
 {
 	int			* const pads = (int[e_pp_sz]){0};
@@ -27,8 +41,7 @@ void		convert_a(t_s_pct *chk)
 		return;
 	stuff_stuff(g_fstr, &stf, pads);
 	set_pad_syl(chk, pads, stf.syl_groups, A_SYLLABLES);
-	out_syl_groups
-	//output_syllables(stf.syllables, A_SYLLABLES);
+	out_syl_groups(stf.syl_groups, A_SYLGRSPS);
 }
 
 void		convert_a_big(t_s_pct *p_chk)

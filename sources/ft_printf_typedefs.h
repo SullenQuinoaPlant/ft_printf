@@ -213,7 +213,7 @@ typedef struct	s_syllable_output {
 
 typedef struct	s_syllable_group_descriptor {
 	t_s_so		*first;
-	size_t		count;
+	size_t		sz;
 	size_t		apstr_grp;
 	int			apstr_pos;
 	char		apstr_c;

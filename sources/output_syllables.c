@@ -53,4 +53,17 @@ int		output_syllables(t_s_so *these, int count)
 
 int
 	out_syl_groups(
-		
+		t_s_sgd *grp, int count)
+{
+	t_s_sgd	* const lim = grp + count;
+	int		r;
+
+	while (grp < lim && r)
+	{
+		g_os.apstr_grp = grp->apstr_grp;
+		g_os.apstr_pos = grp->apstr_pos;
+		g_os.apstr_c = grp->apstr_c;
+		r = output_syllables(grp->first, grp->sz);
+	}
+	return (r);
+}
