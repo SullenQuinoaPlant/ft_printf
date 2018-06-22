@@ -32,7 +32,6 @@ void		convert_a(t_s_pct *chk)
 {
 	int			* const pads = (int[e_pp_sz]){0};
 	t_s_acs		stf;
-	t_s_so		*zpad;
 	
 
 	stf.chk = chk;
@@ -40,6 +39,7 @@ void		convert_a(t_s_pct *chk)
 	if (output_nan_inf(&stf.fpd, chk))
 		return;
 	stuff_stuff(g_fstr, &stf, pads);
+	set_syl_grps(&stf);
 	set_pad_syl(chk, pads, stf.syl_groups, A_SYLLABLES);
 	out_syl_groups(stf.syl_groups, A_SYLGRPS);
 }
