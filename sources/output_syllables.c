@@ -2,23 +2,6 @@
 
 int
 	out_apstr_syl(
-		t_s_so *syl)
-{
-	char	*p;
-	size_t	len;
-	int		pos;
-	int		r;
-	int		inc;
-
-	r = (pos = (size_t)g_os.apstr_pos) ? 1 : 0;
-	inc = syl->type == e_sot_apstr_cc ? 1 : 0;
-	p = inc ? syl->cc : &syl->c;
-	i = syl->len;
-	
-}
-
-int
-	out_apstr_syl(
 		t_s_so* syl)
 {
 	char	*p;
