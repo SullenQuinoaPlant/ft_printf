@@ -56,7 +56,7 @@ size_t
 */
 void
 	apstr_pad_adjust(
-		t_s_so *pad, t_s_sgb *grps)
+		t_s_so *pad, t_s_sgd *grps)
 {
 	size_t	grp;
 	size_t	pos;

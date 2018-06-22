@@ -35,7 +35,7 @@ static void
 void
 	set_pad_syl(
 		t_s_pct *chk, int *pad_i,
-		t_s_so *syl_grps, int count)
+		t_s_sgd *syl_grps, int count)
 {
 	t_s_so		* const syl_ar = syl_grps->first;
 	char		const flags = chk->flags;	

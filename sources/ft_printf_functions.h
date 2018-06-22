@@ -12,7 +12,7 @@ size_t
 
 void
 	apstr_pad_adjust(
-		t_s_so *pad, t_s_sgb *grps);
+		t_s_so *pad, t_s_sgd *grps);
 
 int
 	apstr_pos_offset(
@@ -275,7 +275,7 @@ void
 void
 	set_pad_syl(
 		t_s_pct *chk, int *pad_i,
-		int	syl_count, t_s_so *syl_ar);
+		t_s_sgd *syl_grps, int count);
 
 t_s_cc
 	sign_to_b(
