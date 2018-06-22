@@ -49,6 +49,7 @@ cmocka :
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
 		-D $(ARCH)\
+		-D UTEST_DIR=$(UTEST_DIR)\
 		-include $(SRC_DIR)/$*.c\
 		$<\
 		-L $(LIBS_L)\
@@ -61,6 +62,7 @@ cmocka :
 		-I $(SRC_DIR)\
 		-I $(LIBS_I)\
 		-D $(ARCH)\
+		-D UTEST_DIR=$(UTEST_DIR)\
 		$<\
 		-L $(LIBS_L)\
 		-lftprintf\
