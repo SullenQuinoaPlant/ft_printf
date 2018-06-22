@@ -54,26 +54,35 @@ size_t
 #undef OVR
 #undef GSZ
 
+void
+	apstr_grp_adjust(
+		t_s_so *pad, t_s_sgd *grps)
+{
+	size_t	grp;
+
+	while (pad > grps->first)
+		grps++;
+	grp = grps->apstr_grp;
+	apstr_zpad(grp, pad, &grps->apstr_pos);
+}
+
 /*Fearlessly casting between int and size_t because 
 **values ought to be small and positive at all times.
 **grp size bigger than t_mib size would be useless,
 **padding can't be more than MAX_INT.
 */
 void
-	apstr_pad_adjust(
-		t_s_so *pad, t_s_sgd *grps)
+	apstr_zpad(
+		size_t grp,
+		t_s_so *pad, int *pos_offset)
 {
-	size_t	grp;
-	size_t	pos;
 	size_t	len;
+	size_t	pos;
 	size_t	a;
 	size_t	b;
 
-	while (pad > grps->first)
-		grps++;
-	grp = grps->apstr_grp;
-	pos = (size_t)grps->apstr_pos;
 	len = pad->len;
+	pos = (size_t)(*pos_offset);
 	if (pos >= len)
 		pos -= len;
 	else
@@ -85,5 +94,5 @@ void
 		len += pos ? b - 1 : 0;
 	}
 	pad->len = len;
-	grps->apstr_pos = (int)pos;
+	*pos_offset = (int)pos;
 }

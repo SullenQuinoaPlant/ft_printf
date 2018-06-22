@@ -12,6 +12,20 @@ int		get_padlen(t_s_pct *p_chk, size_t len)
 	return (pad);
 }
 
+static int
+	output_zero_pad
+		(size_t len)
+{
+	t_s_so	pad;
+
+	pad.len = len;
+	pad.c = '0';
+	pad.type = g_os.apstr_grp ? e_sot_apstr_c : e_sot_c;
+	if (pad.type == e_sot_apstr_c)
+		apstr_zpad(g_os.apstr_grp, &pad, &g_os.apstr_pos);
+	return (output_syllable(&pad));
+}
+
 void		output_padnstuff(
 	size_t len, t_s_pct *chk,
 	t_outputter const f[], void *stuff)
@@ -23,7 +37,7 @@ void		output_padnstuff(
 	r = 1;
 	if (pad && !(chk->flags & (MINUS_FLAG | ZERO_FLAG)))
 	{
-		r = output_c(pad, ' ');
+		r = output_zero_pad(pad);
 		pad = 0;
 	}
 	if (r)
