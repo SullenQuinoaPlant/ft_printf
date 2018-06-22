@@ -1,4 +1,5 @@
 TARGETS := \
+	apostrophe_flag_auxilliaries \
 	convert_a \
 	convert_a_stuffers1 \
 	convert_a_stuffers2 \
@@ -35,14 +36,13 @@ TARGETS := \
 	my_utf8 \
 	my_valtobuffers_raw \
 	my_valtobuffers_tscc \
-	output_apostrophe_grouping \
 	output_chunks \
 	output_generic \
 	output_nan_inf \
 	output_padding \
 	output_percent_chunk \
 	output_simple_chunks \
-	output_syllable \
+	output_syllables \
 	outputter_auxilliaries \
 	parse_auxilliaries \
 	parse_format_string \
