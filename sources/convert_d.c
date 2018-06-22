@@ -1,11 +1,5 @@
 #include "ft_printf_inner.h"
 
-static t_oa
-	g_d_outputters = {
-		cd_prefix,
-		cd_body
-};
-		
 #define S 0
 #define PRE 1
 #define D 2
@@ -28,13 +22,17 @@ static int
 	t_s_so	* const syl = &stf->syls[PRE];
 	int		r;
 
-	//this needs to change, take care of apostrophe in a higher order output function
-	if (!(chk->flags & APSTR_FLAG))
-		return (output_syllables(syl, D - S));
-	r = out_sylinter(&syl[D], (D - S), '.', AF_G);
+	(void)chk;
+	r = output_syllables(&syl[PRE], D - S);
 	return (r);
 }
 
+static t_oa
+	g_d_outputters = {
+		cd_prefix,
+		cd_body
+};
+		
 static intmax_t
 	get_d(t_s_pct *chk)
 {

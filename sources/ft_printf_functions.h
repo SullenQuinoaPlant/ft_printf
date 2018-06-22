@@ -7,8 +7,7 @@ size_t
 
 size_t
 	apstr_len_grp(
-		t_s_so *syl_ar, unsigned int count,
-		size_t grp_sz, int grp_pos);
+		t_s_sgd *grp);
 
 void
 	apstr_pad_adjust(
@@ -131,8 +130,7 @@ void
 
 int
 	out_apstr_syl(
-		t_s_so* ar, size_t ar_sz,
-		char sep, int interval);
+		t_s_so *syl);
 
 int
 	out_syl_groups(
@@ -312,7 +310,7 @@ size_t
 
 size_t
 	syls_outlen(
-		t_s_so syl*, int count, size_t apstr_grp);
+		t_s_so *syl, int count, size_t apstr_grp);
 
 size_t
 	tssos_lensum(

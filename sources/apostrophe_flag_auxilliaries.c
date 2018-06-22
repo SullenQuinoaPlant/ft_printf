@@ -24,10 +24,10 @@ int
 #define GSZ 3
 size_t
 	apstr_len_grp(
-		t_s_sgd grp)
+		t_s_sgd *grp)
 {
 	t_s_so	* const lim = grp->first + grp->sz;
-	t_s_so	* p;
+	t_s_so	* syl;
 	size_t	s[GSZ + 1];
 	t_e_sot	type;
 
@@ -35,6 +35,7 @@ size_t
 		return (0);
 	s[ADD] = 0;
 	s[OVR] = (size_t)grp->apstr_pos;
+	syl = grp->first;
 	while (syl < lim)
 	{
 		if ((type = syl->type) != e_sot_apstr_c &&
@@ -70,7 +71,7 @@ void
 
 	while (pad > grps->first)
 		grps++;
-	grp_sz = grps->apstr_grp;
+	grp = grps->apstr_grp;
 	pos = (size_t)grps->apstr_pos;
 	len = pad->len;
 	if (pos >= len)
@@ -84,5 +85,5 @@ void
 		len += pos ? b - 1 : 0;
 	}
 	pad->len = len;
-	grps->apstr_pos = (int);
+	grps->apstr_pos = (int)pos;
 }

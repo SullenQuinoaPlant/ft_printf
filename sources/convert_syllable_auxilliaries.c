@@ -2,12 +2,14 @@
 
 size_t
 	syls_outlen(
-		t_s_so syl*, int count, size_t apstr_grp)
+		t_s_so *syl, int count, size_t apstr_grp)
 {
 	t_s_so	* const lim = syl + count;
 	size_t	total_len;
 	size_t	len;
+	t_e_sot	type;
 
+	total_len = 0;
 	while (syl < lim)
 	{
 		len = syl->len;
@@ -15,8 +17,10 @@ size_t
 		if (type == e_sot_apstr_cc ||
 			type == e_sot_apstr_c)
 			len += apstr_len_raw(len, apstr_grp);
+		total_len += len;
+		syl++;
 	}
-	return (len);
+	return (total_len);
 }
 
 size_t	sylgrps_outlen(t_s_sgd grp[], int count)
@@ -54,7 +58,7 @@ static void
 	enum e_pad_pos	pp;
 	t_s_so			init;
 	int				mid_pad;
-	t_esot			type;
+	t_e_sot			type;
 
 	init = (t_s_so) {0, e_sot_c, {0}};
 	init.c = ' ';
@@ -80,15 +84,16 @@ void
 
 	
 	init_pad_syllables(pad_i, syl_ar);
-	len = get_padlen(chk, sylgrps_outlen(syl_ar, count));
+	len = sylgrps_outlen(syl_grps, count);
+	len = get_padlen(chk, len);
 	if (!len)
 		return;
 	if (flags & MINUS_FLAG)
 		syl_ar[pad_i[e_pp_left]].len = len;
 	else if (flags & ZERO_FLAG)
 	{
-		set.c = '0';
 		i = pad_i[e_pp_middle];
+		syl_ar[i].c = '0';
 		syl_ar[i].len = len;
 		if (syl_ar[i].type == e_sot_apstr_c)
 			apstr_pad_adjust(&syl_ar[i], syl_grps);

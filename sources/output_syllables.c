@@ -16,19 +16,19 @@ int
 		p = &syl->c;
 	p_lim = p + syl->len;
 	while (p < p_lim && r &&
-		(pos || (r = output_c(1, sep))))
+		(pos || (r = output_c(1, g_os.apstr_c))))
 	{
 		r &= output_c(1, *p++);
-		pos = (pos + 1) % interval;
+		pos = (pos + 1) % g_os.apstr_grp;
 	}
-	g_os.apst_pos = pos;
+	g_os.apstr_pos = pos;
 	return (r);
 }
 
 int		output_syllable(t_s_so *this)
 {
-	enum e_sot	const type = this.type;
-	int			r;
+	t_e_sot	const type = this->type;
+	int		r;
 
 	if (type == e_sot_cc)
 		r = output_cc(this->len, this->cc);
@@ -47,7 +47,7 @@ int		output_syllables(t_s_so *these, int count)
 
 	r = 1;
 	while (these < limit && r)
-		output_syllable(these++);
+		r = output_syllable(these++);
 	return (r);
 }
 
