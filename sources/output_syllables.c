@@ -2,6 +2,23 @@
 
 int
 	out_apstr_syl(
+		t_s_so *syl)
+{
+	char	*p;
+	size_t	len;
+	int		pos;
+	int		r;
+	int		inc;
+
+	r = (pos = (size_t)g_os.apstr_pos) ? 1 : 0;
+	inc = syl->type == e_sot_apstr_cc ? 1 : 0;
+	p = inc ? syl->cc : &syl->c;
+	i = syl->len;
+	
+}
+
+int
+	out_apstr_syl(
 		t_s_so* syl)
 {
 	char	*p;
@@ -13,17 +30,16 @@ int
 	r = (pos = (size_t)g_os.apstr_pos) ? 1 : 0;
 	inc = syl->type == e_sot_apstr_cc ? 1 : 0;
 	p = inc ? syl->cc : &syl->c;
-	i = syl->len;
-	while (i && r)
+	while (i < syl->len && r)
 	{
-		if (pos != g_os.apstr_grp)
-		if (pos == g_os.apstr_grp &&
-			(r = output_c(1, g_os.apstr_c)))
-			continue;
-		r = output_c(1, *p);
-		i--;
-		p += inc;
-		pos = (pos + 1) % (g_os.apstr_grp + 1);
+		if ((pos++) == g_os.apstr_grp && !(pos = 0))
+			r = output_c(1, g_os.apstr_c);
+		else
+		{
+			r = output_c(1, *p);
+			i--;
+			p += inc;
+		}
 	}
 	g_os.apstr_pos = pos;
 	return (r);

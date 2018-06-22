@@ -13,9 +13,12 @@ int
 	apstr_offset(
 		size_t len, size_t grp)
 {
+	size_t	mod;
+
 	if (!grp)
 		return (0);
-	return (grp - (len % grp));
+	mod = len % grp;
+	return (mod ? grp - mod : 0);
 }
 
 #define ADD 0
