@@ -6,22 +6,24 @@ int
 {
 	char	*p;
 	size_t	i;
-	int		pos;
+	size_t	pos;
 	int		r;
 	int		inc;
 
-	r = (pos = g_os.apstr_pos) ? 1 : 0;
+	r = (pos = (size_t)g_os.apstr_pos) ? 1 : 0;
 	inc = syl->type == e_sot_apstr_cc ? 1 : 0;
-	p = &syl->c;
-	if (inc)	
-		p = syl->cc;
+	p = inc ? syl->cc : &syl->c;
 	i = syl->len;
-	while (i-- && r &&
-		(pos || (r = output_c(1, g_os.apstr_c))))
+	while (i && r)
 	{
-		r &= output_c(1, *p);
+		if (pos != g_os.apstr_grp)
+		if (pos == g_os.apstr_grp &&
+			(r = output_c(1, g_os.apstr_c)))
+			continue;
+		r = output_c(1, *p);
+		i--;
 		p += inc;
-		pos = (pos + 1) % g_os.apstr_grp;
+		pos = (pos + 1) % (g_os.apstr_grp + 1);
 	}
 	g_os.apstr_pos = pos;
 	return (r);
