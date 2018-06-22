@@ -5,20 +5,22 @@ int
 		t_s_so* syl)
 {
 	char	*p;
-	char	*p_lim;
+	size_t	i;
 	int		pos;
 	int		r;
+	int		inc;
 
 	r = (pos = g_os.apstr_pos) ? 1 : 0;
-	if (syl->type == e_sot_apstr_cc)	
+	inc = syl->type == e_sot_apstr_cc ? 1 : 0;
+	p = &syl->c;
+	if (inc)	
 		p = syl->cc;
-	else
-		p = &syl->c;
-	p_lim = p + syl->len;
-	while (p < p_lim && r &&
+	i = syl->len;
+	while (i-- && r &&
 		(pos || (r = output_c(1, g_os.apstr_c))))
 	{
-		r &= output_c(1, *p++);
+		r &= output_c(1, *p);
+		p += inc;
 		pos = (pos + 1) % g_os.apstr_grp;
 	}
 	g_os.apstr_pos = pos;

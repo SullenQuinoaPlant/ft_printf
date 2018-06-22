@@ -89,9 +89,8 @@ void
 	{
 		a = (len - pos);
 		b = a % (grp + 1);
+		len -= a / (grp + 1) + (b ? 1 : 0);
 		pos = b ? grp - (b - 1) : 0;
-		len = a / (grp + 1) * grp;
-		len += pos ? b - 1 : 0;
 	}
 	pad->len = len;
 	*pos_offset = (int)pos;
