@@ -26,17 +26,17 @@ int	printf_diff(char const * format, ...)
 	va_start(a_l, format);
 	va_copy(b_l, a_l);
 	if (
-		(a_fd = fopen("UTEST_DIR/a.txt", "w")) &&
+		(a_fd = fopen(UTEST_DIR"/a.txt", "w")) &&
 		(a_res = vfprintf(a_fd, format, a_l)) &&
 		!fclose(a_fd) && !(a_fd = 0) &&
 		(save_fd = dup(1)) > 0 &&
-		(b_fd = creat("UTEST_DIR/b.txt", S_IRUSR | S_IWUSR)) > 0 &&
+		(b_fd = creat(UTEST_DIR"/b.txt", S_IRUSR | S_IWUSR)) > 0 &&
 		dup2(b_fd, 1) > 0)
 	{
 		b_res = ft_vprintf(format, b_l);
 		save_fd = restore_fd1(save_fd);
 		if ((system("diff UTEST_DIR/a.txt UTEST_DIR/b.txt > UTEST_DIR/res.txt") >= 0) &&
-		((diff_fd = open("UTEST_DIR/res.txt", O_RDONLY)) > 0))
+		((diff_fd = open(UTEST_DIR"/res.txt", O_RDONLY)) > 0))
 		{
 			char	dummy[1];
 			if ((res = read(diff_fd, dummy, 1)) >= 0)
@@ -88,7 +88,7 @@ int
 
 	va_start(b_l, format);
 	if ((save_fd = dup(1)) > 0 &&
-		(b_fd = creat("UTEST_DIR/b.txt", S_IRUSR | S_IWUSR)) > 0 &&
+		(b_fd = creat(UTEST_DIR"/b.txt", S_IRUSR | S_IWUSR)) > 0 &&
 		dup2(b_fd, 1) > 0)
 	{
 		b_res = ft_vprintf(format, b_l);
@@ -97,7 +97,7 @@ int
 		snprintf(command_buffer, COMMAND_BUFFER,
 			"diff %s UTEST_DIR/b.txt > UTEST_DIR/res.txt", ref_name);
 		if ((system(command_buffer) >= 0) &&
-		((diff_fd = open("UTEST_DIR/res.txt", O_RDONLY)) > 0))
+		((diff_fd = open(UTEST_DIR"/res.txt", O_RDONLY)) > 0))
 		{
 			char	dummy[1];
 			if ((res = read(diff_fd, dummy, 1)) >= 0)
