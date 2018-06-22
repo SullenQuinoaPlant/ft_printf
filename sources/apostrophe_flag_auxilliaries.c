@@ -5,15 +5,12 @@ size_t
 		size_t len, size_t grp_sz)
 {
 	if (!grp_sz)
-	{
-		g_os.errored++;
 		return (0);
-	}
 	return (len / grp_sz);
 }
 
 int
-	apstr_pos_offset(
+	apstr_offset(
 		size_t len, size_t grp)
 {
 	if (!grp)
@@ -21,33 +18,40 @@ int
 	return (grp - (len % grp));
 }
 
+#define ADD 0
+#define TMP 1
+#define OVR 2
+#define GSZ 3
 size_t
-	apstr_len_syl(
-		t_s_so *syl, unsigned int count, size_t grp_sz)
+	apstr_len_grp(
+		t_s_sgd grp)
 {
-	t_s_so	* const lim = syl + count;
-	size_t	added;
-	size_t	tmp;
-	size_t	over;
-	
+	t_s_so	* const lim = grp->first + grp->sz;
+	t_s_so	* p;
+	size_t	s[GSZ + 1];
+	t_e_sot	type;
 
-	if (!grp_sz)
-	{
-		g_os.errored++;
+	if (!(s[GSZ] = grp->apstr_grp))
 		return (0);
-	}
-	over = 0;
-	added = 0;
+	s[ADD] = 0;
+	s[OVR] = (size_t)grp->apstr_pos;
 	while (syl < lim)
 	{
-		tmp = over + syl->len;
-		if (tmp < over)
+		if ((type = syl->type) != e_sot_apstr_c &&
+			type != e_sot_apstr_cc)
+			continue;
+		s[TMP] = s[OVR] + syl->len;
+		if (s[TMP] < s[OVR])
 			g_os.errored++;
-		added += tmp / grp_sz;
-		over = tmp % grp_sz;
+		s[ADD] += s[TMP] / s[GSZ];
+		s[OVR] = s[TMP] % s[GSZ];
 	}
-	return (added);
+	return (s[ADD]);
 }
+#undef ADD
+#undef TMP
+#undef OVR
+#undef GSZ
 
 /*Fearlessly casting between int and size_t because 
 **values ought to be small and positive at all times.

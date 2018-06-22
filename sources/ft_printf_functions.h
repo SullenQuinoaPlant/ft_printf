@@ -6,16 +6,16 @@ size_t
 		size_t len, size_t grp_sz);
 
 size_t
-	apstr_len_syl(
+	apstr_len_grp(
 		t_s_so *syl_ar, unsigned int count,
-		size_t grp_sz);
+		size_t grp_sz, int grp_pos);
 
 void
 	apstr_pad_adjust(
 		t_s_so *pad, t_s_sgd *grps);
 
 int
-	apstr_pos_offset(
+	apstr_offset(
 		size_t len, size_t grp);
 
 char const *
@@ -307,7 +307,15 @@ t_s_so
 		t_e_sp sign_f);
 
 size_t
-	tssos_outlen(
+	sylgrps_outlen(
+		t_s_sgd grp[], int count);
+
+size_t
+	syls_outlen(
+		t_s_so syl*, int count, size_t apstr_grp);
+
+size_t
+	tssos_lensum(
 		t_s_so stack[], int len);
 
 char const *

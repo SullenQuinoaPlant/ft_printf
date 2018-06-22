@@ -40,7 +40,7 @@ void		convert_a(t_s_pct *chk)
 		return;
 	stuff_stuff(g_fstr, &stf, pads);
 	set_syl_grps(&stf);
-	set_pad_syl(chk, pads, stf.syl_groups, A_SYLLABLES);
+	set_pad_syl(chk, pads, stf.syl_groups, A_SYLGRPS);
 	out_syl_groups(stf.syl_groups, A_SYLGRPS);
 }
 

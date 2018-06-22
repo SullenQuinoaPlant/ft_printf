@@ -1,6 +1,42 @@
 #include "ft_printf_inner.h"
 
-size_t	tssos_outlen(t_s_so stack[], int len)
+size_t
+	syls_outlen(
+		t_s_so syl*, int count, size_t apstr_grp)
+{
+	t_s_so	* const lim = syl + count;
+	size_t	total_len;
+	size_t	len;
+
+	while (syl < lim)
+	{
+		len = syl->len;
+		type = syl->type;
+		if (type == e_sot_apstr_cc ||
+			type == e_sot_apstr_c)
+			len += apstr_len_raw(len, apstr_grp);
+	}
+	return (len);
+}
+
+size_t	sylgrps_outlen(t_s_sgd grp[], int count)
+{
+	t_s_sgd	* const lim = grp + count;
+	size_t	total_len;
+	size_t	len;
+
+	total_len = 0;
+	while (grp < lim)
+	{
+		len = tssos_lensum(grp->first, grp->sz);
+		if (grp->apstr_grp)
+			len += apstr_len_grp(grp);
+		total_len += len;
+	}
+	return (total_len);
+}
+
+size_t	tssos_lensum(t_s_so stack[], int len)
 {
 	t_s_so	* const limit = stack + len;
 	size_t	ret;
@@ -44,7 +80,7 @@ void
 
 	
 	init_pad_syllables(pad_i, syl_ar);
-	len = get_padlen(chk, tssos_outlen(syl_ar, count));
+	len = get_padlen(chk, sylgrps_outlen(syl_ar, count));
 	if (!len)
 		return;
 	if (flags & MINUS_FLAG)
