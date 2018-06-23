@@ -1,17 +1,11 @@
-//main is defined (see compiler invocation)
-#undef main
+#define HOW_MANY_TESTS 100
+#include "cmocka/my_overlay.h"
 
 #include "my_stupidmath.c"
 
-#include <stdio.h>
-#define HOW_MANY_TESTS 100
-#include "cmocka/my_macro_overlay.h"
-
-
-int		main(int ac, char ** av)
-{
 #define AR_SZ 100
-
+void	test_declarations()
+{
 	T(constants,
 		if (CHAR_BIT == 8)
 		{
@@ -93,7 +87,4 @@ int		main(int ac, char ** av)
 		true_utf8seq(in, tst);
 		assert_memory_equal(ref, tst, AR_SZ);
 	)
-
-#undef AR_SZ
-	return (run_test_arr(ac, av));
 }

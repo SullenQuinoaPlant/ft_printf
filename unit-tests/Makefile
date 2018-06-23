@@ -49,7 +49,6 @@ cmocka :
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
 		-D $(ARCH)\
-		-D UTEST_DIR='"$(UTEST_DIR)"'\
 		-include $(SRC_DIR)/$*.c\
 		$<\
 		-L $(LIBS_L)\
@@ -62,7 +61,6 @@ cmocka :
 		-I $(SRC_DIR)\
 		-I $(LIBS_I)\
 		-D $(ARCH)\
-		-D UTEST_DIR='"$(UTEST_DIR)"'\
 		$<\
 		-L $(LIBS_L)\
 		-lftprintf\
@@ -87,9 +85,12 @@ unit-tests ut : list_tests build_tests run_tests
 run_tests : $(EXECUTION_STAMPS)
 
 %.execution.stamp : %.o
-	-./$*.o "$$(readlink -e $(UTEST_DIR))" \
+	-./$*.o \
+		"$(UTEST_DIR)" \
+		"$(CALL_DIR)" \
 		&& touch $@
 
+#		"$$(readlink -e $(UTEST_DIR))" \
 
 
 
@@ -103,7 +104,6 @@ all_unit_tests aut : clean-tests ut
 
 .PHONY : clean-tests
 clean-tests :
-	$(MAKE) -C $(ROOT)
 	-rm $(UTEST_DIR)/*.o
 	-rm $(UTEST_DIR)/*.stamp
 

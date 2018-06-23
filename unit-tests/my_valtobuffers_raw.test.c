@@ -1,13 +1,9 @@
-//main is defined (see compiler invocation)
-#undef main
-
-#include <stdio.h>
 #define HOW_MANY_TESTS 10
-#include "cmocka/my_macro_overlay.h"
+#include "cmocka/my_overlay.h"
 
 #include "my_stupidmath.c"
 
-int		main(void)
+void	test_declarations()
 {
 	#define B_LEN 20
 	T(my_valtobuffer0,
@@ -117,9 +113,4 @@ int		main(void)
 		}
 	)
 	#undef B_LEN
-
-    return (
-		_cmocka_run_group_tests(
-			"TEST_ARR", TEST_ARR, g_test_index, 0, 0)
-	);
 }

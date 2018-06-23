@@ -1,16 +1,9 @@
-//main is defined (see compiler invocation)
-#undef main
+#define HOW_MANY_TESTS 100
+#include "cmocka/my_overlay.h"
 
-#include <stdio.h>
-#define HOW_MANY_TESTS 10
-#include "cmocka/my_macro_overlay.h"
-
-
-int		main(int ac, char ** av)
+void	test_declarations()
 {
 	T(nop,
-		(void)state;
+		assert_true(1);
 	)
-
-	return (run_test_arr(ac, av));
 }

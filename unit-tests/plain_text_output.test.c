@@ -3,7 +3,7 @@
 
 #include "printf_diff.c"
 
-int		main(void)
+void	test_declarations()
 {
 	T(test1,
 		printf_diff("this is some text");
@@ -15,8 +15,4 @@ int		main(void)
 		printf_diff("this text has a percent sign : "
 			"%%");
 	)
-    return (\
-		_cmocka_run_group_tests("TEST_ARR", TEST_ARR,\
-					g_test_index, 0, 0)\
-	);
 }

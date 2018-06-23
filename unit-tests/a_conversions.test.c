@@ -1,9 +1,9 @@
 #define HOW_MANY_TESTS 100
-#include "cmocka/my_macro_overlay.h"
+#include "cmocka/my_overlay.h"
 
 #include "printf_diff.c"
 
-int		main(int ac, char** av)
+void	test_declarations()
 {
 	T(test1,
 		double	d;
@@ -328,6 +328,4 @@ skip();
 
 /*Skipped tests where printf displays crazy behavior in contradiction with the man page I've read.*/
 /*Might even decide to revert the accomodations made forthe default rounding behavior.*/
-
-	return (run_test_arr(ac, av));
 }

@@ -1,13 +1,9 @@
-//main is defined (see compiler invocation)
-#undef main
-
-#include <stdio.h>
 #define HOW_MANY_TESTS 10
-#include "cmocka/my_macro_overlay.h"
+#include "cmocka/my_overlay.h"
 
 #include "printf_diff.c"
 
-int		main(int ac, char ** av)
+void	test_declarations();
 {
 	T(achar,
 		char	c = 'c';
@@ -26,6 +22,4 @@ int		main(int ac, char ** av)
 
 		printf_diff("aoeu_%c_aoeu", c);
 	)
-
-	return (run_test_arr(ac, av));
 }

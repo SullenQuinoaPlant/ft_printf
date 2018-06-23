@@ -1,13 +1,11 @@
-//# pragma GCC system_header
-
 #ifndef MY_MACRO_OVERLAY
 # define MY_MACRO_OVERLAY
 
+# include <unistd.h>
 # include <stdarg.h>
 # include <stddef.h>
 # include <setjmp.h>
 # include "cmocka.h"
-
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
@@ -66,33 +64,43 @@ static int		search_test_arr(const char *search_for)
 		return ((ret = atoi(search_for)) < g_test_index ? ret : 0);
 }
 
-static int		run_test_arr(int ac, char *av[])
+static int
+	run_test_arr(
+		test_count int, char *tests[])
 {
-	//start at 2 because of call argument, see Makefile
-	if (ac == 2)
-	{
-	    return (
-			_cmocka_run_group_tests(
-						"TEST_ARR", TEST_ARR,
-						g_test_index, 0, 0
-			)
-		);
-	}
-	else if (ac > 2)
-	{
-		int		i;
-		int		test_index;
-		int		ret_value;
+	char	* const test_lim = tests + test_count;
+	int 	ret_val = 0;
 
-		i = 1;
-		ret_value = 0;
-		while (++i < ac)
-		{
-			test_index = search_test_arr(av[i]);
-			ret_value += _cmocka_run_group_tests(av[i], &TEST_ARR[test_index], 1, 0, 0);
-		}
-		return (ret_value);
+	if (!test_count)
+		ret_val = _cmocka_run_group_tests(
+				"TEST_ARR", TEST_ARR,
+				g_test_index, 0, 0);
+	else
+		do {
+			ret_val += _cmocka_run_group_tests(
+				*tests,
+				&TEST_ARR[search_test_arr(*test),
+				1, 0, 0)
+		} while (++tests < test_lim)
+	return (ret_val);
+}
+
+//main may be defined (see compiler invocation)
+#undef main
+//tests are declared in .test.c files
+void	test_declarations();
+int				main(int ac, char **av)
+{
+	int		ret;
+
+	if (!(ret = chdir(av[AV_UTEST_DIR])))
+	{
+		test_declarations();
+		ret = run_test_arr(
+			ac - AV_TESTS,
+			av[AV_TESTS]);
 	}
+	return (ret);
 }
 	
 #endif

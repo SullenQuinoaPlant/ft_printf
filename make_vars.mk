@@ -1,6 +1,7 @@
 NAME = ftprintf
 LIBNAME = libftprintf
 
+CALL_DIR := $(shell pwd)
 SRC_DIR	:= $(ROOT)/sources
 OBJ_DIR := $(ROOT)/objects
 LIB_DIR := $(ROOT)/libs
