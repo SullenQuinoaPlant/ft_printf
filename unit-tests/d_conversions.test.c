@@ -190,5 +190,12 @@ int	declare_tests_and_run(int all_of, char *these[])
 
 		printf_compare("d_test30.ref", "%'.12d", t);
 	)
+
+	T(test32,
+		int		t = 12;
+
+		printf_diff("%012d", t);
+	)
+
 	return(run_test_arr(all_of, these));
 }

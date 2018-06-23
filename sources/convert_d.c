@@ -19,11 +19,10 @@ static int
 		t_s_pct *chk, void *s)
 {
 	t_s_dcs	* const stf = (t_s_dcs*)s;
-	t_s_so	* const syl = &stf->syls[PRE];
 	int		r;
 
 	(void)chk;
-	r = output_syllables(&syl[PRE], D - S);
+	r = output_syllables(&stf->syls[PRE], D - S);
 	return (r);
 }
 
@@ -58,22 +57,24 @@ static size_t
 
 	init_syls(e_sot_c, D_SYLS, stf->syls);
 	pre = chk->precision ? **chk->precision : -1;
-	if (d || pre)
+	if (!d && !pre)
+		return (0);
+	*d_so = syl_v_tob(d, g_dec, &stf->b, e_all);
+	if (chk->flags & APSTR_FLAG)
 	{
-		*d_so = syl_v_tob(d, g_dec, &stf->b, e_all);
-		if (chk->flags & APSTR_FLAG)
-			d_so->type = e_sot_apstr_cc;
-		if (chk->flags & SPACE_FLAG && d >= 0)
-			*d_so->cc = ' ';
-		stf->syls[S].c = *d_so->cc++;
-		d_so->len--;
-		if (d < 0 ||
-			(chk->flags & (SPACE_FLAG | PLUS_FLAG)))
-			stf->syls[S].len = 1;
-		if (pre > 0 && d_so->len - 1 < (size_t)pre &&
-			(pre -= d_so->len - 1))
-			stf->syls[PRE].len = pre;
+		d_so->type = e_sot_apstr_cc;
+		stf->syls[PRE].type = e_sot_apstr_c;
 	}
+	if (chk->flags & SPACE_FLAG && d >= 0)
+		*d_so->cc = ' ';
+	stf->syls[S].c = *d_so->cc++;
+	d_so->len--;
+	if (d < 0 ||
+		(chk->flags & (SPACE_FLAG | PLUS_FLAG)))
+		stf->syls[S].len = 1;
+	if (pre > 0 && d_so->len < (size_t)pre &&
+		(pre -= d_so->len))
+		stf->syls[PRE].len = pre;
 	return (syls_outlen(stf->syls, D_SYLS, AF_DG));
 }
 
@@ -81,11 +82,14 @@ void		convert_d(t_s_pct *chk)
 {
 	t_s_dcs		stf;
 	size_t		len;
+	size_t		ap_len;
 	
 	len = set_syls(chk, get_d(chk), &stf);
-	g_os.apstr_grp = AF_DG;
-	g_os.apstr_pos = apstr_offset(stf.syls[D].len, AF_DG);
-	g_os.apstr_c = AF_DS;
+	if (chk->flags & APSTR_FLAG &&
+		ap_len = len - stf.syls[S].len)
+		gos.set_apstr(AF_DG, AF_DS, ap_len);
+	else
+		go_set_apstr(0, 0, 0);
 	output_padnstuff(len, chk, g_d_outputters, &stf);
 }
 #undef S

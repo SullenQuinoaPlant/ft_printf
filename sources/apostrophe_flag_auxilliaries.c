@@ -6,7 +6,7 @@ size_t
 {
 	if (!grp_sz)
 		return (0);
-	return (len / grp_sz);
+	return (len / grp_sz - len % grp_sz ? 0 : 1);
 }
 
 int
@@ -21,41 +21,41 @@ int
 	return (mod ? grp - mod : 0);
 }
 
-#define ADD 0
-#define TMP 1
-#define OVR 2
-#define GSZ 3
 size_t
-	apstr_len_grp(
-		t_s_sgd *grp)
+	apstr_len_syls(
+		t_s_so *syl, size_t count
+		size_t grp)
 {
-	t_s_so	* const lim = grp->first + grp->sz;
-	t_s_so	* syl;
-	size_t	s[GSZ + 1];
-	t_e_sot	type;
-
-	if (!(s[GSZ] = grp->apstr_grp))
-		return (0);
-	s[ADD] = 0;
-	s[OVR] = (size_t)grp->apstr_pos;
-	syl = grp->first;
-	while (syl < lim)
+	size_t	tmp;
+	size_t	over;
+	size_t	add;
+	
+	add = 0;
+	over = 0;
+	while (count--)
 	{
 		if ((type = syl->type) != e_sot_apstr_c &&
 			type != e_sot_apstr_cc)
 			continue;
-		s[TMP] = s[OVR] + syl->len;
-		if (s[TMP] < s[OVR])
+		tmp = over + syl->len;
+		if (tmp < over)
 			g_os.errored++;
-		s[ADD] += s[TMP] / s[GSZ];
-		s[OVR] = s[TMP] % s[GSZ];
+		add += tmp / grp;
+		over = tmp % grp;
 	}
-	return (s[ADD]);
+	add -= over ? 0 : 1;
+	return (add);
 }
-#undef ADD
-#undef TMP
-#undef OVR
-#undef GSZ
+
+size_t
+	apstr_len_grp(
+		t_s_sgd *grp)
+{
+	size_t	r;
+
+	r = apstr_len_syls(grp->firt, grp->sz, grp->apstr_grp);
+	return (r);
+}
 
 void
 	apstr_grp_adjust(

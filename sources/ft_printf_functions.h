@@ -13,6 +13,11 @@ size_t
 	apstr_len_grp(
 		t_s_sgd *grp);
 
+size_t
+	apstr_len_syls(
+		t_s_so * syl, size_t count,
+		size_t grp);
+
 int
 	apstr_offset(
 		size_t len, size_t grp);
@@ -120,6 +125,14 @@ t_s_pct	*
 int
 	get_padlen(
 		t_s_pct *chk, size_t len);
+
+void
+	gos_set_apstr(
+		size_t grp, char c, size_t len);
+
+void
+	gos_set_grp(
+		t_s_sgd *grp);
 
 int
 	gos_update(

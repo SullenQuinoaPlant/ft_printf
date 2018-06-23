@@ -13,7 +13,8 @@ int
 	r = (pos = (size_t)g_os.apstr_pos) ? 1 : 0;
 	inc = syl->type == e_sot_apstr_cc ? 1 : 0;
 	p = inc ? syl->cc : &syl->c;
-	while (i < syl->len && r)
+	i = syl->len;
+	while (i && r)
 	{
 		if ((pos++) == g_os.apstr_grp && !(pos = 0))
 			r = output_c(1, g_os.apstr_c);
@@ -63,9 +64,7 @@ int
 
 	while (grp < lim && r)
 	{
-		g_os.apstr_grp = grp->apstr_grp;
-		g_os.apstr_pos = grp->apstr_pos;
-		g_os.apstr_c = grp->apstr_c;
+		gos_set_grp(grp);
 		r = output_syllables(grp->first, grp->sz);
 	}
 	return (r);
