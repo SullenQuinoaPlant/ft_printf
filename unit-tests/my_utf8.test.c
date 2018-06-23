@@ -4,7 +4,7 @@
 #include "my_stupidmath.c"
 
 #define AR_SZ 100
-void	test_declarations()
+int	declare_tests_and_run(int all_of, char *these[])
 {
 	T(constants,
 		if (CHAR_BIT == 8)
@@ -87,4 +87,5 @@ void	test_declarations()
 		true_utf8seq(in, tst);
 		assert_memory_equal(ref, tst, AR_SZ);
 	)
+	return(run_test_arr(all_of, these));
 }

@@ -66,9 +66,9 @@ static int		search_test_arr(const char *search_for)
 
 static int
 	run_test_arr(
-		test_count int, char *tests[])
+		int test_count, char *test_ids[])
 {
-	char	* const test_lim = tests + test_count;
+	char	** const test_lim = test_ids + test_count;
 	int 	ret_val = 0;
 
 	if (!test_count)
@@ -78,28 +78,27 @@ static int
 	else
 		do {
 			ret_val += _cmocka_run_group_tests(
-				*tests,
-				&TEST_ARR[search_test_arr(*test),
-				1, 0, 0)
-		} while (++tests < test_lim)
+				*test_ids,
+				&TEST_ARR[search_test_arr(*test_ids)],
+				1, 0, 0);
+		} while (++test_ids < test_lim);
 	return (ret_val);
 }
 
 //main may be defined (see compiler invocation)
 #undef main
 //tests are declared in .test.c files
-void	test_declarations();
-int				main(int ac, char **av)
+int	declare_tests_and_run(int, char *[]);
+# define AV_UTEST_DIR 1
+# define AV_TESTS 2
+int		main(int ac, char **av)
 {
 	int		ret;
 
 	if (!(ret = chdir(av[AV_UTEST_DIR])))
-	{
-		test_declarations();
-		ret = run_test_arr(
+		ret = declare_tests_and_run(
 			ac - AV_TESTS,
-			av[AV_TESTS]);
-	}
+			&av[AV_TESTS]);
 	return (ret);
 }
 	

@@ -26,17 +26,17 @@ int	printf_diff(char const * format, ...)
 	va_start(a_l, format);
 	va_copy(b_l, a_l);
 	if (
-		(a_fd = fopen(UTEST_DIR"/a.txt", "w")) &&
+		(a_fd = fopen("a.txt", "w")) &&
 		(a_res = vfprintf(a_fd, format, a_l)) &&
 		!fclose(a_fd) && !(a_fd = 0) &&
 		(save_fd = dup(1)) > 0 &&
-		(b_fd = creat(UTEST_DIR"/b.txt", S_IRUSR | S_IWUSR)) > 0 &&
+		(b_fd = creat("b.txt", S_IRUSR | S_IWUSR)) > 0 &&
 		dup2(b_fd, 1) > 0)
 	{
 		b_res = ft_vprintf(format, b_l);
 		save_fd = restore_fd1(save_fd);
-		if ((system("diff UTEST_DIR/a.txt UTEST_DIR/b.txt > UTEST_DIR/res.txt") >= 0) &&
-		((diff_fd = open(UTEST_DIR"/res.txt", O_RDONLY)) > 0))
+		if ((system("diff a.txt b.txt > res.txt") >= 0) &&
+		((diff_fd = open("res.txt", O_RDONLY)) > 0))
 		{
 			char	dummy[1];
 			if ((res = read(diff_fd, dummy, 1)) >= 0)
@@ -44,14 +44,14 @@ int	printf_diff(char const * format, ...)
 			close(diff_fd);
 			if (res > 0)
 			{
-				printf("ref file UTEST_DIR/a.txt and test file UTEST_DIR/b.txt have different contents"
+				printf("ref file a.txt and test file b.txt have different contents"
 					" for : %s\n diff is :\n", format);
-				system("cat UTEST_DIR/res.txt");
+				system("cat res.txt");
 				fflush(stdout);
-//				printf("\n ref file UTEST_DIR/a.txt is :\n");
-//				system("cat -e UTEST_DIR/a.txt");
-//				printf("\n tst file UTEST_DIR/b.txt is :\n");
-//				system("cat -e UTEST_DIR/b.txt");
+//				printf("\n ref file a.txt is :\n");
+//				system("cat -e a.txt");
+//				printf("\n tst file b.txt is :\n");
+//				system("cat -e b.txt");
 			}
 		}
 	}
@@ -88,16 +88,16 @@ int
 
 	va_start(b_l, format);
 	if ((save_fd = dup(1)) > 0 &&
-		(b_fd = creat(UTEST_DIR"/b.txt", S_IRUSR | S_IWUSR)) > 0 &&
+		(b_fd = creat("b.txt", S_IRUSR | S_IWUSR)) > 0 &&
 		dup2(b_fd, 1) > 0)
 	{
 		b_res = ft_vprintf(format, b_l);
 		save_fd = restore_fd1(save_fd);
 		char	command_buffer[COMMAND_BUFFER];
 		snprintf(command_buffer, COMMAND_BUFFER,
-			"diff %s UTEST_DIR/b.txt > UTEST_DIR/res.txt", ref_name);
+			"diff %s b.txt > res.txt", ref_name);
 		if ((system(command_buffer) >= 0) &&
-		((diff_fd = open(UTEST_DIR"/res.txt", O_RDONLY)) > 0))
+		((diff_fd = open("res.txt", O_RDONLY)) > 0))
 		{
 			char	dummy[1];
 			if ((res = read(diff_fd, dummy, 1)) >= 0)
@@ -105,13 +105,13 @@ int
 			close(diff_fd);
 			if (res > 0)
 			{
-				printf("ref file %s and test file UTEST_DIR/b.txt have different contents for : %s\n diff is :\n", ref_name, format);
-				system("cat UTEST_DIR/res.txt");
+				printf("ref file %s and test file b.txt have different contents for : %s\n diff is :\n", ref_name, format);
+				system("cat res.txt");
 				fflush(stdout);
-//				printf("\n ref file UTEST_DIR/a.txt is :\n");
-//				system("cat -e UTEST_DIR/a.txt");
-//				printf("\n tst file UTEST_DIR/b.txt is :\n");
-//				system("cat -e UTEST_DIR/b.txt");
+//				printf("\n ref file a.txt is :\n");
+//				system("cat -e a.txt");
+//				printf("\n tst file b.txt is :\n");
+//				system("cat -e b.txt");
 			}
 		}
 	}

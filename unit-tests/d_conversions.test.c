@@ -3,7 +3,7 @@
 
 #include "printf_diff.c"
 
-void	test_declarations()
+int	declare_tests_and_run(int all_of, char *these[])
 {
 	T(test1,
 		char	t = 0;
@@ -164,30 +164,31 @@ void	test_declarations()
 	T(test27,
 		int		t = 1000;
 
-		printf_compare(UTEST_DIR"/d_test27.ref", "%'d", t);
+		printf_compare("d_test27.ref", "%'d", t);
 	)
 
 	T(test28,
 		int		t = -1000;
 
-		printf_compare(UTEST_DIR"/d_test28.ref", "%'d", t);
+		printf_compare("d_test28.ref", "%'d", t);
 	)
 
 	T(test29,
 		int		t = 12;
 
-		printf_compare(UTEST_DIR"/d_test29.ref", "%'d", t);
+		printf_compare("d_test29.ref", "%'d", t);
 	)
 
 	T(test30,
 		int		t = 12;
 
-		printf_compare(UTEST_DIR"/d_test30.ref", "%'012d", t);
+		printf_compare("d_test30.ref", "%'012d", t);
 	)
 
 	T(test31,
 		int		t = 12;
 
-		printf_compare(UTEST_DIR"/d_test30.ref", "%'.12d", t);
+		printf_compare("d_test30.ref", "%'.12d", t);
 	)
+	return(run_test_arr(all_of, these));
 }

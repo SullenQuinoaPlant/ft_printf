@@ -3,7 +3,7 @@
 
 #include "printf_diff.c"
 
-void	test_declarations();
+int	declare_tests_and_run(int all_of, char *these[])
 {
 	T(achar,
 		char	c = 'c';
@@ -22,4 +22,5 @@ void	test_declarations();
 
 		printf_diff("aoeu_%c_aoeu", c);
 	)
+	return(run_test_arr(all_of, these));
 }

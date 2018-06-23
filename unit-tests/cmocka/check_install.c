@@ -1,16 +1,11 @@
 #include <stdio.h>
 #define HOW_MANY_TESTS 10
-#include "my_macro_overlay.h"
+#include "my_overlay.h"
 
-
-int		main(void)
+int	declare_tests_and_run(int all_of, char *these[])
 {
 	T(nop,
-		(void)state;
 		assert_true(1);
 	)
-    return (\
-		_cmocka_run_group_tests("TEST_ARR", TEST_ARR,\
-					g_test_index, 0, 0)\
-	);
+	return (run_test_arr(all_of, these));
 }

@@ -31,7 +31,7 @@ cmocka :
 	 	$(UTEST_DIR)/cmocka/check_install.c\
 		 -lcmocka -o test.o\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))\
-		&& ./test.o;\
+		&& ./test.o .;\
 	then\
 		echo "cmocka already installed";\
 	else\
@@ -85,12 +85,10 @@ unit-tests ut : list_tests build_tests run_tests
 run_tests : $(EXECUTION_STAMPS)
 
 %.execution.stamp : %.o
-	-./$*.o \
-		"$(UTEST_DIR)" \
-		"$(CALL_DIR)" \
-		&& touch $@
-
-#		"$$(readlink -e $(UTEST_DIR))" \
+	-./$*.o "$(UTEST_DIR)" \
+	&& touch $@
+#argument used to be
+#	"$$(readlink -e $(UTEST_DIR))" \
 
 
 

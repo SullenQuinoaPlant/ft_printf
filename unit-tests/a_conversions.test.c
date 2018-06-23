@@ -3,7 +3,7 @@
 
 #include "printf_diff.c"
 
-void	test_declarations()
+int	declare_tests_and_run(int all_of, char *these[])
 {
 	T(test1,
 		double	d;
@@ -328,4 +328,5 @@ skip();
 
 /*Skipped tests where printf displays crazy behavior in contradiction with the man page I've read.*/
 /*Might even decide to revert the accomodations made forthe default rounding behavior.*/
+	return(run_test_arr(all_of, these));
 }

@@ -3,7 +3,7 @@
 
 #include "my_stupidmath.c"
 
-void	test_declarations()
+int	declare_tests_and_run(int all_of, char *these[])
 {
 	#define B_LEN 20
 	T(my_valtobuffer0,
@@ -113,4 +113,5 @@ void	test_declarations()
 		}
 	)
 	#undef B_LEN
+	return(run_test_arr(all_of, these));
 }
