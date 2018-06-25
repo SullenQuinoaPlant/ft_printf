@@ -30,6 +30,7 @@ TARGETS := \
 	get_va_args__vaarger_functions4 \
 	get_va_args__vaarger_functions5 \
 	get_va_args__vaarger_functions6 \
+	global_output_state_auxilliaries \
 	my_cleanfree \
 	my_lstappend \
 	my_stupidmath \

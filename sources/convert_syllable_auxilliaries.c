@@ -96,7 +96,7 @@ void
 		syl_ar[i].c = '0';
 		syl_ar[i].len = len;
 		if (syl_ar[i].type == e_sot_apstr_c)
-			apstr_grp_adjust(&syl_ar[i], syl_grps);
+			apstr_zpad_adjust(&syl_ar[i], syl_grps);
 	}
 	else
 		syl_ar[pad_i[e_pp_left]].len = len;

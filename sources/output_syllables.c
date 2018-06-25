@@ -10,20 +10,21 @@ int
 	int		r;
 	int		inc;
 
-	r = (pos = (size_t)g_os.apstr_pos) ? 1 : 0;
+	pos = (size_t)g_os.apstr_pos;
 	inc = syl->type == e_sot_apstr_cc ? 1 : 0;
 	p = inc ? syl->cc : &syl->c;
 	i = syl->len;
 	while (i && r)
 	{
-		if ((pos++) == g_os.apstr_grp && !(pos = 0))
-			r = output_c(1, g_os.apstr_c);
-		else
+		if ((pos++) == g_os.apstr_grp)
 		{
-			r = output_c(1, *p);
-			i--;
-			p += inc;
+			pos = 0;
+			r = output_c(1, g_os.apstr_c);
+			continue;
 		}
+		r = output_c(1, *p);
+		i--;
+		p += inc;
 	}
 	g_os.apstr_pos = pos;
 	return (r);

@@ -86,10 +86,10 @@ void		convert_d(t_s_pct *chk)
 	
 	len = set_syls(chk, get_d(chk), &stf);
 	if (chk->flags & APSTR_FLAG &&
-		ap_len = len - stf.syls[S].len)
-		gos.set_apstr(AF_DG, AF_DS, ap_len);
+		(ap_len = len - stf.syls[S].len))
+		gos_set_apstr(AF_DG, AF_DS, ap_len);
 	else
-		go_set_apstr(0, 0, 0);
+		gos_set_apstr(0, 0, 0);
 	output_padnstuff(len, chk, g_d_outputters, &stf);
 }
 #undef S

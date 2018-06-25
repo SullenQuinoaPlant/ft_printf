@@ -1,10 +1,6 @@
 #ifndef FT_PRINTF_FUNCTIONS_H
 # define FT_PRINTF_FUNCTIONS_H
 
-void
-	apstr_grp_adjust(
-		t_s_so *pad, t_s_sgd *grps);
-
 size_t
 	apstr_len_raw(
 		size_t len, size_t grp_sz);
@@ -26,6 +22,10 @@ void
 	apstr_zpad(
 		size_t grp,
 		t_s_so *pad, int *pos);
+
+void
+	apstr_zpad_adjust(
+		t_s_so *pad, t_s_sgd *grps);
 
 char const *
 	attempt_all(

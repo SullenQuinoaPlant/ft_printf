@@ -17,18 +17,19 @@ int
 
 	if (!grp)
 		return (0);
-	mod = len % grp;
-	return (mod ? grp - mod : 0);
+	mod = len % (grp + 1);
+	return (grp - mod);
 }
 
 size_t
 	apstr_len_syls(
-		t_s_so *syl, size_t count
+		t_s_so *syl, size_t count,
 		size_t grp)
 {
 	size_t	tmp;
 	size_t	over;
 	size_t	add;
+	t_e_sot	type;
 	
 	add = 0;
 	over = 0;
@@ -53,12 +54,12 @@ size_t
 {
 	size_t	r;
 
-	r = apstr_len_syls(grp->firt, grp->sz, grp->apstr_grp);
+	r = apstr_len_syls(grp->first, grp->sz, grp->apstr_grp);
 	return (r);
 }
 
 void
-	apstr_grp_adjust(
+	apstr_zpad_adjust(
 		t_s_so *pad, t_s_sgd *grps)
 {
 	size_t	grp;

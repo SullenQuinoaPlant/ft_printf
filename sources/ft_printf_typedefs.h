@@ -157,7 +157,7 @@ typedef enum	e_dollar_convention {
 }				t_e_dc;
 
 /*output state
-**	output_len holds number of chars written since lasst reset.
+**	output_len holds number of chars written since last reset.
 */
 typedef struct	s_output_state {
 	size_t		output_len;
