@@ -64,6 +64,7 @@ static size_t
 	{
 		d_so->type = e_sot_apstr_cc;
 		stf->syls[PRE].type = e_sot_apstr_c;
+		stf->syls[PRE].c = '0';
 	}
 	if (chk->flags & SPACE_FLAG && d >= 0)
 		*d_so->cc = ' ';

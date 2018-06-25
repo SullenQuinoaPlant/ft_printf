@@ -6,20 +6,18 @@ size_t
 {
 	t_s_so	* const lim = syl + count;
 	size_t	total_len;
-	size_t	len;
+	size_t	apstr_len;
 	t_e_sot	type;
 
 	total_len = 0;
+	apstr_len = 0;
 	while (syl < lim)
-	{
-		len = syl->len;
-		type = syl->type;
-		if (type == e_sot_apstr_cc ||
+		if ((type = syl->type) == e_sot_apstr_cc ||
 			type == e_sot_apstr_c)
-			len += apstr_len_raw(len, apstr_grp);
-		total_len += len;
-		syl++;
-	}
+			apstr_len += (syl++)->len;
+		else
+			total_len += (syl++)->len;
+	total_len += apstr_len_raw(apstr_len, apstr_grp);
 	return (total_len);
 }
 
@@ -27,15 +25,18 @@ size_t	sylgrps_outlen(t_s_sgd grp[], int count)
 {
 	t_s_sgd	* const lim = grp + count;
 	size_t	total_len;
-	size_t	len;
+	t_s_so	* first;
+	size_t	grp_sz;
+	size_t	grp_by;
 
 	total_len = 0;
 	while (grp < lim)
 	{
-		len = tssos_lensum(grp->first, grp->sz);
-		if (grp->apstr_grp)
-			len += apstr_len_grp(grp);
-		total_len += len;
+		first = grp->first;
+		grp_sz = grp->sz;
+		grp_by = grp->apstr_grp;
+		total_len += syls_outlen(first, grp_sz, grp_by);
+		grp++;
 	}
 	return (total_len);
 }

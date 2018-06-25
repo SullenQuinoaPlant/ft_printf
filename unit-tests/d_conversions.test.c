@@ -188,7 +188,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 	T(test31,
 		int		t = 12;
 
-		printf_compare("d_test30.ref", "%'.12d", t);
+		printf_compare("d_test31.ref", "%'.12d", t);
 	)
 
 	T(test32,
