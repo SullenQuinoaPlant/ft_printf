@@ -63,10 +63,12 @@ int
 	t_s_sgd	* const lim = grp + count;
 	int		r;
 
+	r = 1;
 	while (grp < lim && r)
 	{
 		gos_set_grp(grp);
 		r = output_syllables(grp->first, grp->sz);
+		grp++;
 	}
 	return (r);
 }
