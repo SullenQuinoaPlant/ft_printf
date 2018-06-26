@@ -1,5 +1,10 @@
 #include "my_valtobuffers.h"
 
+t_bd const	g_oct = {"01234567", 8};
+t_bd const	g_dec = {"0123456789", 10};
+t_bd const	g_hex = {"0123456789abcdef", 16};
+t_bd const	g_bhex = {"0123456789ABCDEF", 16};
+
 size_t
 	my_valtobuffer(
 		uintmax_t val,
