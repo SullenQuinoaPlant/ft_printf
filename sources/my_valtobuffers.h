@@ -5,10 +5,20 @@
 # include "libft.h"
 # include "my_stupidmath.h"
 
-extern char const	* const g_oct;
-extern char const	* const g_dec;
-extern char const	* const g_hex;
-extern char const	* const g_bhex;
+extern char const	* const g_oct_syms;
+extern char const	* const g_dec_syms;
+extern char const	* const g_hex_syms;
+extern char const	* const g_bhex_syms;
+
+typedef struct	s_base_descriptor {
+	char const	*syms;
+	char const	radius;
+}				t_bd;
+
+extern t_bd const	g_oct;
+extern t_bd const	g_dec;
+extern t_bd const	g_hex;
+extern t_bd const	g_bhex;
 
 # define BIGGEST_BASE2 (sizeof(uintmax_t) * 8)
 # define BIGGEST_SIGNED BIGGEST_BASE2 + 1
@@ -46,13 +56,13 @@ size_t
 	my_lowvaltob(
 		uintmax_t val,
 		int val_sz,
-		char const * const basestr,
+		t_bd *base,
 		char *b_end);
 
 size_t
 	my_signvaltob(
 		intmax_t val,
-		char const * const basestr,
+		t_bd *base,
 		char *b_end,
 		t_e_sp sign_f);
 
@@ -72,7 +82,7 @@ t_s_cc
 size_t
 	my_valtobuffer(
 		uintmax_t val,
-		char const * const basestr,
+		t_bd *base,
 		char *b_end);
 
 #endif
