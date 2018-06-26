@@ -11,8 +11,8 @@ extern char const	* const g_hex_syms;
 extern char const	* const g_bhex_syms;
 
 typedef struct	s_base_descriptor {
-	char *syms;
-	char radius;
+	char const	*syms;
+	char 		radius;
 }				t_bd;
 
 extern t_bd const	g_oct;
