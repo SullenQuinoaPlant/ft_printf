@@ -17,6 +17,7 @@ static t_stuffer
 
 void		convert_e(t_s_pct *p_chk)
 {
+	(void)g_fstr;
 	(void)p_chk;
 }
 
