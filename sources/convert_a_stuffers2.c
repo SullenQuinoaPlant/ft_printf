@@ -20,5 +20,7 @@ void	ca_exponent(int syl, void *p)
 	t_s_so	set;
 
 	set = syl_v_tob(stf->fpd.exp, g_dec_syms, &stf->e, e_all);
+	if (stf->chk->flags & APSTR_FLAG)
+		set.type = e_sot_apstr_cc;
 	stf->syllables[syl] = set;
 }

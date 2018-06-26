@@ -4,7 +4,7 @@
 # include "ft_printf_inner.h"
 
 # define A_SYLLABLES 10
-# define A_SYLGRPS 6
+# define A_SYLGRPS 7
 typedef struct	s_convert_a_stuff {
 	t_s_pct		*chk;
 	t_s_so 		syllables[A_SYLLABLES];

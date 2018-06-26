@@ -18,12 +18,13 @@ static void	set_syl_grps(t_s_acs *stf)
 {
 	t_s_so	* const syls = stf->syllables;
 	t_s_sgd	ar[A_SYLGRPS] = {
-			{&syls[0], 2, 0, 0, '\0'},
-			{&syls[2], 2, 2, 1, '_'},
-			{&syls[4], 1, 0, 0, '\0'},
-			{&syls[5], 2, 2, 0, '_'},
-			{&syls[7], 1, 0, 0, '\0'},
-			{&syls[8], 1, 3, 0, '\''}};
+			{&syls[0], 2, 0, 0, 0},
+			{&syls[2], 2, 4, 3, '_'},
+			{&syls[4], 1, 0, 0, 0},
+			{&syls[5], 2, 4, 0, '_'},
+			{&syls[7], 1, 0, 0, 0},
+			{&syls[8], 1, 3, 0, '\''},
+			{&syls[9], 1, 0, 0, 0}};
 
 	ft_memcpy(stf->syl_groups, ar, sizeof(ar));
 }

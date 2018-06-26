@@ -30,7 +30,8 @@ void	ca_power0(int syl, void *p)
 	t_s_so	set;
 
 	set.len = 1;
-	set.type = e_sot_cc;
+	if (stf->chk->flags & APSTR_FLAG)
+		set.type = e_sot_apstr_cc;
 	set.cc = &stf->zero;
 	stf->zero = stf->fpd.flags & DNORM_F ? '0' : '1';
 	stf->syllables[syl] = set;
