@@ -5,7 +5,7 @@ char const	* const g_dec_syms = "0123456789";
 char const	* const g_hex_syms = "0123456789abcdef";
 char const	* const g_bhex_syms = "0123456789ABCDEF";
 
-t_bd const	g_oct = {"01234567", 8};
+t_bd const	g_oct = {g_oct_syms, 8};
 t_bd const	g_dec = {"0123456789", 10};
 t_bd const	g_hex = {"0123456789abcdef", 16};
 t_bd const	g_bhex = {"0123456789ABCDEF", 16};
