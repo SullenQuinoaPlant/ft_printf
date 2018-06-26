@@ -7,6 +7,8 @@ TARGETS := \
 	convert_d \
 	convert_decompose_floating_point \
 	convert_e \
+	convert_e_stuffers1 \
+	convert_e_stuffers2 \
 	convert_f \
 	convert_g \
 	convert_i \

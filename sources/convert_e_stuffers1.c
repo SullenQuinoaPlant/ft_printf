@@ -7,6 +7,7 @@ void
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 
 	(void)stf;
+	(void)pos;
 }
 
 void
@@ -16,6 +17,7 @@ void
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 
 	(void)stf;
+	(void)pos;
 }
 
 void
@@ -25,6 +27,7 @@ void
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 
 	(void)stf;
+	(void)pos;
 }
 
 void
@@ -34,6 +37,7 @@ void
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 
 	(void)stf;
+	(void)pos;
 }
 
 void
@@ -43,4 +47,5 @@ void
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 
 	(void)stf;
+	(void)pos;
 }

@@ -25,9 +25,13 @@ static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 static void	filter_flags(t_s_pct *p_chk)
 {
 	char	f_cpy;
+	t_e_cs	spe;
 
 	f_cpy = p_chk->flags;
-	if (f_cpy & MINUS_FLAG || p_chk->precision)
+	if (f_cpy & MINUS_FLAG || (p_chk->precision &&
+		((spe = p_chk->specifier) == e_d || spe == e_i ||
+		spe == e_o || spe == e_u || spe == e_x ||
+		spe == e_X)))
 		f_cpy &= ~(ZERO_FLAG);
 	if (f_cpy & PLUS_FLAG)
 		f_cpy &= ~(SPACE_FLAG);

@@ -59,7 +59,7 @@ static size_t
 	pre = chk->precision ? **chk->precision : -1;
 	if (!d && !pre)
 		return (0);
-	*d_so = syl_v_tob(d, g_dec, &stf->b, e_all);
+	*d_so = syl_v_tob(d, g_dec_syms, &stf->b, e_all);
 	if (chk->flags & APSTR_FLAG)
 	{
 		d_so->type = e_sot_apstr_cc;

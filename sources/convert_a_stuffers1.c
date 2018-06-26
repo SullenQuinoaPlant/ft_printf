@@ -73,6 +73,8 @@ void	ca_mantissa(int syl, void *p)
 		if (!round_ccsyl(pr, &set, r, &stf->zero))
 			stf->excess = pr - set.len;
 	}
+	if (stf->chk->flags & APSTR_FLAG)
+		set.type = e_sot_apstr_cc;
 	stf->syllables[syl] = set;
 }
 #undef MID_BASE
@@ -82,7 +84,10 @@ void	ca_excess_precision(int syl, void *p)
 	t_s_acs	* stf = (t_s_acs*) p;
 	t_s_so	set;
 
-	set.type = e_sot_c;
+	if (stf->chk->flags & APSTR_FLAG)
+		set.type = e_sot_apstr_c;
+	else
+		set.type = e_sot_c;
 	set.c = '0';
 	if (stf->excess > 0)
 		set.len = stf->excess;
