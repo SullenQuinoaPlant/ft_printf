@@ -5,11 +5,11 @@ char const	* const g_dec_syms = "0123456789";
 char const	* const g_hex_syms = "0123456789abcdef";
 char const	* const g_bhex_syms = "0123456789ABCDEF";
 
-static t_bd
+static t_s_bd
 	make_tbd(
 		char const * basestr)
 {
-	t_bd	ret;
+	t_s_bd	ret;
 
 	ret.syms = basestr;
 	ret.radius = ft_strlen(basestr);
@@ -24,7 +24,7 @@ t_s_cc
 {
 	t_s_cc	ret;
 	char	*b_end;
-	t_bd	base;
+	t_s_bd	base;
 
 	b_end = (char*)b + e_mbo_mib;
 	*b_end = 0;
@@ -43,7 +43,7 @@ t_s_cc
 {
 	t_s_cc	ret;
 	char	*b_end;
-	t_bd	base;
+	t_s_bd	base;
 
 	b_end = (char*)b + e_mbo_mib;
 	*b_end-- = 0;
@@ -62,7 +62,7 @@ t_s_cc
 {
 	t_s_cc	ret;
 	char	*b_end;
-	t_bd	base;
+	t_s_bd	base;
 
 	b_end = (char*)b + e_mbo_mib;
 	*b_end-- = 0;

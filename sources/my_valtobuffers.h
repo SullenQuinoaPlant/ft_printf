@@ -13,12 +13,12 @@ extern char const	* const g_bhex_syms;
 typedef struct	s_base_descriptor {
 	char const	*syms;
 	char 		radius;
-}				t_bd;
+}				t_s_bd;
 
-extern t_bd const	g_oct;
-extern t_bd const	g_dec;
-extern t_bd const	g_hex;
-extern t_bd const	g_bhex;
+extern t_s_bd const	g_oct;
+extern t_s_bd const	g_dec;
+extern t_s_bd const	g_hex;
+extern t_s_bd const	g_bhex;
 
 # define BIGGEST_BASE2 (sizeof(uintmax_t) * 8)
 # define BIGGEST_SIGNED BIGGEST_BASE2 + 1
@@ -56,13 +56,13 @@ size_t
 	my_lowvaltob(
 		uintmax_t val,
 		int val_sz,
-		t_bd const *base,
+		t_s_bd const *base,
 		char *b_end);
 
 size_t
 	my_signvaltob(
 		intmax_t val,
-		t_bd const *base,
+		t_s_bd const *base,
 		char *b_end,
 		t_e_sp sign_f);
 
@@ -82,7 +82,7 @@ t_s_cc
 size_t
 	my_valtobuffer(
 		uintmax_t val,
-		t_bd const *base,
+		t_s_bd const *base,
 		char *b_end);
 
 #endif

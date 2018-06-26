@@ -1,14 +1,14 @@
 #include "my_valtobuffers.h"
 
-t_bd const	g_oct = {"01234567", 8};
-t_bd const	g_dec = {"0123456789", 10};
-t_bd const	g_hex = {"0123456789abcdef", 16};
-t_bd const	g_bhex = {"0123456789ABCDEF", 16};
+t_s_bd const	g_oct = {"01234567", 8};
+t_s_bd const	g_dec = {"0123456789", 10};
+t_s_bd const	g_hex = {"0123456789abcdef", 16};
+t_s_bd const	g_bhex = {"0123456789ABCDEF", 16};
 
 size_t
 	my_valtobuffer(
 		uintmax_t val,
-		t_bd const * base,
+		t_s_bd const * base,
 		char *b_end)
 {
 	unsigned char const	r = base->radius;
@@ -37,7 +37,7 @@ size_t
 size_t
 	my_lowvaltob(
 		uintmax_t val, int val_sz,
-		t_bd const * base,
+		t_s_bd const * base,
 		char *b_end)
 {
 	unsigned char const	r = base->radius;
@@ -70,7 +70,7 @@ size_t
 size_t
 	my_signvaltob(
 		intmax_t val,
-		t_bd const * base,
+		t_s_bd const * base,
 		char *b_end,
 		t_e_sp sign_f)
 {
