@@ -5,10 +5,10 @@ char const	* const g_dec_syms = "0123456789";
 char const	* const g_hex_syms = "0123456789abcdef";
 char const	* const g_bhex_syms = "0123456789ABCDEF";
 
-t_bd const	g_oct = (const t_bd){g_oct_syms, 8};
-t_bd const	g_dec = (const t_bd){g_dec_syms, 10};
-t_bd const	g_hex = (const t_bd){g_hex_syms, 16};
-t_bd const	g_bhex = (const t_bd){g_bhex_syms, 16};
+t_bd const	g_oct = {g_oct_syms, 8};
+t_bd const	g_dec = {g_dec_syms, 10};
+t_bd const	g_hex = {g_hex_syms, 16};
+t_bd const	g_bhex = {g_bhex_syms, 16};
 
 static t_bd
 	make_tbd(
