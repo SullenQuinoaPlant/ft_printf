@@ -61,7 +61,7 @@ void	ca_mantissa(int syl, void *p)
 	t_s_so		set;
 	int			pr;
 
-	r = stf->chk->flags & BIGCS_FLAG ? g_bhex : g_hex;
+	r = stf->chk->flags & BIGCS_FLAG ? g_bhex_syms : g_hex_syms;
 	set.len = 0;
 	if ((v = stf->fpd.aligned))
 		set = syl_lowv_tob(v, sizeof(v), r, &stf->m);
