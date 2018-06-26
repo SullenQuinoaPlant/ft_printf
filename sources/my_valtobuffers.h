@@ -56,13 +56,13 @@ size_t
 	my_lowvaltob(
 		uintmax_t val,
 		int val_sz,
-		t_bd *base,
+		t_bd const *base,
 		char *b_end);
 
 size_t
 	my_signvaltob(
 		intmax_t val,
-		t_bd *base,
+		t_bd const *base,
 		char *b_end,
 		t_e_sp sign_f);
 
@@ -82,7 +82,7 @@ t_s_cc
 size_t
 	my_valtobuffer(
 		uintmax_t val,
-		t_bd *base,
+		t_bd const *base,
 		char *b_end);
 
 #endif

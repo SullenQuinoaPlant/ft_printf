@@ -3,7 +3,7 @@
 size_t
 	my_valtobuffer(
 		uintmax_t val,
-		t_db const * base,
+		t_bd const * base,
 		char *b_end)
 {
 	unsigned char const	r = base->radius;
