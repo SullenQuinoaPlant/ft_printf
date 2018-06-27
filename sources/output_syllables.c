@@ -30,7 +30,9 @@ int
 	return (r);
 }
 
-int		output_syllable(t_s_so *this)
+int
+	output_syllable(
+		t_s_so *this)
 {
 	t_e_sot	const type = this->type;
 	int		r;
@@ -45,7 +47,9 @@ int		output_syllable(t_s_so *this)
 	return (r);
 }
 
-int		output_syllables(t_s_so *these, int count)
+int
+	output_syllables(
+		t_s_so *these, int count)
 {
 	t_s_so	* const limit = these + count;
 	int		r;
