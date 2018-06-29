@@ -10,6 +10,7 @@ TARGETS := \
 	convert_e_stuffers1 \
 	convert_e_stuffers2 \
 	convert_f \
+	convert_fp_to_decimal \
 	convert_g \
 	convert_i \
 	convert_n \

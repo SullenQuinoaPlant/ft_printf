@@ -1,5 +1,6 @@
-#include "floating_point_bit_patterns.h"
+#include "convert_fp_to_decimal.h"
 
+/*
 static t_s_mmpi
 	pow2_bounds(
 		t_s_dfp *fpd)
@@ -10,14 +11,18 @@ static t_s_mmpi
 	ret.max = fpd->exp;
 	return  (ret);
 }
+*/
 
 static int32_t
 	near_low_10p(
 		int32_t p2exp)
 {
-	int		const sign = p2exp < 0 ? -1 : 1;
-	int32_t	lowlog10
+	int		sign;
+	int32_t	lowlog10;
 
+	sign = 0;
+	if (p2exp)
+		sign = p2exp < 0 ? -1 : 1;
 	p2exp *= sign;
 	lowlog10 = p2exp / 4;
 	while (3 * lowlog10 < p2exp)
@@ -36,5 +41,6 @@ t_s_pot
 
 	decompose_ldouble(d, &dec);
 	log = near_low_10p(dec.exp - MANT_RES);
-	return ({0, 0});
+	(void)log;
+	return ((t_s_pot){0, 0});
 }
