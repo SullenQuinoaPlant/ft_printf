@@ -39,7 +39,7 @@ static void	decompose_double(double const *p_val, t_s_dfp *p_ret)
 		p_ret->mant |= 1ull<<52;
 }
 
-static void	decompose_ldouble(long double const *p_val, t_s_dfp *p_ret)
+void		decompose_ldouble(long double const *p_val, t_s_dfp *p_ret)
 {
 	t_u_ld	arg;
 	

@@ -40,4 +40,12 @@ typedef struct	s_decomposed_floating_point {
 	uint64_t	mant;
 	uint64_t	aligned;
 }				t_s_dfp;
+
+# define MANTISSA_LOG2_RESOLUTION 63
+# define MANT_RES MANTISSA_LOG2_RESOLUTION 
+
+void
+	decompose_ldouble(
+		long double const *p_val, t_s_dfp *p_ret);
+
 #endif

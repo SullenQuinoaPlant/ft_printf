@@ -1,6 +1,6 @@
 #include "floating_point_bit_patterns.h"
 
-t_s_mmpi
+static t_s_mmpi
 	pow2_bounds(
 		t_s_dfp *fpd)
 {
@@ -11,23 +11,30 @@ t_s_mmpi
 	return  (ret);
 }
 
-int
+static int32_t
 	near_low_10p(
 		int32_t p2exp)
 {
-	int 	const sign = p2exp < 0 ? -1 : 1;
-	int32_t	i;
-	int32_t	j;
-	int32_t	p10exp;
+	int		const sign = p2exp < 0 ? -1 : 1;
+	int32_t	lowlog10
 
 	p2exp *= sign;
-	i = 0;
-	p10exp = 0;
-	while (4 * (i + 1) < p2exp)
-	{
-		p10exp
-		i++;
-	
-	
+	lowlog10 = p2exp / 4;
+	while (3 * lowlog10 < p2exp)
+		lowlog10++;
+	lowlog10 -= sign > 0 ? 1 : 0;
+	lowlog10 *= sign;
+	return (lowlog10);
+}
 
+t_s_pot
+	near_low_pot(
+		long double *d)
+{
+	t_s_dfp		dec;
+	long double	log;
+
+	decompose_ldouble(d, &dec);
+	log = near_low_10p(dec.exp - MANT_RES);
+	return ({0, 0});
 }
