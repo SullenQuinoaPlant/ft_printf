@@ -48,4 +48,8 @@ void
 	decompose_ldouble(
 		long double const *p_val, t_s_dfp *p_ret);
 
+void
+	decompose_double(
+		double const *p_val, t_s_dfp *p_ret);
+
 #endif

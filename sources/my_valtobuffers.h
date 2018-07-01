@@ -19,6 +19,7 @@ extern t_s_bd const	g_oct;
 extern t_s_bd const	g_dec;
 extern t_s_bd const	g_hex;
 extern t_s_bd const	g_bhex;
+extern t_s_bd const	g_0x10;
 
 # define BIGGEST_BASE2 (sizeof(uintmax_t) * 8)
 # define BIGGEST_SIGNED BIGGEST_BASE2 + 1

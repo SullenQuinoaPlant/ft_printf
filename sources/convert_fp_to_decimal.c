@@ -1,35 +1,15 @@
 #include "convert_fp_to_decimal.h"
 
-/*
-static t_s_mmpi
-	pow2_bounds(
-		t_s_dfp *fpd)
-{
-	t_s_mmpi	ret;
-
-	ret.min = fpd->exp - 63;
-	ret.max = fpd->exp;
-	return  (ret);
-}
-*/
-
-static int32_t
-	near_low_10p(
+static double
+	log2_to_log10(
 		int32_t p2exp)
 {
-	int		sign;
-	int32_t	lowlog10;
+	double	res;
 
-	sign = 0;
-	if (p2exp)
-		sign = p2exp < 0 ? -1 : 1;
-	p2exp *= sign;
-	lowlog10 = p2exp / 4;
-	while (3 * lowlog10 < p2exp)
-		lowlog10++;
-	lowlog10 -= sign > 0 ? 1 : 0;
-	lowlog10 *= sign;
-	return (lowlog10);
+	res = p2exp;
+	res /= M_LN10;
+	res *= M_LN2;
+	return (res);
 }
 
 t_s_pot
@@ -37,10 +17,18 @@ t_s_pot
 		long double *d)
 {
 	t_s_dfp		dec;
-	long double	log;
+	double		log;
+	t_s_pot		ret;
 
 	decompose_ldouble(d, &dec);
-	log = near_low_10p(dec.exp - MANT_RES);
-	(void)log;
-	return ((t_s_pot){0, 0});
+	log = log2_to_log10(dec.exp - MANT_RES);
+	ret.pow10 = (int)log;
+	log -= (int)log;
+	ret.times = (*d * pow(2, -dec.exp)) * pow(10, log);
+	if (ret.times >= 10.0)
+	{
+		ret.times /= 10.0;
+		ret.pow10++;
+	}
+	return (ret);
 }

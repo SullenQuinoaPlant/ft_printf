@@ -52,11 +52,9 @@ static size_t
 		t_s_pct *chk, intmax_t d,
 		t_s_dcs *stf)
 {
-	t_s_so		* const d_so = &stf->syls[D];
-	int			pre;
+	t_s_so	* const d_so = &stf->syls[D];
+	int		const pre = chk->precision ? **chk->precision : -1;
 
-	init_syls(e_sot_c, D_SYLS, stf->syls);
-	pre = chk->precision ? **chk->precision : -1;
 	if (!d && !pre)
 		return (0);
 	*d_so = syl_v_tob(d, g_dec_syms, &stf->b, e_all);
@@ -73,9 +71,8 @@ static size_t
 	if (d < 0 ||
 		(chk->flags & (SPACE_FLAG | PLUS_FLAG)))
 		stf->syls[S].len = 1;
-	if (pre > 0 && d_so->len < (size_t)pre &&
-		(pre -= d_so->len))
-		stf->syls[PRE].len = pre;
+	if (pre > 0 && d_so->len < (size_t)pre)
+		stf->syls[PRE].len = pre - d_so->len;
 	return (syls_outlen(stf->syls, D_SYLS, AF_DG));
 }
 
@@ -85,6 +82,7 @@ void		convert_d(t_s_pct *chk)
 	size_t		len;
 	size_t		ap_len;
 	
+	init_syls(e_sot_c, D_SYLS, stf->syls);
 	len = set_syls(chk, get_d(chk), &stf);
 	if (chk->flags & APSTR_FLAG &&
 		(ap_len = len - stf.syls[S].len))

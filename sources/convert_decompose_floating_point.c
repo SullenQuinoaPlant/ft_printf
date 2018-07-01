@@ -21,7 +21,7 @@ static void	reverse(uint64_t this,
 }
 */
 
-static void	decompose_double(double const *p_val, t_s_dfp *p_ret)
+void		decompose_double(double const *p_val, t_s_dfp *p_ret)
 {
 	t_u_d	arg;
 	

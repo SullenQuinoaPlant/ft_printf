@@ -15,6 +15,12 @@ static t_stuffer
 		0
 };
 
+static t_oa
+	g_d_outputters = {
+		ce_prefix,
+		ce_body
+};
+
 void		convert_e(t_s_pct *p_chk)
 {
 	(void)g_fstr;

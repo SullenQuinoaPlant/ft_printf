@@ -4,6 +4,10 @@ t_s_bd const	g_oct = {"01234567", 8};
 t_s_bd const	g_dec = {"0123456789", 10};
 t_s_bd const	g_hex = {"0123456789abcdef", 16};
 t_s_bd const	g_bhex = {"0123456789ABCDEF", 16};
+t_s_bd const	g_0x10 = {
+	{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,
+		14, 15},
+	16};
 
 size_t
 	my_valtobuffer(
