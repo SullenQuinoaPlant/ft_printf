@@ -41,14 +41,14 @@ void		output_padnstuff(
 		pad = 0;
 	}
 	if (r)
-		r = f[e_prefix](chk, stuff);
+		r = f[e_prefix](stuff);
 	if (pad && chk->flags & ZERO_FLAG && r)
 	{
 		r = output_zero_pad(pad);
 		pad = 0;
 	}
 	if (r)
-		r = f[e_root](chk, stuff);
+		r = f[e_root](stuff);
 	if (pad && r)
 		output_c(pad, ' ');
 }

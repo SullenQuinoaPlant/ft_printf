@@ -184,7 +184,7 @@ enum			e_pad_pos {
 };
 
 typedef int
-	(*t_outputter)(t_s_pct *p_chk, void *stuff);
+	(*t_outputter)(void *stuff);
 
 /*t_outputter_array*/
 typedef t_outputter const

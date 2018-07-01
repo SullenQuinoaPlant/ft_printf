@@ -5,7 +5,7 @@
 #define D 2
 static int
 	cd_prefix(
-		t_s_pct *chk, void *s)
+		void *s)
 {
 	t_s_dcs	* const stf = (t_s_dcs*)s;
 	t_s_so	* const syl = stf->syls;
@@ -16,7 +16,7 @@ static int
 
 static int
 	cd_body(
-		t_s_pct *chk, void *s)
+		void *s)
 {
 	t_s_dcs	* const stf = (t_s_dcs*)s;
 	int		r;

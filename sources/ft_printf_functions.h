@@ -119,6 +119,10 @@ void
 	free_parse_state_lists(
 		t_s_ps *ps);
 
+long double
+	get_ldouble(
+		t_s_arg *vaarg);
+
 t_s_pct	*
 	get_p_pct();
 
@@ -145,6 +149,10 @@ int
 void
 	init_syls(
 		enum e_sot type, int how_many, t_s_so *ar);
+
+t_s_pot
+	near_low_pot(
+		long double *d);
 
 int
 	out_apstr_syl(

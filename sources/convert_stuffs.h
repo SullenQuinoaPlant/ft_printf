@@ -31,24 +31,15 @@ typedef struct	s_convert_d_stuff {
 	t_mib	b;
 }				t_s_dcs;
 
-# define E_SYLLABLES 10
-# define E_SYLGRPS 6
+# define E_SYLLABLES 6
 typedef struct	s_convert_e_stuff {
 	t_s_pct		*chk;
-	t_s_so 		syllables[A_SYLLABLES];
-	t_s_sgd		syl_groups[A_SYLGRPS];
-	t_s_dfp		fpd;
-	char		zero;
-	t_mib		m;
-	int			excess;
-	t_mib		e;
+	t_s_pot		number;
+	t_s_so		syls[E_SYLLABLES];
 }				t_s_ecs;
 
 void	ce_sign(int, void*);
-void	ce_power0(int, void*);
 void	ce_separator(int, void*);
-void	ce_lowpowers(int, void*);
-void	ce_excess_precision(int, void*);
 void	ce_to_the_power(int, void*);
 void	ce_exponent(int, void*);
 
