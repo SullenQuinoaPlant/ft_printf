@@ -6,7 +6,7 @@
 
 typedef struct	s_power_of_ten {
 	int			pow10;
-	double		times;
+	long double	times;
 }				t_s_pot;
 
 #endif

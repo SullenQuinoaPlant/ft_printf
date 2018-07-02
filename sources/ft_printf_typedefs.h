@@ -203,8 +203,13 @@ typedef enum	e_sot {
 	e_sot_cc,
 	e_sot_c,
 	e_sot_apstr_cc,
-	e_sot_apstr_c
+	e_sot_apstr_c,
+	e_sot_f,
+	e_sot_apstr_f
 }				t_e_sot;
+
+/*syllable output function*/
+typedef int		(*t_sof)(size_t len, void *arg);
 
 typedef struct	s_syllable_output {
 	size_t		len;
@@ -212,6 +217,10 @@ typedef struct	s_syllable_output {
 	union 		{
 		char		*cc;
 		char		c;
+		struct		{
+			t_sof		f;
+			void		*arg;
+					};
 				};
 }				t_s_so;
 

@@ -13,7 +13,8 @@ size_t
 	apstr_len = 0;
 	while (syl < lim)
 		if ((type = syl->type) == e_sot_apstr_cc ||
-			type == e_sot_apstr_c)
+			type == e_sot_apstr_c ||
+			type == e_sot_apstr_f)
 			apstr_len += (syl++)->len;
 		else
 			total_len += (syl++)->len;

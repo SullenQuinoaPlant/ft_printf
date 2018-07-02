@@ -159,6 +159,14 @@ int
 		t_s_so *syl);
 
 int
+	out_eat_tspot(
+		size_t count, t_s_pot *num);
+
+int
+	tsof_out_eat_tspot(
+		size_t len, void *arg);
+
+int
 	out_syl_groups(
 		t_s_sgd *grp, int count);
 
@@ -291,6 +299,10 @@ int
 		t_s_so *syl,
 		char const * base,
 		char *overflow);
+
+int
+	round_ldouble(
+		loung double d, int pow10)
 
 void
 	set_dfp(
