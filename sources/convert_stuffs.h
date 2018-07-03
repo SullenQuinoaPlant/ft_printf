@@ -52,7 +52,7 @@ void	ce_exponent_sign(int, void*);
 void	ce_exponent_pad(int, void*);
 void	ce_exponent(int, void*);
 
-void	ce_prefix(void *stf);
-void	ce_body(void *stf);
+int		ce_prefix(void *stf);
+int		ce_body(void *stf);
 
 #endif
