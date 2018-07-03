@@ -31,7 +31,7 @@ typedef struct	s_convert_d_stuff {
 	t_mib	b;
 }				t_s_dcs;
 
-# define E_SYLLABLES 6
+# define E_SYLLABLES 8
 # define E_SYLGRPS 4
 typedef struct	s_convert_e_stuff {
 	t_s_pct		*chk;
