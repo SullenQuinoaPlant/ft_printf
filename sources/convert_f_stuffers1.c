@@ -1,5 +1,5 @@
 #include "ft_printf_inner.h"
-
+/*
 void	ce_sign(int syl, void *p)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)p;
@@ -38,3 +38,4 @@ void(int syl, void *p)
 	t_s_ecs	* const stf = (t_s_ecs*)p;
 	t_s_so	* const syl = stf->syls + syl;
 }
+*/
