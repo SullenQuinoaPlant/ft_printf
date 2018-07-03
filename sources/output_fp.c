@@ -9,13 +9,15 @@ int
 	int			r;
 
 	r = -1;
+	d = num->times;
 	while (count-- && r)
 	{
-		digit = num.times;
+		digit = d;
 		r = output_c(1, g_dec_syms[digit]);
-		num->times = (num->times - digit) * 10.0;
+		d = (d - digit) * 10.0;
 		num->pow10--;
 	}
+	num->times = d;
 }
 
 int
