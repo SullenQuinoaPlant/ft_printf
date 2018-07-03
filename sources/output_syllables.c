@@ -2,7 +2,7 @@
 
 static int
 	out_a_syl_char(
-		t_s_so *init_syl)
+		t_s_so *syl)
 {
 	int			r;
 	t_e_sot		type;
