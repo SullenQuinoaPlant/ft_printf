@@ -7,9 +7,10 @@
 
 int
 	ce_prefix(
-		void *stf)
+		void *p)
 {
-	int	r;
+	int		r;
+	t_s_ecs	* const stf = (t_s_ecs*)p;
 
 	r = out_syl_groups(stf->syl_grps, PRE_GRP_COUNT);
 	return (r);
@@ -17,8 +18,9 @@ int
 
 int
 	ce_body(
-		void *stf)
+		void *p)
 {
+	t_s_ecs	* const stf = (t_s_ecs*)p;
 	t_s_sgd	* const first = stf->syl_grps + BODY_GRP_I;
 	int		r;
 
