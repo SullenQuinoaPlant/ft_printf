@@ -15,8 +15,8 @@ static t_stuffer
 
 static t_oa
 	g_outputters = {
-		ce_prefix,
-		ce_body
+		&ce_prefix,
+		&ce_body
 };
 
 static void
