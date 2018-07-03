@@ -30,7 +30,7 @@ void
 		int pos, void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
-	t_s_so	* const syl = stf->syls[pos];
+	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_apstr_cc;
 	syl->cc = stf->p_exp.c;
