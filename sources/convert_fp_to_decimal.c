@@ -35,7 +35,7 @@ t_s_pot
 
 int
 	round_ldouble(
-		loung double *d, int pow10)
+		long double *d, int pow10)
 {
 	long double	b;
 	long double	dd;
