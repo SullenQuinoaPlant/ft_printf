@@ -303,7 +303,7 @@ int
 
 int
 	round_ldouble(
-		loung double d, int pow10)
+		long double d, int pow10);
 
 void
 	set_dfp(

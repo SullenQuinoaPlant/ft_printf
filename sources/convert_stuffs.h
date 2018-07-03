@@ -40,7 +40,7 @@ typedef struct	s_convert_e_stuff {
 	t_s_sgd		syl_grps[E_SYLGRPS];
 	int			pre;
 	t_mib		exp;
-	t_s_cc		p_exp
+	t_s_cc		p_exp;
 }				t_s_ecs;
 
 void	ce_sign(int, void*);
