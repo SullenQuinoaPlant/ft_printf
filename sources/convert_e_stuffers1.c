@@ -22,12 +22,12 @@ void
 		int pos, void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
-	t_s_So	* const syl = &stf->syls[pos];
+	t_s_so	* const syl = &stf->syls[pos];
 
 	syl->len = 1;
 	syl->type = e_sot_apstr_f;
 	syl->f = &tsof_out_eat_tspot;
-	syl->arg = &tsf->number;
+	syl->arg = &stf->number;
 }
 
 void
@@ -47,12 +47,12 @@ void
 		int pos, void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
-	t_s_So	* const syl = &stf->syls[pos];
+	t_s_so	* const syl = &stf->syls[pos];
 
 	syl->len = stf->pre;
 	syl->type = e_sot_apstr_f;
 	syl->f = &tsof_out_eat_tspot;
-	syl->arg = &tsf->number;
+	syl->arg = &stf->number;
 }
 
 void
