@@ -3,6 +3,7 @@
 #define S 0
 #define PRE 1
 #define D 2
+
 static int
 	cd_prefix(
 		void *s)
@@ -89,6 +90,3 @@ void		convert_d(t_s_pct *chk)
 		gos_set_apstr(0, 0, 0);
 	output_padnstuff(len, chk, g_d_outputters, &stf);
 }
-#undef S
-#undef PRE
-#undef D
