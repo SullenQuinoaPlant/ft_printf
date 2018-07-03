@@ -163,10 +163,6 @@ int
 		size_t count, t_s_pot *num);
 
 int
-	tsof_out_eat_tspot(
-		size_t len, void *arg);
-
-int
 	out_syl_groups(
 		t_s_sgd *grp, int count);
 
@@ -293,6 +289,11 @@ int **
 	ps_store_integer(
 		int val, int *** const p_res);
 
+void
+	purge_apstr(
+		t_s_pct *chk,
+		t_s_so *syls, size_t count);
+
 int
 	round_ccsyl(
 		size_t at,
@@ -349,6 +350,10 @@ size_t
 size_t
 	syls_outlen(
 		t_s_so *syl, int count, size_t apstr_grp);
+
+int
+	tsof_out_eat_tspot(
+		size_t len, void *arg);
 
 size_t
 	tssos_lensum(

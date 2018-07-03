@@ -13,8 +13,8 @@ int		get_padlen(t_s_pct *p_chk, size_t len)
 }
 
 static int
-	output_zero_pad
-		(size_t len)
+	output_zero_pad(
+		size_t len)
 {
 	t_s_so	pad;
 

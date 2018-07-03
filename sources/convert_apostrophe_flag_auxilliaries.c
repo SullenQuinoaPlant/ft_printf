@@ -63,3 +63,22 @@ void
 	pad->len = len;
 	*pos_offset = (int)pos;
 }
+
+void
+	purge_apstr(
+		t_s_pct *chk,
+		t_s_so *syls, size_t count)
+{
+	t_s_so	* const lim = syls + count;
+	t_e_sot	type;
+
+	if (chk->flags & APSTR_FLAG)
+		return;
+	while (syls < lim)
+		if ((type = syls->type) == e_sot_apstr_c)
+			syls++->type = e_sot_c;
+		else if (type == e_sot_apstr_cc)
+			syls++->type = e_sot_cc;
+		else if (type == e_sat_apstr_f)
+			syls++->type = e_sot_f;
+}

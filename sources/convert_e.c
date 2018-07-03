@@ -14,17 +14,11 @@ static t_stuffer
 };
 
 static t_oa
-	g_d_outputters = {
+	g_outputters = {
 		ce_prefix,
 		ce_body
 };
 
-#define SIGN_SYL 0
-#define SEP_SYL 1
-#define E_SYL 2
-#define	E_SIGN_SYL 3
-#define E_PAD_SYL 4
-#define EXP_SYL 5
 static void
 	set_precision(
 		t_s_pct *chk, t_s_ecs *stf)
@@ -53,23 +47,35 @@ static void
 	*p = my_v_tob(pow10, g_dec_syms, here, e_all);
 }
 		
-void		convert_e(t_s_pct *p_chk)
+static void
+	set_syl_grps(t_s_ecs *stf)
+{
+	t_s_so	* const syls = stf->syls;
+	t_s_sgd	ar[E_SYLGRPS] = {
+			{&syls[0], 1, 3, 2, '\''},
+			{&syls[1], 2, 0, 0, 0},
+			{&syls[3], 1, 3, 0, '\''},
+			{&syls[4], 4, 3, 0, '\''}};
+
+	ft_memcpy(stf->syl_grps, ar, sizeof(ar));
+}
+
+void		convert_e(t_s_pct *chk)
 {
 	t_s_ecs	stf;
+	size_t	out_len;
 
-	stf.chk = p_chk;
-	set_precision(p_chk);
-	set_number(p_chk->vaarg, &stf);
+	stf.chk = chk;
+	set_precision(chk);
+	set_number(chk->vaarg, &stf);
 	set_exponent(stf.number.pow10, &stf.p_exp, &stf.exp);
 	init_syls(e_sot_c, E_SYLLABLES, stf.syls);
 	stuff_stuff(g_fstr, &stf, 0);
+	purge_apstr(chk, stf.syls, E_SYLLABLES);
+	set_syl_grps(&stf);
+	out_len = sylgrps_outlen(stf.syl_grps, E_SYLGRPS);
+	output_padnstuff(out_len, chk, g_outputters, &stf);
 }
-#undef SIGN_SYL
-#undef SEP_SYL
-#undef E_SYL
-#undef E_SIGN_SYL
-#undef E_PAD_SYL
-#undef EXP_SYL
 
 void		convert_e_big(t_s_pct *p_chk)
 {

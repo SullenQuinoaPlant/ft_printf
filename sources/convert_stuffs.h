@@ -32,20 +32,27 @@ typedef struct	s_convert_d_stuff {
 }				t_s_dcs;
 
 # define E_SYLLABLES 6
+# define E_SYLGRPS 4
 typedef struct	s_convert_e_stuff {
 	t_s_pct		*chk;
 	t_s_pot		number;
 	t_s_so		syls[E_SYLLABLES];
+	t_s_sgd		syl_grps[E_SYLGRPS];
 	int			pre;
 	t_mib		exp;
 	t_s_cc		p_exp
 }				t_s_ecs;
 
 void	ce_sign(int, void*);
+void	ce_zero(int, void*);
 void	ce_separator(int, void*);
+void	ce_lowdigits(int, void*);
 void	ce_to_the_power(int, void*);
 void	ce_exponent_sign(int, void*);
 void	ce_exponent_pad(int, void*);
 void	ce_exponent(int, void*);
+
+void	ce_prefix(void *stf);
+void	ce_body(void *stf);
 
 #endif

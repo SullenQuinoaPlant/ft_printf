@@ -68,14 +68,3 @@ void
 	else
 		syl->c = 'e';
 }
-
-void
-	ce_exponent_sign(
-		int pos, void *s)
-{
-	t_s_ecs	* const stf = (t_s_ecs*)s;
-	t_s_So	* const syl = &stf->syls[pos];
-
-	syl->len = 1;
-	syl->c = *stf->p_exp.c++;
-}
