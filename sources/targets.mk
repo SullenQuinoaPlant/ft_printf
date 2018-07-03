@@ -1,21 +1,24 @@
 TARGETS := \
-	apostrophe_flag_auxilliaries \
 	convert_a \
+	convert_apostrophe_flag_auxilliaries \
 	convert_a_stuffers1 \
 	convert_a_stuffers2 \
 	convert_c \
 	convert_d \
 	convert_decompose_floating_point \
 	convert_e \
+	convert_e_outputters \
 	convert_e_stuffers1 \
 	convert_e_stuffers2 \
 	convert_f \
 	convert_fp_to_decimal \
+	convert_f_stuffers1 \
 	convert_g \
 	convert_i \
 	convert_n \
 	convert_nospecifier \
 	convert_o \
+	convert_pad_syllables \
 	convert_p \
 	convert_s \
 	convert_sign \
@@ -41,6 +44,7 @@ TARGETS := \
 	my_valtobuffers_raw \
 	my_valtobuffers_tscc \
 	output_chunks \
+	output_fp \
 	output_generic \
 	output_nan_inf \
 	output_padding \
