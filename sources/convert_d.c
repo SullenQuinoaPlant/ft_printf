@@ -10,7 +10,6 @@ static int
 	t_s_dcs	* const stf = (t_s_dcs*)s;
 	t_s_so	* const syl = stf->syls;
 
-	(void)chk;
 	return (output_syllable(&syl[S]));
 }
 
@@ -21,7 +20,6 @@ static int
 	t_s_dcs	* const stf = (t_s_dcs*)s;
 	int		r;
 
-	(void)chk;
 	r = output_syllables(&stf->syls[PRE], D - S);
 	return (r);
 }
@@ -82,7 +80,7 @@ void		convert_d(t_s_pct *chk)
 	size_t		len;
 	size_t		ap_len;
 	
-	init_syls(e_sot_c, D_SYLS, stf->syls);
+	init_syls(e_sot_c, D_SYLS, stf.syls);
 	len = set_syls(chk, get_d(chk), &stf);
 	if (chk->flags & APSTR_FLAG &&
 		(ap_len = len - stf.syls[S].len))
