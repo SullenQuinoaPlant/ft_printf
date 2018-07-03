@@ -18,6 +18,7 @@ int
 		num->pow10--;
 	}
 	num->times = d;
+	return (r);
 }
 
 int
