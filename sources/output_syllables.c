@@ -10,11 +10,11 @@ static int
 	if (!syl->len--)
 		return (0);
 	if ((type = syl->type) == e_sot_apstr_c)
-		r = output_c(1, syl.c);
+		r = output_c(1, syl->c);
 	else if (type == e_sot_apstr_cc)
-		r = output_cc(1, syl.cc++);
+		r = output_cc(1, syl->cc++);
 	else if (type == e_sot_apstr_f)
-		r = syl.f(1, syl.arg);
+		r = syl->f(1, syl->arg);
 	return (r);
 }
 
@@ -54,7 +54,7 @@ int
 		r = output_cc(this->len, this->cc);
 	else if (type == e_sot_c)
 		r = output_c(this->len, this->c);
-	else if (type == e_sot_f ||
+	else if (type == e_sot_f)
 		r = this->f(this->len, this->arg);
 	else if (type == e_sot_apstr_c ||
 		type == e_sot_apstr_cc ||
