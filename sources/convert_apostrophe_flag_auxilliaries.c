@@ -81,4 +81,6 @@ void
 			syls++->type = e_sot_cc;
 		else if (type == e_sot_apstr_f)
 			syls++->type = e_sot_f;
+		else
+			syls++;
 }

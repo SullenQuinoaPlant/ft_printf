@@ -29,6 +29,7 @@ TARGETS := \
 	convert_x \
 	free_parse_state_allocations \
 	ft_printf \
+	get_vaarged_ldouble \
 	get_va_args \
 	get_va_args__vaarger_functions1 \
 	get_va_args__vaarger_functions2 \

@@ -53,6 +53,7 @@ cmocka :
 		$<\
 		-L $(LIBS_L)\
 		-lcmocka -lft\
+		-lm\
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 
@@ -65,6 +66,7 @@ cmocka :
 		-L $(LIBS_L)\
 		-lftprintf\
 		-lcmocka -lft\
+		-lm\
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 

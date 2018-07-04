@@ -53,7 +53,7 @@ static void
 	t_s_so	* const syls = stf->syls;
 	t_s_sgd	ar[E_SYLGRPS] = {
 			{&syls[0], 1, 3, 2, '\''},
-			{&syls[1], 2, 0, 0, 0},
+			{&syls[1], 2, 3, 2, '@'},
 			{&syls[3], 1, 3, 0, '\''},
 			{&syls[4], 4, 3, 0, '\''}};
 

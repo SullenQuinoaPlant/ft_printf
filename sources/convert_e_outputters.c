@@ -24,6 +24,6 @@ int
 	t_s_sgd	* const first = stf->syl_grps + BODY_GRP_I;
 	int		r;
 
-	r = out_syl_groups(first, PRE_GRP_COUNT);
+	r = out_syl_groups(first, BOD_GRP_COUNT);
 	return (r);
 }

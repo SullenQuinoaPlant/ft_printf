@@ -9,6 +9,7 @@ void
 
 	syl->len = 1;
 	syl->c = *stf->p_exp.c++;
+	stf->p_exp.len--;
 }
 
 void
@@ -34,4 +35,5 @@ void
 
 	syl->type = e_sot_apstr_cc;
 	syl->cc = stf->p_exp.c;
+	syl->len = stf->p_exp.len;
 }
