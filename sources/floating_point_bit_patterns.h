@@ -28,8 +28,8 @@ typedef union	u_ldouble {
 	char		ar[sizeof(long double)];
 	struct		{
 		uint64_t	mant : 64;
-		uint32_t		exp : 15;
-		uint32_t		sign : 1;
+		uint32_t	exp : 15;
+		uint32_t	sign : 1;
 	};
 }				t_u_ld;
 # endif
