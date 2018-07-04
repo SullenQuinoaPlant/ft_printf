@@ -1,6 +1,6 @@
 #include "ft_printf_inner.h"
 
-# ifdef ARCH_A
+#ifdef ARCH_A
 /*unused function
 static void	reverse(uint64_t this,
 					uint64_t max_mark,
@@ -54,7 +54,7 @@ void		decompose_ldouble(long double const *p_val, t_s_dfp *p_ret)
 		p_ret->exp += arg.mant ? 1 : LDB_E_BIAS;
 	}
 }
-# endif
+#endif
 
 void
 	decompose_fpval(

@@ -52,4 +52,8 @@ void
 	decompose_double(
 		double const *p_val, t_s_dfp *p_ret);
 
+long double
+	compose_float(
+		char sign, uint64_t times, int32_t power);
+
 #endif
