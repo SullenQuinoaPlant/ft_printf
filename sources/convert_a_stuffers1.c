@@ -63,9 +63,9 @@ void	ca_mantissa(int syl, void *p)
 	int			pr;
 
 	r = stf->chk->flags & BIGCS_FLAG ? g_bhex_syms : g_hex_syms;
-	set.len = 0;
-	if ((v = stf->fpd.aligned))
-		set = syl_lowv_tob(v, sizeof(v), r, &stf->m);
+	v = stf->fpd.aligned;
+	set = syl_lowv_tob(v, sizeof(v), r, &stf->m);
+	set.len = v ? set.len : 0;
 	stf->excess = 0;
 	if (stf->chk->precision &&
 		**stf->chk->precision >= 0)

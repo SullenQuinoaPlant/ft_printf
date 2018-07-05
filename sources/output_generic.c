@@ -25,7 +25,6 @@ int		output_c(size_t yay_much, char ofthis)
 		}
 	g_os.output_len += much_yay - ++yay_much;
 	return (yay_much == 0);
-	
 }
 
 int		output_cc(size_t len, char *b)
