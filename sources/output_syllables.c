@@ -7,8 +7,7 @@ static int
 	int			r;
 	t_e_sot		type;
 
-	if (!syl->len--)
-		return (-1);
+	r = 0;
 	if ((type = syl->type) == e_sot_apstr_c)
 		r = output_c(1, syl->c);
 	else if (type == e_sot_apstr_cc)
@@ -29,14 +28,14 @@ int
 	pos = (size_t)g_os.apstr_pos;
 	eat_this = *syl;
 	r = 1;
-	while (r > 0)
-		if (pos == g_os.apstr_grp)
+	while (eat_this.len && r)
+		if ((pos++) == g_os.apstr_grp)
 		{
 			pos = 0;
 			r = output_c(1, g_os.apstr_c);
 		}
-		else if ((r = out_a_syl_char(&eat_this)) > 0)
-			pos++;
+		else
+			r = out_a_syl_char(&eat_this);
 	g_os.apstr_pos = pos;
 	return (r);
 }
