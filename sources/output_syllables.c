@@ -35,7 +35,10 @@ int
 			r = output_c(1, g_os.apstr_c);
 		}
 		else
+		{
+			eat_this.len--;
 			r = out_a_syl_char(&eat_this);
+		}
 	g_os.apstr_pos = pos;
 	return (r);
 }
