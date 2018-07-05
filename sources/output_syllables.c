@@ -8,7 +8,7 @@ static int
 	t_e_sot		type;
 
 	if (!syl->len--)
-		return (0);
+		return (-1);
 	if ((type = syl->type) == e_sot_apstr_c)
 		r = output_c(1, syl->c);
 	else if (type == e_sot_apstr_cc)
@@ -35,7 +35,7 @@ int
 			pos = 0;
 			r = output_c(1, g_os.apstr_c);
 		}
-		else if ((r = out_a_syl_char(&eat_this)))
+		else if ((r = out_a_syl_char(&eat_this)) > 0)
 			pos++;
 	g_os.apstr_pos = pos;
 	return (r);
