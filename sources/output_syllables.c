@@ -35,7 +35,7 @@ int
 			pos = 0;
 			r = output_c(1, g_os.apstr_c);
 		}
-		else if ((r = out_a_syl_char(&eat_this))
+		else if ((r = out_a_syl_char(&eat_this)))
 			pos++;
 	g_os.apstr_pos = pos;
 	return (r);
