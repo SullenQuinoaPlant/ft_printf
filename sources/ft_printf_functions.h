@@ -108,6 +108,10 @@ void
 		t_s_pct *p_chk);
 
 void
+	decompose_fpval(
+		void const *p_val, t_e_t type, t_s_dfp *p_ret);
+
+void
 	dummy_stuffer(
 		int i, void *v);
 

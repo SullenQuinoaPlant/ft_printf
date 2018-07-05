@@ -1,5 +1,5 @@
-#ifndef MY_FLOATING_POINT_H
-# define MY_FLOATING_POINT_H
+#ifndef FLOATING_POINT_H
+# define FLOATING_POINT_H
 
 # include "floating_point_bit_patterns.h"
 
@@ -24,9 +24,5 @@ void
 long double
 	compose_float(
 		char sign, uint64_t times, int32_t power);
-
-void
-	decompose_fpval(
-		void const *p_val, t_e_t type, t_s_dfp *p_ret);
 
 #endif
