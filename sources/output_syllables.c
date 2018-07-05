@@ -30,14 +30,16 @@ int
 	eat_this = *syl;
 	r = -1;
 	while (r)
-		if ((pos++) == g_os.apstr_grp)
+		if (pos == g_os.apstr_grp)
 		{
 			pos = 0;
 			r = output_c(1, g_os.apstr_c);
-			continue;
 		}
 		else
+		{
 			r = out_a_syl_char(&eat_this);
+			pos++;
+		}
 	g_os.apstr_pos = pos;
 	return (r);
 }
