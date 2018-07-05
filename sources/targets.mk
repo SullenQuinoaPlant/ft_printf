@@ -5,7 +5,6 @@ TARGETS := \
 	convert_a_stuffers2 \
 	convert_c \
 	convert_d \
-	convert_decompose_floating_point \
 	convert_e \
 	convert_e_outputters \
 	convert_e_stuffers1 \
@@ -27,9 +26,12 @@ TARGETS := \
 	convert_tscc_to_syllable \
 	convert_u \
 	convert_x \
+	floating_point_auxilliaries \
+	floating_point_composition \
+	floating_point_decomposition \
 	free_parse_state_allocations \
 	ft_printf \
-	get_vaarged_ldouble \
+	get_vaarged_floatingpoint \
 	get_va_args \
 	get_va_args__vaarger_functions1 \
 	get_va_args__vaarger_functions2 \

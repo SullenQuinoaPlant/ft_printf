@@ -1,7 +1,7 @@
 #ifndef CONVERT_FP_TO_DECIMAL_H
 # define CONVERT_FP_TO_DECIMAL_H
 
-# include "floating_point_bit_patterns.h"
+# include "floating_point.h"
 # include <tgmath.h>
 
 typedef struct	s_power_of_ten {
