@@ -31,12 +31,9 @@ static void
 
 static void
 	set_number(
-		t_s_arg *vaarg, t_s_ecs *stf)
+		t_s_fpndfp *num, t_s_ecs *stf)
 {
-	long double	d;
-
-	d = get_ldouble(vaarg);
-	stf->number = near_low_pot(&d);
+	stf->number = near_low_pot(num);
 	round_ldouble(&stf->number.times, -stf->pre);
 }
 
@@ -62,9 +59,13 @@ static void
 
 void		convert_e(t_s_pct *chk)
 {
-	t_s_ecs	stf;
-	size_t	out_len;
+	t_s_ecs		stf;
+	size_t		out_len;
+	t_s_fpndfp	num;
 
+	get_fpndfp(chk->vaarg, &num);
+	if (output_nan_inf(&num.dec, chk))
+		return;
 	stf.chk = chk;
 	set_precision(chk, &stf);
 	set_number(chk->vaarg, &stf);

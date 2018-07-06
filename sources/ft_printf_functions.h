@@ -119,6 +119,10 @@ void
 	free_parse_state_lists(
 		t_s_ps *ps);
 
+void
+	get_fpndfp(
+		t_s_arg *g, t_s_fpndfp *ret);
+
 long double
 	get_ldouble(
 		t_s_arg *vaarg);
@@ -152,7 +156,7 @@ void
 
 t_s_pot
 	near_low_pot(
-		long double *d);
+		t_s_fpndfp const *num);
 
 int
 	out_apstr_syl(

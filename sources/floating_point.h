@@ -10,6 +10,11 @@ typedef struct	s_decomposed_floating_point {
 	uint64_t	aligned;
 }				t_s_dfp;
 
+typedef struct	s_fp_and_dfp {
+	t_s_dfp		dec;
+	long double	dbl;
+}				t_s_fpndfp;
+
 # define MANTISSA_LOG2_RESOLUTION 63
 # define MANT_RES MANTISSA_LOG2_RESOLUTION 
 

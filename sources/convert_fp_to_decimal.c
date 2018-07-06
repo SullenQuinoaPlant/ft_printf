@@ -14,19 +14,22 @@ static long double
 
 t_s_pot
 	near_low_pot(
-		long double *d)
+		t_s_fpndfp const *num)
 {
-	t_s_dfp		dec;
 	long double	log;
 	t_s_pot		ret;
 
-	decompose_ldouble(d, &dec);
-	log = log2_to_log10(dec.exp - MANT_RES);
+	log = log2_to_log10(num->dec.exp - MANT_RES);
 	ret.pow10 = (int)log;
 	log -= (int)log;
-	ret.times = *d * powl(2, MANT_RES - dec.exp);
+	ret.times = num->dbl * powl(2, MANT_RES - dec.exp);
 	ret.times *= powl(10, log);
-	if (ret.times >= 10.0)
+	while (ret.times < 1.0)
+	{
+		ret.times *= 10.0;
+		ret.pow10--;
+	}
+	while (ret.times >= 10.0)
 	{
 		ret.times /= 10.0;
 		ret.pow10++;
