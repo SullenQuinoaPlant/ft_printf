@@ -22,7 +22,8 @@ t_s_pot
 	log = log2_to_log10(num->dec.exp - MANT_RES);
 	ret.pow10 = (int)log;
 	log -= (int)log;
-	ret.times = num->dbl * powl(2, MANT_RES - dec.exp);
+	ret.times = num->dbl;
+	ret.times *= powl(2, MANT_RES - num->dec.exp);
 	ret.times *= powl(10, log);
 	while (ret.times < 1.0)
 	{
