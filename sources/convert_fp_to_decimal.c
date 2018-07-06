@@ -12,6 +12,15 @@ static long double
 	return (res);
 }
 
+static t_s_pot
+	zero_pot(
+		long double *d)
+{
+	t_s_pot	const ret = {.pow10 = 0, .times = 0.0};
+
+	return (ret);
+}
+
 t_s_pot
 	near_low_pot(
 		t_s_fpndfp const *num)
@@ -19,6 +28,8 @@ t_s_pot
 	long double	log;
 	t_s_pot		ret;
 
+	if (num->dbl == 0.0)
+		return ((t_s_pot){0, 0.0L});
 	log = log2_to_log10(num->dec.exp - MANT_RES);
 	ret.pow10 = (int)log;
 	log -= (int)log;
