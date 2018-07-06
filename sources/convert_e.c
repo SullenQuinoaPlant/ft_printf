@@ -68,7 +68,7 @@ void		convert_e(t_s_pct *chk)
 		return;
 	stf.chk = chk;
 	set_precision(chk, &stf);
-	set_number(chk->vaarg, &stf);
+	set_number(&num, &stf);
 	set_exponent(stf.number.pow10, &stf.p_exp, &stf.exp);
 	init_syls(e_sot_c, E_SYLLABLES, stf.syls);
 	stuff_stuff(g_fstr, &stf, 0);
