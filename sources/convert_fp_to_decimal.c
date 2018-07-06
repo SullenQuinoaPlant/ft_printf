@@ -12,15 +12,6 @@ static long double
 	return (res);
 }
 
-static t_s_pot
-	zero_pot(
-		long double *d)
-{
-	t_s_pot	const ret = {.pow10 = 0, .times = 0.0};
-
-	return (ret);
-}
-
 t_s_pot
 	near_low_pot(
 		t_s_fpndfp const *num)
