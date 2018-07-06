@@ -9,9 +9,9 @@ void
 	stf->syls[pos].len = 1;
 	if (stf->number.times < 0)
 		stf->syls[pos].c = '-';
-	else if (stf->chk->flags && PLUS_FLAG)
+	else if (stf->chk->flags & PLUS_FLAG)
 		stf->syls[pos].c = '+';
-	else if (stf->chk->flags && SPACE_FLAG)
+	else if (stf->chk->flags & SPACE_FLAG)
 		stf->syls[pos].c = ' ';
 	else
 		stf->syls[pos].len = 0;
