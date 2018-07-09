@@ -36,7 +36,7 @@ void
 
 /*Fearlessly casting between int and size_t because 
 **values ought to be small and positive at all times.
-**grp size bigger than t_mib size would be useless,
+**grp size is meant to be friendly to the human eye,
 **padding can't be more than MAX_INT.
 */
 void

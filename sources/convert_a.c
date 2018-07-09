@@ -39,6 +39,7 @@ void		convert_a(t_s_pct *chk)
 	set_dfp(chk, &stf.fpd);
 	if (output_nan_inf(&stf.fpd, chk))
 		return;
+	init_syls(e_sot_c, A_SYLLABLES, stf.syllables);
 	stuff_stuff(g_fstr, &stf, pads);
 	set_syl_grps(&stf);
 	set_pad_syl(chk, pads, stf.syl_groups, A_SYLGRPS);

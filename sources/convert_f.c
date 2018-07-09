@@ -1,41 +1,69 @@
 #include "ft_printf_inner.h"
 
-void		convert_f(t_s_pct *p_chk)
+#define HIGH_DIG 3
+t_stuffer	g_fstr[F_SYLLABLES + 1] = {
+	dummy_stuffer,
+	cf_sign,
+	dummy_stuffer,
+	cf_highdigits,
+	cf_separator,
+	cf_lowdigits,
+	dummy_stuffer,
+	0
+};
+
+#define HIGH_GRP 1
+static void	set_syl_grps(t_s_fcs *stf)
 {
-	(void)p_chk;
+	t_s_so	* const	syls = stf->syls;
+	t_s_sgd	ar[F_SYLGRPS] = {
+		{&syls[0], 2, 0, 0, 0},
+		{&syls[2], 2, 3, -1, '\''},
+		{&syls[4], 3, 3, 0, '\''}};
+	int		i;
+
+	i = apstr_offset(syls[HIGH_DIG].len, ar[HIGH_GRP].apstr_grp);
+	ar[HIGH_GRP].apstr_pos = i;
+	ft_memcpy(stf->syl_grps, ar, sizeof(ar));
+}
+
+static void
+	set_precision(
+		t_s_fcs *stf)
+{
+}
+
+static int
+	set_number(
+		t_s_fcs *stf)
+{
+	t_s_fpndf	num;
+	int			roundat;
+
+	get_fpndfp(chk->vaarg, &num);
+	if (output_nan_inf(&num.dec, stf->chk))
+		return (0);
+	stf->number = near_low_pot(&num);
+	roundat = -stf->pre;
+	if (stf->number.pow10 > 0)
+		roundat -= stf->number.pow10;
+	round_ldouble(&stf->number.times, roundat);
+	return (1);
+}
+
+void		convert_f(t_s_pct *chk)
+{
+	int		* const pads = (int[e_pp_sz]){0};
+	t_s_fcs	stf;
+
+	if (!set_number(&stf))
+		return;
+	stf.chk = chk;
+	
 }
 
 void		convert_f_big(t_s_pct *p_chk)
 {
-	(void)p_chk;
+	p_chk->flags |= BIGCS_FLAG;
+	convert_f(p_chk);
 }
-
-/*use this and compare with a_conversion:
-- syllables for number bits
-- padnstuf for padding
-- t_sgb in stuff to differentiate body and prefix
-- t_oa t_outputter_array in this file to store pointers to the equivalent of the following:
-
-
-static int	ca_prefix(t_s_pct *p_chk, void *p_stf)
-{
-	t_s_acs	* const stf = (t_s_acs*)p_stf;
-	t_s_so	*strt;
-	int		count;
-
-	strt = stf->syllables;
-	count = stf->sgb[e_prefix];
-	return (output_syllables(strt, count));
-}
-
-static int	ca_body(t_s_pct *p_chk, void *p_stf)
-{
-	t_s_acs	* const stf = (t_s_acs*)p_stf;
-	t_s_so	*strt;
-	int		count;
-
-	strt = &stf->syllables[sgb[e_prefix]];
-	count = stf->sgb[e_root] - stf->sgb[e_prefix];
-	return (output_syllables(strt, count));
-}
-*/
