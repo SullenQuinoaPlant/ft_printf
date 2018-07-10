@@ -44,7 +44,7 @@ static int
 	t_s_fpndfp	num;
 	int			roundat;
 
-	get_fpndfp(chk->vaarg, &num);
+	get_fpndfp(stf->chk->vaarg, &num);
 	if (output_nan_inf(&num.dec, stf->chk))
 		return (0);
 	stf->number = near_low_pot(&num);
