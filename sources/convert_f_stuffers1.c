@@ -61,4 +61,6 @@ void	cf_lowdigits(int pos, void *p)
 	if (stf->chk->flags & APSTR_FLAG)
 		syl->type = e_sot_apstr_f;
 	syl->len = stf->pre;
+	syl->f = tsof_out_eat_tspot;
+	sly->arg = &stf->number;
 }
