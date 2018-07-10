@@ -1,7 +1,8 @@
 #include "ft_printf_inner.h"
 
 #define HIGH_DIG 3
-t_stuffer	g_fstr[F_SYLLABLES + 1] = {
+static t_stuffer
+			g_fstr[F_SYLLABLES + 1] = {
 	dummy_stuffer,
 	cf_sign,
 	dummy_stuffer,

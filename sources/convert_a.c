@@ -1,6 +1,7 @@
 #include "ft_printf_inner.h"
 
-t_stuffer	g_fstr[A_SYLLABLES + 1] = {
+static t_stuffer
+			g_fstr[A_SYLLABLES + 1] = {
 	dummy_stuffer,
 	ca_prefix,
 	dummy_stuffer,
