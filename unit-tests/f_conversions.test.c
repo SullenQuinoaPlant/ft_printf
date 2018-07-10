@@ -321,6 +321,13 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%302$.*1$f", 13, d);
 	)
 
+	T(test30,
+		double	d;
+
+		d = 0.000001234;
+		printf_diff("%f", d);
+	)
+
 	T(text_double_text,
 		double	d;
 
