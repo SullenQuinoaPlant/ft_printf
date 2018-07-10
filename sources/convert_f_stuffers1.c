@@ -49,5 +49,5 @@ void	cf_lowdigits(int pos, void *p)
 	syl->type = e_sot_f;
 	if (stf->chk->flags & APSTR_FLAG)
 		syl->type = e_sot_apstr_f;
-	syl->len = stf->precision;
+	syl->len = stf->pre;
 }
