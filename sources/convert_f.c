@@ -61,10 +61,10 @@ void		convert_f(t_s_pct *chk)
 	int		* const pads = (int[e_pp_sz]){0};
 	t_s_fcs	stf;
 
+	stf.chk = chk;
 	set_precision(&stf);
 	if (!set_number(&stf))
 		return;
-	stf.chk = chk;
 	stuff_stuff(g_fstr, &stf, pads);
 	set_syl_grps(&stf);
 	set_pad_syl(chk, pads, stf.syl_grps, F_SYLGRPS);
