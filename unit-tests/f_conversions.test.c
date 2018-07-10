@@ -9,42 +9,42 @@ int	declare_tests_and_run(int all_of, char *these[])
 		double	d;
 
 		d = 0.0;
-		printf_diff("%e", d);
+		printf_diff("%f", d);
 	)
 
 	T(test2,
 		double	d;
 
 		d = 1.0;
-		printf_diff("%e", d);
+		printf_diff("%f", d);
 	)
 
 	T(test3,
 		double	d;
 
 		d = 1.0;
-		printf_diff("%#e", d);
+		printf_diff("%#f", d);
 	)
 
 	T(test4,
 		double	d;
 
 		d = 1.0;
-		printf_diff("%.0e", d);
+		printf_diff("%.0f", d);
 	)
 
 	T(test5,
 		double	d;
 
 		d = 1.5;
-		printf_diff("%.0e", d);
+		printf_diff("%.0f", d);
 	)
 
 	T(test5_0,
 		double	d;
 
 		d = 15;
-		printf_diff("%.0e", d);
+		printf_diff("%.0f", d);
 	)
 
 	T(test5_1,
@@ -55,7 +55,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		for (d = 1.5; d < 120.0; d += 1.0)
 		{
 			printf("d is : %f\n", d);
-			printf_diff("%.0e", d);
+			printf_diff("%.0f", d);
 		}
 	)
 
@@ -63,147 +63,147 @@ int	declare_tests_and_run(int all_of, char *these[])
 		double	d;
 
 		d = 16.5;
-		printf_diff("%.0e", d);
+		printf_diff("%.0f", d);
 	)
 
 	T(test5_2,
 		double	d;
 
 		d = 0.53125;
-		printf_diff("%.0e", d);
+		printf_diff("%.0f", d);
 	)
 
 	T(test5_3,
 		double	d;
 
 		d = 1.53125;
-		printf_diff("%.0e", d);
+		printf_diff("%.0f", d);
 	)
 
 	T(test5_4,
 		double	d;
 
 		d = 15.53125;
-		printf_diff("%.0e", d);
+		printf_diff("%.0f", d);
 	)
 
 	T(test5_5,
 		double	d;
 
 		d = 0.53125;
-		printf_diff("%.1e", d);
+		printf_diff("%.1f", d);
 	)
 
 	T(test5_6,
 		double	d;
 
 		d = 1.53125;
-		printf_diff("%.1e", d);
+		printf_diff("%.1f", d);
 	)
 
 	T(test5_7,
 		double	d;
 
 		d = 1.4;
-		printf_diff("%.0e", d);
+		printf_diff("%.0f", d);
 	)
 
 	T(test6,
 		double	d;
 
 		d = 1.5;
-		printf_diff("%e", d);
+		printf_diff("%f", d);
 	)
 
 	T(test7,
 		double	d;
 
 		d = 1.5;
-		printf_diff("% e", d);
+		printf_diff("% f", d);
 	)
 
 	T(test8,
 		double	d;
 
 		d = 1.5;
-		printf_diff("%+e", d);
+		printf_diff("%+f", d);
 	)
 
 	T(test9,
 		double	d;
 
 		d = 1.5;
-		printf_diff("%010e", d);
+		printf_diff("%010f", d);
 	)
 
 	T(test10,
 		double	d;
 
 		d = 1.5;
-		printf_diff("%010,10e", d);
+		printf_diff("%010,10f", d);
 	)
 
 	T(test11,
 		double	d;
 
 		d = 1.0;
-		printf_diff("%e", d);
+		printf_diff("%f", d);
 	)
 
 	T(test12,
 		double	d;
 
 		d = 1.0;
-		printf_diff("%010.10e", d);
+		printf_diff("%010.10f", d);
 	)
 
 	T(test13,
 		double	d;
 
 		d = 13.13;
-		printf_diff("%e", d);
+		printf_diff("%f", d);
 	)
 
 	T(test14,
 		double	d;
 
 		d = 13.13;
-		printf_diff("%2.2e", d);
+		printf_diff("%2.2f", d);
 	)
 
 	T(test15,
 		double	d;
 
 		d = 13.13;
-		printf_diff("%-2.2e", d);
+		printf_diff("%-2.2f", d);
 	)
 
 	T(test16,
 		double	d;
 
 		d = 13.13;
-		printf_diff("%*.2e", -2, d);
+		printf_diff("%*.2f", -2, d);
 	)
 
 	T(test17,
 		double	d;
 
 		d = 0.0;
-		printf_diff("%-2.2e", d);
+		printf_diff("%-2.2f", d);
 	)
 
 	T(test18,
 		double	d;
 
 		d = 0.0;
-		printf_diff("%*.2e", -2, d);
+		printf_diff("%*.2f", -2, d);
 	)
 
 	T(test19,
 		double	d;
 
 		d = 0.0;
-		printf_diff("%2.*e", -3, d);
+		printf_diff("%2.*f", -3, d);
 	)
 
 	T(test19_0,
@@ -211,7 +211,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		double	d;
 
 		d = 1.456;
-		printf_diff("%2.*e", -3, d);
+		printf_diff("%2.*f", -3, d);
 	)
 
 	T(test19_1,
@@ -219,7 +219,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		double	d;
 
 		d = 1.456;
-		printf_diff("%2.-3e", d);
+		printf_diff("%2.-3f", d);
 	)
 
 	T(test20,
@@ -227,89 +227,89 @@ int	declare_tests_and_run(int all_of, char *these[])
 		double	d;
 
 		d = 1234.1234;
-		printf_diff("%.*e", -2, d);
+		printf_diff("%.*f", -2, d);
 	)
 
 	T(test21,
 		double	d;
 
 		d = 1234.1234;
-		printf_diff("%.*e", 3, d);
+		printf_diff("%.*f", 3, d);
 	)
 
 	T(test22,
 		double	d;
 
 		d = 1234.1234;
-		printf_diff("%.*e", 13, d);
+		printf_diff("%.*f", 13, d);
 	)
 
 	T(test23,
 		double	d;
 
 		d = 2.0;
-		printf_diff("%e", d);
-		printf_diff("%0e", d);
-		printf_diff("%1e", d);
-		printf_diff("%30e", d);
+		printf_diff("%f", d);
+		printf_diff("%0f", d);
+		printf_diff("%1f", d);
+		printf_diff("%30f", d);
 	)
 
 	T(test24,
 		double	d;
 
 		d = 2.0;
-		printf_diff("%.e", d);
-		printf_diff("%0.e", d);
-		printf_diff("%1.e", d);
-		printf_diff("%30.e", d);
+		printf_diff("%.f", d);
+		printf_diff("%0.f", d);
+		printf_diff("%1.f", d);
+		printf_diff("%30.f", d);
 	)
 
 	T(test25,
 		double	d;
 
 		d = 2.0;
-		printf_diff("%.0e", d);
-		printf_diff("%0.0e", d);
-		printf_diff("%1.0e", d);
-		printf_diff("%30.0e", d);
+		printf_diff("%.0f", d);
+		printf_diff("%0.0f", d);
+		printf_diff("%1.0f", d);
+		printf_diff("%30.0f", d);
 	)
 
 	T(test26,
 		double	d;
 
 		d = 2.0;
-		printf_diff("%.6e", d);
-		printf_diff("%0.6e", d);
-		printf_diff("%1.6e", d);
-		printf_diff("%30.6e", d);
+		printf_diff("%.6f", d);
+		printf_diff("%0.6f", d);
+		printf_diff("%1.6f", d);
+		printf_diff("%30.6f", d);
 	)
 
 	T(test27,
 		double	d;
 
 		d = 2.0;
-		printf_diff("%.*e", 0, d);
-		printf_diff("%0.*e", 0, d);
-		printf_diff("%1.*e", 0, d);
-		printf_diff("%30.*e", 0, d);
+		printf_diff("%.*f", 0, d);
+		printf_diff("%0.*f", 0, d);
+		printf_diff("%1.*f", 0, d);
+		printf_diff("%30.*f", 0, d);
 	)
 
 	T(test28,
 		double	d;
 
 		d = 2.0;
-		printf_diff("%.*e", 13, d);
-		printf_diff("%0.*e", 13, d);
-		printf_diff("%1.*e", 13, d);
-		printf_diff("%30.*e", 13, d);
+		printf_diff("%.*f", 13, d);
+		printf_diff("%0.*f", 13, d);
+		printf_diff("%1.*f", 13, d);
+		printf_diff("%30.*f", 13, d);
 	)
 
 	T(test29,
 		double	d;
 
 		d = 2.0;
-		printf_diff("%2$.*1$e", 13, d);
-		printf_diff("%02$.*1$e", 13, d);
+		printf_diff("%2$.*1$f", 13, d);
+		printf_diff("%02$.*1$f", 13, d);
 	)
 
 	T(test29_0,
@@ -317,8 +317,8 @@ int	declare_tests_and_run(int all_of, char *these[])
 		double	d;
 
 		d = 2.0;
-		printf_diff("%12$.*1$e", 13, d);
-		printf_diff("%302$.*1$e", 13, d);
+		printf_diff("%12$.*1$f", 13, d);
+		printf_diff("%302$.*1$f", 13, d);
 	)
 
 	T(text_double_text,
