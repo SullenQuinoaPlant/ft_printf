@@ -41,7 +41,7 @@ static int
 	set_number(
 		t_s_fcs *stf)
 {
-	t_s_fpndf	num;
+	t_s_fpndfp	num;
 	int			roundat;
 
 	get_fpndfp(chk->vaarg, &num);
