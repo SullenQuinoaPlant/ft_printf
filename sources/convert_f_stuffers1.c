@@ -21,12 +21,23 @@ void	cf_highdigits(int pos, void *p)
 	t_s_fcs	* const stf = (t_s_fcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
-	syl->type = e_sot_f;
-	if (stf->chk->flags & APSTR_FLAG)
-		syl->type = e_sot_apstr_f;
-	syl->len = 0;
-	if (stf->number.pow10 > 0)
+	if (stf->number.pow10 < 0)
+	{
+		syl->type = e_sot_c;
+		if (stf->chk->flags & APSTR_FLAG)
+			syl->type = e_sot_apstr_c;
+		syl->c = '0';
+		syl->len = 1;
+	}
+	else
+	{
+		syl->type = e_sot_f;
+		if (stf->chk->flags & APSTR_FLAG)
+			syl->type = e_sot_apstr_f;
 		syl->len = (size_t)stf->number.pow10 + 1;
+		syl->f = tsof_out_eat_tspot;
+		syl->arg = &stf->number;
+	}
 }
 
 void	cf_separator(int pos, void *p)
