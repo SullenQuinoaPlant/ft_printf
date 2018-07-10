@@ -1,8 +1,8 @@
 #include "ft_printf_inner.h"
-void	cf_sign(int syl, void *p)
+void	cf_sign(int pos, void *p)
 {
 	t_s_fcs	* const stf = (t_s_fcs*)p;
-	t_s_so	* const syl = stf->syls + syl;
+	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_c;
 	syl->len = 1;
@@ -16,10 +16,10 @@ void	cf_sign(int syl, void *p)
 		syl->len = 0;
 }
 
-void	cf_highdigits(int syl, void *p)
+void	cf_highdigits(int pos, void *p)
 {
 	t_s_fcs	* const stf = (t_s_fcs*)p;
-	t_s_so	* const syl = stf->syls + syl;
+	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_f;
 	if (stf->chk->flags & APSTR_FLAG)
@@ -29,10 +29,10 @@ void	cf_highdigits(int syl, void *p)
 		syl->len = (size_t)stf->number.pow10 + 1;
 }
 
-void	cf_separator(int syl, void *p)
+void	cf_separator(int pos, void *p)
 {
 	t_s_fcs	* const stf = (t_s_fcs*)p;
-	t_s_so	* const syl = stf->syls + syl;
+	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_c;
 	syl->c = '.';
@@ -41,10 +41,10 @@ void	cf_separator(int syl, void *p)
 		syl->len = 1;
 }
 
-void	cf_lowdigits(int syl, void *p)
+void	cf_lowdigits(int pos, void *p)
 {
 	t_s_fcs	* const stf = (t_s_fcs*)p;
-	t_s_so	* const syl = stf->syls + syl;
+	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_f;
 	if (stf->chk->flags & APSTR_FLAG)
