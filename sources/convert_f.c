@@ -31,6 +31,10 @@ static void
 	set_precision(
 		t_s_fcs *stf)
 {
+	if (stf->chk->precision)
+		stf->pre = **stf->chk->precision;
+	else
+		stf->pre = 6;
 }
 
 static int
@@ -56,10 +60,14 @@ void		convert_f(t_s_pct *chk)
 	int		* const pads = (int[e_pp_sz]){0};
 	t_s_fcs	stf;
 
+	set_precision(&stf);
 	if (!set_number(&stf))
 		return;
 	stf.chk = chk;
-	
+	stuff_stuff(g_fstr, &stf, pads);
+	set_syl_grps(&stf);
+	set_pad_syl(chk, pads, stf.syl_grps, F_SYLGRPS);
+	out_syl_groups(stf.syl_grps, F_SYLGRPS);
 }
 
 void		convert_f_big(t_s_pct *p_chk)
