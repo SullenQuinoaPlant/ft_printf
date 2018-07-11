@@ -22,7 +22,7 @@ static void	set_syl_grps(t_s_fcs *stf)
 	t_s_sgd	ar[F_SYLGRPS] = {
 		{&syls[0], 2, 0, 0, 0},
 		{&syls[2], 3, 3, -1, '\''},
-		{&syls[4], 4, 3, 0, '\''}};
+		{&syls[5], 4, 3, 0, '\''}};
 	int		i;
 
 	i = apstr_offset(syls[HIGH_DIG].len, ar[HIGH_GRP].apstr_grp);
