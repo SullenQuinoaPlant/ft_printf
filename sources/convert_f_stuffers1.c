@@ -76,7 +76,7 @@ void	cf_zeros(int pos, void *p)
 		if (stf->number.pow10 < -stf->pre)
 			syl->len = stf->pre;
 		else
-			syl->len = stf->number.pow10 - 1;
+			syl->len = -(stf->number.pow10 ? 1);
 	}
 	else
 		syl->len = 0;
