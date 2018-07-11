@@ -21,22 +21,32 @@ void	cf_highdigits(int pos, void *p)
 	t_s_fcs	* const stf = (t_s_fcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
+	syl->type = e_sot_f;
+	if (stf->chk->flags & APSTR_FLAG)
+		syl->type = e_sot_apstr_f;
+	syl->f = tsof_out_eat_tspot;
+	syl->arg = &stf->number;
 	if (stf->number.pow10 < 0)
-	{
-		syl->type = e_sot_c;
-		if (stf->chk->flags & APSTR_FLAG)
-			syl->type = e_sot_apstr_c;
-		syl->c = '0';
-		syl->len = 1;
-	}
+		syl->len = 0;
 	else
-	{
-		syl->type = e_sot_f;
-		if (stf->chk->flags & APSTR_FLAG)
-			syl->type = e_sot_apstr_f;
 		syl->len = (size_t)stf->number.pow10 + 1;
-		syl->f = tsof_out_eat_tspot;
-		syl->arg = &stf->number;
+}
+
+void	cf_powerzero(int pos, void *p)
+{
+	t_s_fcs	* const stf = (t_s_fcs*)p;
+	t_s_so	* const syl = stf->syls + pos;
+
+	syl->type = e_sot_c;
+	if (stf->chk->flags & APSTR_FLAG)
+		syl->type = e_sot_apstr_c;
+	if ((syl->len = stf->number.pow10 < 0 ? 1 : 0))
+	{
+		if (stf->number.pow10 == -1 &&
+			stf->number.times > 5.0)
+			syl->c = '1';
+		else
+			syl->c = '0';
 	}
 }
 
@@ -52,6 +62,23 @@ void	cf_separator(int pos, void *p)
 		syl->len = 1;
 }
 
+void	cf_zeros(int pos, void *p)
+{
+	t_s_fcs	* const stf = (t_s_fcs*)p;
+	t_s_so	* const syl = stf->syls + pos;
+
+	syl->type = e_sot_c;
+	if (stf->chk->flags & APSTR_FLAG)
+		syl->type = e_sot_apstr_c;
+	if (stf->number.pow10 < -1)
+	{
+		if (stf->number.pow10 < -stf->pre)
+			syl->len = stf->pre;
+		else
+			syl->len = stf->number.pow10 - 1;
+	}
+}
+
 void	cf_lowdigits(int pos, void *p)
 {
 	t_s_fcs	* const stf = (t_s_fcs*)p;
@@ -60,7 +87,12 @@ void	cf_lowdigits(int pos, void *p)
 	syl->type = e_sot_f;
 	if (stf->chk->flags & APSTR_FLAG)
 		syl->type = e_sot_apstr_f;
-	syl->len = stf->pre;
 	syl->f = tsof_out_eat_tspot;
 	syl->arg = &stf->number;
+	if (stf->number.pow10 >= -1)
+		syl->len = stf->pre;
+	else if (-stf->pre >= stf->number.pow10)
+		syl->len = stf->pre - stf->number.pow10 + 1;
+	else
+		syl->len = 0;
 }

@@ -55,7 +55,7 @@ void	ce_exponent(int, void*);
 int		ce_prefix(void *stf);
 int		ce_body(void *stf);
 
-# define F_SYLLABLES 7
+# define F_SYLLABLES 9
 # define F_SYLGRPS 3
 
 typedef struct	s_convert_f_stuff {

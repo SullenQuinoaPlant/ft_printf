@@ -7,7 +7,9 @@ static t_stuffer
 	cf_sign,
 	dummy_stuffer,
 	cf_highdigits,
+	cf_powerzero,
 	cf_separator,
+	cf_zeros,
 	cf_lowdigits,
 	dummy_stuffer,
 	0
@@ -19,8 +21,8 @@ static void	set_syl_grps(t_s_fcs *stf)
 	t_s_so	* const	syls = stf->syls;
 	t_s_sgd	ar[F_SYLGRPS] = {
 		{&syls[0], 2, 0, 0, 0},
-		{&syls[2], 2, 3, -1, '\''},
-		{&syls[4], 3, 3, 0, '\''}};
+		{&syls[2], 3, 3, -1, '\''},
+		{&syls[4], 4, 3, 0, '\''}};
 	int		i;
 
 	i = apstr_offset(syls[HIGH_DIG].len, ar[HIGH_GRP].apstr_grp);
@@ -49,9 +51,7 @@ static int
 	if (output_nan_inf(&num.dec, stf->chk))
 		return (0);
 	stf->number = near_low_pot(&num);
-	roundat = -stf->pre;
-	if (stf->number.pow10 > 0)
-		roundat -= stf->number.pow10;
+	roundat = -(stf->number.pow10 + stf->pre);
 	round_ldouble(&stf->number.times, roundat);
 	return (1);
 }
