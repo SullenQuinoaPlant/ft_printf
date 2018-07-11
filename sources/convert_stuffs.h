@@ -68,7 +68,9 @@ typedef struct	s_convert_f_stuff {
 
 void	cf_sign(int, void*);
 void	cf_highdigits(int, void*);
+void	cf_powerzero(int, void*);
 void	cf_separator(int, void*);
+void	cf_zeros(int, void*);
 void	cf_lowdigits(int, void*);
 
 #endif
