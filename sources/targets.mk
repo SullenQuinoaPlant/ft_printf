@@ -12,6 +12,7 @@ TARGETS := \
 	convert_f \
 	convert_fp_to_decimal \
 	convert_f_stuffers1 \
+	convert_f_stuffers2 \
 	convert_g \
 	convert_i \
 	convert_n \
