@@ -13,7 +13,7 @@ void	cf_lowdigits(int pos, void *p)
 	if (stf->number.pow10 >= -1)
 		syl->len = stf->pre;
 	else if (-stf->pre >= stf->number.pow10)
-		syl->len = stf->pre - stf->number.pow10 + 1;
+		syl->len = stf->pre + stf->number.pow10 + 1;
 	else
 		syl->len = 0;
 }
