@@ -69,6 +69,7 @@ void	cf_zeros(int pos, void *p)
 	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_c;
+	syl->c = '0';
 	if (stf->chk->flags & APSTR_FLAG)
 		syl->type = e_sot_apstr_c;
 	if (stf->number.pow10 < -1)
