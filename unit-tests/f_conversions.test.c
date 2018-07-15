@@ -60,6 +60,7 @@ skip();
 	)
 
 	T(test5_1_0,
+skip();
 		double	d;
 
 		d = 16.5;
@@ -200,6 +201,7 @@ skip();
 	)
 
 	T(test19,
+skip();
 		double	d;
 
 		d = 0.0;
@@ -207,7 +209,7 @@ skip();
 	)
 
 	T(test19_0,
-//skip();
+skip();
 		double	d;
 
 		d = 1.456;
@@ -215,7 +217,7 @@ skip();
 	)
 
 	T(test19_1,
-//skip();
+skip();
 		double	d;
 
 		d = 1.456;
@@ -223,7 +225,7 @@ skip();
 	)
 
 	T(test20,
-//skip();
+skip();
 		double	d;
 
 		d = 1234.1234;
@@ -238,6 +240,7 @@ skip();
 	)
 
 	T(test22,
+skip();
 		double	d;
 
 		d = 1234.1234;
@@ -313,7 +316,7 @@ skip();
 	)
 
 	T(test29_0,
-//skip();
+skip();
 		double	d;
 
 		d = 2.0;

@@ -50,7 +50,7 @@ int
 	if (!isfinite((b = powl(10, pow10))))
 		return (-1);
 	dd = *d / b;
-	if (dd - floorl(dd) >= 0.5)
+	if (dd - floorl(dd) > 0.5)
 		*d += b;
 	return (0);
 }

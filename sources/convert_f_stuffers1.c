@@ -43,7 +43,8 @@ void	cf_powerzero(int pos, void *p)
 		syl->type = e_sot_apstr_c;
 	if ((syl->len = stf->number.pow10 < 0 ? 1 : 0))
 	{
-		if (stf->number.pow10 == -1 &&
+		if (!stf->pre &&
+			stf->number.pow10 == -1 &&
 			stf->number.times > 5.0)
 			syl->c = '1';
 		else
