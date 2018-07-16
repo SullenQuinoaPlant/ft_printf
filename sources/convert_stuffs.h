@@ -73,4 +73,21 @@ void	cf_separator(int, void*);
 void	cf_zeros(int, void*);
 void	cf_lowdigits(int, void*);
 
+# define G_SYLLABLES 11
+# define G_SYLGRPS 4
+# define G_ESYLS 11
+# define G_EGRPS 4
+# define G_FSYLS 9
+# define G_FGRPS 3
+
+typedef struct	s_convert_g_stuff {
+	t_s_pct		*chk;
+	t_s_pot		number;
+	t_s_so		syls[G_SYLLABLES];
+	t_s_sgd		syl_grps[G_SYLGRPS];
+	int			pre;
+	t_mib		exp;
+	t_s_cc		p_exp;
+}				t_s_gcs;
+
 #endif
