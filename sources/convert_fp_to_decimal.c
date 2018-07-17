@@ -54,3 +54,24 @@ int
 		*d += b;
 	return (0);
 }
+
+int
+	trailing_zeros(
+		long double d,
+		unsigned int skip,
+		unsigned int trail)
+{
+	int		zcount;
+	int		digit;
+
+	while (skip--)
+		d = (d - (int)d) * 10.0;
+	zcount = 0;
+	while (trail--)
+	{
+		digit = (int)d;
+		zcount = digit ? 0 : zcount + 1;
+		d = (d - digit) * 10.0;
+	}
+	return (zcount);
+}

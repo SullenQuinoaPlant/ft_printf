@@ -59,30 +59,29 @@ static int
 	return (1);
 }
 
-static void
-	choose_pattern(
-		t_s_gcs *stf, t_stuffer const **pattern)
+static t_stuffer
+	*choose_pattern(
+		t_s_gcs *stf)
 {
 	int		const pow10 = stf->number.pow10;
 	
 	if (pow10 < -4 || pow10 >= stf->pre)
-		*pattern = g_estyle;
+		return (g_estyle);
 	else
-		*pattern = g_fstyle;
+		return (g_fstyle);
 }
 
 void		convert_g(t_s_pct *chk)
 {
 	int			* const pads = (int[e_pp_sz]){0};
 	t_s_gcs		stf;
-	t_stuffer	const *pattern;
 
 	stf.chk = chk;
 	set_precision(&stf);
 	if (!set_number(&stf))
 		return;
-	choose_pattern(&stf, &pattern);
-	stuff_stuff(pattern, &stf, pads);
+	stuff_stuff(choose_pattern(&stf), &stf, pads);
+	purge_apstr(&stf.chk, stf.syls, G_SYLLABLES);
 	set_pad_syl(chk, pads, stf.syl_grps, G_SYLGRPS);
 	out_syl_groups(stf.syl_grps, G_SYLGRPS);
 }

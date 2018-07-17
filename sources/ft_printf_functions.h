@@ -356,6 +356,12 @@ size_t
 		t_s_so *syl, int count, size_t apstr_grp);
 
 int
+	trailing_zeros(
+		long double d,
+		unsigned int skip,
+		unsigned int trail);
+
+int
 	tsof_out_eat_tspot(
 		size_t len, void *arg);
 

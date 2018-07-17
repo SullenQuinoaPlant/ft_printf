@@ -78,7 +78,7 @@ void	cf_lowdigits(int, void*);
 # define G_ESYLS 11
 # define G_EGRPS 4
 # define G_FSYLS 9
-# define G_FGRPS 3
+# define G_FGRPS 4
 
 typedef struct	s_convert_g_stuff {
 	t_s_pct		*chk;
