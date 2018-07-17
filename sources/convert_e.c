@@ -44,6 +44,8 @@ static void
 	*p = my_v_tob(pow10, g_dec_syms, here, e_all);
 }
 		
+#define EXP_DIG 7
+#define EXP_GRP 3
 static void
 	set_syl_grps(t_s_ecs *stf)
 {
@@ -52,8 +54,11 @@ static void
 			{&syls[0], 1, 3, 2, '\''},
 			{&syls[1], 2, 3, 2, '@'},
 			{&syls[3], 1, 3, 0, '\''},
-			{&syls[4], 4, 3, 0, '\''}};
+			{&syls[4], 4, 3, -1, '\''}};
+	int		i;
 
+	i = apstr_offset(syls[EXP_DIG].len, ar[EXP_GRP].apstr_grp);
+	ar[EXP_GRP].apstr_pos = i;
 	ft_memcpy(stf->syl_grps, ar, sizeof(ar));
 }
 

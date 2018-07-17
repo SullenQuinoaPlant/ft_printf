@@ -30,7 +30,7 @@ void	cg_fhighdigits(int pos, void *p)
 		syl->len = 0;
 	else
 	{
-		syl->len = (size_t)i;
+		syl->len = i;
 		stf->pre -= i;
 	}
 }
@@ -41,16 +41,8 @@ void	cg_fpowerzero(int pos, void *p)
 	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_apstr_c;
-	if ((syl->len = stf->number.pow10 < 0 ? 1 : 0))
-	{
-		stf->pre--;
-		if (!stf->pre &&
-			stf->number.pow10 == -1 &&
-			stf->number.times > 5.0)
-			syl->c = '1';
-		else
-			syl->c = '0';
-	}
+	syl->c = '0';
+	syl->len = stf->number.pow10 < 0 ? 1 : 0;
 }
 
 void	cg_fseparator(int pos, void *p)
@@ -60,11 +52,8 @@ void	cg_fseparator(int pos, void *p)
 
 	syl->type = e_sot_c;
 	syl->c = '.';
-	syl->len = stf->chk->flags & HASH_FLAG ? 1 : 0;
-	if (stf->pre && -stf->pre <= stf->number.pow10)
+	if (stf->pre || stf->chk->flags & HASH_FLAG)
 		syl->len = 1;
-	else
-		stf->pre = 0;
 }
 
 void	cg_fzeros(int pos, void *p)
@@ -75,8 +64,5 @@ void	cg_fzeros(int pos, void *p)
 	syl->type = e_sot_apstr_c;
 	syl->c = '0';
 	if (stf->number.pow10 < -1 && stf->pre)
-	{
 		syl->len = -(stf->number.pow10 + 1);
-		stf->pre -= syl->len;
-	}
 }
