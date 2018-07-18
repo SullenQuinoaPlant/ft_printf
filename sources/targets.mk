@@ -14,6 +14,10 @@ TARGETS := \
 	convert_f_stuffers1 \
 	convert_f_stuffers2 \
 	convert_g \
+	convert_g_estuffers1 \
+	convert_g_estuffers2 \
+	convert_g_fstuffers1 \
+	convert_g_fstuffers2 \
 	convert_i \
 	convert_n \
 	convert_nospecifier \
