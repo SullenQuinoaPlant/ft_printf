@@ -12,10 +12,12 @@ void	cg_flowdigits(int pos, void *p)
 	syl->type = e_sot_apstr_f;
 	syl->f = tsof_out_eat_tspot;
 	syl->arg = &stf->number;
+	if (stf->chk->flags & HASH_FLAG)
+		return;
 	if ((skip = stf->number.pow10 + 1) <= 0)
 		skip = 0;
 	stf->pre -= trailing_zeros(stf->number.times, skip, stf->pre);
-	if (!(syl->len = stf->pre) && !(stf->chk->flags & HASH_FLAG))
+	if (!(syl->len = stf->pre))
 		(syl - SEPARATOR_REL_POS)->len = 0;
 }
 
