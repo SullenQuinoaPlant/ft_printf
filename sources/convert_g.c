@@ -2,7 +2,7 @@
 
 #define GRP_SETTER 1
 static t_stuffer
-		g_estyle[G_FSYLS + GRP_SETTER + 1] = {
+		g_estyle[G_ESYLS + GRP_SETTER + 1] = {
 	dummy_stuffer,
 	cg_esign,
 	dummy_stuffer,
