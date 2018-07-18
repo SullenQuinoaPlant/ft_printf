@@ -5,7 +5,6 @@ void	cg_fsign(int pos, void *p)
 	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
-	syl->type = e_sot_c;
 	syl->len = 1;
 	if (stf->number.times < 0)
 		syl->c = '-';
@@ -50,7 +49,6 @@ void	cg_fseparator(int pos, void *p)
 	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
-	syl->type = e_sot_c;
 	syl->c = '.';
 	if (stf->pre || stf->chk->flags & HASH_FLAG)
 		syl->len = 1;

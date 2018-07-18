@@ -37,10 +37,10 @@ static void
 	set_precision(
 		t_s_gcs *stf)
 {
-	if (stf->chk->precision)
-		stf->pre = **stf->chk->precision;
-	else
-		stf->pre = 6;
+	stf->pre = 6;
+	if (stf->chk->precision &&
+		!(stf->pre = **stf->chk->precision))
+		stf->pre = 1;
 }
 
 static int
@@ -80,6 +80,7 @@ void		convert_g(t_s_pct *chk)
 	set_precision(&stf);
 	if (!set_number(&stf))
 		return;
+	init_syls(e_sot_c, G_SYLLABLES, stf.syls);
 	stuff_stuff(choose_pattern(&stf), &stf, pads);
 	purge_apstr(stf.chk, stf.syls, G_SYLLABLES);
 	set_pad_syl(chk, pads, stf.syl_grps, G_SYLGRPS);
