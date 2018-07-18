@@ -2,7 +2,7 @@
 
 void	cg_fsign(int pos, void *p)
 {
-	t_s_fcs	* const stf = (t_s_fcs*)p;
+	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_c;
@@ -19,7 +19,7 @@ void	cg_fsign(int pos, void *p)
 
 void	cg_fhighdigits(int pos, void *p)
 {
-	t_s_fcs	* const stf = (t_s_fcs*)p;
+	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 	int		i;
 
@@ -37,7 +37,7 @@ void	cg_fhighdigits(int pos, void *p)
 
 void	cg_fpowerzero(int pos, void *p)
 {
-	t_s_fcs	* const stf = (t_s_fcs*)p;
+	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_apstr_c;
@@ -47,7 +47,7 @@ void	cg_fpowerzero(int pos, void *p)
 
 void	cg_fseparator(int pos, void *p)
 {
-	t_s_fcs	* const stf = (t_s_fcs*)p;
+	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_c;
@@ -58,7 +58,7 @@ void	cg_fseparator(int pos, void *p)
 
 void	cg_fzeros(int pos, void *p)
 {
-	t_s_fcs	* const stf = (t_s_fcs*)p;
+	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_apstr_c;

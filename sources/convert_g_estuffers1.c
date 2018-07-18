@@ -4,7 +4,7 @@ void
 	cg_esign(
 		int pos, void *s)
 {
-	t_s_ecs	* const stf = (t_s_ecs*)s;
+	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = stf->syls + pos;
 
 	syl->len = 1;
@@ -22,7 +22,7 @@ void
 	cg_ezero(
 		int pos, void *s)
 {
-	t_s_ecs	* const stf = (t_s_ecs*)s;
+	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
 
 	syl->len = 1;
@@ -36,7 +36,7 @@ void
 	cg_eseparator(
 		int pos, void *s)
 {
-	t_s_ecs	* const stf = (t_s_ecs*)s;
+	t_s_gcs	* const stf = (t_s_gcs*)s;
 
 	stf->syls[pos].c = '.';
 	stf->syls[pos].len = 1;
@@ -49,7 +49,7 @@ void
 	cg_elowdigits(
 		int pos, void *s)
 {
-	t_s_ecs	* const stf = (t_s_ecs*)s;
+	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
 
 	if (!(stf->pre -= trailing_zeros(stf->number.times, 1, stf->pre)) &&
@@ -65,7 +65,7 @@ void
 	cg_eto_the_power(
 		int pos, void *s)
 {
-	t_s_ecs	* const stf = (t_s_ecs*)s;
+	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
 
 	syl->len = 1;

@@ -3,7 +3,7 @@
 #define SEPARATOR_REL_POS 2
 void	cg_flowdigits(int pos, void *p)
 {
-	t_s_fcs	* const stf = (t_s_fcs*)p;
+	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 	int		skip;
 
@@ -23,6 +23,7 @@ void	cg_flowdigits(int pos, void *p)
 #define HIGH_GRP 1
 void	cg_fsetgroups(int pos, void *p)
 {
+	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const	syls = stf->syls;
 	t_s_sgd	ar[G_SYLGRPS] = {
 		{&syls[0], 2, 0, 0, 0},
