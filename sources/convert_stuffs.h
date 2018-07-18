@@ -90,4 +90,25 @@ typedef struct	s_convert_g_stuff {
 	t_s_cc		p_exp;
 }				t_s_gcs;
 
+void	cg_esign(int, void*);
+void	cg_ezero(int, void*);
+void	cg_eseparator(int, void*);
+void	cg_elowdigits(int, void*);
+void	cg_eto_the_power(int, void*);
+void	cg_eexponent_sign(int, void*);
+void	cg_eexponent_pad(int, void*);
+void	cg_eexponent(int, void*);
+void	cg_esetgroups(int, void*);
+
+void	dummy_stuffer(int, void*);
+void	cg_fsign(int, void*);
+void	dummy_stuffer(int, void*);
+void	cg_fhighdigits(int, void*);
+void	cg_fpowerzero(int, void*);
+void	cg_fseparator(int, void*);
+void	cg_fzeros(int, void*);
+void	cg_flowdigits(int, void*);
+void	dummy_stuffer(int, void*);
+void	cg_fsetgroups(int, void*);
+
 #endif
