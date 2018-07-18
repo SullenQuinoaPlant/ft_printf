@@ -326,7 +326,7 @@ skip();
 		double	d;
 
 		d = 2.0;
-		printf_diff("text_%2$.*1$a_text", 13, d);
+		printf_diff("text_%2$.*1$e_text", 13, d);
 	)
 
 	return(run_test_arr(all_of, these));
