@@ -48,14 +48,12 @@ static int
 		t_s_gcs *stf)
 {
 	t_s_fpndfp	num;
-	int			roundat;
 
 	get_fpndfp(stf->chk->vaarg, &num);
 	if (output_nan_inf(&num.dec, stf->chk))
 		return (0);
 	stf->number = near_low_pot(&num);
-	roundat = -(stf->number.pow10 + stf->pre);
-	round_ldouble(&stf->number.times, roundat);
+	round_ldouble(&stf->number.times, -stf->pre + 1);
 	return (1);
 }
 
