@@ -54,6 +54,6 @@ void	cg_esetgroups(int pos, void *p)
 
 	(void)pos;
 	i = apstr_offset(syls[EXP_DIG].len, ar[EXP_GRP].apstr_grp);
-	ar[HIGH_GRP].apstr_pos = i;
+	ar[EXP_GRP].apstr_pos = i;
 	ft_memcpy(stf->syl_grps, ar, sizeof(ar));
 }
