@@ -39,7 +39,7 @@ void
 	if (!len)
 		return;
 	if (flags & MINUS_FLAG)
-		syl_ar[pad_i[e_pp_left]].len = len;
+		syl_ar[pad_i[e_pp_right]].len = len;
 	else if (flags & ZERO_FLAG)
 	{
 		i = pad_i[e_pp_middle];
