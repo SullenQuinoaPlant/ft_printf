@@ -13,7 +13,7 @@ void	cg_flowdigits(int pos, void *p)
 	syl->f = tsof_out_eat_tspot;
 	syl->arg = &stf->number;
 	if (stf->chk->flags & HASH_FLAG)
-		syl->len = stf->pre
+		syl->len = stf->pre;
 	else
 	{
 		if ((skip = stf->number.pow10 + 1) <= 0)
