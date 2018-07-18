@@ -81,7 +81,7 @@ void		convert_g(t_s_pct *chk)
 	if (!set_number(&stf))
 		return;
 	stuff_stuff(choose_pattern(&stf), &stf, pads);
-	purge_apstr(&stf.chk, stf.syls, G_SYLLABLES);
+	purge_apstr(stf.chk, stf.syls, G_SYLLABLES);
 	set_pad_syl(chk, pads, stf.syl_grps, G_SYLGRPS);
 	out_syl_groups(stf.syl_grps, G_SYLGRPS);
 }
