@@ -13,12 +13,15 @@ void	cg_flowdigits(int pos, void *p)
 	syl->f = tsof_out_eat_tspot;
 	syl->arg = &stf->number;
 	if (stf->chk->flags & HASH_FLAG)
-		return;
-	if ((skip = stf->number.pow10 + 1) <= 0)
-		skip = 0;
-	stf->pre -= trailing_zeros(stf->number.times, skip, stf->pre);
-	if (!(syl->len = stf->pre))
-		(syl - SEPARATOR_REL_POS)->len = 0;
+		syl->len = stf->pre
+	else
+	{
+		if ((skip = stf->number.pow10 + 1) <= 0)
+			skip = 0;
+		stf->pre -= trailing_zeros(stf->number.times, skip, stf->pre);
+		if (!(syl->len = stf->pre))
+			(syl - SEPARATOR_REL_POS)->len = 0;
+	}
 }
 
 #define HIGH_DIG 3
