@@ -44,7 +44,7 @@ static void
 
 	stf->syls[CHAR_SYL].type = e_sot_f;
 	stf->syls[CHAR_SYL].f  = tsof_wcharstr;
-	str = (wchar_t*)stf->chk->vaarg->p_val;
+	str = *(wchar_t**)stf->chk->vaarg->p_val;
 	stf->syls[CHAR_SYL].arg = str;
 	left = stf->pre;
 	while (*str && (r = as_utf8seq(*str++, UTF8_MAX_CHARS, ar)) <= left)
