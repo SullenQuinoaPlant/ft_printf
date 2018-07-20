@@ -59,7 +59,7 @@ void		convert_s(t_s_pct *chk)
 	stf.chk = chk;
 	filter_flags(chk);
 	get_precision(chk, &stf);
-	if (chk->vaarg->type == e_wchar_t)
+	if (chk->vaarg->type == e_wchar_tptr)
 		set_wcharstr(&stf);
 	else
 		set_charstr(&stf);
