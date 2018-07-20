@@ -29,5 +29,17 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_compare("s_test_unicode2.ref", "%.4ls", vals);
 	)
 
+	T(test1,
+		printf_diff("%s", "this is a string");
+	)
+
+	T(test2,
+		printf_diff("%.12s", "this is a string");
+	)
+
+	T(test3,
+		printf_diff("%100s", "this is a string");
+	)
+
 	return(run_test_arr(all_of, these));
 }
