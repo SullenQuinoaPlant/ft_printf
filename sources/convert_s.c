@@ -24,13 +24,13 @@ static void
 	set_charstr(
 		t_s_scs *stf)
 {
-	t_s_so	* const chars = stf->syls[CHAR_SYL];
+	t_s_so	* const chars = stf->syls + CHAR_SYL;
 
-	chars.type = e_sot_cc;
+	chars->type = e_sot_cc;
 	if (stf->pre == NULL_TERMED)
-		chars.len = ft_strlen(stf->chk->vaarg->p_val);
+		chars->len = ft_strlen(stf->chk->vaarg->p_val);
 	else
-		chars.len = stf->pre;
+		chars->len = stf->pre;
 }
 
 static void
@@ -38,8 +38,8 @@ static void
 		t_s_scs *stf)
 {
 	size_t	left;
+	size_t	r;
 	wchar_t	*str;
-	int		r;
 	char	ar[UTF8_MAX_CHARS];
 
 	stf->syls[CHAR_SYL].type = e_sot_f;
@@ -63,5 +63,5 @@ void		convert_s(t_s_pct *chk)
 		set_wcharstr(&stf);
 	else
 		set_charstr(&stf);
-	set_pad_syl(chk, (int[3]){0, 1, 3}, &(t_s_sgd){stf.syls, 4}, 1);
+	set_pad_syl(chk, (int[3]){0, 1, 3}, &(t_s_sgd){stf.syls, 4, 0, 0, 0}, 1);
 }
