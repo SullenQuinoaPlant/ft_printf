@@ -50,7 +50,6 @@ size_t
 {
 	char	* const lim = put + len - UTF8_MAX_CHARS;
 	char	* const save = put;
-	wchar_t	*p;
 
 	if (!(str && *str))
 		return (0);

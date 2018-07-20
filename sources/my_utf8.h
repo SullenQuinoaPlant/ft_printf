@@ -28,9 +28,9 @@ int
 
 size_t
 	str_to_utf8(
-		wchar_t * const	*str,
-		char 			*put,
-		size_t 			len);
+		wchar_t *str,
+		char 	*put,
+		size_t 	len);
 
 int
 	true_utf8seq(
