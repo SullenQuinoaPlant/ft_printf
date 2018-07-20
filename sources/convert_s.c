@@ -64,4 +64,5 @@ void		convert_s(t_s_pct *chk)
 	else
 		set_charstr(&stf);
 	set_pad_syl(chk, (int[3]){0, 1, 3}, &(t_s_sgd){stf.syls, 4, 0, 0, 0}, 1);
+	output_syllables(stf.syls, S_SYLLABLES);
 }
