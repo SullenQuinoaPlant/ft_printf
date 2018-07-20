@@ -44,9 +44,9 @@ int
 
 size_t
 	str_to_utf8(
-		wchar_t * const	*str,
-		char 			*put,
-		size_t 			len)
+		wchar_t *str,
+		char 	*put,
+		size_t 	len)
 {
 	char	* const lim = put + len - UTF8_MAX_CHARS;
 	char	* const save = put;
@@ -54,8 +54,7 @@ size_t
 
 	if (!(str && *str))
 		return (0);
-	p = *str;
-	while (*p && put < lim)
-		put += true_utf8seq(*p++, put);
+	while (*str && put < lim)
+		put += true_utf8seq(*str++, put);
 	return (put - save);
 }

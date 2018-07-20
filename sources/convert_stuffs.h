@@ -111,4 +111,14 @@ void	cg_flowdigits(int, void*);
 void	dummy_stuffer(int, void*);
 void	cg_fsetgroups(int, void*);
 
+# define S_SYLLABLES 4
+
+typedef struct	s_convert_s_stuff {
+	t_s_pct		*chk;
+	t_s_so		syls[S_SYLLABLES];
+	int			pre;
+}				t_s_scs;
+
+int		tsof_wcharstr(size_t len, void *p);
+
 #endif
