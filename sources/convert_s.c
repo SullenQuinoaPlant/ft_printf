@@ -24,13 +24,14 @@ static void
 	set_charstr(
 		t_s_scs *stf)
 {
-	t_s_so	* const chars = stf->syls + CHAR_SYL;
+	t_s_so	* const syl = stf->syls + CHAR_SYL;
 
-	chars->type = e_sot_cc;
+	syl->type = e_sot_cc;
+	syl->cc = *(char**)stf->chk->vaarg->p_val;
 	if (stf->pre == NULL_TERMED)
-		chars->len = ft_strlen(stf->chk->vaarg->p_val);
+		syl->len = ft_strlen(syl->cc);
 	else
-		chars->len = stf->pre;
+		syl->len = stf->pre;
 }
 
 static void
