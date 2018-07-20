@@ -15,4 +15,5 @@ int
 		output_cc(r, ar);
 		len -= r;
 	}
+	return (len == 0);
 }
