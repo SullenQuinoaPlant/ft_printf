@@ -27,6 +27,7 @@ TARGETS := \
 	convert_s \
 	convert_sign \
 	convert_stuffers_auxilliaries \
+	convert_s_wcharstr \
 	convert_syllable_auxilliaries \
 	convert_tscc_to_syllable \
 	convert_u \
