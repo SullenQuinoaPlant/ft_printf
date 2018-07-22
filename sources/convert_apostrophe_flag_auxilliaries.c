@@ -17,7 +17,7 @@ int
 
 	if (!grp)
 		return (0);
-	mod = len % (grp + 1);
+	mod = len % grp;
 	return (grp - mod);
 }
 
