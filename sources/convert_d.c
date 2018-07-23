@@ -6,65 +6,64 @@ static t_stuffer
 		cd_sign,
 		dummy_stuffer,
 		cd_prefix,
-		cd_integer,
+		cd_digits,
 		dummy_stuffer};
 
-static intmax_t
-	get_d(t_s_pct *chk)
+static int
+	set_integer(
+		t_s_dcs *stf);
 {
+	t_s_pct		* const chk = stf->chk;
 	t_s_arg		* const arg = chk->vaarg;
+	size_t		const dsz = g_etsz[arg->type];
 	intmax_t	d;
-	size_t		dsz;
 
-	dsz = g_etsz[arg->type];
 	d = 0;
 	ft_memcpy(&d, arg->p_val, dsz);
 	if (d & (((intmax_t)1) << ((CHAR_BIT * dsz) - 1)))
-		d |= ~((intmax_t)0) << (CHAR_BIT * dsz);
-	return (d);
+		d |= ~((((intmax_t)1) << (CHAR_BIT * dsz)) - 1);
+	stf->p_b = my_v_tob(d, g_dec_syms, &stf->b, e_all);
+	return (d ? 1 : 0);
 }
 
-static size_t
-	set_syls(
-		t_s_pct *chk, intmax_t d,
+static int
+	set_precision(
+		t_s_dcs *stf);
+{
+	t_s_pct		* const chk = stf->chk;
+
+	return ((stf->pre = chk->precision ? **chk->precision : -1));
+}
+
+static void
+	set_group(
 		t_s_dcs *stf)
 {
-	t_s_so	* const d_so = &stf->syls[D];
-	int		const pre = chk->precision ? **chk->precision : -1;
-
-	if (!d && !pre)
-		return (0);
-	*d_so = syl_v_tob(d, g_dec_syms, &stf->b, e_all);
-	if (chk->flags & APSTR_FLAG)
-	{
-		d_so->type = e_sot_apstr_cc;
-		stf->syls[PRE].type = e_sot_apstr_c;
-		stf->syls[PRE].c = '0';
-	}
-	if (chk->flags & SPACE_FLAG && d >= 0)
-		*d_so->cc = ' ';
-	stf->syls[S].c = *d_so->cc++;
-	d_so->len--;
-	if (d < 0 ||
-		(chk->flags & (SPACE_FLAG | PLUS_FLAG)))
-		stf->syls[S].len = 1;
-	if (pre > 0 && d_so->len < (size_t)pre)
-		stf->syls[PRE].len = pre - d_so->len;
-	return (syls_outlen(stf->syls, D_SYLS, AF_DG));
+	stf->group.first = stf->syls;
+	stf->group.sz = D_SYLS;
+	if (is_apstr(stf->chk))
+		apstr_set_offset_grp(&stf->group, AF_DG, AF_DS);
+	else
+		apstr_set_nogrp(&stf->group);
 }
 
 void		convert_d(t_s_pct *chk)
 {
+	int			pad_indexes[e_pp_sz] = {0};
 	t_s_dcs		stf;
 	size_t		len;
-	size_t		ap_len;
+	int			r;
 	
+	stf.chk = chk;
 	init_syls(e_sot_c, D_SYLS, stf.syls);
-	len = set_syls(chk, get_d(chk), &stf);
-	if (chk->flags & APSTR_FLAG &&
-		(ap_len = len - stf.syls[S].len))
-		gos_set_apstr(AF_DG, AF_DS, ap_len);
-	else
-		gos_set_apstr(0, 0, 0);
-	output_padnstuff(len, chk, g_d_outputters, &stf);
+	r = get_integer(&stf);
+	r |= get_precisio(&stf);
+	if (r)
+	{
+		stuff_stuff(g_fstr, &stf, pad_indexes);
+		purge_apstr(chk, stf.syls, D_SYLS);
+		set_group(&stf);
+		set_pad_syl(chk, pad_indexes, &stf.group, 1);
+		out_syl_groups(&stf.group, 1);
+	}
 }

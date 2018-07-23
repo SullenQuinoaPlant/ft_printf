@@ -6,10 +6,6 @@ size_t
 		size_t len, size_t grp_sz);
 
 size_t
-	apstr_len_grp(
-		t_s_sgd *grp);
-
-size_t
 	apstr_len_syls(
 		t_s_so * syl, size_t count,
 		size_t grp);
@@ -17,6 +13,22 @@ size_t
 int
 	apstr_offset(
 		size_t len, size_t grp);
+
+size_t
+	apstr_only_grp_len(
+		t_s_sgd *gd);
+
+void
+	apstr_set_grp(
+		t_s_sgd *gd, size_t grp_sz, char grp_c);
+
+void
+	apstr_set_nogrp(
+		t_s_sgd *gd);
+
+void
+	apstr_set_offset_grp(
+		t_s_sgd *gd, size_t grp_sz, char grp_c);
 
 void
 	apstr_zpad(
@@ -153,6 +165,10 @@ int
 void
 	init_syls(
 		enum e_sot type, int how_many, t_s_so *ar);
+
+int
+	is_apstr(
+		t_s_pct *chk);
 
 t_s_pot
 	near_low_pot(

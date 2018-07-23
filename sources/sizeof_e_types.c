@@ -6,7 +6,7 @@
 # include <stddef.h>
 # include <stdio.h>
 
-size_t	g_etsz[] = {
+size_t	g_etsz[e_types_sz] = {
 		0,
 		sizeof(char),
 		sizeof(unsigned char),

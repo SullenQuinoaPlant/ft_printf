@@ -1,5 +1,28 @@
 #include "ft_printf_inner.h"
 
+int
+	is_apstr(
+		t_s_pct *chk)
+{
+	return (chk->flags & APSTR_FLAG ? 1 : 0);
+}
+
+size_t
+	apstr_only_grp_len(
+		t_s_sgd *gd)
+{
+	t_s_so	* const lim = gd->first + gd->sz;
+	t_s_so	*syl;
+	size_t	ret;
+
+	syl = gd->first;
+	while (syl < lim)
+		if (syl->type == e_sot_apstr_c &&
+			syl->type == e_sot_apstr_cc &&
+			syl->type == e_sot_apstr_f)
+			ret += syl++->len;
+}
+
 size_t
 	apstr_len_raw(
 		size_t len, size_t grp)
@@ -19,6 +42,33 @@ int
 		return (0);
 	mod = len % grp;
 	return (grp - mod);
+}
+
+void
+	apstr_set_offset_grp(
+		t_s_sgd *gd, size_t grp_sz, char grp_c)
+{
+	gd->apstr_grp = grp_sz;
+	gd->apstr_c = grp_c;
+	gd->apstr_pos = apstr_offset(apstr_only_grp_len(gd), grp_sz);
+}
+
+void
+	apstr_set_grp(
+		t_s_sgd *gd, size_t grp_sz, char grp_c)
+{
+	gd->apstr_grp = grp_sz;
+	gd->apstr_c = grp_c;
+	gd->apstr_pos = 0;
+}
+
+void
+	apstr_set_nogrp(
+		t_s_sgd *gd)
+{
+	gd->apstr_grp = 0;
+	gd->apstr_c = 0;
+	gd->apstr_pos = 0;
 }
 
 

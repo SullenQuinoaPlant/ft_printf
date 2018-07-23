@@ -27,13 +27,16 @@ void	ca_exponent(int, void*);
 
 #define D_SYLS 6
 typedef struct	s_convert_d_stuff {
+	t_s_pct	*chk;
 	t_s_so	syls[D_SYLS];
 	t_mib	b;
+	t_s_cc	p_b;
+	int		pre;
 }				t_s_dcs;
 
 void	cd_sign(int, void*);
 void	cd_prefix(int, void*);
-void	cd_integer(int, void*);
+void	cd_digits(int, void*);
 
 # define E_SYLLABLES 8
 # define E_SYLGRPS 4
