@@ -1,36 +1,14 @@
 #include "ft_printf_inner.h"
 
-#define S 0
-#define PRE 1
-#define D 2
-
-static int
-	cd_prefix(
-		void *s)
-{
-	t_s_dcs	* const stf = (t_s_dcs*)s;
-	t_s_so	* const syl = stf->syls;
-
-	return (output_syllable(&syl[S]));
-}
-
-static int
-	cd_body(
-		void *s)
-{
-	t_s_dcs	* const stf = (t_s_dcs*)s;
-	int		r;
-
-	r = output_syllables(&stf->syls[PRE], D - S);
-	return (r);
-}
-
-static t_oa
-	g_d_outputters = {
+static t_stuffer
+	g_fstr[D_SYLS] = {
+		dummy_stuffer,
+		cd_sign,
+		dummy_stuffer,
 		cd_prefix,
-		cd_body
-};
-		
+		cd_integer,
+		dummy_stuffer};
+
 static intmax_t
 	get_d(t_s_pct *chk)
 {
