@@ -8,11 +8,11 @@ void
 	t_s_so	* const syl = stf->syls;
 
 	syl->len = 1;
-	if ((syl->c = *stf->p_b.c) == '+'))
+	if ((syl->c = *stf->p_b.c) == '+')
 	{
 		if (stf->chk->flags & SPACE_FLAG)
 			syl->c = ' ';
-		else if (!stf->chk->flags & PLUS_FLAG)
+		else if (!(stf->chk->flags & PLUS_FLAG))
 			syl->len = 0;
 	}
 }
