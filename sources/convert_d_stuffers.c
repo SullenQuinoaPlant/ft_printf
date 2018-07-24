@@ -7,6 +7,7 @@ void
 	t_s_dcs	* const stf = (t_s_dcs*)p;
 	t_s_so	* const syl = stf->syls;
 
+	(void)pos;
 	syl->len = 1;
 	if ((syl->c = *stf->p_b.c) == '+')
 	{
