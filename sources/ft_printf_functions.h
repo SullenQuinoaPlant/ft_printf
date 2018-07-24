@@ -27,12 +27,12 @@ size_t
 		t_s_sgd *gd);
 
 void
-	apstr_zpad(
+	apstrify_zpad(
 		size_t grp,
 		t_s_so *pad, int *pos);
 
 void
-	apstr_zpad_adjust(
+	apstrify_zpad_grp(
 		t_s_so *pad, t_s_sgd *grps);
 
 char const *

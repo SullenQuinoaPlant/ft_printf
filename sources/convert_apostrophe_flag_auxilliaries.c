@@ -81,15 +81,12 @@ void
 
 
 void
-	apstr_zpad_adjust(
+	apstrify_zpad_grp(
 		t_s_so *pad, t_s_sgd *grps)
 {
-	size_t	grp;
-
 	while (pad > grps->first)
 		grps++;
-	grp = grps->apstr_grp;
-	apstr_zpad(grp, pad, &grps->apstr_pos);
+	apstrify_zpad(grps->apstr_grp, pad, &grps->apstr_pos);
 }
 
 /*Fearlessly casting between int and size_t because 
@@ -98,7 +95,7 @@ void
 **padding can't be more than MAX_INT.
 */
 void
-	apstr_zpad(
+	apstrify_zpad(
 		size_t grp,
 		t_s_so *pad, int *pos_offset)
 {

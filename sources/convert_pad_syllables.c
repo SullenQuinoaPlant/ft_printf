@@ -9,16 +9,16 @@ static void
 	int				mid_pad;
 	t_e_sot			type;
 
-	init = (t_s_so) {0, e_sot_c, {0}};
+	init.len = 0;
+	init.type = e_sot_c;
 	init.c = ' ';
 	pp = e_pp_left;
 	while (pp < e_pp_sz)
 		syl_ar[pad_i[pp++]] = init;
-	mid_pad = pad_i[e_pp_middle];
+	syl_ar[(mid_pad = pad_i[e_pp_middle])].c = '0';
 	type = syl_ar[mid_pad + 1].type;
-	if (type == e_sot_apstr_cc ||
-		type == e_sot_apstr_c ||
-		type == e_sot_apstr_f)
+	if ((type = syl_ar[mid_pad + 1].type) == e_sot_apstr_cc ||
+		type == e_sot_apstr_c || type == e_sot_apstr_f)
 		syl_ar[mid_pad].type = e_sot_apstr_c;
 }
 
@@ -34,9 +34,7 @@ void
 
 	
 	init_pad_syllables(pad_i, syl_ar);
-	len = sylgrps_outlen(syl_grps, count);
-	len = get_padlen(chk, len);
-	if (!len)
+	if (!(len = get_padlen(chk, sylgrps_outlen(syl_grps, count))))
 		return;
 	if (flags & MINUS_FLAG)
 		syl_ar[pad_i[e_pp_right]].len = len;
@@ -46,7 +44,7 @@ void
 		syl_ar[i].c = '0';
 		syl_ar[i].len = len;
 		if (syl_ar[i].type == e_sot_apstr_c)
-			apstr_zpad_adjust(&syl_ar[i], syl_grps);
+			apstrify_zpad_grp(&syl_ar[i], syl_grps);
 	}
 	else
 		syl_ar[pad_i[e_pp_left]].len = len;

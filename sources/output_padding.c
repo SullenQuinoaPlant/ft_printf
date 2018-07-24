@@ -20,9 +20,8 @@ static int
 
 	pad.len = len;
 	pad.c = '0';
-	pad.type = g_os.apstr_grp ? e_sot_apstr_c : e_sot_c;
-	if (pad.type == e_sot_apstr_c)
-		apstr_zpad(g_os.apstr_grp, &pad, &g_os.apstr_pos);
+	if ((pad.type = g_os.apstr_grp ? e_sot_apstr_c : e_sot_c) != e_sot_c)
+		apstrify_zpad(g_os.apstr_grp, &pad, &g_os.apstr_pos);
 	return (output_syllable(&pad));
 }
 
