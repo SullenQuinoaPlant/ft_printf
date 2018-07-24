@@ -41,10 +41,10 @@ static void
 {
 	stf->group.first = stf->syls;
 	stf->group.sz = D_SYLS;
-	if (is_apstr(stf->chk))
-		apstr_set_offset_grp(&stf->group, AF_DG, AF_DS);
+	if (apstr_purge_ornot(stf->chk, stf->syls, D_SYLS))
+		noapstr_grp_props(&stf->group);
 	else
-		apstr_set_nogrp(&stf->group);
+		apstr_grp_props_offset(AF_DG, AF_DS, &stf->group);
 }
 
 void		convert_d(t_s_pct *chk)
@@ -59,8 +59,7 @@ void		convert_d(t_s_pct *chk)
 	r |= set_precision(&stf);
 	if (r)
 	{
-		stuff_stuff(g_fstr, &stf, pad_indexes);
-		purge_apstr(chk, stf.syls, D_SYLS);
+		call_tstuffers(g_fstr, &stf, pad_indexes);
 		set_group(&stf);
 		set_pad_syl(chk, pad_indexes, &stf.group, 1);
 		out_syl_groups(&stf.group, 1);

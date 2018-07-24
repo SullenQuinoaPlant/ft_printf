@@ -1,7 +1,7 @@
 #include "ft_printf_inner.h"
 
 void
-	stuff_stuff(
+	call_tstuffers(
 		t_stuffer *f_str, void *p_stf,
 		int *dummy_indexes)
 {

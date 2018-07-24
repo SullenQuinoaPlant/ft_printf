@@ -47,8 +47,9 @@ int
 }
 
 void
-	apstr_set_offset_grp(
-		t_s_sgd *gd, size_t grp_sz, char grp_c)
+	apstr_grp_props_offset(
+		size_t grp_sz, char grp_c,
+		t_s_sgd *gd)
 {
 	gd->apstr_grp = grp_sz;
 	gd->apstr_c = grp_c;
@@ -56,8 +57,9 @@ void
 }
 
 void
-	apstr_set_grp(
-		t_s_sgd *gd, size_t grp_sz, char grp_c)
+	apstr_grp_props_nooffset(
+		size_t grp_sz, char grp_c,
+		t_s_sgd *gd)
 {
 	gd->apstr_grp = grp_sz;
 	gd->apstr_c = grp_c;
@@ -65,7 +67,7 @@ void
 }
 
 void
-	apstr_set_nogrp(
+	noapstr_grp_props(
 		t_s_sgd *gd)
 {
 	gd->apstr_grp = 0;
@@ -116,16 +118,16 @@ void
 	*pos_offset = (int)pos;
 }
 
-void
-	purge_apstr(
+int
+	apstr_purge_ornot(
 		t_s_pct *chk,
 		t_s_so *syls, size_t count)
 {
 	t_s_so	* const lim = syls + count;
 	t_e_sot	type;
 
-	if (chk->flags & APSTR_FLAG)
-		return;
+	if (!is_apstr(chk))
+		return (0);
 	while (syls < lim)
 		if ((type = syls->type) == e_sot_apstr_c)
 			syls++->type = e_sot_c;
@@ -135,4 +137,5 @@ void
 			syls++->type = e_sot_f;
 		else
 			syls++;
+	return (1);
 }

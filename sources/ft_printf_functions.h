@@ -1,6 +1,14 @@
 #ifndef FT_PRINTF_FUNCTIONS_H
 # define FT_PRINTF_FUNCTIONS_H
 
+void
+	apstr_grp_props_nooffset(
+		size_t grp_sz, char grp_c, t_s_sgd *gd);
+
+void
+	apstr_grp_props_offset(
+		size_t grp_sz, char grp_c, t_s_sgd *gd);
+
 size_t
 	apstr_len_raw(
 		size_t len, size_t grp_sz);
@@ -19,18 +27,6 @@ size_t
 		t_s_sgd *gd);
 
 void
-	apstr_set_grp(
-		t_s_sgd *gd, size_t grp_sz, char grp_c);
-
-void
-	apstr_set_nogrp(
-		t_s_sgd *gd);
-
-void
-	apstr_set_offset_grp(
-		t_s_sgd *gd, size_t grp_sz, char grp_c);
-
-void
 	apstr_zpad(
 		size_t grp,
 		t_s_so *pad, int *pos);
@@ -43,6 +39,11 @@ char const *
 	attempt_all(
 		char const *in,
 		char const * (*const *f_str)(char const *));
+
+void
+	call_tstuffers(
+		t_stuffer *f_str, void *p_stf,
+		int *dummy_indexes);
 
 void
 	convert_a(
@@ -173,6 +174,10 @@ int
 t_s_pot
 	near_low_pot(
 		t_s_fpndfp const *num);
+
+void
+	noapstr_grp_props(
+		t_s_sgd *gd);
 
 int
 	out_apstr_syl(
@@ -309,8 +314,8 @@ int **
 	ps_store_integer(
 		int val, int *** const p_res);
 
-void
-	purge_apstr(
+int
+	apstr_purge_ornot(
 		t_s_pct *chk,
 		t_s_so *syls, size_t count);
 
@@ -337,11 +342,6 @@ void
 t_s_cc
 	sign_to_b(
 		int sign, t_s_pct *p_chk, char *b);
-
-void
-	stuff_stuff(
-		t_stuffer *f_str, void *p_stf,
-		int *dummy_indexes);
 
 t_s_so
 	syl_lowv_tob(

@@ -65,7 +65,7 @@ void		convert_f(t_s_pct *chk)
 	set_precision(&stf);
 	if (!set_number(&stf))
 		return;
-	stuff_stuff(g_fstr, &stf, pads);
+	call_tstuffers(g_fstr, &stf, pads);
 	set_syl_grps(&stf);
 	set_pad_syl(chk, pads, stf.syl_grps, F_SYLGRPS);
 	out_syl_groups(stf.syl_grps, F_SYLGRPS);

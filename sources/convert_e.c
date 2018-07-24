@@ -76,8 +76,8 @@ void		convert_e(t_s_pct *chk)
 	set_number(&num, &stf);
 	set_exponent(stf.number.pow10, &stf.p_exp, &stf.exp);
 	init_syls(e_sot_c, E_SYLLABLES, stf.syls);
-	stuff_stuff(g_fstr, &stf, 0);
-	purge_apstr(chk, stf.syls, E_SYLLABLES);
+	call_tstuffers(g_fstr, &stf, 0);
+	apstr_purge_ornot(chk, stf.syls, E_SYLLABLES);
 	set_syl_grps(&stf);
 	out_len = sylgrps_outlen(stf.syl_grps, E_SYLGRPS);
 	output_padnstuff(out_len, chk, g_outputters, &stf);
