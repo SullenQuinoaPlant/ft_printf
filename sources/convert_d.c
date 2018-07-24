@@ -11,7 +11,7 @@ static t_stuffer
 
 static int
 	set_integer(
-		t_s_dcs *stf);
+		t_s_dcs *stf)
 {
 	t_s_pct		* const chk = stf->chk;
 	t_s_arg		* const arg = chk->vaarg;
@@ -28,7 +28,7 @@ static int
 
 static int
 	set_precision(
-		t_s_dcs *stf);
+		t_s_dcs *stf)
 {
 	t_s_pct		* const chk = stf->chk;
 
@@ -56,8 +56,8 @@ void		convert_d(t_s_pct *chk)
 	
 	stf.chk = chk;
 	init_syls(e_sot_c, D_SYLS, stf.syls);
-	r = get_integer(&stf);
-	r |= get_precisio(&stf);
+	r = set_integer(&stf);
+	r |= set_precision(&stf);
 	if (r)
 	{
 		stuff_stuff(g_fstr, &stf, pad_indexes);

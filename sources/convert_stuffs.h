@@ -32,6 +32,7 @@ typedef struct	s_convert_d_stuff {
 	t_mib	b;
 	t_s_cc	p_b;
 	int		pre;
+	t_s_sgd	group;
 }				t_s_dcs;
 
 void	cd_sign(int, void*);
