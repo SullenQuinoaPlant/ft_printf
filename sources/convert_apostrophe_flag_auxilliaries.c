@@ -84,7 +84,7 @@ void
 	apstrify_zpad_grp(
 		t_s_so *pad, t_s_sgd *grps)
 {
-	while (pad > grps->first)
+	while (pad > grps->first + grps->sz)
 		grps++;
 	apstrify_zpad(grps->apstr_grp, pad, &grps->apstr_pos);
 }
