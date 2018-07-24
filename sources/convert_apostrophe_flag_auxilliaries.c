@@ -126,7 +126,7 @@ int
 	t_s_so	* const lim = syls + count;
 	t_e_sot	type;
 
-	if (!is_apstr(chk))
+	if (is_apstr(chk))
 		return (0);
 	while (syls < lim)
 		if ((type = syls->type) == e_sot_apstr_c)
