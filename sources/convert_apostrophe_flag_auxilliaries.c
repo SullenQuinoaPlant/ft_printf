@@ -18,10 +18,13 @@ size_t
 	syl = gd->first;
 	ret = 0;
 	while (syl < lim)
-		if (syl++->type == e_sot_apstr_c ||
-			syl++->type == e_sot_apstr_cc ||
-			syl++->type == e_sot_apstr_f)
+	{
+		if (syl->type == e_sot_apstr_c ||
+			syl->type == e_sot_apstr_cc ||
+			syl->type == e_sot_apstr_f)
 			ret += syl->len;
+		syl++;
+	}
 	return (ret);
 }
 
