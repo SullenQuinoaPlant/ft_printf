@@ -5,6 +5,7 @@ TARGETS := \
 	convert_a_stuffers2 \
 	convert_c \
 	convert_d \
+	convert_d_stuffers \
 	convert_e \
 	convert_e_outputters \
 	convert_e_stuffers1 \
