@@ -33,7 +33,7 @@ void
 
 #define SIGN 1
 void
-	cd_integer(
+	cd_digits(
 		int pos, void *p)
 {
 	t_s_dcs	* const stf = (t_s_dcs*)p;
