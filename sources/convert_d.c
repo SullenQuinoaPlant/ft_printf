@@ -51,7 +51,6 @@ void		convert_d(t_s_pct *chk)
 {
 	int			pad_indexes[e_pp_sz] = {0};
 	t_s_dcs		stf;
-	size_t		len;
 	int			r;
 	
 	stf.chk = chk;
