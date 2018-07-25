@@ -132,6 +132,10 @@ void
 	free_parse_state_lists(
 		t_s_ps *ps);
 
+t_e_t
+	get_etype(
+		t_e_cs specifier, t_e_lm len_mod);
+
 void
 	get_fpndfp(
 		t_s_arg *g, t_s_fpndfp *ret);

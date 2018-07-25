@@ -3,7 +3,7 @@
 
 # include "ft_printf_inner.h"
 
-size_t	g_etsz[e_types_sz] = {
+size_t	g_et_sz[e_types_sz] = {
 		0,
 		sizeof(char),
 		sizeof(unsigned char),

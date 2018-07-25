@@ -89,7 +89,7 @@ typedef enum	e_types {
 }				t_e_t;
 
 extern size_t
-	g_etsz[];
+	g_et_sz[];
 
 typedef struct	s_va_arg {
 	t_e_t		type;

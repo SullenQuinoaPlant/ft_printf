@@ -15,7 +15,7 @@ static int
 {
 	t_s_pct		* const chk = stf->chk;
 	t_s_arg		* const arg = chk->vaarg;
-	size_t		const dsz = g_etsz[arg->type];
+	size_t		const dsz = g_et_sz[arg->type];
 	intmax_t	d;
 
 	d = 0;
