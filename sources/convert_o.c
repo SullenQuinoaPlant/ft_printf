@@ -20,7 +20,7 @@ static int
 
 	d = 0;
 	ft_memcpy(&d, arg->p_val, dsz);
-	stf->p_b = my_uv_tob(d, g_oct_syms, &stf->b, e_all);
+	stf->p_b = my_uv_tob(d, g_oct_syms, &stf->b);
 	return (d ? 1 : 0);
 }
 
@@ -48,7 +48,7 @@ static void
 void		convert_o(t_s_pct *chk)
 {
 	int			pad_indexes[e_pp_sz] = {0};
-	t_s_dcs		stf;
+	t_s_ocs		stf;
 	int			r;
 	
 	stf.chk = chk;
