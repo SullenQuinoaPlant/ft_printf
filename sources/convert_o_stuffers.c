@@ -26,7 +26,7 @@ void
 
 	syl->type = e_sot_apstr_c;
 	syl->c = '0';
-	if (stf->pre > 0 && stf->p_b.len < stf->pre)
+	if (stf->pre > 0 && stf->p_b.len < (size_t)stf->pre)
 		syl->len = stf->pre - stf->p_b.len;
 }
 
