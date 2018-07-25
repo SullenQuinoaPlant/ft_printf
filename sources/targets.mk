@@ -23,6 +23,7 @@ TARGETS := \
 	convert_n \
 	convert_nospecifier \
 	convert_o \
+	convert_o_stuffers \
 	convert_pad_syllables \
 	convert_p \
 	convert_s \
