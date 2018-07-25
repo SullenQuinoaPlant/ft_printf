@@ -40,7 +40,7 @@ static t_e_t const
 	{e_int, e_char, e_short, e_long, e_longlong, e_int, e_intmax_t, e_ssize_t,
 		e_ptrdiff_t},
 	//e_n
-	//	for which the value stored is actually a pointo the type specified by
+	//	for which the value stored is actually a pointer to the type specified by
 	//	the length modifier as follows (where defaults are set to int* see doc):
 	//		{e_int, e_char, e_short, e_long, e_longlong, e_int,
 	//			e_intmax_t, e_size_t, e_ptrdiff_t},
