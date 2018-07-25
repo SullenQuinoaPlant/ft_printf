@@ -21,3 +21,12 @@ void
 	g_os.apstr_pos = grp->apstr_pos;
 	g_os.apstr_c = grp->apstr_c;
 }
+
+void
+	init_output_state(
+		int fd)
+{
+	g_os.output_len = 0;
+	g_os.fd = fd;
+	g_os.errored = 0;
+}

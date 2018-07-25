@@ -18,18 +18,12 @@ static void	output_chunk(t_s_cw *p_cw)
 		g_os.errored++;
 }
 
-static void	init_g_os(int fd)
-{
-	g_os.output_len = 0;
-	g_os.fd = fd;
-	g_os.errored = 0;
-}
-
-int			output_chunks(int fd, t_s_ps *p_parsed)
+int
+	output_chunks(
+		t_s_ps *p_parsed)
 {
 	t_list	*p_link;
 
-	init_g_os(fd);
 	p_link = &p_parsed->chunks.head;
 	while((p_link = p_link->next) && !g_os.errored)
 		output_chunk(p_link->content);

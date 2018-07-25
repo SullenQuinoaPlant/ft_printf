@@ -164,6 +164,10 @@ int
 		va_list *vaargs);
 
 void
+	init_output_state(
+		int fd);
+
+void
 	init_parse_state();
 
 void
@@ -208,7 +212,7 @@ void
 
 int
 	output_chunks(
-		int fd, t_s_ps *p_parsed);
+		t_s_ps *p_parsed);
 
 int
 	output_nan_inf(

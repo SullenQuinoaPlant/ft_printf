@@ -8,10 +8,14 @@ int		ft_vprintf(const char *format, va_list va_p)
 	int		r;
 
 	r = -1;
+	init_parse_state();
 	if (parse_format_string(format) &&
-		get_va_args(&va_p) &&
-		output_chunks(1, &g_ps))
-		r = (int)g_os.output_len;
+		get_va_args(&va_p))
+	{
+		init_output_state(STDOUT_FILENO);
+		if (output_chunks(&g_ps))
+			r = (int)g_os.output_len;
+	}
 	free_parse_state_lists(&g_ps);
 	return (r);
 }
