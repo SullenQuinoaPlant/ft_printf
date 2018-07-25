@@ -119,8 +119,21 @@ void	cg_flowdigits(int, void*);
 void	dummy_stuffer(int, void*);
 void	cg_fsetgroups(int, void*);
 
-# define S_SYLLABLES 4
+#define O_SYLS 6
+typedef struct	s_convert_o_stuff {
+	t_s_pct	*chk;
+	t_s_so	syls[D_SYLS];
+	t_mib	b;
+	t_s_cc	p_b;
+	int		pre;
+	t_s_sgd	group;
+}				t_s_ocs;
 
+void	co_sign(int, void*);
+void	co_prefix(int, void*);
+void	co_digits(int, void*);
+
+# define S_SYLLABLES 4
 typedef struct	s_convert_s_stuff {
 	t_s_pct		*chk;
 	t_s_so		syls[S_SYLLABLES];

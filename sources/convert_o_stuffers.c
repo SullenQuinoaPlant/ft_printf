@@ -1,25 +1,24 @@
 #include "ft_printf_inner.h"
 
 void
-	cd_sign(
+	co_sign(
 		int pos, void *p)
 {
 	t_s_dcs	* const stf = (t_s_dcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
+	char	const flags = stf->chk->flags;
 
 	syl->len = 1;
-	if ((syl->c = *stf->p_b.c) == '+')
-	{
-		if (stf->chk->flags & SPACE_FLAG)
-			syl->c = ' ';
-		else if (!(stf->chk->flags & PLUS_FLAG))
-			syl->len = 0;
-	}
+	if (flags & SPACE_FLAG)
+		syl->c = ' ';
+	else if (flags & PLUS_FLAG)
+		syl->c = '+';
+	else
+		syl->len = 0;
 }
 
-#define SIGN 1
 void
-	cd_prefix(
+	co_prefix(
 		int pos, void *p)
 {
 	t_s_dcs	* const stf = (t_s_dcs*)p;
@@ -27,19 +26,18 @@ void
 
 	syl->type = e_sot_apstr_c;
 	syl->c = '0';
-	if (stf->pre > 0 &&
-		(stf->p_b.len - SIGN) < stf->pre)
-		syl->len = stf->pre - (stf->p_b.len - SIGN);
+	if (stf->pre > 0 && stf->p_b.len < stf->pre)
+		syl->len = stf->pre - stf->p_b.len;
 }
 
 void
-	cd_digits(
+	co_digits(
 		int pos, void *p)
 {
 	t_s_dcs	* const stf = (t_s_dcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_apstr_cc;
-	syl->cc = stf->p_b.c + SIGN;
-	syl->len = stf->p_b.len - SIGN;
+	syl->cc = stf->p_b.c;
+	syl->len = stf->p_b.len;
 }
