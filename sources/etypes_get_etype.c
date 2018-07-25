@@ -68,7 +68,7 @@ static t_e_t const
 
 t_e_t
 	get_etype(
-		(t_e_cs specifier, t_e_lm len_mod)
+		t_e_cs specifier, t_e_lm len_mod)
 {
 	return (g_types[specifier][len_mod]);
 }
