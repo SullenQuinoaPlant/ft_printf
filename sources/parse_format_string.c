@@ -1,17 +1,5 @@
 #include "ft_printf_inner.h"
 
-static void 	init_parse_state()
-{
-	g_ps.chunks.head.next = 0;
-	g_ps.chunks.tail = &g_ps.chunks.head;
-	g_ps.p_req_args = 0;
-	g_ps.p_known_vals = 0;
-	g_ps.free_arg_count = 0;
-	g_ps.dollar_count = 0;
-	g_ps.max_arg_pos = 0;
-	g_ps.errored = 0;
-}
-
 static t_e_dc	get_dollar_convention()
 {
 	if (g_ps.dollar_count)
@@ -34,7 +22,6 @@ int				parse_format_string(char const *in)
 {
 	char const	* const strt = in;
 
-	init_parse_state();
 	in = while_progress(strt, g_f_str);
 	if (*in)
 		g_ps.errored++;

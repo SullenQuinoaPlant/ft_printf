@@ -164,6 +164,9 @@ int
 		va_list *vaargs);
 
 void
+	init_parse_state();
+
+void
 	init_syls(
 		enum e_sot type, int how_many, t_s_so *ar);
 
