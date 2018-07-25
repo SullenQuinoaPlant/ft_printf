@@ -33,6 +33,7 @@ TARGETS := \
 	convert_tscc_to_syllable \
 	convert_u \
 	convert_x \
+	etypes_get_etype \
 	etypes_sizeof_etype \
 	floating_point_auxilliaries \
 	floating_point_composition \
