@@ -5,7 +5,8 @@
 int	declare_tests_and_run(int all_of, char *these[])
 {
 	T(test1,
-		int nref, ntst;
+		int nref;
+		int ntst;
 
 		#define CMD hello this is a string%n
 		printf("CMD", &nref);
@@ -16,15 +17,15 @@ int	declare_tests_and_run(int all_of, char *these[])
 	)
 
 	T(test2,
-		int nref1, nref2, ntst1, ntst2;
+		int	nref[2];
+		int	ntst[2];
 
 		#define CMD hello this is a string%n%n
-		printf("CMD", &nref1, &nref2);
-		printf("CMD", &ntst1, &ntst2);
+		printf("CMD", &nref[0], &nref[1]);
+		printf("CMD", &ntst[0], &ntst[1]);
 		#undef CMD 
 
-		assert_int_equal(nref1, ntst1);
-		assert_int_equal(nref2, ntst2);
+		assert_memory_equal(nref, ntst, sizeof(nref));
 	)
 
 	return(run_test_arr(all_of, these));
