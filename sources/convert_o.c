@@ -3,9 +3,9 @@
 static t_stuffer
 	g_fstr[D_SYLS] = {
 		dummy_stuffer,
-		co_sign,
 		dummy_stuffer,
 		co_prefix,
+		co_hashfix,
 		co_digits,
 		dummy_stuffer};
 

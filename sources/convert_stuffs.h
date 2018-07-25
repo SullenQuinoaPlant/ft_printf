@@ -129,8 +129,8 @@ typedef struct	s_convert_o_stuff {
 	t_s_sgd	group;
 }				t_s_ocs;
 
-void	co_sign(int, void*);
 void	co_prefix(int, void*);
+void	co_hashfix(int, void*);
 void	co_digits(int, void*);
 
 # define S_SYLLABLES 4
