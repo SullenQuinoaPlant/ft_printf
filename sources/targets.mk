@@ -33,6 +33,7 @@ TARGETS := \
 	convert_tscc_to_syllable \
 	convert_u \
 	convert_x \
+	etypes_sizeof_etype \
 	floating_point_auxilliaries \
 	floating_point_composition \
 	floating_point_decomposition \
@@ -72,5 +73,4 @@ TARGETS := \
 	parse_format_string_text \
 	parse_literal_integer \
 	parse_percent_star_arg \
-	parse_state_store_integer \
-	sizeof_e_types
+	parse_state_store_integer
