@@ -26,7 +26,7 @@ static int
 
 static int
 	set_precision(
-		t_s_dcs *stf)
+		t_s_ocs *stf)
 {
 	t_s_pct		* const chk = stf->chk;
 
@@ -35,7 +35,7 @@ static int
 
 static void
 	set_group(
-		t_s_dcs *stf)
+		t_s_ocs *stf)
 {
 	stf->group.first = stf->syls;
 	stf->group.sz = O_SYLS;
