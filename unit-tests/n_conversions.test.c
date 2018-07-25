@@ -10,6 +10,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		int ntst;
 
 		printf(CMD, &nref);
+		ntst = 42;
 		ft_printf(CMD, &ntst);
 
 		assert_int_equal(nref, ntst);
