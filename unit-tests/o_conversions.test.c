@@ -164,31 +164,34 @@ int	declare_tests_and_run(int all_of, char *these[])
 	T(test27,
 		int		t = 1000;
 
-		printf_compare("d_test27.ref", "%'o", t);
+		printf_compare("o_test27.ref", "%'o", t);
 	)
 
 	T(test28,
 		int		t = -1000;
 
-		printf_compare("d_test28.ref", "%'o", t);
+		if (sizeof(int) != 4)
+			skip();
+		else
+			printf_compare("o_test28.ref", "%'o", t);
 	)
 
 	T(test29,
 		int		t = 12;
 
-		printf_compare("d_test29.ref", "%'o", t);
+		printf_compare("o_test29.ref", "%'o", t);
 	)
 
 	T(test30,
 		int		t = 12;
 
-		printf_compare("d_test30.ref", "%'012o", t);
+		printf_compare("o_test30.ref", "%'012o", t);
 	)
 
 	T(test31,
 		int		t = 12;
 
-		printf_compare("d_test31.ref", "%'.12o", t);
+		printf_compare("o_test31.ref", "%'.12o", t);
 	)
 
 	T(test32,
