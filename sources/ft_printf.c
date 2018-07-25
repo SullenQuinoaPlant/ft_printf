@@ -7,6 +7,7 @@ int		ft_vprintf(const char *format, va_list va_p)
 {
 	int		r;
 
+/*moev init of both g_os here*/
 	r = -1;
 	if (parse_format_string(format) &&
 		get_va_args(&va_p) &&
