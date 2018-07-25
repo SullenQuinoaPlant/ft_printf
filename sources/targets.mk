@@ -36,7 +36,6 @@ TARGETS := \
 	floating_point_auxilliaries \
 	floating_point_composition \
 	floating_point_decomposition \
-	free_parse_state_allocations \
 	ft_printf \
 	get_vaarged_floatingpoint \
 	get_va_args \
@@ -47,6 +46,7 @@ TARGETS := \
 	get_va_args__vaarger_functions5 \
 	get_va_args__vaarger_functions6 \
 	global_output_state_auxilliaries \
+	global_parse_state_auxilliaries \
 	my_cleanfree \
 	my_lstappend \
 	my_stupidmath \
