@@ -45,7 +45,7 @@ static t_e_t const
 	//		{e_int, e_char, e_short, e_long, e_longlong, e_int,
 	//			e_intmax_t, e_size_t, e_ptrdiff_t},
 	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
-		e_voidptr, e_voidptr,
+		e_voidptr, e_voidptr}
 	//e_o
 	{e_uint, e_uchar, e_ushort, e_ulong, e_ulonglong, e_uint, e_uintmax_t,
 		e_size_t, e_ptrdiff_t},
