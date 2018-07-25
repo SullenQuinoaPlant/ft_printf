@@ -2,7 +2,7 @@
 
 void		convert_n(t_s_pct *chk)
 {
-	uintmaxt_t	const val = g_os.output_len;;
+	uintmax_t	const val = g_os.output_len;;
 	t_e_t		target;
 
 	target = get_etype(chk->specifier, chk->len_mod);
