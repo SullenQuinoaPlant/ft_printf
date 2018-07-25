@@ -10,7 +10,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		int ntst;
 
 		printf(CMD, &nref);
-		printf(CMD, &ntst);
+		ft_printf(CMD, &ntst);
 
 		assert_int_equal(nref, ntst);
 	)
@@ -22,7 +22,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		int	ntst[2];
 
 		printf(CMD, &nref[0], &nref[1]);
-		printf(CMD, &ntst[0], &ntst[1]);
+		ft_printf(CMD, &ntst[0], &ntst[1]);
 
 		assert_memory_equal(nref, ntst, sizeof(nref));
 	)
