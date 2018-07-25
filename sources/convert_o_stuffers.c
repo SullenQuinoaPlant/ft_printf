@@ -27,7 +27,7 @@ void
 	syl->c = '0';
 	if (flags & HASH_FLAG &&
 		!prefix->len &&
-		*stf->p_b.cc != syl->c)
+		*stf->p_b.c != syl->c)
 		syl->len = 1;
 }
 
