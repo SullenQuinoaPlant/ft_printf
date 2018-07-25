@@ -6,5 +6,5 @@ void		convert_n(t_s_pct *chk)
 	t_e_t		target;
 
 	target = get_etype(chk->specifier, chk->len_mod);
-	ft_memcpy(*(void*)chk->vaarg->p_val, &val, target);
+	ft_memcpy(*(void**)chk->vaarg->p_val, &val, target);
 }
