@@ -14,7 +14,7 @@ $(OUT_DIR_LIB)/$(LIBNAME).a : $(OBJ_DIR)/$(NAME).o
 	cp $(SRC_DIR)/$(NAME).h $(OUT_DIR_H)/$(LIBNAME).h
 
 $(OBJ_DIR)/$(NAME).o : $(OBJS)
-	@ld -r $^ -o $@
+	ld -r $^ -o $@
 
 #specifc file dependencies:
 
