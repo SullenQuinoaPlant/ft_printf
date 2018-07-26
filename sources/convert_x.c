@@ -17,7 +17,7 @@ static int
 	t_s_pct		* const chk = stf->chk;
 	t_s_arg		* const arg = chk->vaarg;
 	size_t		const dsz = g_et_sz[arg->type];
-	char		*syms;
+	char const	*syms;
 	uintmax_t	d;
 
 	d = 0;
@@ -70,6 +70,6 @@ void		convert_x(t_s_pct *chk)
 }
 void		convert_x_big(t_s_pct *chk)
 {
-	p_chk->flags |= BIGCS_FLAG;
+	chk->flags |= BIGCS_FLAG;
 	convert_x(chk);
 }
