@@ -7,7 +7,8 @@ void
 	t_s_xcs	* const stf = (t_s_xcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
-	if (!(stf->chk->flags & HASH_FLAG))
+	if (!(stf->chk->flags & HASH_FLAG) ||
+		*stf->p_b.c == '0')
 		return;
 	syl->len = sizeof(stf->hashfix); 
 	syl->type = e_sot_cc;
