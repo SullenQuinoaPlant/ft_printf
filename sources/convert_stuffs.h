@@ -142,19 +142,17 @@ typedef struct	s_convert_s_stuff {
 
 int		tsof_wcharstr(size_t len, void *p);
 
-#define UNSIGN_SYLS 6
+#define U_SYLS 5
 typedef struct	s_convert_unsigned_stuff {
 	t_s_pct	*chk;
-	t_s_so	syls[UNSIGN_SYLS];
+	t_s_so	syls[U_SYLS];
 	t_mib	b;
 	t_s_cc	p_b;
 	int		pre;
 	t_s_sgd	group;
-}				t_s_unsignedcs;
+}				t_s_ucs;
 
-void	cunsigned_prefix(int, void*);
-void	cunsigned_hashfix(int, void*);
-void	cunsigned_digits(int, void*);
+void	cu_prefix(int, void*);
+void	cu_digits(int, void*);
 
-# define S_SYLLABLES 4
 #endif
