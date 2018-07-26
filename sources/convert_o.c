@@ -1,7 +1,7 @@
 #include "ft_printf_inner.h"
 
 static t_stuffer
-	g_fstr[O_SYLS] = {
+	g_fstr[O_SYLS + 1] = {
 		dummy_stuffer,
 		dummy_stuffer,
 		co_prefix,
