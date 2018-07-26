@@ -3,9 +3,9 @@
 static t_stuffer
 	g_fstr[X_SYLS + 1] = {
 		dummy_stuffer,
-		cx_prefix,
-		dummy_stuffer,
 		cx_hashfix,
+		dummy_stuffer,
+		cx_prefix,
 		cx_digits,
 		dummy_stuffer,
 		0};
