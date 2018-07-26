@@ -33,6 +33,8 @@ TARGETS := \
 	convert_syllable_auxilliaries \
 	convert_tscc_to_syllable \
 	convert_u \
+	convert_unsigned \
+	convert_unsigned_stuffers \
 	convert_x \
 	etypes_get_etype \
 	etypes_sizeof_etype \
