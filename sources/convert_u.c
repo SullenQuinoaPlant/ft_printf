@@ -4,8 +4,8 @@ static t_stuffer
 	g_fstr[D_SYLS] = {
 		dummy_stuffer,
 		dummy_stuffer,
-		cunsigned_prefix,
-		cunsigned_digits,
+		cu_prefix,
+		cu_digits,
 		dummy_stuffer};
 
 static int
@@ -18,7 +18,7 @@ static int
 
 	d = 0;
 	ft_memcpy(&d, arg->p_val, g_et_sz[arg->type]);
-	stf->p_b = my_uv_tob(d, syms, &stf->b);
+	stf->p_b = my_uv_tob(d, g_dec_syms, &stf->b);
 	return (d ? 1 : 0);
 }
 
