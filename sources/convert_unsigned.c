@@ -15,7 +15,6 @@ static int
 {
 	t_s_pct		* const chk = stf->chk;
 	t_s_arg		* const arg = chk->vaarg;
-	char const	* syms;
 	uintmax_t	d;
 
 	d = 0;
