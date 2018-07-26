@@ -122,7 +122,7 @@ void	cg_fsetgroups(int, void*);
 #define O_SYLS 6
 typedef struct	s_convert_o_stuff {
 	t_s_pct	*chk;
-	t_s_so	syls[D_SYLS];
+	t_s_so	syls[O_SYLS];
 	t_mib	b;
 	t_s_cc	p_b;
 	int		pre;
@@ -154,5 +154,20 @@ typedef struct	s_convert_unsigned_stuff {
 
 void	cu_prefix(int, void*);
 void	cu_digits(int, void*);
+
+#define X_SYLS 6
+typedef struct	s_convert_x_stuff {
+	t_s_pct	*chk;
+	t_s_so	syls[X_SYLS];
+	char	hashfix[2];
+	t_mib	b;
+	t_s_cc	p_b;
+	int		pre;
+	t_s_sgd	group;
+}				t_s_xcs;
+
+void	cx_hashfix(int, void*);
+void	cx_prefix(int, void*);
+void	cx_digits(int, void*);
 
 #endif

@@ -43,7 +43,7 @@ static void
 	if (apstr_purge_ornot(stf->chk, stf->syls, O_SYLS))
 		noapstr_grp_props(&stf->group);
 	else
-		apstr_grp_props_offset(AF_DG, AF_DS, &stf->group);
+		apstr_grp_props_offset(AF_4G, AF_BS, &stf->group);
 }
 
 void		convert_o(t_s_pct *chk)
