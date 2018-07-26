@@ -7,7 +7,8 @@ static t_stuffer
 		co_prefix,
 		co_hashfix,
 		co_digits,
-		dummy_stuffer};
+		dummy_stuffer,
+		0};
 
 static int
 	set_integer(

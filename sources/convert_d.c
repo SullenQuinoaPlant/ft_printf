@@ -7,7 +7,8 @@ static t_stuffer
 		dummy_stuffer,
 		cd_prefix,
 		cd_digits,
-		dummy_stuffer};
+		dummy_stuffer,
+		0};
 
 static int
 	set_integer(

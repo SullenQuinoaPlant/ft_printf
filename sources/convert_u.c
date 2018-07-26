@@ -6,7 +6,8 @@ static t_stuffer
 		dummy_stuffer,
 		cu_prefix,
 		cu_digits,
-		dummy_stuffer};
+		dummy_stuffer,
+		0};
 
 static int
 	set_uinteger(
