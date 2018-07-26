@@ -113,6 +113,10 @@ void
 		t_s_pct *p_chk);
 
 void
+	convert_unsigned(
+		t_s_pct *chk, char const * base);
+
+void
 	convert_x(
 		t_s_pct *p_chk);
 

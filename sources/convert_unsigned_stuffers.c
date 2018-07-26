@@ -1,10 +1,10 @@
 #include "ft_printf_inner.h"
 
 void
-	co_prefix(
+	cunsigned_prefix(
 		int pos, void *p)
 {
-	t_s_ocs	* const stf = (t_s_ocs*)p;
+	t_s_unsignedcs	* const stf = (t_s_unsignedcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_apstr_c;
@@ -15,10 +15,10 @@ void
 
 #define PREFIX_RELPOS 1
 void
-	co_hashfix(
+	cunsigned_hashfix(
 		int pos, void *p)
 {
-	t_s_ocs	* const stf = (t_s_ocs*)p;
+	t_s_unsignedcs	* const stf = (t_s_unsignedcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 	t_s_so	* const prefix = syl - PREFIX_RELPOS;
 	char	const flags = stf->chk->flags;
@@ -32,10 +32,10 @@ void
 }
 
 void
-	co_digits(
+	cunsigned_digits(
 		int pos, void *p)
 {
-	t_s_ocs	* const stf = (t_s_ocs*)p;
+	t_s_unsignedcs	* const stf = (t_s_unsignedcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
 	syl->type = e_sot_apstr_cc;
