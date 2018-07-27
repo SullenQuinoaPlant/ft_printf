@@ -268,6 +268,10 @@ int
 		t_s_pct *what, void *ever);
 
 char const *
+	parse_control(
+		char const *in);
+
+char const *
 	parse_convert(
 		char const *in);
 

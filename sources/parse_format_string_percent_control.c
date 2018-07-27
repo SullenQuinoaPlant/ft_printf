@@ -17,7 +17,7 @@ t_parser const
 		0};
 
 char const *
-	parse_convert(
+	parse_control(
 		char const *in)
 {
 	char const	* const save = in;
