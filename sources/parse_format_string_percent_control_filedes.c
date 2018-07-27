@@ -10,7 +10,7 @@ char const *
 	
 	if (*in++ != '>')
 		return (save);
-	chk->foo = control_filedes;
+	chk->foo = toctlf_control_filedes;
 	if ((in = percent_convert_star(in, p_res)) == save)
 		in = parse_store_int_literal(in, p_res);
 	return (in);
