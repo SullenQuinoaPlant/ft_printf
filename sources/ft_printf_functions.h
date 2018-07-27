@@ -51,10 +51,6 @@ void
 		int *dummy_indexes);
 
 void
-	control_filedes(
-		int **fd);
-
-void
 	convert_a(
 		t_s_pct *p_chk);
 
@@ -407,6 +403,10 @@ size_t
 size_t
 	syls_outlen(
 		t_s_so *syl, int count, size_t apstr_grp);
+
+int
+	toctlf_control_filedes(
+		void *pp_fd);
 
 int
 	trailing_zeros(
