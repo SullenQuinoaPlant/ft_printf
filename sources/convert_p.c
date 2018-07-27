@@ -57,13 +57,12 @@ void
 {
 	int			pad_indexes[e_pp_sz] = {0};
 	t_s_pcs		stf;
-	int			r;
+	char		* const nil = "(nil)";
 	
 	stf.chk = chk;
 	init_syls(e_sot_c, P_SYLS, stf.syls);
-	r = set_address(&stf);
 	set_precision(&stf);
-	if (r)
+	if (set_address(&stf))
 	{
 		call_tstuffers(g_fstr, &stf, pad_indexes);
 		set_group(&stf);
@@ -71,7 +70,10 @@ void
 		out_syl_groups(&stf.group, 1);
 	}
 	else
-		output_padnbuffer("(nil)", (size_t[2]){0, 5}, chk);
+	{
+		chk->flags &= ~ZERO_FLAG;
+		output_padnbuffer(nil, (size_t[2]){0, ft_strlen(nil)}, chk);
+	}
 }
 
 void
