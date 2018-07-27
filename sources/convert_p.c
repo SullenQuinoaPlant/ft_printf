@@ -3,6 +3,7 @@
 static t_stuffer
 	g_fstr[P_SYLS + 1] = {
 		dummy_stuffer,
+		cp_sign,
 		cp_hashfix,
 		dummy_stuffer,
 		cp_prefix,
@@ -70,7 +71,7 @@ void
 		out_syl_groups(&stf.group, 1);
 	}
 	else
-		output_padnbuffer("", (size_t[2]){0, 1}, chk);
+		output_padnbuffer("(nul)", (size_t[2]){0, 5}, chk);
 }
 
 void

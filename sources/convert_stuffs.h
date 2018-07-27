@@ -133,17 +133,17 @@ void	co_prefix(int, void*);
 void	co_hashfix(int, void*);
 void	co_digits(int, void*);
 
-#define P_SYLS 6
+#define P_SYLS 7
 typedef struct	s_convert_p_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[P_SYLS];
-	char	hashfix[3];
 	t_mib	b;
 	t_s_cc	p_b;
 	int		pre;
 	t_s_sgd	group;
 }				t_s_pcs;
 
+void	cp_sign(int, void*);
 void	cp_hashfix(int, void*);
 void	cp_prefix(int, void*);
 void	cp_digits(int, void*);

@@ -1,20 +1,32 @@
 #include "ft_printf_inner.h"
 
 void
+	cp_sign(
+		int pos, void *p)
+{
+	t_s_pcs	* const stf = (t_s_pcs*)p;
+	char	const flags = stf->chk->flags;
+	t_s_so	* const syl = stf->syls + pos;
+
+	syl->len = 1;
+	if (flags & SPACE_FLAG)
+		syl->c = ' ';
+	else if (flags & PLUS_FLAG)
+		syl->c = '+';
+	else
+		syl->len = 0;
+}
+
+void
 	cp_hashfix(
 		int pos, void *p)
 {
 	t_s_pcs	* const stf = (t_s_pcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
-	char	* str;
 
-	syl->len = sizeof(stf->hashfix); 
+	syl->cc = "0x";
+	syl->len = ft_strlen(syl->cc);
 	syl->type = e_sot_cc;
-	syl->cc = stf->hashfix;
-	str = "+0x";
-	if (stf->chk->flags & SPACE_FLAG)
-		str = " 0x";
-	ft_memcpy(stf->hashfix, str, syl->len);
 }
 
 void
