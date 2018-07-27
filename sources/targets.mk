@@ -60,6 +60,8 @@ TARGETS := \
 	my_valtobuffers_raw \
 	my_valtobuffers_tscc \
 	output_chunks \
+	output_control \
+	output_control_filedescriptor \
 	output_fp \
 	output_generic \
 	output_nan_inf \
@@ -72,6 +74,8 @@ TARGETS := \
 	parse_format_string \
 	parse_format_string_percent \
 	parse_format_string_percent_char \
+	parse_format_string_percent_control \
+	parse_format_string_percent_control_filedes \
 	parse_format_string_percent_conversion \
 	parse_format_string_percent_conversion_fillers1 \
 	parse_format_string_percent_conversion_fillers2 \
