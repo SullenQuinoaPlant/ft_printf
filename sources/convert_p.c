@@ -50,7 +50,9 @@ static void
 		apstr_grp_props_offset(AF_2G, AF_BS, &stf->group);
 }
 
-void		convert_x(t_s_pct *chk)
+void
+	convert_p(
+		t_s_pct *chk)
 {
 	int			pad_indexes[e_pp_sz] = {0};
 	t_s_pcs		stf;
@@ -70,7 +72,10 @@ void		convert_x(t_s_pct *chk)
 	else
 		output_padnbuffer("", (size_t[2]){0, 1}, chk);
 }
-void		convert_x_big(t_s_pct *chk)
+
+void
+	convert_p_big(
+		t_s_pct *chk)
 {
 	chk->flags |= BIGCS_FLAG;
 	convert_x(chk);
