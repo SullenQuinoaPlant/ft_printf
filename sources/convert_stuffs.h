@@ -136,7 +136,7 @@ void	co_digits(int, void*);
 #define P_SYLS 6
 typedef struct	s_convert_p_stuff {
 	t_s_pct	*chk;
-	t_s_so	syls[X_SYLS];
+	t_s_so	syls[P_SYLS];
 	char	hashfix[3];
 	t_mib	b;
 	t_s_cc	p_b;
