@@ -6,7 +6,7 @@ char const *
 {
 	char const	* const save = in;
 	t_s_ctl		* const chk = get_tsctl();
-	int **		* const p_res = &chk->p_args;
+	int **		* const p_res = &(int**)chk->p_args;
 	
 	if (*in++ != '>')
 		return (save);
