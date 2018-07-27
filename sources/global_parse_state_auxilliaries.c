@@ -13,6 +13,18 @@ void
 	g_ps.errored = 0;
 }
 
+t_s_arg *
+	req_arg_init()
+{
+	t_list	*p_arg;
+	t_s_arg	init;
+
+	init = (t_s_arg){e_notype, {0}, 0};
+	if ((p_arg = ft_lstnew(&init, sizeof(init))))
+		ft_lstadd(&g_ps.p_req_args, p_arg);
+	return ((t_s_arg*)p_arg->content);
+}
+
 static void
 	clean_free_cw(
 		void *ptr, size_t whatever)

@@ -29,5 +29,5 @@ int				parse_format_string(char const *in)
 		g_ps.errored++;
 	if (g_ps.free_arg_count > g_ps.max_arg_pos)
 		g_ps.max_arg_pos = g_ps.free_arg_count;
-	return (g_ps.errored ? 0 : 1);
+	return (!g_ps.errored);
 }

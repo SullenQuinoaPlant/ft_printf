@@ -16,7 +16,7 @@ t_s_cc	sign_to_b(int sign, t_s_pct *p_chk, char *b)
 	return (ret);
 }
 
-/*unused function*/
+/*unused
 int		output_sign(int sign, t_s_pct *p_chk)
 {
 	int		r;
@@ -35,3 +35,4 @@ int		output_sign(int sign, t_s_pct *p_chk)
 		g_os.errored += c ? 1 : 0;
 	return (r);
 }
+*/

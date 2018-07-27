@@ -26,6 +26,11 @@ size_t
 	apstr_only_grp_len(
 		t_s_sgd *gd);
 
+int
+	apstr_purge_ornot(
+		t_s_pct *chk,
+		t_s_so *syls, size_t count);
+
 void
 	apstrify_zpad(
 		size_t grp,
@@ -329,10 +334,8 @@ int **
 	ps_store_integer(
 		int val, int *** const p_res);
 
-int
-	apstr_purge_ornot(
-		t_s_pct *chk,
-		t_s_so *syls, size_t count);
+t_s_arg *
+	req_arg_init();
 
 int
 	round_ccsyl(
