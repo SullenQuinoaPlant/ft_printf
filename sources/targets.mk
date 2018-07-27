@@ -26,6 +26,7 @@ TARGETS := \
 	convert_o_stuffers \
 	convert_pad_syllables \
 	convert_p \
+	convert_p_stuffers \
 	convert_s \
 	convert_sign \
 	convert_stuffers_auxilliaries \
@@ -35,6 +36,7 @@ TARGETS := \
 	convert_u \
 	convert_u_stuffers \
 	convert_x \
+	convert_x_stuffers \
 	etypes_get_etype \
 	etypes_sizeof_etype \
 	floating_point_auxilliaries \
