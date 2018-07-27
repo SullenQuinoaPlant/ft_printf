@@ -71,7 +71,7 @@ void
 		out_syl_groups(&stf.group, 1);
 	}
 	else
-		output_padnbuffer("(nul)", (size_t[2]){0, 5}, chk);
+		output_padnbuffer("(nil)", (size_t[2]){0, 5}, chk);
 }
 
 void
