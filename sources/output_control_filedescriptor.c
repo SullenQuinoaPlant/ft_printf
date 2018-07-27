@@ -1,6 +1,6 @@
 #include "ft_printf_inner.h"
 
-int
+void
 	control_filedes(
 		int **fd)
 {

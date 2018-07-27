@@ -50,7 +50,7 @@ void
 		t_stuffer *f_str, void *p_stf,
 		int *dummy_indexes);
 
-int
+void
 	control_filedes(
 		int **fd);
 
