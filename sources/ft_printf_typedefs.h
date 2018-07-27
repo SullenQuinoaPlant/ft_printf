@@ -128,7 +128,7 @@ int
 typedef struct	s_control_chunk {
 	t_octlf	foo;
 	void	*p_args;
-}				t_s_ctl;
+}				t_s_ctl;
 
 /*parse state
 **	chunks starts a list of string-building chunks
