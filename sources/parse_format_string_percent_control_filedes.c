@@ -11,7 +11,7 @@ char const *
 	if (*in++ != '>')
 		return (save);
 	chk->foo = toctlf_control_filedes;
-	if ((in = percent_convert_star(in, p_res)) == save)
+	if ((in = percent_convert_star(in, p_res)) == save + 1)
 		in = parse_store_int_literal(in, p_res);
-	return (in);
+	return (in == save + 1 ? save : in);
 }
