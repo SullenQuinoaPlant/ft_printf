@@ -52,7 +52,7 @@ void
 
 int
 	control_filedes(
-		int *fd);
+		int **fd);
 
 void
 	convert_a(
@@ -171,6 +171,9 @@ void
 void
 	gos_set_grp(
 		t_s_sgd *grp);
+
+t_s_ctl *
+	get_tsctl();
 
 int
 	gos_update(

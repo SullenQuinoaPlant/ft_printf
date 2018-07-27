@@ -37,3 +37,12 @@ char const *
 		g_ps.errored++;
 	return (in);
 }
+
+t_s_ctl *
+	get_tsctl()
+{
+	t_s_cw	*cw;
+
+	cw = g_ps.chunks.tail->content;
+	return (cw->chk);
+}

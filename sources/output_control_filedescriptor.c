@@ -2,7 +2,7 @@
 
 int
 	control_filedes(
-		int *fd)
+		int **fd)
 {
-	g_os.fd = *fd;
+	g_os.fd = **fd;
 }
