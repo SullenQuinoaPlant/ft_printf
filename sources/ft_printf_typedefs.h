@@ -13,7 +13,8 @@ typedef enum	e_chunk_types {
 	e_no_chk,
 	e_txt_c,
 	e_char_c,
-	e_pct_c
+	e_pct_c,
+	e_ctl_chk
 }				t_e_cts;
 
 typedef struct	s_chunk_wrapper {
@@ -118,6 +119,16 @@ typedef struct	s_percent {
 	t_s_arg		*vaarg;
 }				t_s_pct;
 
+/*output control function*/
+typedef
+int
+	(*t_octlf)(
+		void* args);
+
+typedef struct	s_control_chunk {
+	t_octlf	foo;
+	void	*p_args;
+}				t_s_ctl;
 
 /*parse state
 **	chunks starts a list of string-building chunks
@@ -171,16 +182,19 @@ enum			e_pad_pos {
 	e_pp_sz
 };
 
-typedef int
+typedef
+int
 	(*t_outputter)(void *stuff);
 
 /*t_outputter_array*/
-typedef t_outputter const
-				(t_oa)[e_oi_sz];
+typedef
+t_outputter const
+	(t_oa)[e_oi_sz];
 
 /*t_syllable_group_boundaries*/
-typedef int const
-				(t_sgb)[e_oi_sz];
+typedef
+int const
+	(t_sgb)[e_oi_sz];
 
 /*e_syllable_output_type 
 **two types of output:
@@ -232,7 +246,9 @@ typedef struct	s_syllable_group_descriptor {
 	char		apstr_c;
 }				t_s_sgd;
 
-typedef void
+typedef
+void
 	(*t_stuffer)(
 		int index, void *stf);
+
 #endif

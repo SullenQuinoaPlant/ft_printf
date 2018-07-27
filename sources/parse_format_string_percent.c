@@ -3,6 +3,7 @@
 static char const *
 	(* const g_f_str[])(char const *) = {
 		percent_char,
+		parse_control,
 		parse_convert,
 		0};
 

@@ -50,6 +50,10 @@ void
 		t_stuffer *f_str, void *p_stf,
 		int *dummy_indexes);
 
+int
+	control_filedes(
+		int *fd);
+
 void
 	convert_a(
 		t_s_pct *p_chk);
@@ -347,6 +351,10 @@ int
 int
 	round_ldouble(
 		long double *d, int pow10);
+
+int
+	run_output_ctl(
+		t_s_ctl *chk);
 
 void
 	set_dfp(

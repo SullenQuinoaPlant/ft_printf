@@ -13,6 +13,8 @@ static void	output_chunk(t_s_cw *p_cw)
 			output_char_chk(chk);
 		else if (type == e_pct_c)
 			output_pct_chk(chk);
+		else if (type == e_ctl_chk)
+			run_output_ctl(chk);
 	}
 	else
 		g_os.errored++;
