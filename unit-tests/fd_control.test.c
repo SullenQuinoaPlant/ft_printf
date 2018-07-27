@@ -22,7 +22,7 @@ int
 	if ((fd = open(filename, O_RDONLY)) > 0)
 	{
 		char	dummy[1];
-		if ((res = read(diff_fd, dummy, 1)) >= 0)
+		if ((res = read(fd, dummy, 1)) >= 0)
 		{
 			assert_false(res);
 			sys_fail = 0;
@@ -44,15 +44,15 @@ int	declare_tests_and_run(int all_of, char *these[])
 		int	i;
 
 		sys_fail = 1;
-		if ((fd[0] = creat("a.txt")) != -1 &&
-			(fd[1] = dup(fd0)) != -1 &&
-			(fd[2] = dup(fd0)) != -1 &&
-			(fd[3] = dup(fd0)) != -1)
+		if ((fd[0] = creat("a.txt", O_WRONLY)) != -1 &&
+			(fd[1] = dup(fd[0])) != -1 &&
+			(fd[2] = dup(fd[0])) != -1 &&
+			(fd[3] = dup(fd[0])) != -1)
 		{
 			ft_printf(
 				"%{>*}bla""%{>*}bla""%{>*}bla"
 				"%{>*}bla",
-				fd0, fd1, fd2, fd3);
+				fd[0], fd[1], fd[2], fd[3]);
 			if (
 				system(
 					"diff fd_control_test1.ref a.txt"
@@ -71,9 +71,9 @@ int	declare_tests_and_run(int all_of, char *these[])
 		int	fd;
 
 		sys_fail = 1;
-		if ((fd = creat("a.txt")) != -1)
+		if ((fd = creat("a.txt", O_WRONLY)) != -1)
 		{
-			ft_printf("%{>*}bla", fd)
+			ft_printf("%{>*}bla", fd);
 			if (
 				system(
 					"diff fd_control_test2.ref a.txt"
@@ -83,9 +83,10 @@ int	declare_tests_and_run(int all_of, char *these[])
 							"res.txt");
 		}
 		if (fd != -1)
-			close(fd[i]);
+			close(fd);
 	)
 
+#define str(token) #token
 #define FIXED_FD 5
 	T(test3,
 		int	sys_fail;
@@ -94,10 +95,10 @@ int	declare_tests_and_run(int all_of, char *these[])
 
 		sys_fail = 1;
 		fixed_fd = -1;
-		if ((fd = creat("a.txt")) != -1 &&
+		if ((fd = creat("a.txt", O_WRONLY)) != -1 &&
 			(fixed_fd = dup2(fd, FIXED_FD)) != -1)
 		{
-			ft_printf("%{>" #FIXED_FD "}bla", fd)
+			ft_printf("%{>" str(FIXED_FD) "}bla", fd);
 			if (
 				system(
 					"diff fd_control_test3.ref a.txt"

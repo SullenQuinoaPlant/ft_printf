@@ -29,7 +29,7 @@ int		main()
 	ft_printf("a is :%'#0.10g\n", a);
 	ft_printf("a is :%'#-.10g\n", a);
 
-	ft_printf("%{>2}yo, this isn't really an error\n");
+	ft_printf("%{>2}this isn't really an error\n");
 
 	return (0);
 }
