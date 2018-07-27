@@ -86,7 +86,8 @@ int	declare_tests_and_run(int all_of, char *these[])
 			close(fd);
 	)
 
-#define str(token) "token"
+#define strstr(token) #token
+#define str(token) strstr(token)
 #define FIXED_FD 5
 	T(test3,
 		int	sys_fail;
