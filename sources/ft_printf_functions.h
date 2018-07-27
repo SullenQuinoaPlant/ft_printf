@@ -314,6 +314,10 @@ char const *
 		char const *in);
 
 char const *
+	percent_control_fd(
+		char const *in);
+
+char const *
 	percent_convert_dollar_arg(
 		char const *in);
 
