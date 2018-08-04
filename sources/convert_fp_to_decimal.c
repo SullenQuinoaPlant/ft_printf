@@ -7,8 +7,8 @@ static long double
 	long double	res;
 
 	res = p2exp;
-	res /= M_LN10;
-	res *= M_LN2;
+	res /= M_LN10l;
+	res *= M_LN2l;
 	return (res);
 }
 

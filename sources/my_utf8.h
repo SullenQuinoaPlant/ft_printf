@@ -3,7 +3,7 @@
 
 # include <limits.h>
 # include "libft.h"
-# include "my_stupidmath.h"
+# include "libmystupidmath.h"
 
 # define CHAR_HBIT (CHAR_BIT - 1)
 # define ASCII_MASK (~0 << CHAR_HBIT)

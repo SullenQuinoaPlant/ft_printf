@@ -2,7 +2,7 @@
 # define CONVERT_FP_TO_DECIMAL_H
 
 # include "floating_point.h"
-# include <tgmath.h>
+# include "libmystupidmath.h"
 
 typedef struct	s_power_of_ten {
 	int			pow10;
