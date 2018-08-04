@@ -12,6 +12,11 @@ OUT_DIR_H := $(LIBS_I)
 
 include $(SRC_DIR)/targets.mk
 
+DEPENDENCIES =\
+	libft\
+	libmystupidmath\
+	libmyfloatingpoint
+
 CC := gcc
 ifndef ARCH
 	ARCH := ARCH_A

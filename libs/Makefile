@@ -25,6 +25,15 @@ libft :
 	$(BUILD_LIB)
 
 
+libmystupidmath :
+	git clone \
+		--single-branch \
+		-b release https://github.com/SullenQuinoaPlant/my_stupidmath.git \
+		--depth 1 \
+		$@/
+	$(BUILD_LIB)
+
+
 libmyfloatingpoint :
 	git clone \
 		--single-branch \

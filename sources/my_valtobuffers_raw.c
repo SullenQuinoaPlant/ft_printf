@@ -45,12 +45,12 @@ size_t
 		char *b_end)
 {
 	unsigned char const	r = base->radius;
-	char const			*syms = base->syms;
+	char const		*syms = base->syms;
 	int				log2;
 	size_t			ijk[3];
 	uintmax_t		mask;
 
-	log2 = my_log2(r);
+	log2 = flog2(r);
 	ijk[K] = (val_sz * 8) / log2;
 	mask = ~0 << log2;
 	ijk[I] = 0;

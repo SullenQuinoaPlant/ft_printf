@@ -4,6 +4,7 @@
 ** than the standard 4 bytes; will fail should
 ** wchar_t be more than
 ** (CHAR_BIT - 1) * (CHAR_BIT - 2) bits large.
+** nah bytes? need to check
 */
 int
 	as_utf8seq(
@@ -24,7 +25,7 @@ int
 			val >>= UTF8_BITS;
 		}
 		c = pc[-(sz - 1)];
-		if (my_log2(c & ~UTF8_01X) + sz + 2 > CHAR_BIT)
+		if (flog2(c & ~UTF8_01X) + sz + 2 > CHAR_BIT)
 			c = ~0 << (CHAR_BIT - (sz + 1));
 		else
 			c |= ~0 << (CHAR_BIT - sz--);

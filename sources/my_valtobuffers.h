@@ -3,7 +3,7 @@
 
 # include <stdint.h>
 # include "libft.h"
-# include "my_stupidmath.h"
+# include "libmystupidmath.h"
 
 extern char const	* const g_oct_syms;
 extern char const	* const g_dec_syms;
