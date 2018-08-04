@@ -1,24 +1,41 @@
 ifndef ROOT
 	ROOT = ..
-	include $(ROOT)/make_vars.mk
+	include $(ROOT)/Makefile
 endif
 
 
+.PHONY : build_dependencies
+build_dependencies : $(DEPENDENCIES)
+	@echo "$(DEPENDENCIES)"
+
+define BUILD_LIB
+	$(MAKE) -C $@/ 
+	cp $@/$@.a $(LIBS_L)
+	cp $@/$@.h $(LIBS_I)
+	rm -rf $@
+	touch $@
+endef
+	
 libft :
 	git clone \
 		--single-branch \
 		-b the_lib https://github.com/SullenQuinoaPlant/Libft.git \
 		--depth 1 \
-		$(BUILD_DIR)/
-	$(MAKE) -C $(BUILD_DIR)/ $@
-	cp $(BUILD_DIR)/libft.a $(LIBS_L)
-	cp $(BUILD_DIR)/libft.h $(LIBS_I)
-	rm -rf $(BUILD_DIR)
-	touch $(LIB_DIR)/libft
+		$@/
+	$(BUILD_LIB)
 
 
-.PHONY : clean-libft
-clean-libft :
-	-rm libft
-	-rm $(LIBS_I)/libft.h
-	-rm $(LIBS_L)/libft.a
+libmyfloatingpoint :
+	git clone \
+		--single-branch \
+		-b release https://github.com/SullenQuinoaPlant/my_floatingpoint.git \
+		--depth 1 \
+		$@/
+	$(BUILD_LIB)
+
+
+.PHONY : clean-*
+clean-% :
+	-rm $(LIBS_DIR)/$*
+	-rm $(LIBS_I)/$*.h
+	-rm $(LIBS_L)/$*.a
