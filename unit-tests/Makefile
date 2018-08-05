@@ -44,7 +44,6 @@ cmocka :
 	-@rm ./test.o
 
 %.test.o $(UTEST_DIR)/%.test.o : $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
-	echo "$(LIBS_I)"
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
@@ -65,8 +64,8 @@ cmocka :
 		$<\
 		-L $(LIBS_L)\
 		-lftprintf\
-		-lcmocka -lft\
-		-lm\
+		-lcmocka\
+		-lmystupidmath -lmyfloatingpoint -lft\
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 

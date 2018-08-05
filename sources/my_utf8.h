@@ -11,7 +11,7 @@
 # define UTF8_BMASK (~0 << UTF8_BITS)
 # define UTF8_01X ('\1' << CHAR_HBIT)
 
-/* 4 == 4. But it's portable! (maybe)*/
+/* 4 = 4. But it's portable! (maybe)*/
 # define UTF8_TTL_BITS 21
 # define UTF8_MAJ_TTL_BITS (UTF8_TTL_BITS + CHAR_HBIT)
 # define UTF8_BIT_GRPS (UTF8_MAJ_TTL_BITS / UTF8_BITS)
