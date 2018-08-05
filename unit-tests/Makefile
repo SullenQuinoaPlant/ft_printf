@@ -47,12 +47,11 @@ cmocka :
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
-		-D $(ARCH)\
 		-include $(SRC_DIR)/$*.c\
 		$<\
 		-L $(LIBS_L)\
-		-lcmocka -lft\
-		-lm\
+		-lcmocka\
+		-lmystupidmath -lmyfloatingpoint -lft\
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 
@@ -60,7 +59,6 @@ cmocka :
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(SRC_DIR)\
 		-I $(LIBS_I)\
-		-D $(ARCH)\
 		$<\
 		-L $(LIBS_L)\
 		-lftprintf\
