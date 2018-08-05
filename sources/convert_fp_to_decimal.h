@@ -1,9 +1,7 @@
 #ifndef CONVERT_FP_TO_DECIMAL_H
 # define CONVERT_FP_TO_DECIMAL_H
 
-# include "floating_point.h"
-# include "libmystupidmath.h"
-# include "libmyfloatingpoint.h"
+# define MANT_RES LDB_MANT_PRECISION
 
 typedef struct	s_power_of_ten {
 	int			pow10;
