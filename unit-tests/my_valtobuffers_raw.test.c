@@ -1,7 +1,7 @@
 #define HOW_MANY_TESTS 10
 #include "cmocka/my_overlay.h"
 
-#include "my_stupidmath.c"
+#include "libmystupidmath.h"
 
 int	declare_tests_and_run(int all_of, char *these[])
 {
