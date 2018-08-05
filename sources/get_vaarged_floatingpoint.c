@@ -26,7 +26,7 @@ void
 	else if (type == e_longdouble)
 		decompose_ldouble(arg->p_val, ret);
 	else
-		*p_ret = (t_s_dfp){0, 0, 0};
+		*ret = (t_s_dfp){0, 0, 0};
 }
 
 void
