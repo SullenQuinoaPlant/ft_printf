@@ -13,7 +13,7 @@ define BUILD_LIB
 	cp $@/$@.a $(LIBS_L)
 	cp $@/$@.h $(LIBS_I)
 	rm -rf $@
-	touch $@
+	touch $(LIB_DIR)/$@
 endef
 	
 libft :

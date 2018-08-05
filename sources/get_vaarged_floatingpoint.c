@@ -22,11 +22,11 @@ void
 
 	type = arg->type;
 	if (type == e_double)
-		decompose_double(arg->p_val, p_ret);
+		decompose_double(arg->p_val, ret);
 	else if (type == e_longdouble)
-		decompose_ldouble(arg->p_val, p_ret);
+		decompose_ldouble(arg->p_val, ret);
 	else
-		*p_ret = (t_s_dfp){0, 0, 0, 0};
+		*p_ret = (t_s_dfp){0, 0, 0};
 }
 
 void
