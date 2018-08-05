@@ -47,7 +47,7 @@ int
 	long double	b;
 	long double	dd;
 
-	if (!isfinite((b = powl(10, pow10))))
+	if (!is_finite((b = powl(10, pow10))))
 		return (-1);
 	dd = *d / b;
 	if (dd - floorl(dd) > 0.5)
