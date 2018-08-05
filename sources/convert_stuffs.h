@@ -10,6 +10,7 @@ typedef struct	s_convert_a_stuff {
 	t_s_so 		syllables[A_SYLLABLES];
 	t_s_sgd		syl_groups[A_SYLGRPS];
 	t_s_dfp		fpd;
+	uint64_t	aligned_mant;
 	char		prefix[3];
 	char		zero;
 	t_mib		m;

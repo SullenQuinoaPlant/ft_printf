@@ -48,7 +48,7 @@ void	ca_separator(int syl, void *p)
 	set.len = 0;
 	if (stf->chk->flags & HASH_FLAG ||
 		(prec && **prec) ||
-		(!prec && stf->fpd.aligned))
+		(!prec && stf->aligned_mant))
 		set.len = 1;
 	stf->syllables[syl] = set;
 }
@@ -63,7 +63,7 @@ void	ca_mantissa(int syl, void *p)
 	int			pr;
 
 	r = stf->chk->flags & BIGCS_FLAG ? g_bhex_syms : g_hex_syms;
-	v = stf->fpd.aligned;
+	v = stf->aligned_mant;
 	set = syl_lowv_tob(v, sizeof(v), r, &stf->m);
 	set.len = v ? set.len : 0;
 	stf->excess = 0;

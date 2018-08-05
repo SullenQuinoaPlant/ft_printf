@@ -365,7 +365,7 @@ int
 
 void
 	set_dfp(
-		t_s_pct *chk, t_s_dfp *p_ret);
+		t_s_arg *arg, t_s_dfp *p_ret);
 
 void
 	set_pad_syl(

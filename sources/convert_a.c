@@ -1,3 +1,4 @@
+#include "libmyfloatingpoint.h"
 #include "ft_printf_inner.h"
 
 static t_stuffer
@@ -30,6 +31,21 @@ static void	set_syl_grps(t_s_acs *stf)
 	ft_memcpy(stf->syl_groups, ar, sizeof(ar));
 }
 
+static
+void
+	set_float_stuff(
+		t_s_pct *chk, t_s_acs *stf)
+{
+	int		shift;
+
+	set_dfp(chk->vaarg, &stf->fpd);
+	if (chk->vaarg->type == e_double)
+		shift = 64 - DB_MANT_BITS;
+	else if (chk->vaarg->type == e_longdouble)
+		shift = 64 - LDB_MANT_BITS;
+	stf->aligned_mant = stf->fpd.mant << shift;
+}
+
 void		convert_a(t_s_pct *chk)
 {
 	int			* const pads = (int[e_pp_sz]){0};
@@ -37,7 +53,7 @@ void		convert_a(t_s_pct *chk)
 	
 
 	stf.chk = chk;
-	set_dfp(chk, &stf.fpd);
+	set_float_stuff(chk, &stf);
 	if (output_nan_inf(&stf.fpd, chk))
 		return;
 	init_syls(e_sot_c, A_SYLLABLES, stf.syllables);
