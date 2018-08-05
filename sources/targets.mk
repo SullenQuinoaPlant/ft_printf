@@ -39,9 +39,6 @@ TARGETS := \
 	convert_x_stuffers \
 	etypes_get_etype \
 	etypes_sizeof_etype \
-	floating_point_auxilliaries \
-	floating_point_composition \
-	floating_point_decomposition \
 	ft_printf \
 	get_vaarged_floatingpoint \
 	get_va_args \
@@ -55,7 +52,6 @@ TARGETS := \
 	global_parse_state_auxilliaries \
 	my_cleanfree \
 	my_lstappend \
-	my_stupidmath \
 	my_utf8 \
 	my_valtobuffers_raw \
 	my_valtobuffers_tscc \
