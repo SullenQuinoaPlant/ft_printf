@@ -34,5 +34,5 @@ void
 		t_s_arg *g, t_s_fpndfp *ret)
 {
 	ret->dbl = get_ldouble(g);
-	set_dfp(g, &ret->dec);
+	decompose_ldouble(&ret->dbl, &ret->dec);
 }
