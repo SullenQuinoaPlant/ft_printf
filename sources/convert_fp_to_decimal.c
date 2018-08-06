@@ -23,10 +23,8 @@ t_s_pot
 		return ((t_s_pot){0, 0.0L});
 	log = log2_to_log10(num->dec.exp - MANT_RES);
 	ret.pow10 = (int)log;
-	log -= (int)log;
-	ret.times = num->dbl;
-	ret.times *= powl(2, MANT_RES - num->dec.exp);
-	ret.times *= powl(10, log);
+	ret.times = make_ldouble(0, num->dec.mant, -MANT_RES);
+	ret.times *= powl(10, log - ret.pow10);
 	while (ret.times < 1.0)
 	{
 		ret.times *= 10.0;
@@ -37,6 +35,8 @@ t_s_pot
 		ret.times /= 10.0;
 		ret.pow10++;
 	}
+	if (num->dbl < 0)
+		ret.times *= -1;
 	return (ret);
 }
 
