@@ -41,7 +41,6 @@ void
 	else if (flags & ZERO_FLAG)
 	{
 		i = pad_i[e_pp_middle];
-		syl_ar[i].c = '0';
 		syl_ar[i].len = len;
 		if (syl_ar[i].type == e_sot_apstr_c)
 			apstrify_zpad_grp(&syl_ar[i], syl_grps);
