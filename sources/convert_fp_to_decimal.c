@@ -57,7 +57,6 @@ int
 	return (0);
 }
 */
-/*this wasn't great either:
 int
 	round_ldouble(
 		long double *d, int pow10)
