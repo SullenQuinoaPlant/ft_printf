@@ -31,7 +31,7 @@ int
 	r = 1;
 	while (eat_this.len && r)
 		if	(pos >= g_os.apstr_grp &&
-			(r = output_c(1, g_os.apstr_c))
+			(r = output_c(1, g_os.apstr_c)))
 			pos = 0;
 		else
 		{
