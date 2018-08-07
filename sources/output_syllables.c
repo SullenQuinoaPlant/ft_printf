@@ -1,7 +1,7 @@
 #include "ft_printf_inner.h"
 
 static int
-	out_a_syl_char(
+	out_syl_chars(
 		size_t count, t_s_so *syl)
 {
 	int			r;
