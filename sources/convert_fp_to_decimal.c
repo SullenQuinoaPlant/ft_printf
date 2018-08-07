@@ -61,7 +61,6 @@ int
 	round_ldouble(
 		long double *d, int pow10)
 {
-	long double	b;
 	long double	dd;
 
 	if (!is_finite((dd = *d * my_intpowl(10, -pow10))))
