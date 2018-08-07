@@ -65,7 +65,7 @@ int
 
 	if (!is_finite((dd = *d * my_intpowl(10, -pow10))))
 		return (-1);
-	if (dd - my_floorl(dd) > 0.5)
+	if (dd - my_floorl(dd) >= 0.5)
 		*d += my_intpowl(10, pow10);
 	return (0);
 }
