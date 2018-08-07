@@ -57,6 +57,7 @@ int
 	return (0);
 }
 */
+/*this wasn't great either:
 int
 	round_ldouble(
 		long double *d, int pow10)
@@ -69,6 +70,25 @@ int
 		*d += my_intpowl(10, pow10);
 	return (0);
 }
+/*So we're going crazy:
+void
+	round_tspot(
+		int roundat, t_s_pot *num)
+{
+	int			digit;
+	long double	d;
+	t_s_pot		tmp;
+
+	tmp = *num;
+	while (tmp.pow10 > roundat)
+	{
+		digit = tmp.times;
+		tmp.times = (tmp.times - digit) * 10.0;
+		d = d / 10.0 + digit;
+		
+	}
+}
+*/
 
 int
 	trailing_zeros(
