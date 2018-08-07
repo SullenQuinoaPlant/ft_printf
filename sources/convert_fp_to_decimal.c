@@ -24,7 +24,7 @@ t_s_pot
 	log = log2_to_log10(num->dec.exp - MANT_RES);
 	ret.pow10 = (int)log;
 	ret.times = make_ldouble(0, num->dec.mant, -MANT_RES);
-	ret.times *= powl(10, log - ret.pow10);
+	ret.times *= my_powl(10, log - ret.pow10);
 	while (ret.times < 1.0)
 	{
 		ret.times *= 10.0;
@@ -47,10 +47,10 @@ int
 	long double	b;
 	long double	dd;
 
-	if (!is_finite((b = powl(10, pow10))))
+	if (!is_finite((b = my_powl(10, pow10))))
 		return (-1);
 	dd = *d / b;
-	if (dd - floorl(dd) > 0.5)
+	if (dd - my_floorl(dd) > 0.5)
 		*d += b;
 	return (0);
 }
