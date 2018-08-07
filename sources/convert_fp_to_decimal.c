@@ -21,7 +21,7 @@ t_s_pot
 
 	if (num->dbl == 0.0)
 		return ((t_s_pot){0, 0.0L});
-	log = log2_to_log10(num->dec.exp - MANT_RES);
+	log = log2_to_log10(num->dec.exp);
 	ret.pow10 = (int)log;
 	ret.times = make_ldouble(0, num->dec.mant, -MANT_RES);
 	ret.times *= my_powl(10, log - ret.pow10);
