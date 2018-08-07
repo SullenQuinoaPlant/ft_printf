@@ -50,7 +50,7 @@ size_t
 	size_t			ijk[3];
 	uintmax_t		mask;
 
-	log2 = flog2(r);
+	log2 = my_flog2(r);
 	ijk[K] = (val_sz * 8) / log2;
 	mask = ~0 << log2;
 	ijk[I] = 0;

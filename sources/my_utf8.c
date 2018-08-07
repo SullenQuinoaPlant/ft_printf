@@ -25,7 +25,7 @@ int
 			val >>= UTF8_BITS;
 		}
 		c = pc[-(sz - 1)];
-		if (flog2(c & ~UTF8_01X) + sz + 2 > CHAR_BIT)
+		if (my_flog2(c & ~UTF8_01X) + sz + 2 > CHAR_BIT)
 			c = ~0 << (CHAR_BIT - (sz + 1));
 		else
 			c |= ~0 << (CHAR_BIT - sz--);
