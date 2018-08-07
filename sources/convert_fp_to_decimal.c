@@ -40,6 +40,8 @@ t_s_pot
 	return (ret);
 }
 
+/*this works when you have perfect powers of ten,
+**	which I don't.
 int
 	round_ldouble(
 		long double *d, int pow10)
@@ -52,6 +54,20 @@ int
 	dd = *d / b;
 	if (dd - my_floorl(dd) > 0.5)
 		*d += b;
+	return (0);
+}
+*/
+int
+	round_ldouble(
+		long double *d, int pow10)
+{
+	long double	b;
+	long double	dd;
+
+	if (!is_finite((dd = *d * my_intpowl(10, -pow10))))
+		return (-1);
+	if (dd - my_floorl(dd) > 0.5)
+		*d += my_intpowl(10, pow10);
 	return (0);
 }
 
