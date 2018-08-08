@@ -3,6 +3,9 @@ TARGETS := \
 	convert_apostrophe_flag_auxilliaries \
 	convert_a_stuffers1 \
 	convert_a_stuffers2 \
+	convert_b \
+	convert_b_outputters \
+	convert_b_stuffers \
 	convert_c \
 	convert_d \
 	convert_d_stuffers \
