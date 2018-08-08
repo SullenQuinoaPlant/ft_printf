@@ -21,7 +21,7 @@ void
 {
 	t_s_bcs		* const stf = (t_s_bcs*)p;
 	t_s_so		* const syl = stf->syls + pos;
-	uintmax_t	addr;
+	uintmax_t	size_t;
 	char const	*base; 
 
 	syl->len = 0;
@@ -30,7 +30,7 @@ void
 	base = g_hex_syms;
 	if (stf->chk->flags & PLUS_FLAG)
 		base = g_bhex_syms;
-	addr = (uintmax_t)stf->p_mem;
+	addr = (size_t)stf->p_mem;
 	*syl = syl_uv_tob(addr, base, &stf->addr);
 	if (stf->chk->flags & APSTR_FLAG)
 		syl->type = e_sot_apstr_cc;
