@@ -30,7 +30,7 @@ void
 	base = g_hex_syms;
 	if (stf->chk->flags & PLUS_FLAG)
 		base = g_bhex_syms;
-	addr = stf->p_mem;
+	addr = (uintmax_t)stf->p_mem;
 	*syl = syl_uv_tob(addr, base, &stf->addr);
 	if (stf->chk->flags & APSTR_FLAG)
 		syl->type = e_sot_apstr_cc;
