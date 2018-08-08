@@ -10,8 +10,8 @@ void
 	syl->type = e_sot_c;
 	syl->len = 0;
 	if (!(stf->chk->flags & HASH_FLAG))
-		return ();
-	syl->len = 1
+		return;
+	syl->len = 1;
 	syl->c = '@';
 }
 
@@ -25,11 +25,11 @@ void
 
 	syl->len = 0;
 	if (!(stf->chk->flags & HASH_FLAG))
-		return ();
+		return;
 	base = g_hex_syms;
 	if (stf->chk->flags & PLUS_FLAG)
 		base = g_bhex_syms;
-	*syl = syl_uv_tob(stf->p_mem, base, &stf->addr);
+	*syl = syl_uv_tob((uintmax_t)stf->p_mem, base, &stf->addr);
 	if (stf->chk->flags & APSTR_FLAG)
 		syl->type = e_sot_apstr_cc;
 }
@@ -44,8 +44,8 @@ void
 	syl->type = e_sot_c;
 	syl->len = 0;
 	if (!(stf->chk->flags & HASH_FLAG))
-		return ();
-	syl->len = 3
+		return;
+	syl->len = 3;
 	syl->c = ' ';
 }
 
