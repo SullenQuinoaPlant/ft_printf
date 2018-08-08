@@ -39,7 +39,7 @@ typedef struct	s_convert_b_stuff {
 	char const	*base;
 	t_mib		val;
 	t_s_cc		val_p;
-}				t_s_cbs;
+}				t_s_bcs;
 
 void	cb_addrprefix(int, void*);
 void	cb_addr(int, void*);
