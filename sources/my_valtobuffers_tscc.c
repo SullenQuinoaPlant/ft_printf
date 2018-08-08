@@ -1,5 +1,6 @@
 #include "my_valtobuffers.h"
 
+char const	* const g_bin_syms = "01";
 char const	* const g_oct_syms = "01234567";
 char const	* const g_dec_syms = "0123456789";
 char const	* const g_hex_syms = "0123456789abcdef";

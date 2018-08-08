@@ -26,6 +26,29 @@ void	ca_excess_precision(int, void*);
 void	ca_to_the_power(int, void*);
 void	ca_exponent(int, void*);
 
+# define B_SYLS 7
+# define B_SYLGRPS 2
+typedef struct	s_convert_b_stuff {
+	t_s_pct		*chk;
+	t_s_so		syls[B_SYLS];
+	t_s_sgd		syl_grps[B_SYLGRPS];
+	void		*p_mem;
+	size_t		mem_chk;
+	ssize_t		chk_count;
+	t_mib		addr;
+	char const	*base;
+	t_mib		val;
+	t_s_cc		val_p;
+}				t_s_cbs;
+
+void	cb_addrprefix(int, void*);
+void	cb_addr(int, void*);
+void	cb_addrpostfix(int, void*);
+void	cb_mem(int, void*);
+
+int		tsof_hexmem(size_t len, void *arg);
+int		tsof_bitmem(size_t len, voig *arg);
+
 #define D_SYLS 6
 typedef struct	s_convert_d_stuff {
 	t_s_pct	*chk;
