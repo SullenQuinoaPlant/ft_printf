@@ -1,7 +1,7 @@
 #include "ft_printf_inner.h"
 
 void
-	cd_addrprefix(
+	cb_addrprefix(
 		int pos, void *p)
 {
 	t_s_bcs	* const stf = (t_s_bcs*)p;
@@ -16,7 +16,7 @@ void
 }
 
 void
-	cd_addrprefix(
+	cb_addr(
 		int pos, void *p)
 {
 	t_s_bcs		* const stf = (t_s_bcs*)p;
@@ -35,7 +35,7 @@ void
 }
 
 void
-	cd_addrpostfix(
+	cb_addrpostfix(
 		int pos, void *p)
 {
 	t_s_bcs	* const stf = (t_s_bcs*)p;
@@ -50,7 +50,7 @@ void
 }
 
 void
-	cd_mem(
+	cb_mem(
 		int pos, void *p)
 {
 	t_s_bcs	* const stf = (t_s_bcs*)p;

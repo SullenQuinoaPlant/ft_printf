@@ -28,7 +28,7 @@ void
 
 static
 void
-	set_mem_opts(
+	set_mem_options(
 		t_s_pct *chk, t_s_bcs *stf)
 {
 	if (chk->precision)
@@ -36,22 +36,23 @@ void
 	else
 		stf->chk_count = 1;
 	stf->mem_chk = g_et_sz[g_target_et[chk->len_mod]];
-	p_mem = chk->vaarg->p_val;
+	stf->p_mem = chk->vaarg->p_val;
 }
 
 static
 t_stuffer
 	g_fstr[B_SYLS + 1] = {
 	dummy_stuffer,
-	cd_addrprefix,
-	cd_addr,
-	cd_addrpostfix,
+	cb_addrprefix,
+	cb_addr,
+	cb_addrpostfix,
 	dummy_stuffer,
-	cd_mem,
+	cb_mem,
 	dummy_stuffer,
 	0
 };
 
+#define MEM_GRP 1
 static
 void
 	set_syl_grps(
@@ -63,7 +64,8 @@ void
 		{&syls[4], 3, -1, 0, ' '}};
 	size_t	grp;
 
-	grp = stf->mem_chk * CHAR_BIT / my_flog2(stf->base);
+	grp = stf->mem_chk * CHAR_BIT;
+	grp /= my_flog2(ft_strlen(stf->base));
 	ar[MEM_GRP].apstr_grp = grp;
 	ft_memcpy(stf->syl_grps, ar, sizeof(ar));
 }
@@ -72,6 +74,7 @@ void
 	convert_b(
 		t_s_pct *chk)
 {
+	int			pads[e_pp_sz];
 	t_s_bcs		stf;
 
 	stf.chk = chk;
