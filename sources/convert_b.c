@@ -36,7 +36,7 @@ void
 	else
 		stf->chk_count = 1;
 	stf->mem_chk = g_et_sz[g_target_et[chk->len_mod]];
-	stf->p_mem = *(void*)chk->vaarg->p_val;
+	stf->p_mem = *(void**)chk->vaarg->p_val;
 }
 
 static
