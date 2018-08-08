@@ -16,11 +16,11 @@ static t_e_t
 static
 void
 	set_base(
-		t_s_pct *chk)
+		t_s_bcs *stf)
 {
-	if (chk->specifier == e_b)
+	if (stf->chk->specifier == e_b)
 		stf->base = g_bin_syms;
-	else if (chk->flags & PLUS_FLAG)
+	else if (stf->chk->flags & PLUS_FLAG)
 		stf->base = g_bhex_syms;
 	else
 		stf->base = g_hex_syms;
