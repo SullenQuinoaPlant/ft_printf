@@ -21,7 +21,7 @@ void
 {
 	t_s_bcs		* const stf = (t_s_bcs*)p;
 	t_s_so		* const syl = stf->syls + pos;
-	uintmax_t	size_t;
+	size_t		addr;
 	char const	*base; 
 
 	syl->len = 0;
