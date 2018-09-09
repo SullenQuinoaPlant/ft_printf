@@ -1,8 +1,8 @@
 TARGETS := \
 	convert_a \
-	convert_apostrophe_flag_auxilliaries \
 	convert_a_stuffers1 \
 	convert_a_stuffers2 \
+	convert_apostrophe_flag_auxilliaries \
 	convert_c \
 	convert_d \
 	convert_d_stuffers \
@@ -11,9 +11,9 @@ TARGETS := \
 	convert_e_stuffers1 \
 	convert_e_stuffers2 \
 	convert_f \
-	convert_fp_to_decimal \
 	convert_f_stuffers1 \
 	convert_f_stuffers2 \
+	convert_fp_to_decimal \
 	convert_g \
 	convert_g_estuffers1 \
 	convert_g_estuffers2 \
@@ -24,13 +24,13 @@ TARGETS := \
 	convert_nospecifier \
 	convert_o \
 	convert_o_stuffers \
-	convert_pad_syllables \
 	convert_p \
 	convert_p_stuffers \
+	convert_pad_syllables \
 	convert_s \
+	convert_s_wcharstr \
 	convert_sign \
 	convert_stuffers_auxilliaries \
-	convert_s_wcharstr \
 	convert_syllable_auxilliaries \
 	convert_tscc_to_syllable \
 	convert_u \
@@ -40,7 +40,6 @@ TARGETS := \
 	etypes_get_etype \
 	etypes_sizeof_etype \
 	ft_printf \
-	get_vaarged_floatingpoint \
 	get_va_args \
 	get_va_args__vaarger_functions1 \
 	get_va_args__vaarger_functions2 \
@@ -48,6 +47,7 @@ TARGETS := \
 	get_va_args__vaarger_functions4 \
 	get_va_args__vaarger_functions5 \
 	get_va_args__vaarger_functions6 \
+	get_vaarged_floatingpoint \
 	global_output_state_auxilliaries \
 	global_parse_state_auxilliaries \
 	my_cleanfree \
