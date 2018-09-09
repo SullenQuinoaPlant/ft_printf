@@ -5,7 +5,6 @@ endif
 
 all : $(OUT_DIR_LIB)/$(LIBNAME).a
 
-
 OBJS := $(patsubst %,$(OBJ_DIR)/%.o,$(TARGETS))
 
 $(OUT_DIR_LIB)/$(LIBNAME).a : $(OBJ_DIR)/$(NAME).o
