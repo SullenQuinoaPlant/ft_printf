@@ -11,7 +11,7 @@ int
 	str = (wchar_t*)p;
 	while (len)
 	{
-		r = utf8_seq(*str++, UTF8_MAX_CHARS, ar);
+		r = utf8_trueseq(*str++, ar);
 		output_cc(r, ar);
 		len -= r;
 	}

@@ -48,7 +48,7 @@ static void
 	str = *(wchar_t**)stf->chk->vaarg->p_val;
 	stf->syls[CHAR_SYL].arg = str;
 	left = stf->pre;
-	while (*str && (r = utf8_seq(*str++, UTF8_MAX_CHARS, ar)) <= left)
+	while (*str && (r = utf8_trueseq(*str++, ar)) <= left)
 		left -= r;
 	stf->syls[CHAR_SYL].len = stf->pre - left;
 }
