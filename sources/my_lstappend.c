@@ -1,6 +1,6 @@
 #include "inner.h"
 
-void	my_lstappend(t_list **last, t_list *new)
+void	ft_lstappend(t_list **last, t_list *new)
 {
 	t_list	*nxt;
 
