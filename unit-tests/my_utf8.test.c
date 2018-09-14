@@ -29,7 +29,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		tst = ((char[AR_SZ]){0});
 		wchar_t	in = 0x0;
 
-		true_utf8seq(in, tst);
+		utf8_trueseq(in, tst);
 		assert_memory_equal(ref, tst, AR_SZ);
 	)
 
@@ -40,7 +40,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		tst = ((char[AR_SZ]){0});
 		wchar_t	in = 0x004D;
 
-		true_utf8seq(in, tst);
+		utf8_trueseq(in, tst);
 		assert_memory_equal(ref, tst, AR_SZ);
 	)
 
@@ -51,7 +51,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		tst = ((char[AR_SZ]){0});
 		wchar_t	in = 0x0430;
 
-		true_utf8seq(in, tst);
+		utf8_trueseq(in, tst);
 		assert_memory_equal(ref, tst, AR_SZ);
 	)
 
@@ -62,7 +62,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		tst = ((char[AR_SZ]){0});
 		wchar_t	in = 0x4E8C;
 
-		true_utf8seq(in, tst);
+		utf8_trueseq(in, tst);
 		assert_memory_equal(ref, tst, AR_SZ);
 	)
 
@@ -73,7 +73,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		tst = ((char[AR_SZ]){0});
 		wchar_t	in = 0x10302;
 
-		true_utf8seq(in, tst);
+		utf8_trueseq(in, tst);
 		assert_memory_equal(ref, tst, AR_SZ);
 	)
 
@@ -84,7 +84,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		tst = ((char[AR_SZ]){0});
 		wchar_t	in = 0x10FFFF;
 
-		true_utf8seq(in, tst);
+		utf8_trueseq(in, tst);
 		assert_memory_equal(ref, tst, AR_SZ);
 	)
 	return(run_test_arr(all_of, these));
