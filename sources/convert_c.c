@@ -19,7 +19,7 @@ void		convert_c(t_s_pct *chk)
 		if ((c = *(wint_t*)chk->vaarg->p_val) == WEOF)
 			lens[e_root] = 0;
 		else
-			lens[e_root] = true_utf8seq(c, ar);
+			lens[e_root] = utf8_trueseq(c, ar);
 	}
 	else
 	{
