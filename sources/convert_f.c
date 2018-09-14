@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 #define HIGH_DIG 3
 static t_stuffer

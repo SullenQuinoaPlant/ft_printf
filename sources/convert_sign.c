@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 t_s_cc	sign_to_b(int sign, t_s_pct *p_chk, char *b)
 {

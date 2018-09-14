@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 static char	*g_nan = "nan";
 static char	*g_bignan = "NAN";

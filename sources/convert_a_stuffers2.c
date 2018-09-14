@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 void	ca_to_the_power(int syl, void *p)
 {

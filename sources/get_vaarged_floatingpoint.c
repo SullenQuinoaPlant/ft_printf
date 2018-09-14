@@ -1,5 +1,5 @@
 #include "libmyfloatingpoint.h"
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 long double
 	get_ldouble(

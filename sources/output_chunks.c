@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 static void	output_chunk(t_s_cw *p_cw)
 {

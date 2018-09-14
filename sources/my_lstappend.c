@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 void	my_lstappend(t_list **last, t_list *new)
 {

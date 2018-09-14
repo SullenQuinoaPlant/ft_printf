@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 char const	*parse_literal_uint(
 	char const *in, unsigned int *p_res)

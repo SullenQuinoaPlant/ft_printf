@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 static t_e_t const
 	g_types[e_cs_sz][e_lm_sz] =

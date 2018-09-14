@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 #define SEPARATOR_REL_POS 2
 void	cg_flowdigits(int pos, void *p)

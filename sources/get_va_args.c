@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 void const	*(*f_ar[e_types_sz])(va_list*) = {
 			vaarg_notype,

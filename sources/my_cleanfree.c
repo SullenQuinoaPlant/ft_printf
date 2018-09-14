@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 void	my_clean_free(void *data, size_t sz)
 {

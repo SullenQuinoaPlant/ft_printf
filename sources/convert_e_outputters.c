@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 #define PREFIX_GRP_I 0
 #define PRE_GRP_COUNT 1

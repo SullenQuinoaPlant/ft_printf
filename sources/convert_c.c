@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 static void
 	filter_flags(t_s_pct *chk)

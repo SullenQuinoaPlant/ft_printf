@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 void	output_char_chk(t_s_char const * const chk)
 {

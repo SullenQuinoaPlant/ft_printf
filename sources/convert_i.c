@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 void		convert_i(t_s_pct *p_chk)
 {

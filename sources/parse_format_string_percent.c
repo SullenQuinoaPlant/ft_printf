@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 static char const *
 	(* const g_f_str[])(char const *) = {

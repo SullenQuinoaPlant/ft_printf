@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 static t_e_t
 	g_target_et[e_lm_sz] = {

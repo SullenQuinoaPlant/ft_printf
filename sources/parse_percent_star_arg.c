@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 char const	*percent_convert_star(
 	char const *in, int ***p_res)

@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 #define GRP_SETTER 1
 static t_stuffer

@@ -1,5 +1,5 @@
 #include "libmyfloatingpoint.h"
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 static t_stuffer
 			g_fstr[A_SYLLABLES + 1] = {
