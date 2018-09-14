@@ -114,6 +114,6 @@ int			get_va_args(va_list *vaargs)
 	resolve_vaargs(vaargs, p_ar, len);
 	fulfill_arg_reqs(p_ar);
 	check_arg_use(p_ar, len);
-	my_clean_free(p_ar, ar_sz);
+	ft_cleanfree(p_ar, ar_sz);
 	return (!g_ps.errored);
 }

@@ -45,7 +45,7 @@ static void
 			sz = sizeof(t_s_pct);
 		else if (t == e_ctl_chk)
 			sz = sizeof(t_s_ctl);
-		my_clean_free(p_cw->chk, sz);
+		ft_cleanfree(p_cw->chk, sz);
 	}
 	*p_cw = (t_s_cw){0,0};
 	free(p_cw);
@@ -58,8 +58,8 @@ void
 	if (ps->chunks.head.next)
 		ft_lstdel(&ps->chunks.head.next, clean_free_cw);
 	if (ps->p_req_args)
-		ft_lstdel(&ps->p_req_args, my_clean_free);
+		ft_lstdel(&ps->p_req_args, ft_cleanfree);
 	if (ps->p_known_vals)
-		ft_lstdel(&ps->p_known_vals, my_clean_free);
+		ft_lstdel(&ps->p_known_vals, ft_cleanfree);
 	ft_bzero((void*)ps, sizeof(t_s_ps));
 }
