@@ -13,9 +13,9 @@ typedef struct	s_convert_a_stuff {
 	uint64_t	aligned_mant;
 	char		prefix[3];
 	char		zero;
-	t_mib		m;
+	t_vtb_mib		m;
 	int			excess;
-	t_mib		e;
+	t_vtb_mib		e;
 }				t_s_acs;
 
 void	ca_prefix(int, void*);
@@ -30,7 +30,7 @@ void	ca_exponent(int, void*);
 typedef struct	s_convert_d_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[D_SYLS];
-	t_mib	b;
+	t_vtb_mib	b;
 	t_s_cc	p_b;
 	int		pre;
 	t_s_sgd	group;
@@ -48,7 +48,7 @@ typedef struct	s_convert_e_stuff {
 	t_s_so		syls[E_SYLLABLES];
 	t_s_sgd		syl_grps[E_SYLGRPS];
 	int			pre;
-	t_mib		exp;
+	t_vtb_mib		exp;
 	t_s_cc		p_exp;
 }				t_s_ecs;
 
@@ -95,7 +95,7 @@ typedef struct	s_convert_g_stuff {
 	t_s_so		syls[G_SYLLABLES];
 	t_s_sgd		syl_grps[G_SYLGRPS];
 	int			pre;
-	t_mib		exp;
+	t_vtb_mib		exp;
 	t_s_cc		p_exp;
 }				t_s_gcs;
 
@@ -124,7 +124,7 @@ void	cg_fsetgroups(int, void*);
 typedef struct	s_convert_o_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[O_SYLS];
-	t_mib	b;
+	t_vtb_mib	b;
 	t_s_cc	p_b;
 	int		pre;
 	t_s_sgd	group;
@@ -138,7 +138,7 @@ void	co_digits(int, void*);
 typedef struct	s_convert_p_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[P_SYLS];
-	t_mib	b;
+	t_vtb_mib	b;
 	t_s_cc	p_b;
 	int		pre;
 	t_s_sgd	group;
@@ -162,7 +162,7 @@ int		tsof_wcharstr(size_t len, void *p);
 typedef struct	s_convert_unsigned_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[U_SYLS];
-	t_mib	b;
+	t_vtb_mib	b;
 	t_s_cc	p_b;
 	int		pre;
 	t_s_sgd	group;
@@ -176,7 +176,7 @@ typedef struct	s_convert_x_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[X_SYLS];
 	char	hashfix[2];
-	t_mib	b;
+	t_vtb_mib	b;
 	t_s_cc	p_b;
 	int		pre;
 	t_s_sgd	group;

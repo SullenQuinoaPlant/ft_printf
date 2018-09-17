@@ -377,19 +377,19 @@ t_s_so
 		uintmax_t val,
 		int val_sz,
 		char const * basestr,
-		t_mib *b);
+		t_vtb_mib *b);
 
 t_s_so
 	syl_uv_tob(
 		uintmax_t val,
 		char const * basestr,
-		t_mib *b);
+		t_vtb_mib *b);
 
 t_s_so
 	syl_v_tob(
 		intmax_t val,
 		char const * basestr,
-		t_mib *b,
+		t_vtb_mib *b,
 		t_e_sp sign_f);
 
 size_t
