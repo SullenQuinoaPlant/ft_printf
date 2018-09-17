@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 static
 int
@@ -13,7 +13,7 @@ int
 	stf->chk_count -= nxt;
 	stf->p_mem += nxt * stf->mem_chk;
 	ft_memcpy(&val, stf->p_mem, stf->mem_chk);
-	stf->val_p = my_uv_tob(val, stf->base, &stf->val);
+	stf->val_p = vtb_uv_tscc(val, stf->base, &stf->val);
 	return (1);
 }
 

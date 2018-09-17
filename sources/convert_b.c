@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 static t_e_t
 	g_target_et[e_lm_sz] = {
@@ -19,11 +19,11 @@ void
 		t_s_bcs *stf)
 {
 	if (stf->chk->specifier == e_b)
-		stf->base = g_bin_syms;
+		stf->base = VTB_BIN_SYMS;
 	else if (stf->chk->flags & PLUS_FLAG)
-		stf->base = g_bhex_syms;
+		stf->base = VTB_BHEX_SYMS;
 	else
-		stf->base = g_hex_syms;
+		stf->base = VTB_HEX_SYMS;
 }
 
 static

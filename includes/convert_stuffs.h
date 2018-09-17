@@ -13,9 +13,9 @@ typedef struct	s_convert_a_stuff {
 	uint64_t	aligned_mant;
 	char		prefix[3];
 	char		zero;
-	t_vtb_mib		m;
+	t_vtb_mib	m;
 	int			excess;
-	t_vtb_mib		e;
+	t_vtb_mib	e;
 }				t_s_acs;
 
 void	ca_prefix(int, void*);
@@ -38,7 +38,7 @@ typedef struct	s_convert_b_stuff {
 	t_vtb_mib	addr;
 	char const	*base;
 	t_vtb_mib	val;
-	t_s_vtb_cc		val_p;
+	t_s_vtb_cc	val_p;
 }				t_s_bcs;
 
 void	cb_addrprefix(int, void*);

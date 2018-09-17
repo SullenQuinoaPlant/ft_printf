@@ -2,7 +2,7 @@
 # define FT_PRINTF_INNER_H
 
 # include <unistd.h>
-//# include <limits.h>
+# include <limits.h>
 # include <stdint.h>
 # include <stddef.h>
 # include <stdlib.h>

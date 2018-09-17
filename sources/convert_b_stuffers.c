@@ -1,4 +1,4 @@
-#include "ft_printf_inner.h"
+#include "inner.h"
 
 void
 	cb_addrprefix(
@@ -27,9 +27,9 @@ void
 	syl->len = 0;
 	if (!(stf->chk->flags & HASH_FLAG))
 		return;
-	base = g_hex_syms;
+	base = VTB_HEX_SYMS;
 	if (stf->chk->flags & PLUS_FLAG)
-		base = g_bhex_syms;
+		base = VTB_BHEX_SYMS;
 	addr = (size_t)stf->p_mem;
 	*syl = syl_uv_tob(addr, base, &stf->addr);
 	if (stf->chk->flags & APSTR_FLAG)
