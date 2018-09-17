@@ -7,7 +7,7 @@ static t_e_dc	get_dollar_convention()
 		if (g_ps.free_arg_count)
 			return (e_mix_dollar);
 		else
-			return (e_vtb_spall_dollar);
+			return (e_all_dollar);
 	}
 	return (e_no_dollar);
 }

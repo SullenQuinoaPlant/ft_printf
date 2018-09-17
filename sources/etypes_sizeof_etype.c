@@ -1,7 +1,7 @@
 #ifndef SIZEOF_E_TYPES_H
 # define SIZEOF_E_TYPES_H
 
-# include "ft_printf_inner.h"
+# include "inner.h"
 
 size_t	g_et_sz[e_types_sz] = {
 		0,

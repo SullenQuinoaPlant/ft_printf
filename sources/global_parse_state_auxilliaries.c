@@ -3,7 +3,7 @@
 void
 	init_parse_state()
 {
-	g_ps.chunks.head = 0;
+	g_ps.chunks.head = (t_list){0, 0, 0};
 	g_ps.chunks.tail = &g_ps.chunks.head;
 //	g_ps.chunks.head.next = 0;
 //	g_ps.chunks.tail = &g_ps.chunks.head;

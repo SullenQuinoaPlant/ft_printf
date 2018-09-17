@@ -1,10 +1,21 @@
+ifndef ROOT
+ ROOT = ../..
+ inclued $(ROOT)/make_vars.mk
+endif
+
 BUILD_DIR = cmocka_build
 SOURCE_DIR = cmocka_source
 
-cmocka : $(BUILD_DIR) $(SOURCE_DIR)
+.PHONY : cmocka
+cmocka : $(BUILD_DIR) $(SOURCE_DIR) install
 	cd $(BUILD_DIR) && cmake ../$(SOURCE_DIR) && make;
 	cp $(SOURCE_DIR)/include/cmocka.h .
 	cp $(BUILD_DIR)/src/libcmocka* .
+
+.PHONY : install
+install :
+	mv cmocka.h $(LIBS_I)
+	mv libcmocka* $(LIBS_L)
 
 $(BUILD_DIR) :
 	if [ -d $(BUILD_DIR) ]; then :; else mkdir $(BUILD_DIR); fi
@@ -14,6 +25,5 @@ $(SOURCE_DIR) :
 	
 
 clean :
-	-rm libcmocka.so*
+	-rm libcmocka*
 	-rm cmocka.h
-	rm -rf $(BUILD_DIR)

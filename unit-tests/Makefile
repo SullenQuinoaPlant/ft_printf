@@ -9,8 +9,7 @@ TEST_OBJS := $(TEST_SRCS:.c=.o)
 EXECUTION_STAMPS := $(TEST_OBJS:.o=.execution.stamp)
 
 CFLAGS_UTEST = -fno-builtin -g
-CFLAGS_UTEST += $(CFLAGS_MORE) #$(CFLAGS) were annoying the hell out of me
-
+CFLAGS_UTEST += $(CFLAGS_MORE)
 
 
 
@@ -29,7 +28,7 @@ cmocka :
 	@if $(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -L $(LIBS_L)\
 	 	$(UTEST_DIR)/cmocka/check_install.c\
-		 -lcmocka -o test.o\
+		 -lcmocka_shared -o test.o\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))\
 		&& ./test.o .;\
 	then\
@@ -37,9 +36,6 @@ cmocka :
 	else\
 		echo "installing cmocka";\
 		$(MAKE) -C $(UTEST_DIR)/cmocka/;\
-		mv $(UTEST_DIR)/cmocka/libcmocka* $(LIBS_L)/;\
-		mv $(UTEST_DIR)/cmocka/cmocka.h $(LIBS_I)/;\
-		echo "cmocka installed";\
 	fi
 	-@rm ./test.o
 
@@ -50,7 +46,7 @@ cmocka :
 		-include $(SRC_DIR)/$*.c\
 		$<\
 		-L $(LIBS_L)\
-		-lcmocka\
+		-lcmocka_shared\
 		-lmystupidmath -lmyfloatingpoint -lft\
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
@@ -62,7 +58,7 @@ cmocka :
 		$<\
 		-L $(LIBS_L)\
 		-lftprintf\
-		-lcmocka\
+		-lcmocka_shared\
 		-lmystupidmath -lmyfloatingpoint -lft\
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))

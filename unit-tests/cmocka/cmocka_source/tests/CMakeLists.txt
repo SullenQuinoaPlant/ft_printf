@@ -1,11 +1,5 @@
 project(tests C)
 
-include_directories(
-  ${CMAKE_BINARY_DIR}
-  ${CMAKE_CURRENT_SOURCE_DIR}
-  ${CMAKE_SOURCE_DIR}/include
-)
-
 set(CMOCKA_TESTS
     test_alloc
     test_group_setup_assert
@@ -18,14 +12,23 @@ set(CMOCKA_TESTS
     test_exception_handler
     test_basics
     test_skip
+    test_strmatch
     test_setup_fail
     test_ordering
     test_ordering_fail
     test_returns
-    test_returns_fail)
+    test_returns_fail
+    test_wildcard)
 
 foreach(_CMOCKA_TEST ${CMOCKA_TESTS})
     add_cmocka_test(${_CMOCKA_TEST} ${_CMOCKA_TEST}.c ${CMOCKA_STATIC_LIBRARY})
+    target_include_directories(${_CMOCKA_TEST} PRIVATE ${cmocka_BINARY_DIR})
+    target_compile_options(${_CMOCKA_TEST} PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
+    set_property(TARGET
+                     ${_CMOCKA_TEST}
+                 PROPERTY
+                     LINK_FLAGS
+                         "${DEFAULT_LINK_FLAGS}")
 endforeach()
 
 ### Special Cases
@@ -33,6 +36,7 @@ if (${CMAKE_C_COMPILER_ID} MATCHES "(GNU|Clang)")
     set_source_files_properties(test_cmockery.c PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations")
 endif()
 add_cmocka_test(test_cmockery test_cmockery.c ${CMOCKA_STATIC_LIBRARY})
+target_compile_options(test_cmockery PRIVATE ${DEFAULT_C_COMPILE_FLAGS})
 
 ### Exceptions
 
@@ -80,7 +84,7 @@ else()
         test_exception_handler
             PROPERTIES
             PASS_REGULAR_EXPRESSION
-            "Test failed with exception: (Segmentation fault|Segmentation Fault|11)"
+            "Test failed with exception: (Segmentation fault|Segmentation Fault|11|Illegal instruction)"
     )
 endif (WIN32)
 

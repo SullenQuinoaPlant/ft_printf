@@ -1,11 +1,5 @@
 project(cmocka-examples C)
 
-include_directories(
-    ${CMAKE_BINARY_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMOCKA_PUBLIC_INCLUDE_DIRS}
-)
-
 set_source_files_properties(
     calculator.c
     allocate_module.c
@@ -137,4 +131,5 @@ endif (WIN32 OR CYGWIN OR MINGW)
 # TODO Execute "$CMAKE_LINKER --help" and check for --wrap
 if (${CMAKE_C_COMPILER_ID} MATCHES "(GNU|Clang)" AND NOT APPLE)
     add_subdirectory(chef_wrap)
+    add_subdirectory(uptime)
 endif()

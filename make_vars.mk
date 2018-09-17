@@ -12,6 +12,7 @@ OUT_DIR_LIB := $(LIBS_L)
 OUT_DIR_H := $(LIBS_I)
 
 include $(ROOT)/targets.mk
+OBJS := $(patsubst %,$(OBJ_DIR)/%.o,$(TARGETS))
 
 DEPENDENCIES =\
 	libft\
