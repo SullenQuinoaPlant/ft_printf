@@ -4,6 +4,8 @@ static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	convert_nospec,
 	convert_a,
 	convert_a_big,
+	convert_b,
+	convert_b_big,
 	convert_c,
 	convert_d,
 	convert_e,

@@ -12,6 +12,20 @@ static t_e_t const
 	//e_A
 	{e_double, e_double, e_double, e_double, e_double, e_longdouble, e_double,
 		e_double, e_double},
+	//e_b
+	//	for which the value stored is actually a pointer to the type specified by
+	//	the length modifier as follows (where defaults are set to int*):
+	//		{e_int, e_char, e_short, e_long, e_longlong, e_int,
+	//			e_intmax_t, e_size_t, e_ptrdiff_t},
+	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
+		e_voidptr, e_voidptr},
+	//e_B
+	//	for which the value stored is actually a pointer to the type specified by
+	//	the length modifier as follows (where defaults are set to int*):
+	//		{e_int, e_char, e_short, e_long, e_longlong, e_int,
+	//			e_intmax_t, e_size_t, e_ptrdiff_t},
+	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
+		e_voidptr, e_voidptr},
 	//e_c
 	{e_uchar, e_uchar, e_uchar, e_wint_t, e_uchar, e_uchar, e_uchar, e_uchar,
 		e_uchar},

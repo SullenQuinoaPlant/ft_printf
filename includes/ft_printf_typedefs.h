@@ -55,6 +55,7 @@ typedef struct	s_length_mod_and_pattern {
 typedef enum	convert_e_specifiers {
 	e_no_specifier,
 	e_a, e_A,
+	e_b, e_B,
 	e_c,
 	e_d,
 	e_e, e_E,

@@ -59,6 +59,14 @@ void
 		t_s_pct *p_chk);
 
 void
+	convert_b(
+		t_s_pct *p_chk);
+
+void
+	convert_b_big(
+		t_s_pct *p_chk);
+
+void
 	convert_c(
 		t_s_pct *p_chk);
 

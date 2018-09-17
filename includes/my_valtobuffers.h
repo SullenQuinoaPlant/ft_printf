@@ -5,6 +5,7 @@
 # include "libft.h"
 # include "libmystupidmath.h"
 
+extern char const	* const g_bin_syms;
 extern char const	* const g_oct_syms;
 extern char const	* const g_dec_syms;
 extern char const	* const g_hex_syms;
