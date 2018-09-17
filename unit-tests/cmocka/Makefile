@@ -1,6 +1,6 @@
 ifndef ROOT
  ROOT = ../..
- inclued $(ROOT)/make_vars.mk
+ include $(ROOT)/make_vars.mk
 endif
 
 BUILD_DIR = cmocka_build
