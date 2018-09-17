@@ -1,5 +1,5 @@
-#ifndef FT_PRINTF_FUNCTIONS_H
-# define FT_PRINTF_FUNCTIONS_H
+#ifndef FUNCTIONS_H
+# define FUNCTIONS_H
 
 void
 	apstr_grp_props_nooffset(

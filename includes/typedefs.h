@@ -1,5 +1,5 @@
-#ifndef FT_PRINTF_TYPEDEFS_H
-# define FT_PRINTF_TYPEDEFS_H
+#ifndef TYPEDEFS_H
+# define TYPEDEFS_H
 
 /*input string parsing:*/
 typedef

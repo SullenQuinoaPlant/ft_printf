@@ -16,7 +16,9 @@ include $(ROOT)/targets.mk
 DEPENDENCIES =\
 	libft\
 	libmystupidmath\
-	libmyfloatingpoint
+	libmyfloatingpoint\
+	libmyvaltobuffers\
+	libmyutf8
 
 CC := gcc
 ifndef ARCH
