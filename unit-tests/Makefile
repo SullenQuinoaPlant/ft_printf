@@ -39,7 +39,7 @@ cmocka :
 	fi
 	-@rm ./test.o
 
-%.test.o $(UTEST_DIR)/%.test.o : $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
+$(UTEST_DIR)/%.test.o : $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
@@ -51,15 +51,16 @@ cmocka :
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 
-%.test.o : %.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
+$(UTEST_DIR)/%.test.o :\
+$(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(SRC_DIR)\
 		-I $(LIBS_I)\
 		$<\
 		-L $(LIBS_L)\
-		-lftprintf\
 		-lcmocka_shared\
-		-lmystupidmath -lmyfloatingpoint -lft\
+		-lftprintf\
+		$(patsubst lib%,-l%,$(DEPENDENCIES))\
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 
