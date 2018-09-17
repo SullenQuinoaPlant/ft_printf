@@ -21,7 +21,7 @@ static int
 
 	d = 0;
 	ft_memcpy(&d, arg->p_val, dsz);
-	stf->p_b = my_uv_tob(d, g_oct_syms, &stf->b);
+	stf->p_b = vtb_uv_tscc(d, VTB_OCT_SYMS, &stf->b);
 	return (d ? 1 : 0);
 }
 

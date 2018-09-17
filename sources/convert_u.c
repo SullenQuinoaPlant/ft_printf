@@ -19,7 +19,7 @@ static int
 
 	d = 0;
 	ft_memcpy(&d, arg->p_val, g_et_sz[arg->type]);
-	stf->p_b = my_uv_tob(d, VTB_DEC_SYMS, &stf->b);
+	stf->p_b = vtb_uv_tscc(d, VTB_DEC_SYMS, &stf->b);
 	return (d ? 1 : 0);
 }
 

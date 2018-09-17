@@ -9,7 +9,7 @@ t_s_so
 	t_s_vtb_cc	inter;
 	t_s_so	ret;
 
-	inter = my_uv_tob(val, basestr, b);
+	inter = vtb_uv_tscc(val, basestr, b);
 	ret.len = inter.len;
 	ret.type = e_sot_cc;
 	ret.cc = inter.c;

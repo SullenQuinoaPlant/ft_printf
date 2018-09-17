@@ -22,10 +22,10 @@ static int
 
 	d = 0;
 	ft_memcpy(&d, arg->p_val, dsz);
-	syms = g_hex_syms;
+	syms = VTB_HEX_SYMS;
 	if (chk->flags & BIGCS_FLAG)
-		syms = g_bhex_syms;
-	stf->p_b = my_uv_tob(d, syms, &stf->b);
+		syms = VTB_BHEX_SYMS;
+	stf->p_b = vtb_uv_tscc(d, syms, &stf->b);
 	return (d ? 1 : 0);
 }
 
