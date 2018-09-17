@@ -376,7 +376,7 @@ void
 		t_s_pct *chk, int *pad_i,
 		t_s_sgd *syl_grps, int count);
 
-t_s_cc
+t_s_vtb_cc
 	sign_to_b(
 		int sign, t_s_pct *p_chk, char *b);
 
@@ -398,7 +398,7 @@ t_s_so
 		intmax_t val,
 		char const * basestr,
 		t_vtb_mib *b,
-		t_e_sp sign_f);
+		t_e_vtb_sp sign_f);
 
 size_t
 	sylgrps_outlen(

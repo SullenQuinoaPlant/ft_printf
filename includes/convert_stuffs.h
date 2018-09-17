@@ -1,7 +1,7 @@
 #ifndef CONVERT_OUTPUTTERS_STUFFS_H
 # define  CONVERT_OUTPUTTERS_STUFFS_H
 
-# include "ft_printf_inner.h"
+# include "inner.h"
 
 # define A_SYLLABLES 10
 # define A_SYLGRPS 7
@@ -35,10 +35,10 @@ typedef struct	s_convert_b_stuff {
 	void		*p_mem;
 	size_t		mem_chk;
 	ssize_t		chk_count;
-	t_mib		addr;
+	t_vtb_mib	addr;
 	char const	*base;
-	t_mib		val;
-	t_s_cc		val_p;
+	t_vtb_mib	val;
+	t_s_vtb_cc		val_p;
 }				t_s_bcs;
 
 void	cb_addrprefix(int, void*);
@@ -54,7 +54,7 @@ typedef struct	s_convert_d_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[D_SYLS];
 	t_vtb_mib	b;
-	t_s_cc	p_b;
+	t_s_vtb_cc	p_b;
 	int		pre;
 	t_s_sgd	group;
 }				t_s_dcs;
@@ -72,7 +72,7 @@ typedef struct	s_convert_e_stuff {
 	t_s_sgd		syl_grps[E_SYLGRPS];
 	int			pre;
 	t_vtb_mib		exp;
-	t_s_cc		p_exp;
+	t_s_vtb_cc		p_exp;
 }				t_s_ecs;
 
 void	ce_sign(int, void*);
@@ -119,7 +119,7 @@ typedef struct	s_convert_g_stuff {
 	t_s_sgd		syl_grps[G_SYLGRPS];
 	int			pre;
 	t_vtb_mib		exp;
-	t_s_cc		p_exp;
+	t_s_vtb_cc		p_exp;
 }				t_s_gcs;
 
 void	cg_esign(int, void*);
@@ -148,7 +148,7 @@ typedef struct	s_convert_o_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[O_SYLS];
 	t_vtb_mib	b;
-	t_s_cc	p_b;
+	t_s_vtb_cc	p_b;
 	int		pre;
 	t_s_sgd	group;
 }				t_s_ocs;
@@ -162,7 +162,7 @@ typedef struct	s_convert_p_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[P_SYLS];
 	t_vtb_mib	b;
-	t_s_cc	p_b;
+	t_s_vtb_cc	p_b;
 	int		pre;
 	t_s_sgd	group;
 }				t_s_pcs;
@@ -186,7 +186,7 @@ typedef struct	s_convert_unsigned_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[U_SYLS];
 	t_vtb_mib	b;
-	t_s_cc	p_b;
+	t_s_vtb_cc	p_b;
 	int		pre;
 	t_s_sgd	group;
 }				t_s_ucs;
@@ -196,13 +196,13 @@ void	cu_digits(int, void*);
 
 #define X_SYLS 6
 typedef struct	s_convert_x_stuff {
-	t_s_pct	*chk;
-	t_s_so	syls[X_SYLS];
-	char	hashfix[2];
+	t_s_pct		*chk;
+	t_s_so		syls[X_SYLS];
+	char		hashfix[2];
 	t_vtb_mib	b;
-	t_s_cc	p_b;
-	int		pre;
-	t_s_sgd	group;
+	t_s_vtb_cc	p_b;
+	int			pre;
+	t_s_sgd		group;
 }				t_s_xcs;
 
 void	cx_hashfix(int, void*);
