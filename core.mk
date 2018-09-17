@@ -18,7 +18,6 @@ library : $(OUT_DIR_LIB)/$(LIBNAME).a
 #compilation :
 $(OUT_DIR_LIB)/$(LIBNAME).a : $(OBJS)
 	-ar rcs $@ $^
-	cp $(SRC_DIR)/$(NAME).h $(OUT_DIR_H)/$(LIBNAME).h
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS)\

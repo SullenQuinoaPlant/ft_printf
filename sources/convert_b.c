@@ -88,8 +88,8 @@ void
 }
 
 void
-	convert_bigb(
+	convert_b_big(
 		t_s_pct *chk)
 {
-	convert_b_big(chk);
+	convert_b(chk);
 }
