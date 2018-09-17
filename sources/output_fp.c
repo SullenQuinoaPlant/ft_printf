@@ -13,7 +13,7 @@ int
 	while (count-- && r)
 	{
 		digit = d;
-		r = output_c(1, g_dec_syms[digit]);
+		r = output_c(1, VTB_DEC_SYMS[digit]);
 		d = (d - digit) * 10.0;
 		num->pow10--;
 	}
