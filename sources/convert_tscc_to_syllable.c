@@ -6,7 +6,7 @@ t_s_so
 		char const * basestr,
 		t_mib *b)
 {
-	t_s_cc	inter;
+	t_s_vtb_cc	inter;
 	t_s_so	ret;
 
 	inter = my_uv_tob(val, basestr, b);
@@ -23,10 +23,10 @@ t_s_so
 		char const * basestr,
 		t_mib *b)
 {
-	t_s_cc	inter;
+	t_s_vtb_cc	inter;
 	t_s_so	ret;
 
-	inter = my_lowv_tob(val, val_sz, basestr, b);
+	inter = vtb_lv_tscc(val, val_sz, basestr, b);
 	ret.len = inter.len;
 	ret.type = e_sot_cc;
 	ret.cc = inter.c;
@@ -38,12 +38,12 @@ t_s_so
 		intmax_t val,
 		char const * basestr,
 		t_mib *b,
-		t_e_sp sign_f)
+		t_e_vtb_sp sign_f)
 {
-	t_s_cc	inter;
+	t_s_vtb_cc	inter;
 	t_s_so	ret;
 
-	inter = my_v_tob(val, basestr, b, sign_f);
+	inter = vtb_v_tscc(val, basestr, b, sign_f);
 	ret.len = inter.len;
 	ret.type = e_sot_cc;
 	ret.cc = inter.c;

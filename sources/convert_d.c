@@ -23,7 +23,7 @@ static int
 	ft_memcpy(&d, arg->p_val, dsz);
 	if (d & (((intmax_t)1) << ((CHAR_BIT * dsz) - 1)))
 		d |= ~((((intmax_t)1) << (CHAR_BIT * dsz)) - 1);
-	stf->p_b = my_v_tob(d, g_dec_syms, &stf->b, e_all);
+	stf->p_b = vtb_v_tscc(d, g_dec_syms, &stf->b, e_all);
 	return (d ? 1 : 0);
 }
 

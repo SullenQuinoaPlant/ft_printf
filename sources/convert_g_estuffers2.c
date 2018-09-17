@@ -7,7 +7,7 @@ void
 	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
 
-	stf->p_exp = my_v_tob(stf->number.pow10, g_dec_syms, &stf->exp, e_all);
+	stf->p_exp = vtb_v_tscc(stf->number.pow10, g_dec_syms, &stf->exp, e_all);
 	syl->len = 1;
 	syl->c = *stf->p_exp.c++;
 	stf->p_exp.len--;

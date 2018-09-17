@@ -1,10 +1,10 @@
 #include "inner.h"
 
-t_s_cc	sign_to_b(int sign, t_s_pct *p_chk, char *b)
+t_s_vtb_cc	sign_to_b(int sign, t_s_pct *p_chk, char *b)
 {
-	t_s_cc	ret;
+	t_s_vtb_cc	ret;
 
-	ret = (t_s_cc){b, 1};
+	ret = (t_s_vtb_cc){b, 1};
 	if (p_chk->flags & PLUS_FLAG)
 		*b = sign < 0 ? '-' : '+';
 	else if (p_chk->flags & SPACE_FLAG)

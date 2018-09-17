@@ -1,4 +1,4 @@
-#include "my_valtobuffers.h"
+#include "vtb_v_raws.h"
 
 t_s_bd const	g_oct = {"01234567", 8};
 t_s_bd const	g_dec = {"0123456789", 10};
@@ -10,7 +10,7 @@ t_s_bd const	g_0x10 = {
 	16};
 
 size_t
-	my_valtobuffer(
+	vtb_v_raw(
 		uintmax_t val,
 		t_s_bd const * base,
 		char *b_end)
@@ -39,7 +39,7 @@ size_t
 #define J 1
 #define K 2
 size_t
-	my_lowvaltob(
+	vtb_lv_raw(
 		uintmax_t val, int val_sz,
 		t_s_bd const * base,
 		char *b_end)
@@ -72,17 +72,17 @@ size_t
 #undef K
 
 size_t
-	my_signvaltob(
+	vtb_sv_raw(
 		intmax_t val,
 		t_s_bd const * base,
 		char *b_end,
-		t_e_sp sign_f)
+		t_e_vtb_sp sign_f)
 {
 	size_t		i;
 	int			sign;
 
 	sign = val < 0 ? -1 : 1;
-	i = my_valtobuffer((val * sign), base, b_end);
+	i = vtb_v_raw((val * sign), base, b_end);
 	*(b_end - i) = sign < 0 ? '-' : '+';
 	if (val < 0 || sign_f == e_all ||
 		(val && sign_f == e_abs))
