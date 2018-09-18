@@ -46,12 +46,12 @@ int	printf_diff(char const * format, ...)
 			{
 				printf("ref file a.txt and test file b.txt have different contents"
 					" for : %s\n diff is :\n", format);
-				system("cat res.txt");
 				fflush(stdout);
-//				printf("\n ref file a.txt is :\n");
-//				system("cat -e a.txt");
-//				printf("\n tst file b.txt is :\n");
-//				system("cat -e b.txt");
+				system("cat res.txt");
+				printf("\n ref file a.txt is :\n");
+				system("cat -e a.txt");
+				printf("\n tst file b.txt is :\n");
+				system("cat -e b.txt");
 			}
 		}
 	}

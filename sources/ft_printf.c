@@ -3,7 +3,9 @@
 t_s_ps	g_ps;
 t_s_os	g_os;
 
-/*they want an int so we give them an int*/
+/*
+**they want an int so we give them an int
+*/
 int		ft_vprintf(const char *format, va_list va_p)
 {
 	int		r;

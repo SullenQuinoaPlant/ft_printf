@@ -40,7 +40,7 @@ char const	*percent_convert_length_mod(char const *in)
 
 char const	*percent_convert_specifier(char const *in)
 {
-	char const	*specifiers = "aAcdeEfFgGinopsuxX";
+	char const	*specifiers = "aAbBcdeEfFgGinopsuxX";
 	t_s_pct 	*p_pct;
 	char		*p_c;
 

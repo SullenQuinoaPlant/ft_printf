@@ -64,11 +64,6 @@ $(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 
-%.test.c : $(UTEST_DIR)/cmocka/my_macro_overlay.h
-	@:
-
-
-
 
 
 ############
@@ -83,8 +78,6 @@ run_tests : $(EXECUTION_STAMPS)
 %.execution.stamp : %.o
 	-./$*.o "$(UTEST_DIR)" \
 	&& touch $@
-#argument used to be
-#	"$$(readlink -e $(UTEST_DIR))" \
 
 
 

@@ -1,3 +1,4 @@
-libcmocka.*
+libcmocka*
 cmocka.h
 cmocka_build/
+cmocka_source/
