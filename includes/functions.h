@@ -173,7 +173,7 @@ void
 		t_s_sgd *grp);
 
 t_s_ctl *
-	get_tsctl();
+	get_tsctl(void);
 
 int
 	gos_update(
@@ -181,14 +181,14 @@ int
 
 int
 	get_va_args(
-		va_list* vaargs);
+		va_list *vaargs);
 
 void
 	init_output_state(
 		int fd);
 
 void
-	init_parse_state();
+	init_parse_state(void);
 
 void
 	init_syls(
