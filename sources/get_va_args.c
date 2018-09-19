@@ -99,7 +99,7 @@ static void	check_arg_use(
 		}
 }
 
-int			get_va_args(va_list *vaargs)
+int			get_va_args(va_list (*vaargs))
 {
 	unsigned int	len;
 	size_t			ar_sz;
