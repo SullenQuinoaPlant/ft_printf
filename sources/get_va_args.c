@@ -99,7 +99,7 @@ static void	check_arg_use(
 		}
 }
 
-int			get_va_args(va_list vaargs)
+int			get_va_args(va_list *vaargs)
 {
 	unsigned int	len;
 	size_t			ar_sz;
@@ -111,7 +111,7 @@ int			get_va_args(va_list vaargs)
 		return (0);
 	init_t_s_arg_array(len, p_ar);
 	fill_vaarg_ar(p_ar);
-	resolve_vaargs(&(vaargs), p_ar, len);
+	resolve_vaargs(vaargs, p_ar, len);
 	fulfill_arg_reqs(p_ar);
 	check_arg_use(p_ar, len);
 	ft_cleanfree(p_ar, ar_sz);

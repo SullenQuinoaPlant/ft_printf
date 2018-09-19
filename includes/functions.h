@@ -181,7 +181,7 @@ int
 
 int
 	get_va_args(
-		va_list vaargs);
+		va_list* vaargs);
 
 void
 	init_output_state(
