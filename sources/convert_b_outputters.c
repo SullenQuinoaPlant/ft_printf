@@ -38,5 +38,5 @@ int								tsof_bmem(
 		else
 			r = output_c(1, *stf->val_p.c++);
 	}
-	return (r && !len);
+	return (r && !++len);
 }

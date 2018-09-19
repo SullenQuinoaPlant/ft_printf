@@ -32,6 +32,8 @@ int		main()
 	ft_printf("%#+36B\n", (int[1]){13});
 	ft_printf("%'#+36hhB\n", (char[2]){0xab, 0x12});
 	ft_printf("%'#+36B\n", (int[1]){13});
+	ft_printf("%'#+36.2B\n", (int[2]){13, 14});
+	ft_printf("%'#36.2B\n", (int[2]){13, 14});
 
 	printf("e conversion tests:\n\n");
 

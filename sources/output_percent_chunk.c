@@ -59,7 +59,7 @@ static void	filter_precision(t_s_pct *chk)
 {
 	if (chk->precision &&
 		**chk->precision < 0 &&
-		!(chk->specifier == e_b || chk->specifiel == e_B))
+		!(chk->specifier == e_b || chk->specifier == e_B))
 			**chk->precision = 0;
 }
 
