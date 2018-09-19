@@ -33,7 +33,7 @@ static int
 {
 	t_s_pct		* const chk = stf->chk;
 
-	return ((stf->pre = chk->precision ? **chk->precision : -1));
+	return ((stf->pre = chk->precision ? **chk->precision : 1));
 }
 
 static void
