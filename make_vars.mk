@@ -25,7 +25,7 @@ CC := gcc
 ifndef ARCH
 	ARCH := ARCH_A
 endif
-CFLAGS_MORE =
+CFLAGS_MORE = -g
 ifndef CFLAGS
 	CFLAGS := -Wall -Wextra -Werror -I $(INC_DIR) -D $(ARCH)
 endif

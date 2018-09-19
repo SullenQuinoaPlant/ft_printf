@@ -39,7 +39,10 @@ cmocka :
 	fi
 	-@rm ./test.o
 
-$(UTEST_DIR)/%.test.o : $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
+%.test.o\
+$(UTEST_DIR)/%.test.o\
+:\
+$(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
@@ -51,7 +54,9 @@ $(UTEST_DIR)/%.test.o : $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 
-$(UTEST_DIR)/%.test.o :\
+%.test.o\
+$(UTEST_DIR)/%.test.o\
+:\
 $(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(SRC_DIR)\
