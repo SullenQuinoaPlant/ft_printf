@@ -68,8 +68,6 @@ void						cb_mem(
 	else
 		syl->type = e_sot_f;
 	syl->arg = p;
-	syl->f = tsof_hexmem;
-	if (stf->chk->specifier == e_b)
-		syl->f = tsof_bitmem;
+	syl->f = tsof_bmem;
 	stf->val_p = (t_s_vtb_cc){0, 0};
 }

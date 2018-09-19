@@ -7,7 +7,27 @@ int		main()
 
 	printf("b conversion tests:\n\n");
 
-	ft_printf("%b\n", (char[2]){0xab, 0x12});
+	ft_printf("%b\n", (int[1]){13});
+	ft_printf("%hb\n", (char[2]){0xab, 0x12});
+	ft_printf("%.2hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%+hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%+36hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%+36b\n", (int[1]){13});
+	ft_printf("%#+36hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%#+36b\n", (int[1]){13});
+	ft_printf("%'#+36hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%'#+36b\n", (int[1]){13});
+
+	ft_printf("%B\n", (int[1]){13});
+	ft_printf("%hB\n", (char[2]){0xab, 0x12});
+	ft_printf("%.2hhB\n", (char[2]){0xab, 0x12});
+	ft_printf("%+hhB\n", (char[2]){0xab, 0x12});
+	ft_printf("%+36hhB\n", (char[2]){0xab, 0x12});
+	ft_printf("%+36B\n", (int[1]){13});
+	ft_printf("%#+36hhB\n", (char[2]){0xab, 0x12});
+	ft_printf("%#+36B\n", (int[1]){13});
+	ft_printf("%'#+36hhB\n", (char[2]){0xab, 0x12});
+	ft_printf("%'#+36B\n", (int[1]){13});
 
 	printf("e conversion tests:\n\n");
 

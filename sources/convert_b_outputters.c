@@ -25,12 +25,16 @@ int								tsof_hexmem(
 	t_s_bcs *const	stf = (t_s_bcs*)arg;
 	int				r;
 
-	while (len && (stf->val_p.len-- || next_chk(stf)))
+	r = 1;
+	while (r && len-- && (stf->val_p.len || next_chk(stf)))
+	{
+		stf->val_p.len--;
 		r = output_c(1, *stf->val_p.c++);
-	return (r);
+	}
+	return (r && !len);
 }
 
-int								tsof_bitmem(
+int								tsof_bmem(
 	size_t len,
 	void *arg)
 {
@@ -38,13 +42,14 @@ int								tsof_bitmem(
 	int const		nxt = stf->chk_count < 0 ? -1 : 1;
 	int				r;
 
-	while (len && (stf->val_p.len || next_chk(stf)))
+	r = 1;
+	while (r && len-- && (stf->val_p.len || next_chk(stf)))
 	{
 		stf->val_p.len--;
-		if (nxt == 1)
-			r = output_c(1, *stf->val_p.c++);
-		else
+		if (nxt == 1 && !(stf->chk->flags & APSTR_FLAG))
 			r = output_c(1, *(stf->val_p.c + stf->val_p.len));
+		else
+			r = output_c(1, *stf->val_p.c++);
 	}
-	return (r);
+	return (r && !len);
 }

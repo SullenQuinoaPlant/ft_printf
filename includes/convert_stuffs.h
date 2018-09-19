@@ -46,8 +46,9 @@ void	cb_addr(int, void*);
 void	cb_addrpostfix(int, void*);
 void	cb_mem(int, void*);
 
-int		tsof_hexmem(size_t len, void *arg);
-int		tsof_bitmem(size_t len, void *arg);
+//int		tsof_hexmem(size_t len, void *arg);
+//int		tsof_bitmem(size_t len, void *arg);
+int		tsof_bmem(size_t len, void *arg);
 
 #define D_SYLS 6
 typedef struct	s_convert_d_stuff {
