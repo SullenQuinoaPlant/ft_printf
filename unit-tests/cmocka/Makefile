@@ -7,13 +7,16 @@ BUILD_DIR = cmocka_build
 SOURCE_DIR = cmocka_source
 
 .PHONY : cmocka
-cmocka : $(BUILD_DIR) $(SOURCE_DIR) install
+cmocka : $(BUILD_DIR) $(SOURCE_DIR) build install
+
+.PHONY : build
+build :
 	cd $(BUILD_DIR) && cmake ../$(SOURCE_DIR) && make;
-	cp $(SOURCE_DIR)/include/cmocka.h .
-	cp $(BUILD_DIR)/src/libcmocka* .
 
 .PHONY : install
 install :
+	cp $(SOURCE_DIR)/include/cmocka.h .
+	cp $(BUILD_DIR)/src/libcmocka* .
 	mv cmocka.h $(LIBS_I)
 	mv libcmocka* $(LIBS_L)
 
