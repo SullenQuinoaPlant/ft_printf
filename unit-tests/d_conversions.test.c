@@ -203,5 +203,26 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%012d", t);
 	)
 
+	T(test33,
+		int		num = 12;
+		int		width = 10;
+
+		printf_diff("%*d\n", width, num);
+	)
+
+	T(test34,
+		int		num = 12;
+		int		width = 10;
+
+		printf_diff("%2$*1$d\n", width, num);
+	)
+
+	T(test35,
+		int		num = 12;
+		int		width = 10;
+
+		printf_diff("%1$*2$d\n", num, width);
+	)
+
 	return(run_test_arr(all_of, these));
 }

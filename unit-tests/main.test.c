@@ -10,6 +10,10 @@ int		main()
 	ft_printf("%b\n", (int[1]){13});
 	ft_printf("%hb\n", (char[2]){0xab, 0x12});
 	ft_printf("%.2hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%.*hhb\n", -2, ((char[2]){0xab, 0x12}) + 1);
+	char	ar[2] = {0xab, 0x12};
+	ft_printf("%.*hhb\n", -2, ar + 1);
+	ft_printf("%'.2hhb\n", (char[2]){0xab, 0x12});
 	ft_printf("%+hhb\n", (char[2]){0xab, 0x12});
 	ft_printf("%+36hhb\n", (char[2]){0xab, 0x12});
 	ft_printf("%+36b\n", (int[1]){13});
