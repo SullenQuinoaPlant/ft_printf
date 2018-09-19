@@ -9,7 +9,7 @@ static t_s_txt	*init_cw()
 	if ((chk = malloc(sizeof(t_s_txt))) &&
 		(p_cw = ft_lstnew(&(t_s_cw){e_txt_c, chk}, sz)))
 	{
-		ft_lstappend(&g_ps.chunks.tail, p_cw);
+		ft_lsttailadd(&g_ps.chunks.tail, p_cw);
 		return (chk);
 	}
 	else if (chk)
