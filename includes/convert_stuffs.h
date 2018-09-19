@@ -34,6 +34,7 @@ typedef struct	s_convert_b_stuff {
 	t_s_sgd		syl_grps[B_SYLGRPS];
 	void		*p_mem;
 	size_t		mem_chk;
+	size_t		mem_chk_len;
 	ssize_t		chk_count;
 	t_vtb_mib	addr;
 	char const	*base;
@@ -46,8 +47,6 @@ void	cb_addr(int, void*);
 void	cb_addrpostfix(int, void*);
 void	cb_mem(int, void*);
 
-//int		tsof_hexmem(size_t len, void *arg);
-//int		tsof_bitmem(size_t len, void *arg);
 int		tsof_bmem(size_t len, void *arg);
 
 #define D_SYLS 6

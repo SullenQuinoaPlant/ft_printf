@@ -41,6 +41,7 @@ static void					set_mem_options(
 	else
 		stf->chk_count = 1;
 	stf->mem_chk = g_et_sz[g_target_et[chk->len_mod]];
+	stf->mem_chk_len = stf->mem_chk * CHAR_BIT / my_flog2(ft_strlen(stf->base));
 	stf->p_mem = *(void**)chk->vaarg->p_val;
 }
 
@@ -65,11 +66,8 @@ static void					set_syl_grps(
 	t_s_sgd	ar[B_SYLGRPS] = {
 		{&syls[0], 4, 8, 0, '`'},
 		{&syls[4], 3, -1, 0, ' '}};
-	size_t	grp;
 
-	grp = stf->mem_chk * CHAR_BIT;
-	grp /= my_flog2(ft_strlen(stf->base));
-	ar[MEM_GRP].apstr_grp = grp;
+	ar[MEM_GRP].apstr_grp = stf->mem_chk_len;
 	ft_memcpy(stf->syl_grps, ar, sizeof(ar));
 }
 

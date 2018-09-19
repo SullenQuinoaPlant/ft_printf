@@ -43,10 +43,7 @@ typedef enum	e_length_modifiers {
 
 typedef struct	s_length_mod_and_pattern {
 	t_e_lm		mod;
-	union		{
-		char		*str;
-		char		*s;
-				};
+	char		*s;
 }				t_s_lmp;
 
 /*order of the enumeration is relied upon in percent_convert_specifier()

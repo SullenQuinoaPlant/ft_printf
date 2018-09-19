@@ -58,11 +58,8 @@ void						cb_mem(
 {
 	t_s_bcs *const	stf = (t_s_bcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
-	size_t			len;
 
-	len = stf->chk_count * (stf->chk_count < 0 ? -1 : 1);
-	len *= CHAR_BIT / my_flog2(ft_strlen(stf->base));
-	syl->len = len;
+	syl->len = stf->chk_count * stf->mem_chk_len;
 	if (stf->chk->flags & APSTR_FLAG)
 		syl->type = e_sot_apstr_f;
 	else

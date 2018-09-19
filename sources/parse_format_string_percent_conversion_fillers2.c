@@ -2,14 +2,14 @@
 
 static t_s_lmp const
 	g_mods[] = {
-		{e_hh, {"hh"}},
-		{e_h, {"h"}},
-		{e_ll, {"ll"}},
-		{e_l, {"l"}},
-		{e_bigl, {"L"}},
-		{e_j, {"j"}},
-		{e_z, {"z"}},
-		{e_t, {"t"}}};
+		{e_hh, "hh"},
+		{e_h, "h"},
+		{e_ll, "ll"},
+		{e_l, "l"},
+		{e_bigl, "L"},
+		{e_j, "j"},
+		{e_z, "z"},
+		{e_t, "t"}};
 
 #define MODS_COUNT 8
 char const	*percent_convert_length_mod(char const *in)
@@ -21,6 +21,7 @@ char const	*percent_convert_length_mod(char const *in)
 	if (!*in)
 		return (in);
 	p_pct = get_p_pct();
+	p_pct->len_mod = e_no_len;
 	i = -1;
 	while (++i < MODS_COUNT)
 	{
@@ -32,8 +33,6 @@ char const	*percent_convert_length_mod(char const *in)
 			break;
 		}
 	}
-	if (i == len)
-		p_pct->len_mod = e_no_len;
 	return (in);
 }
 #undef MODS_COUNT
