@@ -1,22 +1,7 @@
 #include "inner.h"
 
-static t_e_t
-	g_target_et[e_lm_sz] = {
-		e_int,
-		e_char,
-		e_short,
-		e_long,
-		e_longlong,
-		e_int,
-		e_intmax_t,
-		e_size_t,
-		e_ptrdiff_t
-};
-
-static
-void
-	set_base(
-		t_s_bcs *stf)
+static void					set_base(
+	t_s_bcs *stf)
 {
 	if (stf->chk->specifier == e_b)
 	{
@@ -34,10 +19,22 @@ void
 	}
 }
 
-static
-void
-	set_mem_options(
-		t_s_pct *chk, t_s_bcs *stf)
+static t_e_t				g_target_et[e_lm_sz] =
+{
+		e_int,
+		e_char,
+		e_short,
+		e_long,
+		e_longlong,
+		e_int,
+		e_intmax_t,
+		e_size_t,
+		e_ptrdiff_t
+};
+
+static void					set_mem_options(
+	t_s_pct *chk,
+	t_s_bcs *stf)
 {
 	if (chk->precision)
 		stf->chk_count = **chk->precision;
@@ -47,9 +44,9 @@ void
 	stf->p_mem = *(void**)chk->vaarg->p_val;
 }
 
-static
-t_stuffer
-	g_fstr[B_SYLS + 1] = {
+
+static t_stuffer			g_fstr[B_SYLS + 1] =
+{
 	dummy_stuffer,
 	cb_addrprefix,
 	cb_addr,
@@ -61,10 +58,8 @@ t_stuffer
 };
 
 #define MEM_GRP 1
-static
-void
-	set_syl_grps(
-		t_s_bcs *stf)
+static void					set_syl_grps(
+	t_s_bcs *stf)
 {
 	t_s_so	* const syls = stf->syls;
 	t_s_sgd	ar[B_SYLGRPS] = {
@@ -78,9 +73,8 @@ void
 	ft_memcpy(stf->syl_grps, ar, sizeof(ar));
 }
 
-void
-	convert_b(
-		t_s_pct *chk)
+void						convert_b(
+	t_s_pct *chk)
 {
 	int			pads[e_pp_sz];
 	t_s_bcs		stf;
@@ -95,9 +89,8 @@ void
 	out_syl_groups(stf.syl_grps, B_SYLGRPS);
 }
 
-void
-	convert_b_big(
-		t_s_pct *chk)
+void						convert_b_big(
+	t_s_pct *chk)
 {
 	convert_b(chk);
 }
