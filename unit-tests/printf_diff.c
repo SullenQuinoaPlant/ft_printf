@@ -48,10 +48,10 @@ int	printf_diff(char const * format, ...)
 					" for : %s\n diff is :\n", format);
 				fflush(stdout);
 				system("cat res.txt");
-				printf("\n ref file a.txt is :\n");
-				system("cat -e a.txt");
-				printf("\n tst file b.txt is :\n");
-				system("cat -e b.txt");
+//				printf("\n ref file a.txt is :\n");
+//				system("cat -e a.txt");
+//				printf("\n tst file b.txt is :\n");
+//				system("cat -e b.txt");
 			}
 		}
 	}

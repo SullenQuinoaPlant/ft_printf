@@ -24,6 +24,7 @@ void
 	size_t		addr;
 	char const	*base; 
 
+	syl->type = e_sot_cc;
 	syl->len = 0;
 	if (!(stf->chk->flags & HASH_FLAG))
 		return;

@@ -5,6 +5,10 @@ int		main()
 {
 	double	a;
 
+	printf("b conversion tests:\n\n");
+
+	ft_printf("%b\n", (char[2]){0xab, 0x12});
+
 	printf("e conversion tests:\n\n");
 
 	a = 456321.456783754;

@@ -19,11 +19,19 @@ void
 		t_s_bcs *stf)
 {
 	if (stf->chk->specifier == e_b)
-		stf->base = VTB_BIN_SYMS;
-	else if (stf->chk->flags & PLUS_FLAG)
-		stf->base = VTB_BHEX_SYMS;
-	else
-		stf->base = VTB_HEX_SYMS;
+	{
+		if (stf->chk->flags & PLUS_FLAG)
+			stf->base = VTB_BBIN_SYMS;
+		else
+			stf->base = VTB_01B_SYMS;
+	}
+	else if (stf->chk->specifier == e_B)
+	{
+		if (stf->chk->flags & PLUS_FLAG)
+			stf->base = VTB_BHEX_SYMS;
+		else
+			stf->base = VTB_HEX_SYMS;
+	}
 }
 
 static
