@@ -31,6 +31,8 @@ ifndef ARCH
 endif
 CFLAGS_MORE = -g
 ifndef CFLAGS
-	CFLAGS := -Wall -Wextra -Werror -I $(INC_DIR) -D $(ARCH)
+	CFLAGS := -Wall -Wextra -Werror\
+			-I $(INC_DIR) -I $(LIBS_I)\
+			-D $(ARCH)
 endif
 CFLAGS += $(CFLAGS_MORE)
