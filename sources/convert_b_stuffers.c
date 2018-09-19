@@ -72,4 +72,5 @@ void
 		syl->f = tsof_hexmem;
 	else
 		syl->f = tsof_bitmem;
+	stf->val_p = (t_s_vtb_cc){0, 0};
 }
