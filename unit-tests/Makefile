@@ -61,6 +61,7 @@ $(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 		-L $(LIBS_L)\
 		-lcmocka_shared\
 		-lftprintf\
+		$(patsubst lib%,-l%,$(TEST_DEPENDENCIES))\
 		$(patsubst lib%,-l%,$(DEPENDENCIES))\
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
