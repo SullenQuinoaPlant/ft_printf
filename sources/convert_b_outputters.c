@@ -11,9 +11,10 @@ int
 	if (!stf->chk_count)
 		return (0);
 	stf->chk_count -= nxt;
-	stf->p_mem += nxt * stf->mem_chk;
+	val = 0;
 	ft_memcpy(&val, stf->p_mem, stf->mem_chk);
 	stf->val_p = vtb_uv_tscc(val, stf->base, &stf->val);
+	stf->p_mem += nxt * stf->mem_chk;
 	return (1);
 }
 

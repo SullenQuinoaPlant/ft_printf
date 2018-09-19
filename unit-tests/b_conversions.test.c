@@ -6,27 +6,27 @@
 int	declare_tests_and_run(int all_of, char *these[])
 {
 	T(achar,
-		char	c = '\277';
+		char	c = '\377';
 
-		printf_compare("b_achar.ref", "%bhh\n", &c);
+		printf_compare("b_achar.ref", "%hhb\n", &c);
 	)
 	T(achar_hex,
-		char	c = '\277';
+		char	c = '\377';
 
-		printf_compare("B_achar.ref", "%Bhh\n", &c);
+		printf_compare("B_achar.ref", "%hhB\n", &c);
 	)
 
 	T(twochars,
 		char	*c;
 
 		c = ((char[2]){0xAC, 0xCA});
-		printf_compare("b_twochars.ref", "%.2bhh\n", c);
+		printf_compare("b_twochars.ref", "%.2hhb\n", c);
 	)
 	T(twochars_hex,
 		char	*c;
 
 		c = ((char[2]){0xAC, 0xCA});
-		printf_compare("B_twochars.ref", "%.2Bhh\n", c);
+		printf_compare("B_twochars.ref", "%.2hhB\n", c);
 	)
 	return(run_test_arr(all_of, these));
 }
