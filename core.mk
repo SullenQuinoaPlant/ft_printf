@@ -1,8 +1,3 @@
-ifndef ROOT
- ROOT := .
- include $(ROOT)/make_vars.mk
-endif
-
 
 .PHONY : all
 all : library header
@@ -21,7 +16,6 @@ $(OUT_DIR_LIB)/$(LIBNAME).a : $(OBJS)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS)\
-		-I $(LIBS_I)\
 		-o $@ -c $<
 
 $(OUT_DIR_H)/$(LIBNAME).h :
@@ -33,7 +27,6 @@ $(OUT_DIR_H)/$(LIBNAME).h :
 .PHONY : re fclean clean all
 clean :
 	-rm $(OBJS)
-	-rm $(OBJ_DIR)/$(NAME).o
 
 fclean : clean
 	-rm $(OUT_DIR_LIB)/$(LIBNAME).a

@@ -55,6 +55,13 @@ libmyutf8 :
 		$(LIB_DIR)/$@/
 	$(BUILD_LIB)
 
+libgetnextline :
+	git clone \
+		--single-branch \
+		-b release https://github.com/SullenQuinoaPlant/get_next_line.git\
+		--depth 1 \
+		$(LIB_DIR)/$@/
+	$(BUILD_LIB)
 
 .PHONY : clean-lib*
 clean-lib% :
