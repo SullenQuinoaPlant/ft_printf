@@ -15,8 +15,8 @@
 # include "libmyvaltobuffers.h"
 # include "libmyutf8.h"
 # include "convert_fp_to_decimal.h"
-# include "ft_printf_typedefs.h"
-# include "ft_printf_functions.h"
+# include "typedefs.h"
+# include "functions.h"
 # include "convert_stuffs.h"
 
 extern t_s_ps		g_ps;

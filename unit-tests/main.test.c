@@ -1,9 +1,39 @@
 #include <stdio.h>
-#include "ftprintf.h"
+#include "libftprintf.h"
 
 int		main()
 {
 	double	a;
+
+	printf("b conversion tests:\n\n");
+
+	ft_printf("%b\n", (int[1]){13});
+	ft_printf("%hb\n", (char[2]){0xab, 0x12});
+	ft_printf("%.2hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%.*hhb\n", -2, ((char[2]){0xab, 0x12}) + 1);
+	char	ar[2] = {0xab, 0x12};
+	ft_printf("%.*hhb\n", -2, ar + 1);
+	ft_printf("%'.2hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%+hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%+36hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%+36b\n", (int[1]){13});
+	ft_printf("%#+36hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%#+36b\n", (int[1]){13});
+	ft_printf("%'#+36hhb\n", (char[2]){0xab, 0x12});
+	ft_printf("%'#+36b\n", (int[1]){13});
+
+	ft_printf("%B\n", (int[1]){13});
+	ft_printf("%hB\n", (char[2]){0xab, 0x12});
+	ft_printf("%.2hhB\n", (char[2]){0xab, 0x12});
+	ft_printf("%+hhB\n", (char[2]){0xab, 0x12});
+	ft_printf("%+36hhB\n", (char[2]){0xab, 0x12});
+	ft_printf("%+36B\n", (int[1]){13});
+	ft_printf("%#+36hhB\n", (char[2]){0xab, 0x12});
+	ft_printf("%#+36B\n", (int[1]){13});
+	ft_printf("%'#+36hhB\n", (char[2]){0xab, 0x12});
+	ft_printf("%'#+36B\n", (int[1]){13});
+	ft_printf("%'#+36.2B\n", (int[2]){13, 14});
+	ft_printf("%'#36.2B\n", (int[2]){13, 14});
 
 	printf("e conversion tests:\n\n");
 

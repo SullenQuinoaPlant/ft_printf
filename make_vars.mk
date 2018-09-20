@@ -10,23 +10,29 @@ LIBS_L := $(LIB_DIR)/objects
 LIBS_I := $(LIB_DIR)/includes
 OUT_DIR_LIB := $(LIBS_L)
 OUT_DIR_H := $(LIBS_I)
+UTEST_DIR := $(ROOT)/unit-tests
+DEBUG_DIR := $(ROOT)/debug
 
 include $(ROOT)/targets.mk
+SRCS := $(patsubst %,$(SRC_DIR)/%.c,$(TARGETS))
+INCS := $(INC_DIR)/*.h
+OBJS := $(patsubst %,$(OBJ_DIR)/%.o,$(TARGETS))
 
 DEPENDENCIES =\
-	libft\
+	libmyvaltobuffers\
+	libmyutf8\
 	libmystupidmath\
-	libmyfloatingpoint
+	libmyfloatingpoint\
+	libft
 
 CC := gcc
 ifndef ARCH
 	ARCH := ARCH_A
 endif
-CFLAGS_MORE =
+CFLAGS_MORE = -g
 ifndef CFLAGS
-	CFLAGS := -Wall -Wextra -Werror -I $(INC_DIR) -D $(ARCH)
+	CFLAGS := -Wall -Wextra -Werror\
+			-I $(INC_DIR) -I $(LIBS_I)\
+			-D $(ARCH)
 endif
 CFLAGS += $(CFLAGS_MORE)
-
-UTEST_DIR := $(ROOT)/unit-tests
-DEBUG_DIR := $(ROOT)/debug

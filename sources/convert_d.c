@@ -23,7 +23,7 @@ static int
 	ft_memcpy(&d, arg->p_val, dsz);
 	if (d & (((intmax_t)1) << ((CHAR_BIT * dsz) - 1)))
 		d |= ~((((intmax_t)1) << (CHAR_BIT * dsz)) - 1);
-	stf->p_b = my_v_tob(d, g_dec_syms, &stf->b, e_all);
+	stf->p_b = vtb_sv_tscc(d, VTB_DEC_SYMS, &stf->b, e_vtb_spall);
 	return (d ? 1 : 0);
 }
 
@@ -33,7 +33,7 @@ static int
 {
 	t_s_pct		* const chk = stf->chk;
 
-	return ((stf->pre = chk->precision ? **chk->precision : -1));
+	return ((stf->pre = chk->precision ? **chk->precision : 1));
 }
 
 static void

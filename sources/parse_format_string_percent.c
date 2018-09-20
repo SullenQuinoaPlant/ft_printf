@@ -19,7 +19,7 @@ char const	*parse_percent(char const *in)
 	in++;
 	if ((p = ft_lstnew(&(t_s_cw){e_no_chk, 0}, sz)))
 	{
-		ft_lstappend(&g_ps.chunks.tail, p);
+		ft_lsttailadd(&g_ps.chunks.tail, p);
 		fb = &parse_text;
 		fctl = &until_progress;
 		in = pctl_fallback(g_f_str, fb, fctl, in);

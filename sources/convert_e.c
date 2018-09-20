@@ -39,9 +39,9 @@ static void
 
 static void
 	set_exponent(
-		int	pow10, t_s_cc *p, t_mib *here)
+		int	pow10, t_s_vtb_cc *p, t_vtb_mib *here)
 {
-	*p = my_v_tob(pow10, g_dec_syms, here, e_all);
+	*p = vtb_sv_tscc(pow10, VTB_DEC_SYMS, here, e_vtb_spall);
 }
 		
 #define EXP_DIG 7

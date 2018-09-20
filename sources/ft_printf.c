@@ -3,7 +3,9 @@
 t_s_ps	g_ps;
 t_s_os	g_os;
 
-/*they want an int so we give them an int*/
+/*
+**they want an int so we give them an int
+*/
 int		ft_vprintf(const char *format, va_list va_p)
 {
 	int		r;
@@ -11,7 +13,7 @@ int		ft_vprintf(const char *format, va_list va_p)
 	r = -1;
 	init_parse_state();
 	if (parse_format_string(format) &&
-		get_va_args(&va_p))
+		get_va_args((va_list*)&va_p))
 	{
 		init_output_state(STDOUT_FILENO);
 		if (output_chunks(&g_ps))

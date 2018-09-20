@@ -9,68 +9,62 @@ TEST_OBJS := $(TEST_SRCS:.c=.o)
 EXECUTION_STAMPS := $(TEST_OBJS:.o=.execution.stamp)
 
 CFLAGS_UTEST = -fno-builtin -g
-CFLAGS_UTEST += $(CFLAGS_MORE) #$(CFLAGS) were annoying the hell out of me
+CFLAGS_UTEST += $(CFLAGS_MORE)
+
+TEST_DEPENDENCIES = libgetnextline libcmocka_shared
 
 
 
+.PHONY : tests_all
+tests_all : build_test_dependencies clean-tests build_tests run_tests
 
 ############
 #BUILD TESTS
 
+.PHONY : build_test_dependencies
+build_test_dependencies : $(TEST_DEPENDENCIES)
+
+.PHONY : libcmocka_shared
+libcmocka_shared :
+		$(MAKE) -C $(UTEST_DIR)/cmocka/;\
+
 .PHONY : build_tests
-build_tests : set_utest_flags def cmocka $(TEST_OBJS)
+build_tests : set_utest_flags def $(TEST_OBJS)
 
 .PHONY : set_utest_flags
 set_utest_flags :
 	$(eval CFLAGS += $(CFLAGS_UTEST))
 
-.PHONY : cmocka
-cmocka : 
-	@if $(CC) $(CFLAGS_UTEST)\
-		-I $(LIBS_I) -L $(LIBS_L)\
-	 	$(UTEST_DIR)/cmocka/check_install.c\
-		 -lcmocka -o test.o\
-		-Wl,-rpath=$$(readlink -e $(LIBS_L))\
-		&& ./test.o .;\
-	then\
-		echo "cmocka already installed";\
-	else\
-		echo "installing cmocka";\
-		$(MAKE) -C $(UTEST_DIR)/cmocka/;\
-		mv $(UTEST_DIR)/cmocka/libcmocka* $(LIBS_L)/;\
-		mv $(UTEST_DIR)/cmocka/cmocka.h $(LIBS_I)/;\
-		echo "cmocka installed";\
-	fi
-	-@rm ./test.o
-
-%.test.o $(UTEST_DIR)/%.test.o : $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
+%.test.o\
+$(UTEST_DIR)/%.test.o\
+:\
+$(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
 		-include $(SRC_DIR)/$*.c\
 		$<\
 		-L $(LIBS_L)\
-		-lcmocka\
+		-lcmocka_shared\
 		-lmystupidmath -lmyfloatingpoint -lft\
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
 
-%.test.o : %.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
+%.test.o\
+$(UTEST_DIR)/%.test.o\
+:\
+$(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 	$(CC) $(CFLAGS_UTEST)\
 		-I $(SRC_DIR)\
 		-I $(LIBS_I)\
 		$<\
 		-L $(LIBS_L)\
+		-lcmocka_shared\
 		-lftprintf\
-		-lcmocka\
-		-lmystupidmath -lmyfloatingpoint -lft\
+		$(patsubst lib%,-l%,$(TEST_DEPENDENCIES))\
+		$(patsubst lib%,-l%,$(DEPENDENCIES))\
 		-o $@\
 		-Wl,-rpath=$$(readlink -e $(LIBS_L))
-
-%.test.c : $(UTEST_DIR)/cmocka/my_macro_overlay.h
-	@:
-
-
 
 
 
@@ -81,30 +75,34 @@ cmocka :
 unit-tests ut : list_tests build_tests run_tests
 
 .PHONY : run_tests
-run_tests : $(EXECUTION_STAMPS)
+run_tests : cmocka $(EXECUTION_STAMPS)
 
 %.execution.stamp : %.o
 	-./$*.o "$(UTEST_DIR)" \
 	&& touch $@
-#argument used to be
-#	"$$(readlink -e $(UTEST_DIR))" \
 
+.PHONY : cmocka
+cmocka : 
+	@if $(CC) $(CFLAGS_UTEST)\
+		-I $(LIBS_I) -L $(LIBS_L)\
+	 	$(UTEST_DIR)/cmocka/check_install.c\
+		 -lcmocka_shared -o test.o\
+		-Wl,-rpath=$$(readlink -e $(LIBS_L))\
+		&& ./test.o .;\
+	then\
+		echo "cmocka installed";\
+	else\
+		echo "insall cmocka";\
+	fi
+	-@rm ./test.o
 
 
 ###############
 #MISCELLANEOUS:
-
-.PHONY : all_unit_tests aut
-all_unit_tests aut : clean-tests ut
-
-
-
 .PHONY : clean-tests
 clean-tests :
 	-rm $(UTEST_DIR)/*.o
 	-rm $(UTEST_DIR)/*.stamp
-
-
 
 .PHONY : list_tests
 list_tests :

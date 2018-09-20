@@ -34,6 +34,8 @@ int	printf_diff(char const * format, ...)
 		dup2(b_fd, 1) > 0)
 	{
 		b_res = ft_vprintf(format, b_l);
+		if (!close(b_fd))
+			b_fd = -1;
 		save_fd = restore_fd1(save_fd);
 		if ((system("diff a.txt b.txt > res.txt") >= 0) &&
 		((diff_fd = open("res.txt", O_RDONLY)) > 0))
@@ -46,8 +48,8 @@ int	printf_diff(char const * format, ...)
 			{
 				printf("ref file a.txt and test file b.txt have different contents"
 					" for : %s\n diff is :\n", format);
-				system("cat res.txt");
 				fflush(stdout);
+				system("cat res.txt");
 //				printf("\n ref file a.txt is :\n");
 //				system("cat -e a.txt");
 //				printf("\n tst file b.txt is :\n");

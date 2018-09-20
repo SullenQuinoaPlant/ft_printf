@@ -25,7 +25,8 @@ void
 	t_s_dcs	* const stf = (t_s_dcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
-	syl->type = e_sot_apstr_c;
+	if (stf->chk->flags & APSTR_FLAG)
+		syl->type = e_sot_apstr_c;
 	syl->c = '0';
 	if (stf->pre > 0 &&
 		(stf->p_b.len - SIGN) < (size_t)stf->pre)
@@ -39,7 +40,9 @@ void
 	t_s_dcs	* const stf = (t_s_dcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
 
-	syl->type = e_sot_apstr_cc;
-	syl->cc = stf->p_b.c + SIGN;
-	syl->len = stf->p_b.len - SIGN;
+	syl->type = e_sot_cc;
+	if (stf->chk->flags & APSTR_FLAG)
+		syl->type = e_sot_apstr_cc;
+	if (*(syl->cc = stf->p_b.c + SIGN) != '0' || stf->pre)
+		syl->len = stf->p_b.len - SIGN;
 }

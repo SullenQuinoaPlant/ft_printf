@@ -4,6 +4,8 @@ static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	convert_nospec,
 	convert_a,
 	convert_a_big,
+	convert_b,
+	convert_b_big,
 	convert_c,
 	convert_d,
 	convert_e,
@@ -56,7 +58,8 @@ static void	filter_width(t_s_pct *p_chk)
 static void	filter_precision(t_s_pct *chk)
 {
 	if (chk->precision &&
-		**chk->precision < 0)
+		**chk->precision < 0 &&
+		!(chk->specifier == e_b || chk->specifier == e_B))
 			**chk->precision = 0;
 }
 

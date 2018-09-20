@@ -1,5 +1,6 @@
 .PHONY : def
-def : targets all
+def : targets
+	$(MAKE) all
 
 
 ############
@@ -15,11 +16,9 @@ include $(ROOT)/make_vars.mk
 #CORE :
 include $(ROOT)/core.mk
 
-
 ##########
 #TARGETS :
 include $(SRC_DIR)/Makefile
-
 
 #######
 #LIBS :
