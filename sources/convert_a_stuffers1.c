@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:22:12 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/20 23:41:21 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/09/21 00:00:12 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void						ca_mantissa(
 	stf->excess = 0;
 	if (stf->chk->precision &&
 		**stf->chk->precision >= 0)
+		(pr 
 	{
 		pr = (size_t)**stf->chk->precision;
 		if (!round_ccsyl(pr, &set, r, &stf->zero))

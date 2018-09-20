@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/20 23:31:30 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/09/21 00:58:22 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ size_t	tssos_lensum(t_s_so stack[], int len)
 **			up = 1;
 **	}
 **	... to what can now be found below.
-**			(which I hate)
+**			(which I hate because)
 */
 
 int								round_ccsyl(
@@ -107,13 +107,11 @@ int								round_ccsyl(
 	if (at >= syl->len)
 		return (0);
 	mid = base[ft_strlen(base) / 2];
-	if (syl->cc[at] < mid)
-		up = 0;
-	else if (syl->cc[at] == mid)
+	up = syl->cc[at] > mid ? 1 : 0;
+	if (syl->cc[at] == mid)
 	{
 		zero = base[0];
 		i = syl->len - 1;
-		up = at > 0 ? 0 : 1;/*which is mighty stupid*/
 		while (i > at)
 			if ((up = syl->cc[i--] != zero))
 				break;
@@ -121,6 +119,7 @@ int								round_ccsyl(
 	syl->len = at;
 	if (up)
 	{
+		while (at CHANGE THIS
 		if (at)
 			syl->cc[at - 1]++;
 		else if (overflow)
