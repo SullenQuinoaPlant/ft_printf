@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_syllable_auxilliaries.c                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/09/20 23:31:30 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
 size_t
@@ -53,7 +65,8 @@ size_t	tssos_lensum(t_s_so stack[], int len)
 	return (ret);
 }
 
-/*had to change rounding policy to accomodate printf,
+/*
+**had to change rounding policy to accomodate printf,
 **which rouds as follows:
 **		0.8 -> 1	(precision 0)
 **		0.80 -> 0	(precision 0)
@@ -76,15 +89,15 @@ size_t	tssos_lensum(t_s_so stack[], int len)
 **		if (i != at)
 **			up = 1;
 **	}
-**
 **	... to what can now be found below.
+**			(which I hate)
 */
-int
-	round_ccsyl(
-		size_t at,
-		t_s_so *syl,
-		char const * base,
-		char *overflow)
+
+int								round_ccsyl(
+	size_t at,
+	t_s_so *syl,
+	char const *base,
+	char *overflow)
 {
 	char	mid;
 	char	zero;
