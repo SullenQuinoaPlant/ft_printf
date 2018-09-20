@@ -13,7 +13,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 	T(achar_hex,
 		char	c = '\377';
 
-		printf_compare("B_achar.ref", "%hhB\n", &c);
+		printf_compare("bigb_achar.ref", "%hhB\n", &c);
 	)
 
 	T(twochars,
@@ -26,7 +26,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		char	*c;
 
 		c = ((char[2]){0xAC, 0xCA});
-		printf_compare("B_twochars.ref", "%.2hhB\n", c);
+		printf_compare("bigb_twochars.ref", "%.2hhB\n", c);
 	)
 	return(run_test_arr(all_of, these));
 }
