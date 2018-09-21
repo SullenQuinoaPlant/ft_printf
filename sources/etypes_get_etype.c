@@ -9,7 +9,7 @@ static t_e_t const
 	//e_a
 	{e_double, e_double, e_double, e_double, e_double, e_longdouble, e_double,
 		e_double, e_double},
-	//e_A
+	//e_biga
 	{e_double, e_double, e_double, e_double, e_double, e_longdouble, e_double,
 		e_double, e_double},
 	//e_b
@@ -19,7 +19,7 @@ static t_e_t const
 	//			e_intmax_t, e_size_t, e_ptrdiff_t},
 	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
 		e_voidptr, e_voidptr},
-	//e_B
+	//e_bigb
 	//	for which the value stored is actually a pointer to the type specified by
 	//	the length modifier as follows (where defaults are set to int*):
 	//		{e_int, e_char, e_short, e_long, e_longlong, e_int,
@@ -29,6 +29,9 @@ static t_e_t const
 	//e_c
 	{e_uchar, e_uchar, e_uchar, e_wint_t, e_uchar, e_uchar, e_uchar, e_uchar,
 		e_uchar},
+	//e_bigc
+	{e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t,
+		e_wint_t},
 	//e_d
 	{e_int, e_char, e_short, e_long, e_longlong, e_int, e_intmax_t, e_ssize_t,
 		e_ptrdiff_t},
@@ -58,6 +61,10 @@ static t_e_t const
 	//	the length modifier as follows (where defaults are set to int* see doc):
 	//		{e_int, e_char, e_short, e_long, e_longlong, e_int,
 	//			e_intmax_t, e_size_t, e_ptrdiff_t},
+	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
+		e_voidptr, e_voidptr},
+	//e_bign
+	//	for which the value stored is actually a pointer to size_t, always.
 	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
 		e_voidptr, e_voidptr},
 	//e_o

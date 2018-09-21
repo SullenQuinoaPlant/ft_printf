@@ -1,69 +1,93 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   typedefs.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/21 20:39:16 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/09/21 20:52:04 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef TYPEDEFS_H
 # define TYPEDEFS_H
 
-/*input string parsing:*/
-typedef
-char const		*(*t_parser)(char const *);
+/*
+**input string parsing:
+*/
+typedef char const					*(*t_parser)(
+	char const *);
 
-/*inpt string parsing controls:*/
-typedef
-char const		*(*t_pctl)(char const *, const t_parser[]);
+/*
+** inpt string parsing controls:
+*/
+typedef char const					*(*t_pctl)(
+	char const *,
+	const t_parser[]);
 
-typedef enum	e_chunk_types {
+typedef enum						e_chunk_types
+{
 	e_no_chk,
 	e_txt_c,
 	e_char_c,
 	e_pct_c,
 	e_ctl_chk
-}				t_e_cts;
+}									t_e_cts;
 
-typedef struct	s_chunk_wrapper {
+typedef struct						s_chunk_wrapper
+{
 	t_e_cts	type;
 	void	*chk;
-}				t_s_cw;
+}									t_s_cw;
 
-typedef struct	s_text_chunk {
+typedef struct						s_text_chunk
+{
 	char const	*strt;
 	size_t		len;
-}				t_s_txt;
+}									t_s_txt;
 
-typedef struct	s_character {
+typedef struct						s_character
+{
 	char	c;
-}				t_s_char;
+}									t_s_char;
 
-/*length of enumeration is relied upon for array declarations
+/*
+** length of enumeration is relied upon for array declarations
 */
-typedef enum	e_length_modifiers {
+typedef enum						e_length_modifiers
+{
 	e_no_len,
 	e_hh, e_h, e_l, e_ll,
 	e_bigl,
 	e_j, e_z, e_t,
 	e_lm_sz
-}				t_e_lm;
+}									t_e_lm;
 
-typedef struct	s_length_mod_and_pattern {
+typedef struct						s_length_mod_and_pattern
+{
 	t_e_lm		mod;
 	char		*s;
-}				t_s_lmp;
+}									t_s_lmp;
 
-/*order of the enumeration is relied upon in percent_convert_specifier()
+/*
 **length of enumeration is relied upon for array declarations
 */
 typedef enum	convert_e_specifiers {
 	e_no_specifier,
 	e_a, e_biga,
 	e_b, e_bigb,
-	e_c,
-	e_d,
+	e_c, e_bigc,
+	e_d, e_bigd,
 	e_e, e_bige,
 	e_f, e_bigf,
 	e_g, e_bigg,
 	e_i,
-	e_n,
-	e_o,
+	e_n, e_bign,
+	e_o, e_bigo,
 	e_p,
 	e_s,
-	e_u,
+	e_u, e_bigu,
 	e_x, e_bigx,
 	e_cs_sz
 }				t_e_cs;
