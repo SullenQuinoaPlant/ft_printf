@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 00:58:22 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/09/21 02:17:43 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,39 +93,63 @@ size_t	tssos_lensum(t_s_so stack[], int len)
 **			(which I hate because)
 */
 
+static int						add_carry(
+	char *base,
+	t_s_so *syl,
+	size_t at
+	char *overflow)
+{
+	char const		biggest = base[base_len - 1];
+	int				r;
+
+	r = 0;
+	while (at && syl->cc[at - 1] == biggest)
+		syl->cc[--at] = **base;
+	if (at--)
+	{
+		while (*base++ != syl->cc[at])
+			;
+		syl->cc[at] = *base;
+	}
+	else
+	{
+		while (*base++ != *overflow && *base != biggest)
+			;
+		if (*overflow == *base)
+			return (-1);
+		*overflow = *base;
+	}
+	return (0);
+}
+
 int								round_ccsyl(
 	size_t at,
 	t_s_so *syl,
 	char const *base,
 	char *overflow)
 {
+	int const	base_len = ft_strlen(base);
 	char	mid;
 	char	zero;
-	int		up;
+	int		carry;
 	size_t	i;
 
 	if (at >= syl->len)
 		return (0);
-	mid = base[ft_strlen(base) / 2];
-	up = syl->cc[at] > mid ? 1 : 0;
+	mid = base[base_len / 2];
+	carry = syl->cc[at] > mid ? 1 : 0;
 	if (syl->cc[at] == mid)
 	{
 		zero = base[0];
 		i = syl->len - 1;
 		while (i > at)
-			if ((up = syl->cc[i--] != zero))
+			if ((carry = syl->cc[i--] != zero))
 				break;
 	}
 	syl->len = at;
-	if (up)
-	{
-		while (at CHANGE THIS
-		if (at)
-			syl->cc[at - 1]++;
-		else if (overflow)
-			(*overflow)++;
-	}
-	return (at ? 1 : -1);
+	if (carry && add_carry(base, syl, at, overflow))
+		return (-1);
+	return (1);
 }
 
 void
