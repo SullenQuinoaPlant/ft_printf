@@ -1,23 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_o.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/21 22:28:19 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/09/21 22:35:35 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-static t_stuffer
-	g_fstr[O_SYLS + 1] = {
-		dummy_stuffer,
-		dummy_stuffer,
-		co_prefix,
-		co_hashfix,
-		co_digits,
-		dummy_stuffer,
-		0};
-
-static int
-	set_integer(
-		t_s_ocs *stf)
+static t_stuffer					g_fstr[O_SYLS + 1] =
 {
-	t_s_pct		* const chk = stf->chk;
-	t_s_arg		* const arg = chk->vaarg;
-	size_t		const dsz = g_et_sz[arg->type];
-	uintmax_t	d;
+	dummy_stuffer,
+	dummy_stuffer,
+	co_prefix,
+	co_hashfix,
+	co_digits,
+	dummy_stuffer,
+	0
+};
+
+static int							set_integer(
+	t_s_ocs *stf)
+{
+	t_s_pct *const	chk = stf->chk;
+	t_s_arg *const	arg = chk->vaarg;
+	size_t const	dsz = g_et_sz[arg->type];
+	uintmax_t		d;
 
 	d = 0;
 	ft_memcpy(&d, arg->p_val, dsz);
@@ -25,18 +37,16 @@ static int
 	return (d ? 1 : 0);
 }
 
-static int
-	set_precision(
-		t_s_ocs *stf)
+static int							set_precision(
+	t_s_ocs *stf)
 {
-	t_s_pct		* const chk = stf->chk;
+	t_s_pct *const	chk = stf->chk;
 
 	return ((stf->pre = chk->precision ? **chk->precision : -1));
 }
 
-static void
-	set_group(
-		t_s_ocs *stf)
+static void							set_group(
+	t_s_ocs *stf)
 {
 	stf->group.first = stf->syls;
 	stf->group.sz = O_SYLS;
@@ -46,12 +56,13 @@ static void
 		apstr_grp_props_offset(AF_4G, AF_BS, &stf->group);
 }
 
-void		convert_o(t_s_pct *chk)
+void								convert_o(
+	t_s_pct *chk)
 {
-	int			pad_indexes[e_pp_sz] = {0};
+	int			pad_indexes[e_pp_sz];
 	t_s_ocs		stf;
 	int			r;
-	
+
 	stf.chk = chk;
 	init_syls(e_sot_c, O_SYLS, stf.syls);
 	r = set_integer(&stf);
@@ -63,4 +74,11 @@ void		convert_o(t_s_pct *chk)
 		set_pad_syl(chk, pad_indexes, &stf.group, 1);
 		out_syl_groups(&stf.group, 1);
 	}
+}
+
+void								convert_big o(
+	t_s_pct *chk)
+{
+	chk->len_mod = e_l;
+	convert_o(chk);
 }

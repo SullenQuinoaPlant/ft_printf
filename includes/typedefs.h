@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 20:39:16 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 20:52:04 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/09/21 23:40:43 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,19 @@ typedef enum	convert_e_specifiers {
 	e_f, e_bigf,
 	e_g, e_bigg,
 	e_i,
+	e_k, e_bigk,
 	e_n, e_bign,
 	e_o, e_bigo,
-	e_p,
-	e_s,
+	e_p, e_bigp,
+	e_r, e_bigr,
+	e_s, e_bigs,
 	e_u, e_bigu,
 	e_x, e_bigx,
 	e_cs_sz
 }				t_e_cs;
 
-/*length of enumeration is relied upon for array declarations
+/*
+**length of enumeration is relied upon for array declarations
 */
 typedef enum	e_types {
 	e_notype,

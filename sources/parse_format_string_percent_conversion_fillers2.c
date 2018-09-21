@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 20:27:35 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 20:38:06 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/09/21 23:15:11 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char const								*percent_convert_length_mod(
 char const								*percent_convert_specifier(
 	char const *in)
 {
-	char const		*specifiers = "aAbBcCdDeEfFgGikKnoOprRsSuUxX%";
+	char const		*specifiers = "aAbBcCdDeEfFgGikKnoOpPrRsSuUxX%";
 	t_s_pct *const	p_pct = get_p_pct();
 	char			*p_c;
 

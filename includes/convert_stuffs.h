@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:10:59 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/20 23:24:59 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/09/22 00:01:44 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,18 +144,22 @@ void	cg_eexponent_pad(int, void*);
 void	cg_eexponent(int, void*);
 void	cg_esetgroups(int, void*);
 
-void	dummy_stuffer(int, void*);
 void	cg_fsign(int, void*);
-void	dummy_stuffer(int, void*);
 void	cg_fhighdigits(int, void*);
 void	cg_fpowerzero(int, void*);
 void	cg_fseparator(int, void*);
 void	cg_fzeros(int, void*);
 void	cg_flowdigits(int, void*);
-void	dummy_stuffer(int, void*);
 void	cg_fsetgroups(int, void*);
 
-#define O_SYLS 6
+# define K_BUFF_SZ 8
+typedef struct	s_convert_k_stuff {
+	char	buf[K_BUFF_SZ];
+}				t_s_kcs;
+
+# define 
+
+# define O_SYLS 6
 typedef struct	s_convert_o_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[O_SYLS];
@@ -169,7 +173,7 @@ void	co_prefix(int, void*);
 void	co_hashfix(int, void*);
 void	co_digits(int, void*);
 
-#define P_SYLS 7
+#define P_SYLS 6
 typedef struct	s_convert_p_stuff {
 	t_s_pct	*chk;
 	t_s_so	syls[P_SYLS];
