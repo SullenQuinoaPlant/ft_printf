@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:22:12 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 00:00:12 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/09/21 02:21:57 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,22 +73,21 @@ void						ca_mantissa(
 	void *p)
 {
 	t_s_acs *const	stf = (t_s_acs*)p;
-	char const		*r;
+	char const		*base;
 	uint64_t		v;
 	t_s_so			set;
 	int				pr;
 
-	r = stf->chk->flags & BIGCS_FLAG ? VTB_BHEX_SYMS : VTB_HEX_SYMS;
+	base = stf->chk->flags & BIGCS_FLAG ? VTB_BHEX_SYMS : VTB_HEX_SYMS;
 	v = stf->aligned_mant;
-	set = syl_lowv_tob(v, sizeof(v), r, &stf->m);
+	set = syl_lowv_tob(v, sizeof(v), base, &stf->m);
 	set.len = v ? set.len : 0;
 	stf->excess = 0;
 	if (stf->chk->precision &&
 		**stf->chk->precision >= 0)
-		(pr 
 	{
 		pr = (size_t)**stf->chk->precision;
-		if (!round_ccsyl(pr, &set, r, &stf->zero))
+		if (!round_ccsyl(pr, &set, base, &stf->zero))
 			stf->excess = pr - set.len;
 	}
 	if (stf->chk->flags & APSTR_FLAG)

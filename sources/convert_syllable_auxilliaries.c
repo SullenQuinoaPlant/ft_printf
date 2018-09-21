@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 02:17:43 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/09/21 02:25:09 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,16 @@ size_t	tssos_lensum(t_s_so stack[], int len)
 */
 
 static int						add_carry(
-	char *base,
+	char const *base,
 	t_s_so *syl,
-	size_t at
+	size_t at,
 	char *overflow)
 {
+	size_t const	base_len = ft_strlen(base);
 	char const		biggest = base[base_len - 1];
-	int				r;
 
-	r = 0;
 	while (at && syl->cc[at - 1] == biggest)
-		syl->cc[--at] = **base;
+		syl->cc[--at] = *base;
 	if (at--)
 	{
 		while (*base++ != syl->cc[at])
