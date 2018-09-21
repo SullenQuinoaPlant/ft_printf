@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_format_string_percent_conversion_fi          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/21 20:09:12 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/09/21 20:09:34 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-t_s_pct	*get_p_pct()
+t_s_pct								*get_p_pct()
 {
-	t_s_cw	* const p1 = g_ps.chunks.tail->content;
-	t_s_pct * const	p2 = p1->chk;
+	t_s_cw *const	p1 = g_ps.chunks.tail->content;
+	t_s_pct *const	p2 = p1->chk;
 
 	return (p2);
 }

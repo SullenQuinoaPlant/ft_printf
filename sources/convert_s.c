@@ -1,17 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_s.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/21 19:35:03 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/09/21 20:08:59 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-static void
-	filter_flags(
-		t_s_pct *chk)
+static void							filter_flags(
+	t_s_pct *chk)
 {
 	chk->flags &= ~(APSTR_FLAG);
 }
 
 #define NULL_TERMED -1
-/*set_wcharstr relies on NULL_TERMED converting to size_t max value.*/
-static void
-	get_precision(
-		t_s_pct *chk, t_s_scs *stf)
+static void							get_precision(
+	t_s_pct *chk,
+	t_s_scs *stf)
 {
 	if (chk->precision)
 		stf->pre = **chk->precision;
@@ -20,11 +30,10 @@ static void
 }
 
 #define CHAR_SYL 2
-static void
-	set_charstr(
-		t_s_scs *stf)
+static void							set_charstr(
+	t_s_scs *stf)
 {
-	t_s_so	* const syl = stf->syls + CHAR_SYL;
+	t_s_so *const	syl = stf->syls + CHAR_SYL;
 
 	syl->type = e_sot_cc;
 	syl->cc = *(char**)stf->chk->vaarg->p_val;
@@ -34,9 +43,8 @@ static void
 		syl->len = stf->pre;
 }
 
-static void
-	set_wcharstr(
-		t_s_scs *stf)
+static void							set_wcharstr(
+	t_s_scs *stf)
 {
 	size_t	left;
 	size_t	r;
@@ -53,7 +61,8 @@ static void
 	stf->syls[CHAR_SYL].len = stf->pre - left;
 }
 
-void		convert_s(t_s_pct *chk)
+void								convert_s(
+	t_s_pct *chk)
 {
 	t_s_scs	stf;
 
@@ -67,3 +76,10 @@ void		convert_s(t_s_pct *chk)
 	set_pad_syl(chk, (int[3]){0, 1, 3}, &(t_s_sgd){stf.syls, 4, 0, 0, 0}, 1);
 	output_syllables(stf.syls, S_SYLLABLES);
 }
+
+void								convert_big_s(
+	t_s_pct *chk)
+{
+	convert_s(chk);
+}
+
