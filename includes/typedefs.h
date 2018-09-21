@@ -51,20 +51,20 @@ typedef struct	s_length_mod_and_pattern {
 */
 typedef enum	convert_e_specifiers {
 	e_no_specifier,
-	e_a, e_A,
-	e_b, e_B,
+	e_a, e_biga,
+	e_b, e_bigb,
 	e_c,
 	e_d,
-	e_e, e_E,
-	e_f, e_F,
-	e_g, e_G,
+	e_e, e_bige,
+	e_f, e_bigf,
+	e_g, e_bigg,
 	e_i,
 	e_n,
 	e_o,
 	e_p,
 	e_s,
 	e_u,
-	e_x, e_X,
+	e_x, e_bigx,
 	e_cs_sz
 }				t_e_cs;
 
