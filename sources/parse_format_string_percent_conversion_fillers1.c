@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 20:09:12 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 20:09:34 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/09/21 20:27:07 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ t_s_pct								*get_p_pct()
 	return (p2);
 }
 
-char const	*percent_convert_dollar_arg(char const *in)
+char const							*percent_convert_dollar_arg(
+	char const *in)
 {
-	char const	* const p_str = in;
-	t_s_pct		*p_pct;
-	int			val;
+	char const *const	p_str = in;
+	t_s_pct				*p_pct;
+	int					val;
 
 	p_pct = get_p_pct();
 	if ((in = parse_fill_literal_int_dollar(in, &val)) != p_str)
@@ -33,11 +34,12 @@ char const	*percent_convert_dollar_arg(char const *in)
 }
 
 #define FLAG_COUNT 6
-char const	*percent_convert_flags(char const *in)
+char const							*percent_convert_flags(
+	char const *in)
 {
-	char const		* const flags = "#0- +'";
-	char			*p_res;
-	size_t			i;
+	char const *const	flags = "#0- +'";
+	char				*p_res;
+	size_t				i;
 
 	p_res = &(get_p_pct())->flags;
 	i = 0;
@@ -54,30 +56,31 @@ char const	*percent_convert_flags(char const *in)
 	}
 	return (in);
 }
-#undef FLAG_COUNT
 
-char const	*percent_convert_width(char const *in)
+char const							*percent_convert_width(
+	char const *in)
 {
-	char const	* const p_str = in;
-	int **		*p_res;
+	char const *const	save_in = in;
+	int					***p_res;
 
 	p_res = &(get_p_pct())->width;
-	if ((in = percent_convert_star(in, p_res)) == p_str)
+	if ((in = percent_convert_star(in, p_res)) == save_in)
 		in = parse_store_int_literal(in, p_res);
 	return (in);
 }
 
-char const	*percent_convert_precision(char const *in)
+char const							*percent_convert_precision(
+	char const *in)
 {
-	char const	*p_str;
-	int **	*p_res;
+	char const	*save_in;
+	int			***p_res;
 
 	if (*in != '.')
 		return (in);
 	p_res = &(get_p_pct())->precision;
-	p_str = ++in;
-	if ((in = percent_convert_star(in, p_res)) == p_str &&
-		(in = parse_store_int_literal(in, p_res)) == p_str)
+	save_in = ++in;
+	if ((in = percent_convert_star(in, p_res)) == save_in &&
+		(in = parse_store_int_literal(in, p_res)) == save_in)
 		ps_store_integer(0, p_res);
 	return (in);
 }
