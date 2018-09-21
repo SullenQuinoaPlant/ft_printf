@@ -76,7 +76,7 @@ void						convert_a(
 	out_syl_groups(stf.syl_groups, A_SYLGRPS);
 }
 
-void						convert_a_big(
+void						convert_big_a(
 	t_s_pct *p_chk)
 {
 	p_chk->flags |= BIGCS_FLAG;

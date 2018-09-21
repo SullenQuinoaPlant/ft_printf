@@ -77,7 +77,7 @@ void
 }
 
 void
-	convert_p_big(
+	convert_big_p(
 		t_s_pct *chk)
 {
 	chk->flags |= BIGCS_FLAG;

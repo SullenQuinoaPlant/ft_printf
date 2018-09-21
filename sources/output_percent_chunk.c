@@ -3,17 +3,17 @@
 static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	convert_nospec,
 	convert_a,
-	convert_a_big,
+	convert_big_a,
 	convert_b,
-	convert_b_big,
+	convert_big_b,
 	convert_c,
 	convert_d,
 	convert_e,
-	convert_e_big,
+	convert_big_e,
 	convert_f,
-	convert_f_big,
+	convert_big_f,
 	convert_g,
-	convert_g_big,
+	convert_big_g,
 	convert_i,
 	convert_n,
 	convert_o,
@@ -21,7 +21,7 @@ static void	(* const f_ar[e_cs_sz])(t_s_pct *) = {
 	convert_s,
 	convert_u,
 	convert_x,
-	convert_x_big
+	convert_big_x
 };
 
 static void	filter_flags(t_s_pct *p_chk)

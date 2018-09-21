@@ -68,7 +68,7 @@ void		convert_x(t_s_pct *chk)
 		out_syl_groups(&stf.group, 1);
 	}
 }
-void		convert_x_big(t_s_pct *chk)
+void		convert_big_x(t_s_pct *chk)
 {
 	chk->flags |= BIGCS_FLAG;
 	convert_x(chk);

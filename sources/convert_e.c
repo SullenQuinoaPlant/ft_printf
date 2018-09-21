@@ -83,7 +83,7 @@ void		convert_e(t_s_pct *chk)
 	output_padnstuff(out_len, chk, g_outputters, &stf);
 }
 
-void		convert_e_big(t_s_pct *p_chk)
+void		convert_big_e(t_s_pct *p_chk)
 {
 	p_chk->flags |= BIGCS_FLAG;
 	convert_e(p_chk);
