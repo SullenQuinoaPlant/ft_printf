@@ -55,7 +55,7 @@ void
 		t_s_pct *p_chk);
 
 void
-	convert_a_big(
+	convert_big_a(
 		t_s_pct *p_chk);
 
 void
@@ -63,7 +63,7 @@ void
 		t_s_pct *p_chk);
 
 void
-	convert_b_big(
+	convert_big_b(
 		t_s_pct *p_chk);
 
 void
@@ -79,7 +79,7 @@ void
 		t_s_pct *p_chk);
 
 void
-	convert_e_big(
+	convert_big_e(
 		t_s_pct *p_chk);
 
 void
@@ -87,7 +87,7 @@ void
 		t_s_pct *p_chk);
 
 void
-	convert_f_big(
+	convert_big_f(
 		t_s_pct *p_chk);
 
 void
@@ -95,7 +95,7 @@ void
 		t_s_pct *p_chk);
 
 void
-	convert_g_big(
+	convert_big_g(
 		t_s_pct *p_chk);
 
 void
@@ -134,7 +134,7 @@ void
 		t_s_pct *p_chk);
 
 void
-	convert_x_big(
+	convert_big_x(
 		t_s_pct *p_chk);
 
 void
