@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_syllable_auxilliaries.c                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/09/21 02:25:09 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
 size_t
@@ -53,7 +65,8 @@ size_t	tssos_lensum(t_s_so stack[], int len)
 	return (ret);
 }
 
-/*had to change rounding policy to accomodate printf,
+/*
+**had to change rounding policy to accomodate printf,
 **which rouds as follows:
 **		0.8 -> 1	(precision 0)
 **		0.80 -> 0	(precision 0)
@@ -76,44 +89,66 @@ size_t	tssos_lensum(t_s_so stack[], int len)
 **		if (i != at)
 **			up = 1;
 **	}
-**
 **	... to what can now be found below.
+**			(which I hate because)
 */
-int
-	round_ccsyl(
-		size_t at,
-		t_s_so *syl,
-		char const * base,
-		char *overflow)
+
+static int						add_carry(
+	char const *base,
+	t_s_so *syl,
+	size_t at,
+	char *overflow)
 {
+	size_t const	base_len = ft_strlen(base);
+	char const		biggest = base[base_len - 1];
+
+	while (at && syl->cc[at - 1] == biggest)
+		syl->cc[--at] = *base;
+	if (at--)
+	{
+		while (*base++ != syl->cc[at])
+			;
+		syl->cc[at] = *base;
+	}
+	else
+	{
+		while (*base++ != *overflow && *base != biggest)
+			;
+		if (*overflow == *base)
+			return (-1);
+		*overflow = *base;
+	}
+	return (0);
+}
+
+int								round_ccsyl(
+	size_t at,
+	t_s_so *syl,
+	char const *base,
+	char *overflow)
+{
+	int const	base_len = ft_strlen(base);
 	char	mid;
 	char	zero;
-	int		up;
+	int		carry;
 	size_t	i;
 
 	if (at >= syl->len)
 		return (0);
-	mid = base[ft_strlen(base) / 2];
-	if (syl->cc[at] < mid)
-		up = 0;
-	else if (syl->cc[at] == mid)
+	mid = base[base_len / 2];
+	carry = syl->cc[at] > mid ? 1 : 0;
+	if (syl->cc[at] == mid)
 	{
 		zero = base[0];
 		i = syl->len - 1;
-		up = at > 0 ? 0 : 1;/*which is mighty stupid*/
 		while (i > at)
-			if ((up = syl->cc[i--] != zero))
+			if ((carry = syl->cc[i--] != zero))
 				break;
 	}
 	syl->len = at;
-	if (up)
-	{
-		if (at)
-			syl->cc[at - 1]++;
-		else if (overflow)
-			(*overflow)++;
-	}
-	return (at ? 1 : -1);
+	if (carry && add_carry(base, syl, at, overflow))
+		return (-1);
+	return (1);
 }
 
 void

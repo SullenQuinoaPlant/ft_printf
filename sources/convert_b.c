@@ -87,7 +87,7 @@ void						convert_b(
 	out_syl_groups(stf.syl_grps, B_SYLGRPS);
 }
 
-void						convert_b_big(
+void						convert_big_b(
 	t_s_pct *chk)
 {
 	convert_b(chk);

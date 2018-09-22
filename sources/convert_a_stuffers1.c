@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_a_stuffers1.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/20 23:22:12 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/09/21 02:21:57 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
 void	ca_prefix(int syl, void *p)
@@ -26,8 +38,8 @@ void	ca_prefix(int syl, void *p)
 
 void	ca_power0(int syl, void *p)
 {
-	t_s_acs	* const stf = (t_s_acs*)p;
-	t_s_so	set;
+	t_s_acs *const	stf = (t_s_acs*)p;
+	t_s_so			set;
 
 	set.len = 1;
 	if (stf->chk->flags & APSTR_FLAG)
@@ -37,11 +49,13 @@ void	ca_power0(int syl, void *p)
 	stf->syllables[syl] = set;
 }
 
-void	ca_separator(int syl, void *p)
+void						ca_separator(
+	int syl,
+	void *p)
 {
-	t_s_acs	* const stf = (t_s_acs*)p;
-	t_s_so	set;
-	int*	* const prec = stf->chk->precision;
+	t_s_acs *const	stf = (t_s_acs*)p;
+	t_s_so			set;
+	int **const		prec = stf->chk->precision;
 
 	set.c = '.';
 	set.type = e_sot_c;
@@ -54,24 +68,26 @@ void	ca_separator(int syl, void *p)
 }
 
 #define MID_BASE 8
-void	ca_mantissa(int syl, void *p)
+void						ca_mantissa(
+	int syl,
+	void *p)
 {
-	t_s_acs		* const stf = (t_s_acs*)p;
-	char const	*r;
-	uint64_t	v;
-	t_s_so		set;
-	int			pr;
+	t_s_acs *const	stf = (t_s_acs*)p;
+	char const		*base;
+	uint64_t		v;
+	t_s_so			set;
+	int				pr;
 
-	r = stf->chk->flags & BIGCS_FLAG ? VTB_BHEX_SYMS : VTB_HEX_SYMS;
+	base = stf->chk->flags & BIGCS_FLAG ? VTB_BHEX_SYMS : VTB_HEX_SYMS;
 	v = stf->aligned_mant;
-	set = syl_lowv_tob(v, sizeof(v), r, &stf->m);
+	set = syl_lowv_tob(v, sizeof(v), base, &stf->m);
 	set.len = v ? set.len : 0;
 	stf->excess = 0;
 	if (stf->chk->precision &&
 		**stf->chk->precision >= 0)
 	{
 		pr = (size_t)**stf->chk->precision;
-		if (!round_ccsyl(pr, &set, r, &stf->zero))
+		if (!round_ccsyl(pr, &set, base, &stf->zero))
 			stf->excess = pr - set.len;
 	}
 	if (stf->chk->flags & APSTR_FLAG)

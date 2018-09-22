@@ -48,7 +48,7 @@ $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
 		-lcmocka_shared\
 		-lmystupidmath -lmyfloatingpoint -lft\
 		-o $@\
-		-Wl,-rpath=$$(readlink -e $(LIBS_L))
+		-Wl,-rpath,$(LIBS_L)
 
 %.test.o\
 $(UTEST_DIR)/%.test.o\
@@ -64,7 +64,7 @@ $(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 		$(patsubst lib%,-l%,$(TEST_DEPENDENCIES))\
 		$(patsubst lib%,-l%,$(DEPENDENCIES))\
 		-o $@\
-		-Wl,-rpath=$$(readlink -e $(LIBS_L))
+		-Wl,-rpath,$(LIBS_L)
 
 
 
@@ -87,7 +87,7 @@ cmocka :
 		-I $(LIBS_I) -L $(LIBS_L)\
 	 	$(UTEST_DIR)/cmocka/check_install.c\
 		 -lcmocka_shared -o test.o\
-		-Wl,-rpath=$$(readlink -e $(LIBS_L))\
+		-Wl,-rpath,$(LIBS_L)\
 		&& ./test.o .;\
 	then\
 		echo "cmocka installed";\
@@ -111,3 +111,11 @@ list_tests :
 	@echo $(TEST_SRCS)
 	@echo "list of test objects:"
 	@echo $(TEST_OBJS)
+
+.PHONY : osx_ld
+osx_ld :
+	sed -i "" -e's@-Wl,-rpath,@-Wl,-rpath,@' $(UTEST_DIR)/Makefile
+
+.PHONY : gnu_ld
+gnu_ld :
+	sed -i -e's@-Wl,-rpath,@-Wl,-rpath,@' $(UTEST_DIR)/Makefile
