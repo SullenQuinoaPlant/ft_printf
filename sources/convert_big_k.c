@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 23:22:33 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/02 00:03:52 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/02 00:16:10 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,22 @@ void							set_group(
 	noapstr_grp_props(&stf->group);
 }
 
+void							init_stuff(
+	t_s_pct *chk;
+	t_s_bkcs *stf)
+{
+	stf->chk = chk;
+	stf->tm = (struct tm*)chk->vaarg->p_val;
+	ft_bzero(stf.free_these, sizeof(stf.free_these));
+}
+
 void							convert_k(
 	t_s_pct *chk)
 {
-	t_s_bks		stf;
+	t_s_bkcs		stf;
 	int			pad_indexes[e_pp_sz];
 
+	init_stuff(chk, &stf);
 	init_syls(e_sot_cc, BK_SYLS, stf.syls);
 	call_tstuffers(g_fstr, &stf, pad_indexes);
 	set_group(&stf);

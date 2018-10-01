@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:10:59 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/02 00:00:19 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/02 00:14:17 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,10 +155,10 @@ void	cg_fsetgroups(int, void*);
 #define BK_SYLS 9
 #define BK_STR_SYLS 6
 typedef struct	s_convert_big_k_stuff {
-	t_s_pct	*chk;
-	t_s_so	syls[BK_SYLS];
-	t_s_sgd	syl_group;
-	char	*free_these[3];
+	t_s_pct		*chk;
+	t_s_so		syls[BK_SYLS];
+	struct tm	*tm
+	char		*free_these[3];
 }				t_s_bkcs;
 
 # define O_SYLS 6

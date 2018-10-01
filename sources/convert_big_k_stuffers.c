@@ -1,53 +1,53 @@
-void							ck_hour(
-	int pos,
-	void *p)
+static char						*g_days[7] =
 {
-	t_s_kcs *const	stf = (t_s_kcs*)p;
-
-	
+	"Sunday",
+	"Monday",
+	"Tuesday",
+	"Wednesday",
+	"Thursday",
+	"Friday",
+	"Saturday"
 }
 
-void							ck_hour(
+static char						*g_months[12] =
+{
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December"
+};
+
+void							cbk_dayofweek(
 	int pos,
 	void *p)
 {
-	t_s_kcs *const	stf = (t_s_kcs*)p;
+	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
 
+	if (!stf->flags & HASH_FLAG)
+		return ;
+	syl->cc = &g_days[((struct tm*)stf->vaarg->p_val)->tm_wday];
+	syl->len = ft_strlen(syl->cc);
 }
 
-void							ck_hour(
+#define MONTH_NUM 0
+void							cbk_month(
 	int pos,
 	void *p)
 {
-	t_s_kcs *const	stf = (t_s_kcs*)p;
+	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
 
-}
-
-void							ck_hour(
-	int pos,
-	void *p)
-{
-	t_s_kcs *const	stf = (t_s_kcs*)p;
-	t_s_so *const	syl = stf->syls + pos;
-
-}
-
-void							ck_hour(
-	int pos,
-	void *p)
-{
-	t_s_kcs *const	stf = (t_s_kcs*)p;
-	t_s_so *const	syl = stf->syls + pos;
-
-}
-
-void							ck_hour(
-	int pos,
-	void *p)
-{
-	t_s_kcs *const	stf = (t_s_kcs*)p;
-	t_s_so *const	syl = stf->syls + pos;
-
+	if (!stf->flags & HASH_FLAG)
+		syl->cc = &g_months[((struct tm*)stf->vaarg->p_val)->tm_mon];
+	else
+	syl->len = ft_strlen(syl->cc);
 }
