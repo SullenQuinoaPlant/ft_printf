@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_c.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/01 21:46:03 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/01 21:46:56 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-static void
-	filter_flags(t_s_pct *chk)
+static void						filter_flags(t_s_pct *chk)
 {
 	chk->flags &= MINUS_FLAG;
 }
 
-void		convert_c(t_s_pct *chk)
+void							convert_c(
+	t_s_pct *chk)
 {
 	wint_t	c;
 	size_t	lens[e_oi_sz];
@@ -27,4 +39,10 @@ void		convert_c(t_s_pct *chk)
 		lens[e_root] = 1;
 	}
 	output_padnbuffer(ar, lens, chk);
+}
+
+void							convert_big_c(
+	t_s_pct *chk)
+{
+	convert_c(chk);
 }

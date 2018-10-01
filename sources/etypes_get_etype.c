@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 23:16:15 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 23:43:54 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/01 22:01:48 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,26 @@ static t_e_t const				g_types[e_cs_sz][e_lm_sz] =
 	//	the length modifier as follows (where defaults are set to int*):
 	//		{e_int, e_char, e_short, e_long, e_longlong, e_int,
 	//			e_intmax_t, e_size_t, e_ptrdiff_t},
-	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
-		e_voidptr, e_voidptr},
+	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
+		e_voidptr, e_voidptr, e_voidptr},
 	//e_bigb
 	//	for which the value stored is actually a pointer to the type specified by
 	//	the length modifier as follows (where defaults are set to int*):
 	//		{e_int, e_char, e_short, e_long, e_longlong, e_int,
 	//			e_intmax_t, e_size_t, e_ptrdiff_t},
-	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
-		e_voidptr, e_voidptr},
+	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
+		e_voidptr, e_voidptr, e_voidptr},
 	//e_c
 	{e_uchar, e_uchar, e_uchar, e_wint_t, e_uchar, e_uchar, e_uchar, e_uchar,
 		e_uchar},
 	//e_bigc
-	{e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t,
-		e_wint_t},
+	{e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t, e_wint_t,
+		e_wint_t, e_wint_t},
 	//e_d
 	{e_int, e_char, e_short, e_long, e_longlong, e_int, e_intmax_t, e_ssize_t,
 		e_ptrdiff_t},
 	//e_bigd
-	{e_long e_long e_long e_long e_long e_long e_long, e_long,
-		e_long},
+	{e_long e_long e_long e_long e_long e_long e_long, e_long, e_long},
 	//e_e
 	{e_double, e_double, e_double, e_double, e_double, e_longdouble, e_double,
 		e_double, e_double},
@@ -72,12 +71,12 @@ static t_e_t const				g_types[e_cs_sz][e_lm_sz] =
 		e_ptrdiff_t},
 	//e_k
 	//	for which the (void*) must point to a (struct tm) from <time.h>
-	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
-		e_voidptr, e_voidptr},
+	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
+		e_voidptr, e_voidptr, e_voidptr},
 	//e_bigk
 	//	for which the (void*) must point to a (struct tm) from <time.h>
-	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
-		e_voidptr, e_voidptr},
+	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
+		e_voidptr, e_voidptr, e_voidptr},
 	//e_n
 	//	for which the value stored is actually a pointer to the type specified by
 	//	the length modifier as follows (where defaults are set to int* see doc):
