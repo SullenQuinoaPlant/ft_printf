@@ -1,6 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   output_padding.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/01 23:22:00 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/01 23:22:02 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-int		get_padlen(t_s_pct *p_chk, size_t len)
+int									get_padlen(
+	t_s_pct *p_chk,
+	size_t len)
 {
 	int		pad;
 
@@ -12,9 +26,8 @@ int		get_padlen(t_s_pct *p_chk, size_t len)
 	return (pad);
 }
 
-static int
-	output_zero_pad(
-		size_t len)
+static int							output_zero_pad(
+	size_t len)
 {
 	t_s_so	pad;
 
@@ -25,9 +38,11 @@ static int
 	return (output_syllable(&pad));
 }
 
-void		output_padnstuff(
-	size_t len, t_s_pct *chk,
-	t_outputter const f[], void *stuff)
+void								output_padnstuff(
+	size_t len,
+	t_s_pct *chk,
+	t_outputter const f[],
+	void *stuff)
 {
 	int				r;
 	int				pad;
@@ -52,8 +67,10 @@ void		output_padnstuff(
 		output_c(pad, ' ');
 }
 
-int			output_padnbuffer(
-	char *b, size_t len[], t_s_pct *chk)
+int									output_padnbuffer(
+	char *b,
+	size_t len[],
+	t_s_pct *chk)
 {
 	int				r;
 	int				pad;

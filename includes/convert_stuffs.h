@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:10:59 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/22 00:01:44 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/01 22:34:54 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void	cg_fzeros(int, void*);
 void	cg_flowdigits(int, void*);
 void	cg_fsetgroups(int, void*);
 
-# define K_BUFF_SZ 8
+# define K_BUFF_SZ 9
 typedef struct	s_convert_k_stuff {
 	char	buf[K_BUFF_SZ];
 }				t_s_kcs;
