@@ -1,1 +1,3 @@
-conversions : kK O rR U %
+conversions : K O rR U %
+
+test : k
