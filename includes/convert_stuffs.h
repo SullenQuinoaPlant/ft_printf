@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:10:59 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/01 22:34:54 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/02 00:00:19 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,21 +152,23 @@ void	cg_fzeros(int, void*);
 void	cg_flowdigits(int, void*);
 void	cg_fsetgroups(int, void*);
 
-# define K_BUFF_SZ 9
-typedef struct	s_convert_k_stuff {
-	char	buf[K_BUFF_SZ];
-}				t_s_kcs;
-
-# define 
+#define BK_SYLS 9
+#define BK_STR_SYLS 6
+typedef struct	s_convert_big_k_stuff {
+	t_s_pct	*chk;
+	t_s_so	syls[BK_SYLS];
+	t_s_sgd	syl_group;
+	char	*free_these[3];
+}				t_s_bkcs;
 
 # define O_SYLS 6
 typedef struct	s_convert_o_stuff {
-	t_s_pct	*chk;
-	t_s_so	syls[O_SYLS];
+	t_s_pct		*chk;
+	t_s_so		syls[O_SYLS];
 	t_vtb_mib	b;
 	t_s_vtb_cc	p_b;
-	int		pre;
-	t_s_sgd	group;
+	int			pre;
+	t_s_sgd		group;
 }				t_s_ocs;
 
 void	co_prefix(int, void*);

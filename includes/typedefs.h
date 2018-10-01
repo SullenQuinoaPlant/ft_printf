@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 20:39:16 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 23:40:43 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/01 23:43:08 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,24 +214,19 @@ enum			e_pad_pos {
 	e_pp_sz
 };
 
-typedef
-int
-	(*t_outputter)(void *stuff);
+typedef int	(*t_outputter)(void *stuff);
 
 /*t_outputter_array*/
-typedef
-t_outputter const
-	(t_oa)[e_oi_sz];
+typedef t_outputter const	(t_oa)[e_oi_sz];
 
 /*t_syllable_group_boundaries*/
-typedef
-int const
-	(t_sgb)[e_oi_sz];
+typedef int const	(t_sgb)[e_oi_sz];
 
 /*e_syllable_output_type 
-**two types of output:
 **	contiguous characters (cc)
 **	character (c)
+**	functions (f)
+**	their apstrophe-flag variants (_apstr_)
 */
 typedef enum	e_sot {
 	e_sot_cc,
@@ -278,9 +273,6 @@ typedef struct	s_syllable_group_descriptor {
 	char		apstr_c;
 }				t_s_sgd;
 
-typedef
-void
-	(*t_stuffer)(
-		int index, void *stf);
+typedef void	(*t_stuffer)(int index, void *stf);
 
 #endif
