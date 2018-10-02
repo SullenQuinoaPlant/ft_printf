@@ -41,5 +41,19 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%100s", "this is a string");
 	)
 
+	T(non_printable_0,
+		printf_compare("s_non_printable_0.ref",
+			"this is a string with all the non printables: %#s\n",
+			"\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F"
+			"\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D\x1E\x1F");
+	)
+			
+	T(non_printable_0_Lstring,
+		printf_compare("s_non_printable_0_Lstring.ref",
+			"this is a string with all the non printables: %#S\n",
+			L"éloïse\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F"
+			"\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D\x1E\x1F");
+	)
+			
 	return(run_test_arr(all_of, these));
 }

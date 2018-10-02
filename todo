@@ -1,6 +1,6 @@
 conversions : rR %
 
-test : kK O U
+test : kK O U #s #S
 
 
 make it work again.
