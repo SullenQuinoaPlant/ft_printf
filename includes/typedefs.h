@@ -253,7 +253,9 @@ typedef struct	s_syllable_output {
 				};
 }				t_s_so;
 
-/*number of digits to group by for APSTR_FLAG*/
+/*
+**number of digits to group by for APSTR_FLAG
+*/
 # define APSTR_FLAG_DECIMAL_GROUP 3
 # define AF_DG APSTR_FLAG_DECIMAL_GROUP
 # define APSTR_FLAG_DECIMAL_SEPARATOR '\''

@@ -34,12 +34,11 @@ void							cbk_dayofweek(
 
 	if (!stf->flags & HASH_FLAG)
 		return ;
-	syl->cc = &g_days[((struct tm*)stf->vaarg->p_val)->tm_wday];
+	syl->cc = &g_days[stf->tm->tm_wday];
 	syl->len = ft_strlen(syl->cc);
 }
 
-#define MONTH_NUM 0
-void							cbk_month(
+void							cbk_dm_sep(
 	int pos,
 	void *p)
 {
@@ -47,7 +46,124 @@ void							cbk_month(
 	t_s_so *const	syl = stf->syls + pos;
 
 	if (!stf->flags & HASH_FLAG)
-		syl->cc = &g_months[((struct tm*)stf->vaarg->p_val)->tm_mon];
+		return ;
+	syl->cc = ", "
+	syl->len = 2;
+}
+
+#define MONTH_NUM_LEN 2
+void							cbk_month(
+	int pos,
+	void *p)
+{
+	t_s_bkcs *const	stf = (t_s_bkcs*)p;
+	t_s_so *const	syl = stf->syls + pos;
+	int const		mon = stf->tm->tm_mon;
+	int				i;
+
+	if (stf->flags & HASH_FLAG)
+		syl->cc = &g_months[mon];
 	else
+	{
+		i = 0;
+		while (i++ < MONTH_NUM_LEN)
+		{
+			stf->month[MONTH_NUM_LEN - i] = mon % 10;
+			mon /= 10;
+		}
+		syl->cc = stf->month;
+	}
 	syl->len = ft_strlen(syl->cc);
+}
+
+void							cbk_md_sep(
+	int pos,
+	void *p)
+{
+	t_s_bkcs *const	stf = (t_s_bkcs*)p;
+	t_s_so *const	syl = stf->syls + pos;
+
+	if (stf->flags & HASH_FLAG)
+		syl->cc = " ";
+	else
+		syl->cc = "/";
+	syl->len = 1;
+}
+
+#define DAY_NUM_LEN 2
+void							cbk_dayofmonth(
+	int pos,
+	void *p)
+{
+	t_s_bkcs *const	stf = (t_s_bkcs*)p;
+	t_s_so *const	syl = stf->syls + pos;
+	int const		day = stf->tm->tm_mday;
+	int				i;
+
+	i = 0;
+	while (i++ < DAY_NUM_LEN)
+	{
+		stf->day[DAY_NUM_LEN - i] = day % 10;
+		day /= 10;
+	}
+	syl->cc = stf->day;
+	syl->len = ft_strlen(syl->cc);
+}
+
+void							cbk_day_suffix(
+	int pos,
+	void *p)
+{
+	t_s_bkcs *const	stf = (t_s_bkcs*)p;
+	t_s_so *const	syl = stf->syls + pos;
+	char const		first = stf->day[0];
+	char const		last = stf->day[DAY_NUM_LEN - 1];
+
+	if (!stf->flags & HASH_FLAG)
+		return ;
+	syl->cc = "th";
+	if (first != '1')
+	{
+		if (last == '1' &&)
+			syl->cc = "st";
+		else if (last == '2')
+			syl->cc = "nd";
+		else if (last == '3')
+			syl->cc = "rd";
+	}
+	syl->len = 2;
+}
+
+void							cbk_dy_sep(
+	int pos,
+	void *p)
+{
+	t_s_bkcs *const	stf = (t_s_bkcs*)p;
+	t_s_so *const	syl = stf->syls + pos;
+
+	if (stf->flags & HASH_FLAG)
+		syl->cc = " ";
+	else
+		syl->cc = "/";
+	syl->len = 1;
+}
+
+#defin YEAR_NUM_LEN 4
+void							cbk_year(
+	int pos,
+	void *p)
+{
+	t_s_bkcs *const	stf = (t_s_bkcs*)p;
+	t_s_so *const	syl = stf->syls + pos;
+	int const		year = stf->tm->tm_year;
+	int				i;
+
+	i = 0;
+	while (i++ < YEAR_NUM_LEN)
+	{
+		stf->year[YEAR_NUM_LEN - i] = year % 10;
+		year /= 10;
+	}
+	syl->cc = stf->year;
+	syl->len = 4;
 }

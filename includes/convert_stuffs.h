@@ -158,7 +158,9 @@ typedef struct	s_convert_big_k_stuff {
 	t_s_pct		*chk;
 	t_s_so		syls[BK_SYLS];
 	struct tm	*tm
-	char		*free_these[3];
+	char		year[4];
+	char		month[2];
+	char		day[2];
 }				t_s_bkcs;
 
 # define O_SYLS 6

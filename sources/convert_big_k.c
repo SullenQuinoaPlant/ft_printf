@@ -17,9 +17,11 @@ static t_stuffer				g_fstr[BK_SYLS + 1] =
 	dummy_stuffer,
 	dummy_stuffer,
 	cbk_dayofweek,
+	cbk_dm_sep,
 	cbk_month,
 	cbk_md_sep,
 	cbk_dayofmonth,
+	cbk_day_suffix,
 	cbk_dy_sep,
 	cbk_year,
 	dummy_stuffer,
@@ -40,7 +42,6 @@ void							init_stuff(
 {
 	stf->chk = chk;
 	stf->tm = (struct tm*)chk->vaarg->p_val;
-	ft_bzero(stf.free_these, sizeof(stf.free_these));
 }
 
 void							convert_k(
