@@ -199,7 +199,9 @@ typedef struct	s_convert_s_stuff {
 	int			pre;
 }				t_s_scs;
 
-int		tsof_wcharstr(size_t len, void *p);
+int		tsof_hash_charstr(size_t len, void *str)
+int		tsof_hash_wcharstr(size_t len, void *str);
+int		tsof_wcharstr(size_t len, void *str);
 
 #define U_SYLS 5
 typedef struct	s_convert_unsigned_stuff {

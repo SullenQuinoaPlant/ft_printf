@@ -35,8 +35,16 @@ static void							set_charstr(
 {
 	t_s_so *const	syl = stf->syls + CHAR_SYL;
 
-	syl->type = e_sot_cc;
-	syl->cc = *(char**)stf->chk->vaarg->p_val;
+	if (!stf->flags & HASH_FLAG)
+	{
+		syl->type = e_sot_cc;
+		syl->cc = *(char**)stf->chk->vaarg->p_val;
+	}
+	else
+	{
+		syl->type = e_sot_f;
+		syl->f = tsof_hash_charstr;
+	}
 	if (stf->pre == NULL_TERMED)
 		syl->len = ft_strlen(syl->cc);
 	else
@@ -46,19 +54,22 @@ static void							set_charstr(
 static void							set_wcharstr(
 	t_s_scs *stf)
 {
-	size_t	left;
-	size_t	r;
-	wchar_t	*str;
-	char	ar[UTF8_MAX_CHARS];
+	t_s_so *const	syl = stf->syls + CHAR_SYL;
+	size_t			left;
+	size_t			r;
+	wchar_t			*str;
+	char			ar[UTF8_MAX_CHARS];
 
-	stf->syls[CHAR_SYL].type = e_sot_f;
-	stf->syls[CHAR_SYL].f  = tsof_wcharstr;
+	syl->type = e_sot_f;
+	syl->f  = tsof_wcharstr;
+	if (stf->flags & HASH_FLAG)
+		syl->f = tsof_hash_wcharstr;
 	str = *(wchar_t**)stf->chk->vaarg->p_val;
-	stf->syls[CHAR_SYL].arg = str;
+	syl->arg = str;
 	left = stf->pre;
 	while (*str && (r = utf8_trueseq(*str++, ar)) <= left)
 		left -= r;
-	stf->syls[CHAR_SYL].len = stf->pre - left;
+	syl->len = stf->pre - left;
 }
 
 void								convert_s(
@@ -82,4 +93,3 @@ void								convert_big_s(
 {
 	convert_s(chk);
 }
-
