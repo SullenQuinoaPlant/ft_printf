@@ -55,7 +55,7 @@ static void							filter_flags(
 	t_e_cs	spe;
 
 	f_cpy = p_chk->flags;
-	if (f_cpy & MINUS_FLAG || \
+	if (f_cpy & MINUS_FLAG ||
 		(p_chk->precision && ((spe = p_chk->specifier) == e_d ||
 		spe == e_bigd || spe == e_i || spe == e_o || spe == e_bigo ||
 		spe == e_u || spe == e_bigu || spe == e_x || spe == e_big)))

@@ -29,7 +29,7 @@ char const *
 	if ((chk = ctl_chk_init()))
 	{
 		*cw = (t_s_cw){e_ctl_chk, chk};
-		in = attempt_all(in, g_f_str);
+		in = until_progress(in, g_f_str);
 		if (!(*chk->foo && *in++ == '}'))
 			in = save;
 	}
