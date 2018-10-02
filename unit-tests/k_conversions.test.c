@@ -35,7 +35,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		dummy.tm_hour = 0;
 
 		printf_compare("k_zerozerozero_hash.ref",
-			"%k\n", 
+			"%#k\n", 
 			&dummy);
 	)
 
@@ -61,7 +61,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		dummy.tm_hour = 1;
 
 		printf_compare("k_onetwothree_hash.ref",
-			"%k\n", 
+			"%#k\n", 
 			&dummy);
 	)
 
@@ -77,4 +77,6 @@ int	declare_tests_and_run(int all_of, char *these[])
 			"%k\n", 
 			&dummy);
 	)
+
+	return (run_test_arr(all_of, these));
 }

@@ -148,14 +148,15 @@ void							cbk_dy_sep(
 	syl->len = 1;
 }
 
-#defin YEAR_NUM_LEN 4
+#define YEAR_NUM_LEN 4
+#define YEAR_OFFSET 1900
 void							cbk_year(
 	int pos,
 	void *p)
 {
 	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
-	int const		year = stf->tm->tm_year;
+	int const		year = stf->tm->tm_year + YEAR_OFFSET;
 	int				i;
 
 	i = 0;
