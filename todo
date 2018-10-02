@@ -1,3 +1,7 @@
-conversions : K O rR U %
+conversions : rR %
 
-test : k
+test : kK O U
+
+
+make it work again.
+make it global-state-less

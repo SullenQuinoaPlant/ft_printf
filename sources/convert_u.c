@@ -64,3 +64,9 @@ void
 		out_syl_groups(&stf.group, 1);
 	}
 }
+
+void						convert_big_u(
+	t_s_pct *chk)
+{
+	convert_u(chk);
+}

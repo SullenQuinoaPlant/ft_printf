@@ -76,9 +76,8 @@ void								convert_o(
 	}
 }
 
-void								convert_big o(
+void								convert_big_o(
 	t_s_pct *chk)
 {
-	chk->len_mod = e_l;
 	convert_o(chk);
 }
