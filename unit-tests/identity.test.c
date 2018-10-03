@@ -107,12 +107,14 @@ int	declare_tests_and_run(int all_of, char *these[])
 							system(command);
 						system("cat identity_diff");
 					}
+					else
+						printf("success on: %s\n", *file);
 					close(res_fd);
 					assert_true(r <= 0);
 					r = r < 0 ? r : 0;
 				}
-				file++;
 			}
+			file++;
 			if (in_fd >= 0)
 				close(in_fd);
 			if (out_fd >= 0)
