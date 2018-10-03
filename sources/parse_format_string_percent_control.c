@@ -31,7 +31,10 @@ char const *
 		*cw = (t_s_cw){e_ctl_chk, chk};
 		in = until_progress(in, g_f_str);
 		if (!(*chk->foo && *in++ == '}'))
+		{
 			in = save;
+			chk->foo = 0;
+		}
 	}
 	else
 		g_ps.errored++;
