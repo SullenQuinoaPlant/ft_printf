@@ -24,17 +24,17 @@ void							set_separators(
 {
 	if (chk->flags & HASH_FLAG)
 	{
-		buf[HM_SEP] = ':';
-		buf[MS_SEP] = ':';
-		buf[S_TRAIL] = '\0';
-		*len = 8;
-	}
-	else
-	{
 		buf[HM_SEP] = 'h';
 		buf[MS_SEP] = 'm';
 		buf[S_TRAIL] = 's';
 		*len = 9;
+	}
+	else
+	{
+		buf[HM_SEP] = ':';
+		buf[MS_SEP] = ':';
+		buf[S_TRAIL] = '\0';
+		*len = 8;
 	}
 }
 
@@ -58,7 +58,7 @@ void							write_time(
 	i = -1;
 	while (++i < 3)
 	{
-		k = i * 3 - 1;
+		k = (1 + i) * 3 - 1;
 		j = 0;
 		while (j++ < TM_DIGITS)
 		{
@@ -80,7 +80,7 @@ void							convert_k(
 	size_t	lens[e_oi_sz];
 
 	lens[e_prefix] = 0;
-	set_separators(chk, buf, lens);
+	set_separators(chk, buf, &lens[e_root]);
 	write_time(*(struct tm**)chk->vaarg->p_val, buf);
 	output_padnbuffer(buf, lens, chk);
 }
