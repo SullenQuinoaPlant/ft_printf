@@ -12,6 +12,23 @@
 
 #include "inner.h"
 
+void							cp_signfix(
+	int pos,
+	void *p)
+{
+	t_s_pcs *const	stf = (t_s_pcs*)p;
+	t_s_so *const	syl = stf->syls + pos;
+	char const		flags = stf->chk->flags;
+
+	syl->len = 1;
+	if (flags & PLUS_FLAG)
+		syl-> c = '+';
+	else if (flags & SPACE_FLAG)
+		syl-> c = ' ';
+	else
+		syl->len = 0;
+}
+
 void							cp_hashfix(
 	int pos,
 	void *p)
