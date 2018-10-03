@@ -67,6 +67,11 @@ void								convert_p(
 	t_s_pcs		stf;
 
 	stf.chk = chk;
+	if (!*(void**)chk->vaarg->p_val)
+	{
+		output_nil(chk);
+		return ;
+	}
 	init_syls(e_sot_c, P_SYLS, stf.syls);
 	set_precision(&stf);
 	set_address(&stf);
