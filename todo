@@ -1,7 +1,15 @@
-conversions : rR %
+conversions : r(R needs read) %
 
 test : kK O U #s #S
 
 
 make it work again.
 make it global-state-less
+
+control chunk arguments : output_state, always, variable array of void pointers.
+%{> 3 * *}%{[}bla bla bla%{] 10]}
+
+writer function stack to filter the output. : void (*)(char*, size_t)
+use this to:
+	- count utf8 symbor output (count leading 0s and leading 11s)
+	- change otuput string/file

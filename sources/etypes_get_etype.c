@@ -100,6 +100,11 @@ static t_e_t const				g_types[e_cs_sz][e_lm_sz] =
 	//e_bigp
 	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
 		e_voidptr, e_voidptr, e_voidptr},
+	//e_r
+	{e_charptr, e_charptr, e_charptr, e_charptr, e_charptr, e_charptr,
+		e_charptr, e_charptr, e_charptr},
+	//e_bigr
+	{e_int, e_int, e_int, e_int, e_int, e_int, e_int, e_int, e_int},
 	//e_s
 	{e_charptr, e_charptr, e_charptr, e_wchar_tptr, e_charptr, e_charptr,
 		e_charptr, e_charptr, e_charptr},

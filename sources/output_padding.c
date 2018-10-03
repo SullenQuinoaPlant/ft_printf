@@ -69,7 +69,7 @@ void								output_padnstuff(
 
 int									output_padnbuffer(
 	char *b,
-	size_t len[],
+	size_t len[e_oi_sz],
 	t_s_pct *chk)
 {
 	int				r;

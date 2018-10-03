@@ -12,12 +12,6 @@
 
 #include "inner.h"
 
-static void							filter_flags(
-	t_s_pct *chk)
-{
-	chk->flags &= ~(APSTR_FLAG);
-}
-
 #define NULL_TERMED -1
 static void							get_precision(
 	t_s_pct *chk,
@@ -55,21 +49,25 @@ static void							set_wcharstr(
 	t_s_scs *stf)
 {
 	t_s_so *const	syl = stf->syls + CHAR_SYL;
-	size_t			left;
-	size_t			r;
+	size_t			len[2];
+	size_t			count;
 	wchar_t			*str;
 	char			ar[UTF8_MAX_CHARS];
 
 	syl->type = e_sot_f;
-	syl->f  = tsof_wcharstr;
-	if (stf->flags & HASH_FLAG)
-		syl->f = tsof_hash_wcharstr;
+	syl->f = stf->flags & HASH_FLAG ? tsof_hash_wcharstr : tsof_wcharstr;
 	str = *(wchar_t**)stf->chk->vaarg->p_val;
 	syl->arg = str;
-	left = stf->pre;
-	while (*str && (r = utf8_trueseq(*str++, ar)) <= left)
-		left -= r;
-	syl->len = stf->pre - left;
+	len[0] = stf->pre;
+	count = 0;
+	while (*str && (len[1] = utf8_trueseq(*str++, ar)) <= len[0])
+	{
+		len[0] -= len[1];
+		count++;
+	}
+	syl->len = stf->pre - len[0];
+	if (stf->chk->width && count < **stf->chk->width)
+		**stf->chk->width += syl->len - count;
 }
 
 void								convert_s(
@@ -78,7 +76,11 @@ void								convert_s(
 	t_s_scs	stf;
 
 	stf.chk = chk;
-	filter_flags(chk);
+	if (!*(void**)chk->vaarg->p_val)
+	{
+		output_null(chk);
+		return ;
+	}
 	get_precision(chk, &stf);
 	if (chk->vaarg->type == e_wchar_tptr)
 		set_wcharstr(&stf);

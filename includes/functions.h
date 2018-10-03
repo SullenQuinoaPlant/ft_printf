@@ -238,6 +238,9 @@ int
 	output_nan_inf(
 		t_s_dfp *val, t_s_pct *p_chk);
 
+int						output_null(
+	t_s_pct	*chk);
+
 int
 	output_padnbuffer(
 		char *b, size_t len[], t_s_pct *p_chk);

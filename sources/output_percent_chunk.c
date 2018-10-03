@@ -81,15 +81,17 @@ static void							filter_width(
 	}
 }
 
-static void	filter_precision(t_s_pct *chk)
+static void							filter_precision(
+	t_s_pct *chk)
 {
 	if (chk->precision &&
 		**chk->precision < 0 &&
 		!(chk->specifier == e_b || chk->specifier == e_B))
-			**chk->precision = 0;
+		**chk->precision = 0;
 }
 
-void		output_pct_chk(t_s_pct *p_chk)
+void								output_pct_chk(
+	t_s_pct *p_chk)
 {
 	filter_width(p_chk);
 	filter_flags(p_chk);
