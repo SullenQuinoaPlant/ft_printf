@@ -10,7 +10,7 @@ static void					set_base(
 		else
 			stf->base = VTB_01B_SYMS;
 	}
-	else if (stf->chk->specifier == e_B)
+	else if (stf->chk->specifier == e_bigb)
 	{
 		if (stf->chk->flags & PLUS_FLAG)
 			stf->base = VTB_BHEX_SYMS;

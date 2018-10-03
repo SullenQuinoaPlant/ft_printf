@@ -78,6 +78,6 @@ void							convert_k(
 
 	lens[e_prefix] = 0;
 	set_separators(chk, buf, lens);
-	write_time(chk->vaarg->p_val, buf);
+	write_time(*chk->vaarg->p_val, buf);
 	output_padnbuffer(buf, lens, chk);
 }

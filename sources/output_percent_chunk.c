@@ -86,7 +86,7 @@ static void							filter_precision(
 {
 	if (chk->precision &&
 		**chk->precision < 0 &&
-		!(chk->specifier == e_b || chk->specifier == e_B))
+		!(chk->specifier == e_b || chk->specifier == e_bigb))
 		**chk->precision = 0;
 }
 

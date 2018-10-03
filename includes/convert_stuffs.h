@@ -152,16 +152,25 @@ void	cg_fzeros(int, void*);
 void	cg_flowdigits(int, void*);
 void	cg_fsetgroups(int, void*);
 
-#define BK_SYLS 9
-#define BK_STR_SYLS 6
+#define BK_SYLS 11
 typedef struct	s_convert_big_k_stuff {
 	t_s_pct		*chk;
 	t_s_so		syls[BK_SYLS];
+	t_s_sgd		group;
 	struct tm	*tm;
 	char		year[4];
 	char		month[2];
 	char		day[2];
 }				t_s_bkcs;
+
+void	cbk_dayofweek(int, void*);
+void	cbk_dm_sep(int, void*);
+void	cbk_month(int, void*);
+void	cbk_md_sep(int, void*);
+void	cbk_dayofmonth(int, void*);
+void	cbk_day_suffix(int, void*);
+void	cbk_dy_sep(int, void*);
+void	cbk_year(int, void*);
 
 # define O_SYLS 6
 typedef struct	s_convert_o_stuff {
