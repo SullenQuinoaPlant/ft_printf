@@ -28,16 +28,18 @@ static void							set_charstr(
 	t_s_scs *stf)
 {
 	t_s_so *const	syl = stf->syls + CHAR_SYL;
+	char *const		str = *(char**)stf->chk->vaarg->p_val;
 
 	if (!stf->chk->flags & HASH_FLAG)
 	{
 		syl->type = e_sot_cc;
-		syl->cc = *(char**)stf->chk->vaarg->p_val;
+		syl->cc = str;
 	}
 	else
 	{
 		syl->type = e_sot_f;
 		syl->f = tsof_hash_charstr;
+		syl->arg = str;
 	}
 	if (stf->pre == NULL_TERMED)
 		syl->len = ft_strlen(syl->cc);

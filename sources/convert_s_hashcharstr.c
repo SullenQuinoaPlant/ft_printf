@@ -10,7 +10,7 @@ int					tsof_hash_charstr(
 	int		r;
 
 	str = (char*)p;
-	while (--len)
+	while (len--)
 	{
 		c = *str++;
 		c = c < ASCII_PRINTABLE ? c + ASCII_PRINTABLE : c;
