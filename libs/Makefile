@@ -69,7 +69,7 @@ clean-lib% :
 	-rm $(LIBS_I)/lib$*.h
 	-rm $(LIBS_L)/lib$*.a
 
-CLEAN_ALL_LIBS = $(patsubst %,clean-%,$(DEPENDENCIES))
+CLEAN_ALL_LIBS := $(patsubst %,clean-%,$(DEPENDENCIES))
 .PHONY : clean_libs
 clean_libs : $(CLEAN_ALL_LIBS)
 

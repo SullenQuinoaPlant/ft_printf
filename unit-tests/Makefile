@@ -11,7 +11,7 @@ EXECUTION_STAMPS := $(TEST_OBJS:.o=.execution.stamp)
 CFLAGS_UTEST = -fno-builtin -g
 CFLAGS_UTEST += $(CFLAGS_MORE)
 
-TEST_DEPENDENCIES = libgetnextline libcmocka_shared
+TEST_DEPENDENCIES = libgetnextline libcmocka
 
 
 
@@ -24,8 +24,8 @@ tests_all : build_test_dependencies clean-tests build_tests run_tests
 .PHONY : build_test_dependencies
 build_test_dependencies : $(TEST_DEPENDENCIES)
 
-.PHONY : libcmocka_shared
-libcmocka_shared :
+.PHONY : libcmocka
+libcmocka :
 		$(MAKE) -C $(UTEST_DIR)/cmocka/;\
 
 .PHONY : build_tests
@@ -45,7 +45,7 @@ $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
 		-include $(SRC_DIR)/$*.c\
 		$<\
 		-L $(LIBS_L)\
-		-lcmocka_shared\
+		-lcmocka\
 		-lmystupidmath -lmyfloatingpoint -lft\
 		-o $@\
 		-Wl,-rpath,$(LIBS_L)
@@ -59,7 +59,7 @@ $(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 		-I $(LIBS_I)\
 		$<\
 		-L $(LIBS_L)\
-		-lcmocka_shared\
+		-lcmocka\
 		-lftprintf\
 		$(patsubst lib%,-l%,$(TEST_DEPENDENCIES))\
 		$(patsubst lib%,-l%,$(DEPENDENCIES))\
@@ -86,7 +86,7 @@ cmocka :
 	@if $(CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -L $(LIBS_L)\
 	 	$(UTEST_DIR)/cmocka/check_install.c\
-		 -lcmocka_shared -o test.o\
+		 -lcmocka -o test.o\
 		-Wl,-rpath,$(LIBS_L)\
 		&& ./test.o .;\
 	then\
