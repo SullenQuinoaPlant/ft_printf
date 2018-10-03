@@ -12,7 +12,9 @@
 
 #include "inner.h"
 
-void	ca_prefix(int syl, void *p)
+void						ca_prefix(
+	int syl,
+	void *p)
 {
 	t_s_acs	* const stf = (t_s_acs*)p;
 	t_s_pct * const chk = stf->chk;
@@ -36,7 +38,9 @@ void	ca_prefix(int syl, void *p)
 	stf->syllables[syl] = set;
 }
 
-void	ca_power0(int syl, void *p)
+void						ca_power0(
+	int syl,
+	void *p)
 {
 	t_s_acs *const	stf = (t_s_acs*)p;
 	t_s_so			set;
