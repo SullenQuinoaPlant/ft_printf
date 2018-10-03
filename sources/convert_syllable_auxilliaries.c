@@ -136,7 +136,9 @@ int								round_ccsyl(
 	if (at >= syl->len)
 		return (0);
 	mid = base[base_len / 2];
-	carry = syl->cc[at] > mid ? 1 : 0;
+	carry = 0;
+	if (syl->cc[at] > mid || (syl->cc[at] == mid && !at))
+		carry = 1;
 	if (syl->cc[at] == mid)
 	{
 		zero = base[0];

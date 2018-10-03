@@ -40,6 +40,13 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%.0a", d);
 	)
 
+	T(test5_00,
+		double	d;
+
+		d = 2.5;
+		printf_diff("%.0a", d);
+	)
+
 	T(test5_0,
 		double	d;
 
