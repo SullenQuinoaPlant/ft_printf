@@ -46,7 +46,8 @@ static void							(*const f_ar[e_cs_sz])(t_s_pct *) =
 	convert_u,
 	convert_big_u,
 	convert_x,
-	convert_big_x
+	convert_big_x,
+	convert_pct
 };
 
 static void							filter_flags(

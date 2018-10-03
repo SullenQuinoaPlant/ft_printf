@@ -54,7 +54,7 @@ char const						*parse_convert(
 		if (!arg->position)
 			arg->position = (++g_ps.free_arg_count);
 		arg->type = get_etype(chk->specifier, chk->len_mod);
-		if (arg->type == e_notype)
+		if (chk->specifier == e_no_specifier)
 			in = save;
 	}
 	else

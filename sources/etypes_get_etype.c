@@ -119,7 +119,10 @@ static t_e_t const				g_types[e_cs_sz][e_lm_sz] =
 		e_size_t, e_ptrdiff_t},
 	//e_X
 	{e_uint, e_uchar, e_ushort, e_ulong, e_ulonglong, e_uint, e_uintmax_t,
-		e_size_t, e_ptrdiff_t}
+		e_size_t, e_ptrdiff_t},
+	//e_pct (e_percent for % conversion)
+	{e_notype, e_notype, e_notype, e_notype, e_notype, e_notype, e_notype,
+		e_notype, e_notype}
 };
 
 t_e_t							get_etype(

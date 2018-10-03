@@ -51,7 +51,7 @@ char const								*percent_convert_length_mod(
 char const								*percent_convert_specifier(
 	char const *in)
 {
-	char const		*specifiers = "aAbBcCdDeEfFgGikKnoOpPrRsSuUxX%";
+	char const		*specifiers = "aAbBcCdDeEfFgGikKnNoOpPrRsSuUxX%";
 	t_s_pct *const	p_pct = get_p_pct();
 	char			*p_c;
 

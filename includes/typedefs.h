@@ -91,6 +91,7 @@ typedef enum	convert_e_specifiers {
 	e_s, e_bigs,
 	e_u, e_bigu,
 	e_x, e_bigx,
+	e_pct,
 	e_cs_sz
 }				t_e_cs;
 
