@@ -8,8 +8,10 @@
 int	declare_tests_and_run(int all_of, char *these[])
 {
 	struct tm	dec_time;
+	time_t		tim;
 
-	localtime_r(time(0), &dec_time);
+	tim = time(0);
+	localtime_r(&tim, &dec_time);
 
 	T(zerozerozero,
 		struct tm	dummy;

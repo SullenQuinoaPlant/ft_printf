@@ -11,7 +11,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 	struct tm	dec_time;
 
 	tiime = time(0);
-	localtime_r(tiime, &dec_time);
+	localtime_r(&tiime, &dec_time);
 
 	T(date0,
 		struct tm	dummy;
