@@ -157,7 +157,7 @@ void	cg_fsetgroups(int, void*);
 typedef struct	s_convert_big_k_stuff {
 	t_s_pct		*chk;
 	t_s_so		syls[BK_SYLS];
-	struct tm	*tm
+	struct tm	*tm;
 	char		year[4];
 	char		month[2];
 	char		day[2];
@@ -199,18 +199,18 @@ typedef struct	s_convert_s_stuff {
 	int			pre;
 }				t_s_scs;
 
-int		tsof_hash_charstr(size_t len, void *str)
+int		tsof_hash_charstr(size_t len, void *str);
 int		tsof_hash_wcharstr(size_t len, void *str);
 int		tsof_wcharstr(size_t len, void *str);
 
 #define U_SYLS 5
 typedef struct	s_convert_unsigned_stuff {
-	t_s_pct	*chk;
-	t_s_so	syls[U_SYLS];
+	t_s_pct		*chk;
+	t_s_so		syls[U_SYLS];
 	t_vtb_mib	b;
 	t_s_vtb_cc	p_b;
-	int		pre;
-	t_s_sgd	group;
+	int			pre;
+	t_s_sgd		group;
 }				t_s_ucs;
 
 void	cu_prefix(int, void*);
