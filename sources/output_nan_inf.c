@@ -1,45 +1,46 @@
 #include "inner.h"
 
-static char	*g_nan = "nan";
-static char	*g_bignan = "NAN";
-static char *g_inf = "inf";
-static char *g_biginf = "INF";
+static char	*g_nan = "(nan)";
+static char	*g_bignan = "(NAN)";
+static char *g_inf = "(inf)";
+static char *g_biginf = "(INF)";
+static char *g_pinf = "(+inf)";
+static char *g_bigpinf = "(+INF)";
+static char *g_minf = "(-inf)";
+static char *g_bigminf = "(-INF)";
 
-static int	output_nan(t_s_pct *p)
+static int	output_nan(
+	t_s_pct *p)
 {
-	char	*s;
-	size_t	l;
-	int		r;
-
-	s = p->flags & BIGCS_FLAG ? g_bignan : g_nan;
-	l = ft_strlen(s);
-	r = output_padnbuffer(s, (size_t[e_oi_sz]){0, l}, p);
-	return (r);
+	return (output_string(g_nan, p));
 }
 
 static int	output_plusinf(t_s_pct *p)
 {
-	int		r;
-	size_t	l;
-	char	*s;
+	char const	flags = p->flags;
+	char		*s;
 
- 	s = p->flags & BIGCS_FLAG ? g_biginf : g_inf;
-	l = ft_strlen(s);
-	l += p->flags & (PLUS_FLAG | SPACE_FLAG) ? 1 : 0;
-	r = output_padnbuffer(s, (size_t[e_oi_sz]){0, l}, p);
-	return (r);
+	s = g_inf;
+	if (flags & PLUS_FLAG)
+	{
+		s = g_pinf;
+		if (flags & BIGCS_FLAG)
+			s = g_bigpinf;
+	}
+	else if (flags & BIGCS_FLAG)
+		s = g_biginf;
+	return (output_string(s, p);
 }
 
 static int	output_minusinf(t_s_pct *p)
 {
-	char	*s;
-	size_t	l;
-	int		r;
+	char const	flags = p->flags;
+	char		*s;
 
- 	s = p->flags & BIGCS_FLAG ? g_biginf : g_inf;
-	l = ft_strlen(s);
-	r = output_padnbuffer(s, (size_t[e_oi_sz]){0, l}, p);
-	return (r);
+	s = g_minf;
+	if (flags & BIGCS_FLAG)
+		s = g_bigminf;
+	return (output_string(s, p);
 }
 
 /*of r: output functions called from output_nan_inf

@@ -15,6 +15,7 @@
 static t_stuffer					g_fstr[P_SYLS + 1] =
 {
 	dummy_stuffer,
+	cp_signfix,
 	cp_hashfix,
 	dummy_stuffer,
 	cp_prefix,

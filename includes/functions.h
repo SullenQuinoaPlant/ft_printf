@@ -166,6 +166,11 @@ int
 		t_s_pct	*chk);
 
 int
+	output_string(
+		char const *str,
+		t_s_pct *chk);
+
+int
 	output_padnbuffer(
 		char *b, size_t len[], t_s_pct *p_chk);
 
