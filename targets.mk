@@ -31,6 +31,7 @@ TARGETS := \
 	convert_o \
 	convert_o_stuffers \
 	convert_p \
+	convert_pct \
 	convert_p_stuffers \
 	convert_r \
 	convert_s \
