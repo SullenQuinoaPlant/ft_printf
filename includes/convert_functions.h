@@ -129,4 +129,8 @@ void
 	convert_big_x(
 		t_s_pct *p_chk);
 
+void
+	convert_pct(
+		t_s_pct *p_chk);
+
 #endif
