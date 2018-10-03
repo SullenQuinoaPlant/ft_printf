@@ -108,6 +108,9 @@ static t_e_t const				g_types[e_cs_sz][e_lm_sz] =
 	//e_s
 	{e_charptr, e_charptr, e_charptr, e_wchar_tptr, e_charptr, e_charptr,
 		e_charptr, e_charptr, e_charptr},
+	//e_bigs
+	{e_wchar_tptr, e_wchar_tptr, e_wchar_tptr, e_wchar_tptr, e_wchar_tptr,
+		e_wchar_tptr, e_wchar_tptr, e_wchar_tptr, e_wchar_tptr},
 	//e_u
 	{e_uint, e_uchar, e_ushort, e_ulong, e_ulonglong, e_uint, e_uintmax_t,
 		e_size_t, e_ptrdiff_t},

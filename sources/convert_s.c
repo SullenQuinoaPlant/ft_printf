@@ -42,7 +42,7 @@ static void							set_charstr(
 		syl->arg = str;
 	}
 	if (stf->pre == NULL_TERMED)
-		syl->len = ft_strlen(syl->cc);
+		syl->len = ft_strlen(str);
 	else
 		syl->len = stf->pre;
 }
