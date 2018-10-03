@@ -47,7 +47,7 @@ static t_e_t const				g_types[e_cs_sz][e_lm_sz] =
 	{e_int, e_char, e_short, e_long, e_longlong, e_int, e_intmax_t, e_ssize_t,
 		e_ptrdiff_t},
 	//e_bigd
-	{e_long e_long e_long e_long e_long e_long e_long, e_long, e_long},
+	{e_long, e_long, e_long, e_long, e_long, e_long, e_long, e_long, e_long},
 	//e_e
 	{e_double, e_double, e_double, e_double, e_double, e_longdouble, e_double,
 		e_double, e_double},
@@ -92,7 +92,7 @@ static t_e_t const				g_types[e_cs_sz][e_lm_sz] =
 	{e_uint, e_uchar, e_ushort, e_ulong, e_ulonglong, e_uint, e_uintmax_t,
 		e_size_t, e_ptrdiff_t},
 	//e_bigo
-	{e_ulong e_ulong e_ulong e_ulong e_ulong e_ulong e_ulong, e_ulong,
+	{e_ulong, e_ulong, e_ulong, e_ulong, e_ulong, e_ulong, e_ulong, e_ulong,
 		e_ulong},
 	//e_p
 	{e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr, e_voidptr,
@@ -112,7 +112,7 @@ static t_e_t const				g_types[e_cs_sz][e_lm_sz] =
 	{e_uint, e_uchar, e_ushort, e_ulong, e_ulonglong, e_uint, e_uintmax_t,
 		e_size_t, e_ptrdiff_t},
 	//e_bigu
-	{e_ulong e_ulong e_ulong e_ulong e_ulong e_ulong e_ulong, e_ulong,
+	{e_ulong, e_ulong, e_ulong, e_ulong, e_ulong, e_ulong, e_ulong, e_ulong,
 		e_ulong},
 	//e_x
 	{e_uint, e_uchar, e_ushort, e_ulong, e_ulonglong, e_uint, e_uintmax_t,

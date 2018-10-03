@@ -1,3 +1,6 @@
+#include <time.h>
+#include "inner.h"
+
 static char						*g_days[7] =
 {
 	"Sunday",
@@ -7,7 +10,7 @@ static char						*g_days[7] =
 	"Thursday",
 	"Friday",
 	"Saturday"
-}
+};
 
 static char						*g_months[12] =
 {
@@ -31,10 +34,12 @@ void							cbk_dayofweek(
 {
 	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
+	int				wday;
 
-	if (!stf->flags & HASH_FLAG)
+	wday = stf->tm->tm_wday;
+	if (!stf->chk->flags & HASH_FLAG)
 		return ;
-	syl->cc = &g_days[stf->tm->tm_wday];
+	syl->cc = g_days[wday];
 	syl->len = ft_strlen(syl->cc);
 }
 
@@ -45,9 +50,9 @@ void							cbk_dm_sep(
 	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
 
-	if (!stf->flags & HASH_FLAG)
+	if (!stf->chk->flags & HASH_FLAG)
 		return ;
-	syl->cc = ", "
+	syl->cc = ", ";
 	syl->len = 2;
 }
 
@@ -58,11 +63,12 @@ void							cbk_month(
 {
 	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
-	int const		mon = stf->tm->tm_mon;
+	int				mon;
 	int				i;
 
-	if (stf->flags & HASH_FLAG)
-		syl->cc = &g_months[mon];
+	mon = stf->tm->tm_mon;
+	if (stf->chk->flags & HASH_FLAG)
+		syl->cc = g_months[mon];
 	else
 	{
 		i = 0;
@@ -83,7 +89,7 @@ void							cbk_md_sep(
 	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
 
-	if (stf->flags & HASH_FLAG)
+	if (stf->chk->flags & HASH_FLAG)
 		syl->cc = " ";
 	else
 		syl->cc = "/";
@@ -97,9 +103,10 @@ void							cbk_dayofmonth(
 {
 	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
-	int const		day = stf->tm->tm_mday;
+	int				day;
 	int				i;
 
+	day = stf->tm->tm_mday;
 	i = 0;
 	while (i++ < DAY_NUM_LEN)
 	{
@@ -119,12 +126,12 @@ void							cbk_day_suffix(
 	char const		first = stf->day[0];
 	char const		last = stf->day[DAY_NUM_LEN - 1];
 
-	if (!stf->flags & HASH_FLAG)
+	if (!stf->chk->flags & HASH_FLAG)
 		return ;
 	syl->cc = "th";
 	if (first != '1')
 	{
-		if (last == '1' &&)
+		if (last == '1')
 			syl->cc = "st";
 		else if (last == '2')
 			syl->cc = "nd";
@@ -141,7 +148,7 @@ void							cbk_dy_sep(
 	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
 
-	if (stf->flags & HASH_FLAG)
+	if (stf->chk->flags & HASH_FLAG)
 		syl->cc = " ";
 	else
 		syl->cc = "/";
@@ -156,9 +163,10 @@ void							cbk_year(
 {
 	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
-	int const		year = stf->tm->tm_year + YEAR_OFFSET;
+	int				year;
 	int				i;
 
+	year = stf->tm->tm_year + YEAR_OFFSET;
 	i = 0;
 	while (i++ < YEAR_NUM_LEN)
 	{

@@ -29,7 +29,7 @@ static void							set_charstr(
 {
 	t_s_so *const	syl = stf->syls + CHAR_SYL;
 
-	if (!stf->flags & HASH_FLAG)
+	if (!stf->chk->flags & HASH_FLAG)
 	{
 		syl->type = e_sot_cc;
 		syl->cc = *(char**)stf->chk->vaarg->p_val;
@@ -55,7 +55,7 @@ static void							set_wcharstr(
 	char			ar[UTF8_MAX_CHARS];
 
 	syl->type = e_sot_f;
-	syl->f = stf->flags & HASH_FLAG ? tsof_hash_wcharstr : tsof_wcharstr;
+	syl->f = stf->chk->flags & HASH_FLAG ? tsof_hash_wcharstr : tsof_wcharstr;
 	str = *(wchar_t**)stf->chk->vaarg->p_val;
 	syl->arg = str;
 	len[0] = stf->pre;
@@ -66,7 +66,7 @@ static void							set_wcharstr(
 		count++;
 	}
 	syl->len = stf->pre - len[0];
-	if (stf->chk->width && count < **stf->chk->width)
+	if (stf->chk->width && count < (size_t)**stf->chk->width)
 		**stf->chk->width += syl->len - count;
 }
 

@@ -78,7 +78,7 @@ void								convert_d(
 	}
 }
 
-void								convert_big d(
+void								convert_big_d(
 	t_s_pct *chk)
 {
 	chk->len_mod = e_l;

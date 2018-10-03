@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#inlude "inner.h"
+#include <time.h>
+#include "inner.h"
 
 #define HM_SEP 2
 #define MS_SEP 5
@@ -51,7 +52,9 @@ void							write_time(
 	int		j;
 	int		k;
 
-	hms = (int[3]){tm->tm_hour, tm->tm_min, tm->tm_sec};
+	hms[H] = tm->tm_hour;
+	hms[M] = tm->tm_min;
+	hms[S] = tm->tm_sec;
 	i = -1;
 	while (++i < 3)
 	{
@@ -78,6 +81,6 @@ void							convert_k(
 
 	lens[e_prefix] = 0;
 	set_separators(chk, buf, lens);
-	write_time(*chk->vaarg->p_val, buf);
+	write_time(*(struct tm**)chk->vaarg->p_val, buf);
 	output_padnbuffer(buf, lens, chk);
 }

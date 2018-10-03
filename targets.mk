@@ -36,7 +36,6 @@ TARGETS := \
 	convert_s \
 	convert_s_hashcharstr \
 	convert_sign \
-	convert_stuffers_auxilliaries \
 	convert_s_wcharstr \
 	convert_syllable_auxilliaries \
 	convert_tscc_to_syllable \
@@ -82,4 +81,5 @@ TARGETS := \
 	parse_format_string_text \
 	parse_literal_integer \
 	parse_percent_star_arg \
-	parse_state_store_integer
+	parse_state_store_integer \
+	tstuffer_auxilliaries

@@ -7,11 +7,9 @@
 
 int	declare_tests_and_run(int all_of, char *these[])
 {
-	time_t		time;
 	struct tm	dec_time;
 
-	time = time(0);
-	localtime_r(time, &dec_time);
+	localtime_r(time(0), &dec_time);
 
 	T(zerozerozero,
 		struct tm	dummy;

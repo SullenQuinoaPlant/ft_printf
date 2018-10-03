@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "inner.h"
+#include "convert_functions.h"
 
 static void							(*const f_ar[e_cs_sz])(t_s_pct *) =
 {
@@ -58,7 +59,7 @@ static void							filter_flags(
 	if (f_cpy & MINUS_FLAG ||
 		(p_chk->precision && ((spe = p_chk->specifier) == e_d ||
 		spe == e_bigd || spe == e_i || spe == e_o || spe == e_bigo ||
-		spe == e_u || spe == e_bigu || spe == e_x || spe == e_big)))
+		spe == e_u || spe == e_bigu || spe == e_x || spe == e_bigx)))
 		f_cpy &= ~(ZERO_FLAG);
 	if (f_cpy & PLUS_FLAG)
 		f_cpy &= ~(SPACE_FLAG);

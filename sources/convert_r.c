@@ -1,3 +1,5 @@
+#include "inner.h"
+
 void						convert_r(
 	t_s_pct *chk)
 {
