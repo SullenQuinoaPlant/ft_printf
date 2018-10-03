@@ -12,7 +12,10 @@ static char *g_bigminf = "(-INF)";
 static int	output_nan(
 	t_s_pct *p)
 {
-	return (output_string(g_nan, p));
+	char	*s;
+
+	s = p->flags & BIGCS_FLAG ? g_bignan : g_nan;
+	return (output_string(s, p));
 }
 
 static int	output_plusinf(t_s_pct *p)
@@ -29,7 +32,7 @@ static int	output_plusinf(t_s_pct *p)
 	}
 	else if (flags & BIGCS_FLAG)
 		s = g_biginf;
-	return (output_string(s, p);
+	return (output_string(s, p));
 }
 
 static int	output_minusinf(t_s_pct *p)
@@ -40,7 +43,7 @@ static int	output_minusinf(t_s_pct *p)
 	s = g_minf;
 	if (flags & BIGCS_FLAG)
 		s = g_bigminf;
-	return (output_string(s, p);
+	return (output_string(s, p));
 }
 
 /*of r: output functions called from output_nan_inf

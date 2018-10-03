@@ -63,10 +63,11 @@ TARGETS := \
 	output_fp \
 	output_generic \
 	output_nan_inf \
-	output_null \
+	output_nil_null \
 	output_padding \
 	output_percent_chunk \
 	output_simple_chunks \
+	output_string \
 	output_syllables \
 	outputter_auxilliaries \
 	pad_syllables \

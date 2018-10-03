@@ -20,7 +20,8 @@ size_t
 
 size_t
 	apstr_len_syls(
-		t_s_so * syl, size_t count,
+		t_s_so * syl,
+		size_t count,
 		size_t grp);
 
 int
@@ -34,16 +35,19 @@ size_t
 int
 	apstr_purge_ornot(
 		t_s_pct *chk,
-		t_s_so *syls, size_t count);
+		t_s_so *syls,
+		size_t count);
 
 void
 	apstrify_zpad(
 		size_t grp,
-		t_s_so *pad, int *pos);
+		t_s_so *pad,
+		int *pos);
 
 void
 	apstrify_zpad_grp(
-		t_s_so *pad, t_s_sgd *grps);
+		t_s_so *pad,
+		t_s_sgd *grps);
 
 char const *
 	attempt_all(
@@ -66,11 +70,13 @@ void
 
 t_e_t
 	get_etype(
-		t_e_cs specifier, t_e_lm len_mod);
+		t_e_cs specifier,
+		t_e_lm len_mod);
 
 void
 	get_fpndfp(
-		t_s_arg *g, t_s_fpndfp *ret);
+		t_s_arg *g,
+		t_s_fpndfp *ret);
 
 long double
 	get_ldouble(
@@ -81,11 +87,14 @@ t_s_pct	*
 
 int
 	get_padlen(
-		t_s_pct *chk, size_t len);
+		t_s_pct *chk,
+		size_t len);
 
 void
 	gos_set_apstr(
-		size_t grp, char c, size_t len);
+		size_t grp,
+		char c,
+		size_t len);
 
 void
 	gos_set_grp(
@@ -96,7 +105,8 @@ t_s_ctl *
 
 int
 	gos_update(
-		ssize_t writ, size_t expected);
+		ssize_t writ,
+		size_t expected);
 
 int
 	get_va_args(
@@ -111,7 +121,9 @@ void
 
 void
 	init_syls(
-		enum e_sot type, int how_many, t_s_so *ar);
+		enum e_sot type,
+		int how_many,
+		t_s_so *ar);
 
 int
 	is_apstr(
@@ -131,19 +143,23 @@ int
 
 int
 	out_eat_tspot(
-		size_t count, t_s_pot *num);
+		size_t count,
+		t_s_pot *num);
 
 int
 	out_syl_groups(
-		t_s_sgd *grp, int count);
+		t_s_sgd *grp,
+		int count);
 
 int
 	output_c(
-		size_t yay_much, char ofthis);
+		size_t yay_much,
+		char ofthis);
 
 int
 	output_cc(
-		size_t len, char *b);
+		size_t len,
+		char const *b);
 
 void
 	output_char_chk(
@@ -155,7 +171,8 @@ int
 
 int
 	output_nan_inf(
-		t_s_dfp *val, t_s_pct *p_chk);
+		t_s_dfp *val,
+		t_s_pct *p_chk);
 
 int
 	output_nil(
@@ -172,12 +189,16 @@ int
 
 int
 	output_padnbuffer(
-		char *b, size_t len[], t_s_pct *p_chk);
+		char const *b,
+		size_t len[],
+		t_s_pct *p_chk);
 
 void
 	output_padnstuff(
-		size_t len, t_s_pct *p_chk,
-		t_outputter const f[], void *stuff);
+		size_t len,
+		t_s_pct *p_chk,
+		t_outputter const f[],
+		void *stuff);
 
 void
 	output_pct_chk(
@@ -189,7 +210,8 @@ int
 
 int
 	output_syllables(
-		t_s_so *these, int count);
+		t_s_so *these,
+		int count);
 
 void
 	output_txt_chk(
@@ -197,7 +219,8 @@ void
 
 int
 	outputter_nop(
-		t_s_pct *what, void *ever);
+		t_s_pct *what,
+		void *ever);
 
 char const *
 	parse_control(
@@ -209,7 +232,8 @@ char const *
 
 char const *
 	parse_fill_literal_int_dollar(
-		char const *in, int * const to_fill);
+		char const *in,
+		int *const to_fill);
 
 int
 	parse_format_string(
@@ -217,7 +241,8 @@ int
 
 char const *
 	parse_literal_uint(
-		char const *in, unsigned int *p_res);
+		char const *in,
+		unsigned int *p_res);
 
 char const *
 	parse_percent(
@@ -225,7 +250,8 @@ char const *
 
 char const *
 	parse_store_int_literal(
-		char const *in, int *** const p_res);
+		char const *in,
+		int ***const p_res);
 
 char const *
 	parse_text(
@@ -271,7 +297,8 @@ char const *
 
 char const *
 	percent_convert_star(
-		char const *in, int ***p_res);
+		char const *in,
+		int ***p_res);
 
 char const *
 	percent_convert_width(
@@ -279,10 +306,11 @@ char const *
 
 int **
 	ps_store_integer(
-		int val, int *** const p_res);
+		int val,
+		int ***const p_res);
 
 t_s_arg *
-	req_arg_init();
+	req_arg_init(void);
 
 int
 	round_ccsyl(
@@ -293,7 +321,8 @@ int
 
 int
 	round_ldouble(
-		long double *d, int pow10);
+		long double *d,
+		int pow10);
 
 int
 	run_output_ctl(
@@ -301,16 +330,21 @@ int
 
 void
 	set_dfp(
-		t_s_arg *arg, t_s_dfp *p_ret);
+		t_s_arg *arg,
+		t_s_dfp *p_ret);
 
 void
 	set_pad_syl(
-		t_s_pct *chk, int *pad_i,
-		t_s_sgd *syl_grps, int count);
+		t_s_pct *chk,
+		int *pad_i,
+		t_s_sgd *syl_grps,
+		int count);
 
 t_s_vtb_cc
 	sign_to_b(
-		int sign, t_s_pct *p_chk, char *b);
+		int sign,
+		t_s_pct *p_chk,
+		char *b);
 
 t_s_so
 	syl_lowv_tob(
@@ -334,11 +368,14 @@ t_s_so
 
 size_t
 	sylgrps_outlen(
-		t_s_sgd grp[], int count);
+		t_s_sgd grp[],
+		int count);
 
 size_t
 	syls_outlen(
-		t_s_so *syl, int count, size_t apstr_grp);
+		t_s_so *syl,
+		int count,
+		size_t apstr_grp);
 
 int
 	toctlf_control_filedes(
@@ -352,11 +389,13 @@ int
 
 int
 	tsof_out_eat_tspot(
-		size_t len, void *arg);
+		size_t len,
+		void *arg);
 
 size_t
 	tssos_lensum(
-		t_s_so stack[], int len);
+		t_s_so stack[],
+		int len);
 
 char const *
 	until_no_progress(
@@ -366,11 +405,11 @@ char const *
 char const *
 	until_progress(
 		char const *in,
-		char const * (*const *f_str)(char const *));
+		char const *(*const *f_str)(char const *));
 
 char const *
 	while_progress(
 		char const *in,
-		char const * (*const *f_str)(char const *));
+		t_parser const *f_str);
 
 #endif
