@@ -68,18 +68,21 @@ void							cbk_month(
 
 	mon = stf->tm->tm_mon;
 	if (stf->chk->flags & HASH_FLAG)
+	{
 		syl->cc = g_months[mon];
+		syl->len = ft_strlen(syl->cc);
+	}
 	else
 	{
 		i = 0;
 		while (i++ < MONTH_NUM_LEN)
 		{
-			stf->month[MONTH_NUM_LEN - i] = mon % 10;
+			stf->month[MONTH_NUM_LEN - i] = '0' +  mon % 10;
 			mon /= 10;
 		}
 		syl->cc = stf->month;
+		syl->len = MONTH_NUM_LEN;
 	}
-	syl->len = ft_strlen(syl->cc);
 }
 
 void							cbk_md_sep(
@@ -110,11 +113,11 @@ void							cbk_dayofmonth(
 	i = 0;
 	while (i++ < DAY_NUM_LEN)
 	{
-		stf->day[DAY_NUM_LEN - i] = day % 10;
+		stf->day[DAY_NUM_LEN - i] = '0' + day % 10;
 		day /= 10;
 	}
 	syl->cc = stf->day;
-	syl->len = ft_strlen(syl->cc);
+	syl->len = DAY_NUM_LEN;
 }
 
 void							cbk_day_suffix(
@@ -170,9 +173,9 @@ void							cbk_year(
 	i = 0;
 	while (i++ < YEAR_NUM_LEN)
 	{
-		stf->year[YEAR_NUM_LEN - i] = year % 10;
+		stf->year[YEAR_NUM_LEN - i] = '0' + year % 10;
 		year /= 10;
 	}
 	syl->cc = stf->year;
-	syl->len = 4;
+	syl->len = YEAR_NUM_LEN;
 }
