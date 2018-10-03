@@ -211,6 +211,13 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%2.*a", -3, d);
 	)
 
+	T(test19_00,
+		double	d;
+
+		d = 1.456;
+		printf_diff("%2a", d);
+	)
+
 	T(test19_0,
 skip();
 		double	d;
@@ -331,6 +338,20 @@ skip();
 
 		d = 2.0;
 		printf_diff("text_%2$.*1$a_text", 13, d);
+	)
+
+	T(test30,
+		double	d;
+
+		d = 0.8;
+		printf_diff("%a", d);
+	)
+
+	T(test31,
+		double	d;
+
+		d = 0.88;
+		printf_diff("%a", d);
 	)
 
 /*Skipped tests where printf displays crazy behavior in contradiction with the man page I've read.*/
