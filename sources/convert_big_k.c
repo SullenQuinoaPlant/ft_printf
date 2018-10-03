@@ -12,7 +12,7 @@
 
 #include "inner.h"
 
-static t_stuffer				g_fstr[BK_SYLS + 1] =
+static t_stuffer const			g_fstr[BK_SYLS + 1] =
 {
 	dummy_stuffer,
 	dummy_stuffer,
@@ -54,5 +54,6 @@ void							convert_big_k(
 	init_syls(e_sot_cc, BK_SYLS, stf.syls);
 	call_tstuffers(g_fstr, &stf, pad_indexes);
 	set_group(&stf);
-	set_pad_syl(chk, pad_indexes, &stf.group, 
+	set_pad_syl(chk, pad_indexes, &stf.group, 1);
+	out_syl_groups(&stf->group, 1);
 }

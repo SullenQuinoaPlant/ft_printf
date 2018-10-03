@@ -30,7 +30,6 @@ TARGETS := \
 	convert_nospecifier \
 	convert_o \
 	convert_o_stuffers \
-	convert_pad_syllables \
 	convert_p \
 	convert_p_stuffers \
 	convert_r \
@@ -70,6 +69,7 @@ TARGETS := \
 	output_simple_chunks \
 	output_syllables \
 	outputter_auxilliaries \
+	pad_syllables \
 	parse_auxilliaries \
 	parse_format_string \
 	parse_format_string_percent \

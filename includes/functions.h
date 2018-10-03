@@ -3,15 +3,20 @@
 
 void
 	apstr_grp_props_nooffset(
-		size_t grp_sz, char grp_c, t_s_sgd *gd);
+		size_t grp_sz,
+		char grp_c,
+		t_s_sgd *gd);
 
 void
 	apstr_grp_props_offset(
-		size_t grp_sz, char grp_c, t_s_sgd *gd);
+		size_t grp_sz,
+		char grp_c,
+		t_s_sgd *gd);
 
 size_t
 	apstr_len_raw(
-		size_t len, size_t grp_sz);
+		size_t len,
+		size_t grp_sz);
 
 size_t
 	apstr_len_syls(
@@ -47,7 +52,8 @@ char const *
 
 void
 	call_tstuffers(
-		t_stuffer *f_str, void *p_stf,
+		t_stuffer const *f_str,
+		void *p_stf,
 		int *dummy_indexes);
 
 void
@@ -438,9 +444,6 @@ char const *
 	until_progress(
 		char const *in,
 		char const * (*const *f_str)(char const *));
-
-/*void const *vaarg_WHATEVER(va_list*); functions*/
-# include "get_va_args__vaargers.h"
 
 char const *
 	while_progress(

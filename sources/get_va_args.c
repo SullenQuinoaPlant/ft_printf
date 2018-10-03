@@ -1,4 +1,5 @@
 #include "inner.h"
+#include "get_va_args__vaargers.h"
 
 void const	*(*f_ar[e_types_sz])(va_list*) = {
 			vaarg_notype,

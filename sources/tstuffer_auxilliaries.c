@@ -1,9 +1,9 @@
 #include "inner.h"
 
-void
-	call_tstuffers(
-		t_stuffer *f_str, void *p_stf,
-		int *dummy_indexes)
+void					call_tstuffers(
+	t_stuffer const *f_str,
+	void *p_stf,
+	int *dummy_indexes)
 {
 	t_stuffer	f;
 	int			dummy_i;
@@ -23,4 +23,3 @@ void	dummy_stuffer(int i, void *v)
 	(void)i;
 	(void)v;
 }
-
