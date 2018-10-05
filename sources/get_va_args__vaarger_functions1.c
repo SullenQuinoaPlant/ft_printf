@@ -4,7 +4,7 @@ t_s_vl		vaarg_notype(
 	t_s_vl list,
 	void **p_ret)
 {
-	(void)val;
+	(void)list;
 	(void)p_ret;
 	return (list);
 }

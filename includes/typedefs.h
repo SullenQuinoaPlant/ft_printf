@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 20:39:16 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/06 00:44:36 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/06 01:36:50 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ typedef struct	s_va_arg {
 		int			position;
 		int			count_uses;
 				};
-	void const	*p_val;
+	void	*p_val;
 }				t_s_arg;
 
 # define NO_FLAGS 0X00
@@ -277,9 +277,4 @@ typedef struct	s_syllable_group_descriptor {
 }				t_s_sgd;
 
 typedef void	(*t_stuffer)(int index, void *stf);
-
-typedef struct	s_va_list
-{
-	va_list		l;
-}				t_s_vl;
 #endif

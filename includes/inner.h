@@ -9,6 +9,7 @@
 # include <stdarg.h>
 # include <wchar.h>
 
+# include "ftprintf.h"
 # include "libft.h"
 # include "libmyfloatingpoint.h"
 # include "libmystupidmath.h"

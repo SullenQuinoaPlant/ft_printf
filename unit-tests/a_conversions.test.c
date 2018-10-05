@@ -1,6 +1,7 @@
 #define HOW_MANY_TESTS 100
-//#include "cmocka/my_overlay.h"
+#include "cmocka/my_overlay.h"
 
+/*
 #include "libftprintf.h"
 int	main()
 {
@@ -9,8 +10,8 @@ int	main()
 	ft_printf("%a", d1);
 	return (0);
 }
+*/
 
-/*
 #include "printf_diff.c"
 
 int	declare_tests_and_run(int all_of, char *these[])

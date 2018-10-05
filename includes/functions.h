@@ -110,7 +110,7 @@ int
 
 int
 	get_va_args(
-		va_list vaargs);
+		t_s_vl vaargs);
 
 void
 	init_output_state(

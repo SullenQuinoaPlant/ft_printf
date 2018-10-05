@@ -22,6 +22,7 @@ int	printf_diff(char const * format, ...)
 	FILE	*a_fd;
 	int		system_failure = 1;
 	ssize_t	res = 0, a_res, b_res;
+	t_s_vl	vl;
 
 	va_start(a_l, format);
 	va_copy(b_l, a_l);
@@ -33,7 +34,8 @@ int	printf_diff(char const * format, ...)
 		(b_fd = creat("b.txt", S_IRUSR | S_IWUSR)) > 0 &&
 		dup2(b_fd, 1) > 0)
 	{
-		b_res = ft_vprintf(format, b_l);
+		memcpy(&vl.l, &b_l, sizeof(va_list));
+		b_res = ft_vprintf(format, vl);
 		if (!close(b_fd))
 			b_fd = -1;
 		save_fd = restore_fd1(save_fd);
@@ -87,13 +89,15 @@ int
 	int		save_fd = -1, diff_fd = -1, b_fd = -1;
 	int		system_failure = 1;
 	ssize_t	res = 0, b_res;
+	t_s_vl	vl;
 
 	va_start(b_l, format);
 	if ((save_fd = dup(1)) > 0 &&
 		(b_fd = creat("b.txt", S_IRUSR | S_IWUSR)) > 0 &&
 		dup2(b_fd, 1) > 0)
 	{
-		b_res = ft_vprintf(format, b_l);
+		memcpy(&vl.l, &b_l, sizeof(va_list));
+		b_res = ft_vprintf(format, vl);
 		save_fd = restore_fd1(save_fd);
 		char	command_buffer[COMMAND_BUFFER];
 		snprintf(command_buffer, COMMAND_BUFFER,

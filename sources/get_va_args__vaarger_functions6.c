@@ -7,7 +7,7 @@ t_s_vl		vaarg_wchar_tptr(
 	t_list		*known_val;
 	wchar_t		*val;
 
-	val = va_arg(list.l typeof(val));
+	val = va_arg(list.l, typeof(val));
 	if((known_val = ft_lstnew(&val, sizeof(typeof(val)))))
 	{
 		ft_lstadd(&g_ps.p_known_vals, known_val);
