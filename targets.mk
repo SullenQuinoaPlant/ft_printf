@@ -39,7 +39,6 @@ TARGETS := \
 	convert_s_wcharstr \
 	convert_sign \
 	convert_syllable_auxilliaries \
-	convert_tscc_to_syllable \
 	convert_u \
 	convert_u_stuffers \
 	convert_x \
@@ -84,4 +83,5 @@ TARGETS := \
 	parse_literal_integer \
 	parse_percent_star_arg \
 	parse_state_store_integer \
+	tscc_to_tsso \
 	tstuffer_auxilliaries
