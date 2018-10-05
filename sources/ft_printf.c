@@ -6,7 +6,9 @@ t_s_os	g_os;
 /*
 **they want an int so we give them an int
 */
-int		ft_vprintf(const char *format, va_list va_p)
+int									ft_vprintf(
+	const char *format,
+	va_list va_p)
 {
 	int		r;
 
@@ -23,7 +25,9 @@ int		ft_vprintf(const char *format, va_list va_p)
 	return (r);
 }
 
-int		ft_printf(const char *format, ...)
+int		ft_printf(
+	const char *format,
+	...)
 {
 	int		r;
 	va_list	va_p;
