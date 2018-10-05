@@ -60,13 +60,17 @@ static void	fill_vaarg_ar(t_s_arg *ar)
 }
 
 static void resolve_vaargs(
-	va_list *vaargs, t_s_arg *ar, size_t len)
+	va_list vaargs,
+	t_s_arg *ar,
+	size_t len)
 {
 	size_t	i;
+	va_list	next;
 
 	i = ~0;
+	next = vaargs;
 	while (++i < len)
-		ar[i].p_val = f_ar[ar[i].type](vaargs);
+		next = f_ar[ar[i].type](next, &ar[i].p_val);
 }
 
 static void	fulfill_arg_reqs(t_s_arg *resolved)
@@ -100,7 +104,8 @@ static void	check_arg_use(
 		}
 }
 
-int			get_va_args(va_list *vaargs)
+int			get_va_args(
+	va_list vaargs)
 {
 	unsigned int	len;
 	size_t			ar_sz;
