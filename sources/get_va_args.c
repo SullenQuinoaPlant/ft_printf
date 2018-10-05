@@ -1,7 +1,7 @@
 #include "inner.h"
 #include "get_va_args__vaargers.h"
 
-void const	*(*f_ar[e_types_sz])(va_list*) = {
+t_s_vl		(*f_ar[e_types_sz])(t_s_vl vl, void **p_ret) = {
 			vaarg_notype,
 			vaarg_char,
 			vaarg_uchar,

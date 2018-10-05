@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 20:39:16 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/01 23:43:08 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/06 00:44:36 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,4 +278,8 @@ typedef struct	s_syllable_group_descriptor {
 
 typedef void	(*t_stuffer)(int index, void *stf);
 
+typedef struct	s_va_list
+{
+	va_list		l;
+}				t_s_vl;
 #endif
