@@ -1,6 +1,16 @@
 #define HOW_MANY_TESTS 100
-#include "cmocka/my_overlay.h"
+//#include "cmocka/my_overlay.h"
 
+#include "libftprintf.h"
+int	main()
+{
+	double	d1;
+	d1 = 0.0;
+	ft_printf("%a", d1);
+	return (0);
+}
+
+/*
 #include "printf_diff.c"
 
 int	declare_tests_and_run(int all_of, char *these[])
@@ -8,7 +18,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 	T(test1,
 		double	d;
 
-		d = 0.0;
+		d = 0.0L;
 		printf_diff("%a", d);
 	)
 
@@ -354,7 +364,8 @@ skip();
 		printf_diff("%a", d);
 	)
 
-/*Skipped tests where printf displays crazy behavior in contradiction with the man page I've read.*/
-/*Might even decide to revert the accomodations made forthe default rounding behavior.*/
 	return(run_test_arr(all_of, these));
 }
+//*/
+/*Skipped tests where printf displays crazy behavior in contradiction with the man page I've read.*/
+/*Might even decide to revert the accomodations made forthe default rounding behavior.*/
