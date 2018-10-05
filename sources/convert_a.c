@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:08:25 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/20 23:47:48 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/05 03:37:17 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void						convert_a(
 	set_float_stuff(chk, &stf);
 	if (output_nan_inf(&stf.fpd, chk))
 		return;
-	init_syls(e_sot_c, A_SYLLABLES, stf.syllables);
 	call_tstuffers(g_fstr, &stf, pads);
 	set_syl_grps(&stf);
 	set_pad_syl(chk, pads, stf.syl_groups, A_SYLGRPS);

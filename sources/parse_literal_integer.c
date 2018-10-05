@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_literal_integer.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/05 03:18:31 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/05 03:19:18 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-char const	*parse_literal_uint(
-	char const *in, unsigned int *p_res)
+char const						*parse_literal_uint(
+	char const *in,
+	unsigned int *p_res)
 {
 	int			res;
 
@@ -17,8 +30,9 @@ char const	*parse_literal_uint(
 	return (in);
 }
 
-char const	*parse_fill_literal_int_dollar(
-	char const *in, int * const to_fill)
+char const						*parse_fill_literal_int_dollar(
+	char const *in,
+	int *const to_fill)
 {
 	char const		*p_s;
 	unsigned int	val;
@@ -36,8 +50,9 @@ char const	*parse_fill_literal_int_dollar(
 	return (in);
 }
 
-char const	*parse_store_int_literal(
-	char const *in, int *** const p_res)
+char const						*parse_store_int_literal(
+	char const *in,
+	int ***const p_res)
 {
 	unsigned int	val;
 	char const		*p_str;

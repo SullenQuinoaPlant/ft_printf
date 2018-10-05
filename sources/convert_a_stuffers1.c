@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:22:12 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 02:21:57 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/05 03:36:26 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void						ca_power0(
 	t_s_acs *const	stf = (t_s_acs*)p;
 	t_s_so			set;
 
+	set.type = e_sot_cc;
 	set.len = 1;
 	if (stf->chk->flags & APSTR_FLAG)
 		set.type = e_sot_apstr_cc;
