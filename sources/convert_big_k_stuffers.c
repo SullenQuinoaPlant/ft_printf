@@ -37,7 +37,7 @@ void							cbk_dayofweek(
 	int				wday;
 
 	wday = stf->tm->tm_wday;
-	if (!stf->chk->flags & HASH_FLAG)
+	if (!(stf->chk->flags & HASH_FLAG))
 		return ;
 	syl->cc = g_days[wday];
 	syl->len = ft_strlen(syl->cc);
@@ -50,7 +50,7 @@ void							cbk_dm_sep(
 	t_s_bkcs *const	stf = (t_s_bkcs*)p;
 	t_s_so *const	syl = stf->syls + pos;
 
-	if (!stf->chk->flags & HASH_FLAG)
+	if (!(stf->chk->flags & HASH_FLAG))
 		return ;
 	syl->cc = ", ";
 	syl->len = 2;
@@ -129,7 +129,7 @@ void							cbk_day_suffix(
 	char const		first = stf->day[0];
 	char const		last = stf->day[DAY_NUM_LEN - 1];
 
-	if (!stf->chk->flags & HASH_FLAG)
+	if (!(stf->chk->flags & HASH_FLAG))
 		return ;
 	syl->cc = "th";
 	if (first != '1')

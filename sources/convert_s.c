@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 19:35:03 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 20:08:59 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/06 03:46:52 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void							set_charstr(
 	t_s_so *const	syl = stf->syls + CHAR_SYL;
 	char *const		str = *(char**)stf->chk->vaarg->p_val;
 
-	if (!stf->chk->flags & HASH_FLAG)
+	if (!(stf->chk->flags & HASH_FLAG))
 	{
 		syl->type = e_sot_cc;
 		syl->cc = str;

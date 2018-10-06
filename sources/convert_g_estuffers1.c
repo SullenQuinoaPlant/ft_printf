@@ -52,7 +52,7 @@ void
 	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
 
-	if (!stf->chk->flags & HASH_FLAG &&
+	if (!(stf->chk->flags & HASH_FLAG) &&
 		!(stf->pre -= trailing_zeros(stf->number.times, 1, stf->pre)))
 		(syl - SEPARATOR_REL_POS)->len = 0;
 	syl->len = stf->pre;

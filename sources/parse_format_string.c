@@ -25,7 +25,7 @@ int				parse_format_string(char const *in)
 	in = while_progress(strt, g_f_str);
 	if (*in)
 		g_ps.errored++;
-	if (get_dollar_convention(&g_ps) == e_mix_dollar)
+	if (get_dollar_convention() == e_mix_dollar)
 		g_ps.errored++;
 	if (g_ps.free_arg_count > g_ps.max_arg_pos)
 		g_ps.max_arg_pos = g_ps.free_arg_count;

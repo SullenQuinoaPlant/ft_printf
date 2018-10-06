@@ -29,10 +29,16 @@ void						convert_big_r(
 
 	if (fd < 0)
 		return ;
+	pre = chk->precision ? **chk->precision : -1;
 	r = 1;
-	while (r > 0)
+	while (r > 0 && pre)
 	{
-		b_sz = pre > BUFF_SZ ? BUFF_SZ : pre;
+		b_sz = BUFF_SZ;
+		if (pre > 0)
+		{
+			b_sz = pre > BUFF_SZ ? BUFF_SZ : pre;
+			pre -= b_sz;
+		}
 		r = read(fd, b, b_sz);
 		output_padnbuffer(b, (size_t[e_oi_sz]){0, b_sz}, chk);
 		pre -= BUFF_SZ;
