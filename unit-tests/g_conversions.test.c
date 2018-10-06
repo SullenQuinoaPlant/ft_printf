@@ -141,6 +141,14 @@ skip();
 		double	d;
 
 		d = 1.5;
+		printf_diff("%010.10g", d);
+	)
+
+	T(test10_0,
+skip();
+		double	d;
+
+		d = 1.5;
 		printf_diff("%010,10g", d);
 	)
 
