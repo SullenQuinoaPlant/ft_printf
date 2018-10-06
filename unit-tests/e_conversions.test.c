@@ -47,8 +47,8 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%.0e", d);
 	)
 
+g_be_gentle = 1;
 	T(test5_1,
-skip();
 //they round both 1.5 and 2.5 to 2.0 I don't get it, I don't like it.
 		double	d;
 
@@ -58,6 +58,7 @@ skip();
 			printf_diff("%.0e", d);
 		}
 	)
+g_be_gentle = 0;
 
 	T(test5_1_0,
 		double	d;
@@ -143,13 +144,14 @@ skip();
 		printf_diff("%010.10e", d);
 	)
 
+g_be_gentle = 1;
 	T(test10_0,
-skip();
 		double	d;
 
 		d = 1.5;
 		printf_diff("%010,10e", d);
 	)
+g_be_gentle = 0;
 
 	T(test11,
 		double	d;
@@ -207,37 +209,41 @@ skip();
 		printf_diff("%*.2e", -2, d);
 	)
 
+g_be_gentle = 1;
 	T(test19,
-skip();
 		double	d;
 
 		d = 0.0;
 		printf_diff("%2.*e", -3, d);
 	)
+g_be_gentle = 0;
 
+g_be_gentle = 1;
 	T(test19_0,
-skip();
 		double	d;
 
 		d = 1.456;
 		printf_diff("%2.*e", -3, d);
 	)
+g_be_gentle = 0;
 
+g_be_gentle = 1;
 	T(test19_1,
-skip();
 		double	d;
 
 		d = 1.456;
 		printf_diff("%2.-3e", d);
 	)
+g_be_getle = 0;
 
+g_be_gentle = 1;
 	T(test20,
-skip();
 		double	d;
 
 		d = 1234.1234;
 		printf_diff("%.*e", -2, d);
 	)
+g_be_getle = 0;
 
 	T(test21,
 		double	d;
@@ -321,14 +327,15 @@ skip();
 		printf_diff("%02$.*1$e", 13, d);
 	)
 
+g_be_gentle = 1;
 	T(test29_0,
-skip();
 		double	d;
 
 		d = 2.0;
 		printf_diff("%12$.*1$e", 13, d);
 		printf_diff("%302$.*1$e", 13, d);
 	)
+g_be_getle = 0;
 
 	T(text_double_text,
 		double	d;

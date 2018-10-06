@@ -61,5 +61,7 @@ int		main()
 
 	ft_printf("%{>2}this isn't really an error\n");
 
+	ft_printf("a p conversion : %#'p\n", &a);
+
 	return (0);
 }

@@ -15,4 +15,3 @@ use this to:
 	- change otuput string/file
 
 ----------REPAIRS--------------
-binary printintg, 64bit addresses truncated. this is NOT GOOD.

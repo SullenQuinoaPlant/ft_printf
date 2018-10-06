@@ -15,6 +15,11 @@ static int	restore_fd1(int save_fd)
 	return (-1);
 }
 
+/*
+**Will not fail on diff when this is set:
+*/
+int			g_be_gentle;
+
 int	printf_diff(char const * format, ...) 
 {
 	va_list	a_l, b_l;
@@ -71,7 +76,7 @@ int	printf_diff(char const * format, ...)
 			"file comparison failed for %s\n",
 			format);
 		skip();
-	} else {
+	} else if (!g_be_gentle) {
 		assert_false(res);
 	}
 	return (system_failure);

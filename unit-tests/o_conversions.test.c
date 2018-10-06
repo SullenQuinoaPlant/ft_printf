@@ -161,15 +161,16 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%.0o", t);
 	)
 
+g_be_gentle = 1;
 	T(test27,
-skip();
 		int		t = 1000;
 
 		printf_compare("o_test27.ref", "%'o", t);
 	)
+g_be_getle = 0;
 
+g_be_gentle = 1;
 	T(test28,
-skip();
 		int		t = -1000;
 
 		if (sizeof(int) != 4)
@@ -177,34 +178,39 @@ skip();
 		else
 			printf_compare("o_test28.ref", "%'o", t);
 	)
+g_be_getle = 0;
 
+g_be_gentle = 1;
 	T(test29,
-skip();
 		int		t = 12;
 
 		printf_compare("o_test29.ref", "%'o", t);
 	)
+g_be_getle = 0;
 
+g_be_gentle = 1;
 	T(test30,
-skip();
 		int		t = 12;
 
 		printf_compare("o_test30.ref", "%'012o", t);
+	g_be_gentle = 1;
 	)
 
+	g_be_gentle = 1;
 	T(test31,
-skip();
 		int		t = 12;
 
 		printf_compare("o_test31.ref", "%'.12o", t);
 	)
+g_be_getle = 0;
 
+g_be_gentle = 1;
 	T(test32,
-skip();
 		int		t = 12;
 
 		printf_diff("%012o", t);
 	)
+g_be_getle = 0;
 
 	return(run_test_arr(all_of, these));
 }

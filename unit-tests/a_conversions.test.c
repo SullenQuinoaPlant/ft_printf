@@ -228,29 +228,32 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%2a", d);
 	)
 
+g_be_gentle = 1;
 	T(test19_0,
-skip();
 		double	d;
 
 		d = 1.456;
 		printf_diff("%2.*a", -3, d);
 	)
+g_be_gentle = 0;
 
+g_be_gentle = 1;
 	T(test19_1,
-skip();
 		double	d;
 
 		d = 1.456;
 		printf_diff("%2.-3a", d);
 	)
+g_be_gentle = 0;
 
+g_be_gentle = 1;
 	T(test20,
-skip();
 		double	d;
 
 		d = 1234.1234;
 		printf_diff("%.*a", -2, d);
 	)
+g_be_gentle = 0;
 
 	T(test21,
 		double	d;
@@ -335,7 +338,7 @@ skip();
 	)
 
 	T(test29_0,
-skip();
+g_be_gentle = 1;
 		double	d;
 
 		d = 2.0;
