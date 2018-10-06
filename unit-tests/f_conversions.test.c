@@ -58,7 +58,7 @@ g_be_gentle = 1;
 			printf_diff("%.0f", d);
 		}
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 g_be_gentle = 1;
 	T(test5_1_0,
@@ -67,7 +67,7 @@ g_be_gentle = 1;
 		d = 16.5;
 		printf_diff("%.0f", d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 	T(test5_2,
 		double	d;
@@ -153,7 +153,7 @@ g_be_gentle = 1;
 		d = 1.5;
 		printf_diff("%010,10f", d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 	T(test11,
 		double	d;
@@ -218,7 +218,7 @@ g_be_gentle = 1;
 		d = 0.0;
 		printf_diff("%2.*f", -3, d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 g_be_gentle = 1;
 	T(test19_0,
@@ -227,7 +227,7 @@ g_be_gentle = 1;
 		d = 1.456;
 		printf_diff("%2.*f", -3, d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 g_be_gentle = 1;
 	T(test19_1,
@@ -236,7 +236,7 @@ g_be_gentle = 1;
 		d = 1.456;
 		printf_diff("%2.-3f", d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 g_be_gentle = 1;
 	T(test20,
@@ -245,7 +245,7 @@ g_be_gentle = 1;
 		d = 1234.1234;
 		printf_diff("%.*f", -2, d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 	T(test21,
 		double	d;
@@ -261,7 +261,7 @@ g_be_getle = 0;
 		d = 1234.1234;
 		printf_diff("%.*f", 13, d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 	T(test23,
 		double	d;
@@ -339,7 +339,7 @@ g_be_gentle = 1;
 		printf_diff("%12$.*1$f", 13, d);
 		printf_diff("%302$.*1$f", 13, d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 	T(test30,
 		double	d;

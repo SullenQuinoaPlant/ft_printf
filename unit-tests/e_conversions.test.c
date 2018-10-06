@@ -234,7 +234,7 @@ g_be_gentle = 1;
 		d = 1.456;
 		printf_diff("%2.-3e", d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 g_be_gentle = 1;
 	T(test20,
@@ -243,7 +243,7 @@ g_be_gentle = 1;
 		d = 1234.1234;
 		printf_diff("%.*e", -2, d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 	T(test21,
 		double	d;
@@ -335,7 +335,7 @@ g_be_gentle = 1;
 		printf_diff("%12$.*1$e", 13, d);
 		printf_diff("%302$.*1$e", 13, d);
 	)
-g_be_getle = 0;
+g_be_gentle = 0;
 
 	T(text_double_text,
 		double	d;

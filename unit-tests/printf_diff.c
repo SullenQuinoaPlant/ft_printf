@@ -134,7 +134,7 @@ int
 			"file comparison failed for %s\n",
 			format);
 		skip();
-	} else {
+	} else if (!g_be_gentle){
 		assert_false(res);
 	}
 	return (system_failure);
