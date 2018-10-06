@@ -25,8 +25,8 @@ DEPENDENCIES =\
 	libmyfloatingpoint\
 	libft
 
-CC := gcc-8.2.0
-#CC := gcc
+#CC := gcc-8.2.0
+CC := gcc
 ifndef ARCH
 	ARCH := ARCH_A
 endif

@@ -5,6 +5,7 @@ install:
  - . .travis/install_42FileChecker.sh
  - make build_dependencies
  - make build_test_dependencies
+ - make gnu_ld
 script:
  - make
  - make unit-tests
