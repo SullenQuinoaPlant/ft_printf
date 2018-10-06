@@ -33,7 +33,7 @@ int	printf_diff(char const * format, ...)
 		(b_fd = creat("b.txt", S_IRUSR | S_IWUSR)) > 0 &&
 		dup2(b_fd, 1) > 0)
 	{
-		b_res = ft_vprintf(format, b_l);
+		b_res = ft_vprintf(format, &b_l);
 		if (!close(b_fd))
 			b_fd = -1;
 		save_fd = restore_fd1(save_fd);
@@ -93,7 +93,7 @@ int
 		(b_fd = creat("b.txt", S_IRUSR | S_IWUSR)) > 0 &&
 		dup2(b_fd, 1) > 0)
 	{
-		b_res = ft_vprintf(format, b_l);
+		b_res = ft_vprintf(format, &b_l);
 		save_fd = restore_fd1(save_fd);
 		char	command_buffer[COMMAND_BUFFER];
 		snprintf(command_buffer, COMMAND_BUFFER,

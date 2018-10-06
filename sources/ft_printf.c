@@ -8,14 +8,14 @@ t_s_os	g_os;
 */
 int									ft_vprintf(
 	const char *format,
-	va_list va_p)
+	va_list *p_va)
 {
 	int		r;
 
 	r = -1;
 	init_parse_state();
 	if (parse_format_string(format) &&
-		get_va_args((va_list*)&va_p))
+		get_va_args(p_va))
 	{
 		init_output_state(STDOUT_FILENO);
 		if (output_chunks(&g_ps))
@@ -30,10 +30,10 @@ int		ft_printf(
 	...)
 {
 	int		r;
-	va_list	va_p;
+	va_list	va;
 
-	va_start(va_p, format);
-	r = ft_vprintf(format, va_p);
-	va_end(va_p);
+	va_start(va, format);
+	r = ft_vprintf(format, &va);
+	va_end(va);
 	return (r);
 }

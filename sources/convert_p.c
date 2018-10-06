@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 22:57:11 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 23:14:28 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/06 02:22:31 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_stuffer					g_fstr[P_SYLS + 1] =
 	0
 };
 
-static int							set_address(
+static void							set_address(
 	t_s_pcs *stf)
 {
 	t_s_pct *const	chk = stf->chk;
@@ -39,15 +39,18 @@ static int							set_address(
 	if (chk->flags & BIGCS_FLAG)
 		syms = VTB_BHEX_SYMS;
 	stf->p_b = vtb_uv_tscc(d, syms, &stf->b);
-	return (d ? 1 : 0);
 }
 
-static int							set_precision(
+/*
+**GNU uses the PLUS_FLAG and SPACE_FLAG mac no.
+*/
+static void							set_flags_and_precision(
 	t_s_pcs *stf)
 {
 	t_s_pct *const	chk = stf->chk;
 
-	return ((stf->pre = chk->precision ? **chk->precision : -1));
+	stf->chk->flags &= ~(PLUS_FLAG | SPACE_FLAG);
+	stf->pre = chk->precision ? **chk->precision : 1;
 }
 
 static void							set_group(
@@ -61,6 +64,14 @@ static void							set_group(
 		apstr_grp_props_offset(AF_2G, AF_BS, &stf->group);
 }
 
+/*
+**I'd rather output (nil)
+**	if (!*(void**)chk->vaarg->p_val)
+**	{
+**		output_nil(chk);
+**		return ;
+**	}
+*/
 void								convert_p(
 	t_s_pct *chk)
 {
@@ -68,13 +79,8 @@ void								convert_p(
 	t_s_pcs		stf;
 
 	stf.chk = chk;
-	if (!*(void**)chk->vaarg->p_val)
-	{
-		output_nil(chk);
-		return ;
-	}
 	init_syls(e_sot_c, P_SYLS, stf.syls);
-	set_precision(&stf);
+	set_flags_and_precision(&stf);
 	set_address(&stf);
 	call_tstuffers(g_fstr, &stf, pad_indexes);
 	set_group(&stf);

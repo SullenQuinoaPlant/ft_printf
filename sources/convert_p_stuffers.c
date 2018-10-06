@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 23:04:50 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 23:11:21 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/06 02:21:33 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ void							cp_digits(
 
 	syl->type = e_sot_apstr_cc;
 	syl->cc = stf->p_b.c;
-	syl->len = stf->p_b.len;
+	syl->len = stf->pre ? stf->p_b.len : 0;
 }
