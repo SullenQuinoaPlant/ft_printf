@@ -13,3 +13,6 @@ writer function stack to filter the output. : void (*)(char*, size_t)
 use this to:
 	- count utf8 symbor output (count leading 0s and leading 11s)
 	- change otuput string/file
+
+----------REPAIRS--------------
+binary printintg, 64bit addresses truncated. this is NOT GOOD.

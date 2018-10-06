@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:10:59 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/02 00:14:17 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/06 02:59:11 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,12 +188,12 @@ void	co_digits(int, void*);
 
 #define P_SYLS 7
 typedef struct	s_convert_p_stuff {
-	t_s_pct	*chk;
-	t_s_so	syls[P_SYLS];
+	t_s_pct		*chk;
+	t_s_so		syls[P_SYLS];
 	t_vtb_mib	b;
 	t_s_vtb_cc	p_b;
-	int		pre;
-	t_s_sgd	group;
+	int			pre;
+	t_s_sgd		group;
 }				t_s_pcs;
 
 void	cp_signfix(int, void*);
