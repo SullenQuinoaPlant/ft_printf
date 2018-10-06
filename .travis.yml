@@ -9,7 +9,5 @@ install:
 script:
  - make
  - make unit-tests
- - make clean-ft_printf
- - ls -R1 ./ft_printf
 # - bash ~/42FileChecker/42FileChecker.sh --project "ft_printf" --path "$(pwd)/ft_printf" --no-norminette
 # - cat ~/42FileChecker/.my*
