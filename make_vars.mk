@@ -27,6 +27,9 @@ DEPENDENCIES =\
 
 #CC := gcc-8.2.0
 CC := gcc
+ifndef CC_DEFINES
+	CC_DEFINES := GNU
+endif
 ifndef ARCH
 	ARCH := ARCH_A
 endif

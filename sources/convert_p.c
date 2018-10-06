@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 22:57:11 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/06 02:22:31 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/06 02:37:28 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,14 @@ static void							set_address(
 	stf->p_b = vtb_uv_tscc(d, syms, &stf->b);
 }
 
-/*
-**GNU uses the PLUS_FLAG and SPACE_FLAG mac no.
-*/
 static void							set_flags_and_precision(
 	t_s_pcs *stf)
 {
 	t_s_pct *const	chk = stf->chk;
 
+#ifdef MAC_OS
 	stf->chk->flags &= ~(PLUS_FLAG | SPACE_FLAG);
+#endif
 	stf->pre = chk->precision ? **chk->precision : 1;
 }
 
@@ -66,11 +65,6 @@ static void							set_group(
 
 /*
 **I'd rather output (nil)
-**	if (!*(void**)chk->vaarg->p_val)
-**	{
-**		output_nil(chk);
-**		return ;
-**	}
 */
 void								convert_p(
 	t_s_pct *chk)
@@ -79,6 +73,13 @@ void								convert_p(
 	t_s_pcs		stf;
 
 	stf.chk = chk;
+#ifdef GNU
+	if (!*(void**)chk->vaarg->p_val)
+	{
+		output_nil(chk);
+		return ;
+	}
+#endif
 	init_syls(e_sot_c, P_SYLS, stf.syls);
 	set_flags_and_precision(&stf);
 	set_address(&stf);
