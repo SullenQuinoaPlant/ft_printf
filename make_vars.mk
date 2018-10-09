@@ -27,8 +27,6 @@ DEPENDENCIES =\
 
 ifndef TOOLS
 	TOOLS := MAC
-else
-	TOOLS := GNU
 endif
 
 ifndef ARCH

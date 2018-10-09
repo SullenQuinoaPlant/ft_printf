@@ -45,8 +45,8 @@ $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
 		-include $(SRC_DIR)/$*.c\
 		$<\
 		-L $(LIBS_L)\
-		-lcmocka\
-		-lmystupidmath -lmyfloatingpoint -lft\
+		$(patsubst lib%,-l%,$(TEST_DEPENDENCIES))\
+		$(patsubst lib%,-l%,$(DEPENDENCIES))\
 		-o $@\
 		-Wl,-rpath,$(LIBS_L)
 
@@ -59,7 +59,6 @@ $(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 		-I $(LIBS_I)\
 		$<\
 		-L $(LIBS_L)\
-		-lcmocka\
 		-lftprintf\
 		$(patsubst lib%,-l%,$(TEST_DEPENDENCIES))\
 		$(patsubst lib%,-l%,$(DEPENDENCIES))\
