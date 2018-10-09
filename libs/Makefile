@@ -69,9 +69,9 @@ clean-lib% :
 	-rm $(LIBS_I)/lib$*.h
 	-rm $(LIBS_L)/lib$*.a
 
-CLEAN_ALL_LIBS := $(patsubst %,clean-%,$(DEPENDENCIES))
+CLEAN_ALL_LIBS := $(patsubst %,clean-%,$(DEPENDENCIES)) $(patsubst %,clean-%,$(TEST_DEPENDENCIES))
 .PHONY : clean_libs
 clean_libs : $(CLEAN_ALL_LIBS)
 
 .PHONY : libs_re
-libs_re : clean_libs build_dependencies
+libs_re : clean_libs build_dependencies build_test_dependencies

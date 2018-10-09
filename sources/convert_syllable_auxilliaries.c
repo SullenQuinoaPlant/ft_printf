@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 02:25:09 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 12:36:26 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,12 @@ static int						add_carry(
 	return (0);
 }
 
+/*
+**The gnu version rounds weirdly on unit:
+**	if (syl->cc[at] > mid || (syl->cc[at] == mid && !at))
+**The mac version only takes in account one digit.
+*/
+#ifdef GNU
 int								round_ccsyl(
 	size_t at,
 	t_s_so *syl,
@@ -148,10 +154,67 @@ int								round_ccsyl(
 				break;
 	}
 	syl->len = at;
-	if (carry && add_carry(base, syl, at, overflow))
+	if (carry && overflow && add_carry(base, syl, at, overflow))
 		return (-1);
 	return (1);
 }
+#endif
+#ifdef MAC
+int								round_ccsyl(
+	size_t at,
+	t_s_so *syl,
+	char const *base,
+	char *overflow)
+{
+	int const	base_len = ft_strlen(base);
+	char	mid;
+	int		carry;
+
+	if (at >= syl->len)
+		return (0);
+	mid = base[base_len / 2];
+	carry = 0;
+	if (syl->cc[at] > mid)
+		carry = 1;
+	syl->len = at;
+	if (carry && overflow && add_carry(base, syl, at, overflow))
+		return (-1);
+	return (1);
+}
+#endif
+#ifdef MINE
+int								round_ccsyl(
+	size_t at,
+	t_s_so *syl,
+	char const *base,
+	char *overflow)
+{
+	int const	base_len = ft_strlen(base);
+	char	mid;
+	char	zero;
+	int		carry;
+	size_t	i;
+
+	if (at >= syl->len)
+		return (0);
+	mid = base[base_len / 2];
+	carry = 0;
+	if (syl->cc[at] > mid)
+		carry = 1;
+	if (syl->cc[at] == mid)
+	{
+		zero = base[0];
+		i = syl->len - 1;
+		while (i > at)
+			if ((carry = syl->cc[i--] != zero))
+				break;
+	}
+	syl->len = at;
+	if (carry && overflow && add_carry(base, syl, at, overflow))
+		return (-1);
+	return (1);
+}
+#endif
 
 void
 	init_syls(

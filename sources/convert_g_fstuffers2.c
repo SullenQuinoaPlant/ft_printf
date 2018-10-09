@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_g_fstuffers2.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 12:48:24 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 12:48:47 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
 #define SEPARATOR_REL_POS 2
-void	cg_flowdigits(int pos, void *p)
+void						cg_flowdigits(
+	int pos,
+	void *p)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
@@ -26,7 +40,9 @@ void	cg_flowdigits(int pos, void *p)
 
 #define HIGH_DIG 3
 #define HIGH_GRP 1
-void	cg_fsetgroups(int pos, void *p)
+void						cg_fsetgroups(
+	int pos,
+	void *p)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const	syls = stf->syls;

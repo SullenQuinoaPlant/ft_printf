@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_fp_to_decimal.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 12:55:14 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 12:56:10 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-static long double
-	log2_to_log10(
-		int32_t p2exp)
+static long double					log2_to_log10(
+	int32_t p2exp)
 {
 	long double	res;
 
@@ -12,9 +23,8 @@ static long double
 	return (res);
 }
 
-t_s_pot
-	near_low_pot(
-		t_s_fpndfp const *num)
+t_s_pot								near_low_pot(
+	t_s_fpndfp const *num)
 {
 	long double	log;
 	t_s_pot		ret;
@@ -40,9 +50,9 @@ t_s_pot
 	return (ret);
 }
 
-int
-	round_ldouble(
-		long double *d, int pow10)
+int									round_ldouble(
+	long double *d,
+	int pow10)
 {
 	long double	dd;
 
@@ -53,11 +63,10 @@ int
 	return (0);
 }
 
-int
-	trailing_zeros(
-		long double d,
-		unsigned int skip,
-		unsigned int trail)
+int									trailing_zeros(
+	long double d,
+	unsigned int skip,
+	unsigned int trail)
 {
 	int		zcount;
 	int		digit;

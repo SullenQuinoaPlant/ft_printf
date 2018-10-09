@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_g.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 12:45:10 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 12:47:09 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
 #define GRP_SETTER 1
-static t_stuffer
-		g_estyle[G_ESYLS + GRP_SETTER + 1] = {
+static t_stuffer		g_estyle[G_ESYLS + GRP_SETTER + 1] =
+{
 	dummy_stuffer,
 	cg_esign,
 	dummy_stuffer,
@@ -18,8 +30,8 @@ static t_stuffer
 	0
 };
 
-static t_stuffer
-		g_fstyle[G_FSYLS + GRP_SETTER + 1] = {
+static t_stuffer		g_fstyle[G_FSYLS + GRP_SETTER + 1] =
+{
 	dummy_stuffer,
 	cg_fsign,
 	dummy_stuffer,
@@ -33,9 +45,8 @@ static t_stuffer
 	0
 };
 
-static void
-	set_precision(
-		t_s_gcs *stf)
+static void						set_precision(
+	t_s_gcs *stf)
 {
 	stf->pre = 6;
 	if (stf->chk->precision &&
@@ -43,9 +54,8 @@ static void
 		stf->pre = 1;
 }
 
-static int
-	set_number(
-		t_s_gcs *stf)
+static int						set_number(
+	t_s_gcs *stf)
 {
 	t_s_fpndfp	num;
 
@@ -57,9 +67,8 @@ static int
 	return (1);
 }
 
-static t_stuffer
-	*choose_pattern(
-		t_s_gcs *stf)
+static t_stuffer				*choose_pattern(
+	t_s_gcs *stf)
 {
 	int		const pow10 = stf->number.pow10;
 	
@@ -69,9 +78,9 @@ static t_stuffer
 		return (g_fstyle);
 }
 
-void		convert_g(t_s_pct *chk)
+void							convert_g(t_s_pct *chk)
 {
-	int			* const pads = (int[e_pp_sz]){0};
+	int *const	pads = (int[e_pp_sz]){0};
 	t_s_gcs		stf;
 
 	stf.chk = chk;
@@ -85,7 +94,7 @@ void		convert_g(t_s_pct *chk)
 	out_syl_groups(stf.syl_grps, G_SYLGRPS);
 }
 
-void		convert_big_g(t_s_pct *p_chk)
+void							convert_big_g(t_s_pct *p_chk)
 {
 	p_chk->flags |= BIGCS_FLAG;
 	convert_g(p_chk);

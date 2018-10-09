@@ -26,6 +26,7 @@ DEPENDENCIES =\
 	libft
 
 ifndef TOOLS
+#options are MAC, GNU
 	TOOLS := MAC
 endif
 
@@ -34,6 +35,7 @@ ifndef ARCH
 endif
 
 ifndef BEHAVIOR
+#options are MAC, GNU, MINE
 	BEHAVIOR := MAC
 endif
 

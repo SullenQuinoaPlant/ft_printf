@@ -1,6 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_g_fstuffers1.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 12:50:37 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 12:52:01 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-void	cg_fsign(int pos, void *p)
+void						cg_fsign(
+	int pos,
+	void *p)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
@@ -16,7 +30,9 @@ void	cg_fsign(int pos, void *p)
 		syl->len = 0;
 }
 
-void	cg_fhighdigits(int pos, void *p)
+void						cg_fhighdigits(
+	int pos,
+	void *p)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
@@ -34,7 +50,9 @@ void	cg_fhighdigits(int pos, void *p)
 	}
 }
 
-void	cg_fpowerzero(int pos, void *p)
+void						cg_fpowerzero(
+	int pos,
+	void *p)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
@@ -44,7 +62,9 @@ void	cg_fpowerzero(int pos, void *p)
 	syl->len = stf->number.pow10 < 0 ? 1 : 0;
 }
 
-void	cg_fseparator(int pos, void *p)
+void						cg_fseparator(
+	int pos,
+	void *p)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
@@ -54,7 +74,9 @@ void	cg_fseparator(int pos, void *p)
 		syl->len = 1;
 }
 
-void	cg_fzeros(int pos, void *p)
+void						cg_fzeros(
+	int pos,
+	void *p)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
