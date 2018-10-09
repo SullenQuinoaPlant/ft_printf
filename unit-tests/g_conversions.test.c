@@ -83,6 +83,13 @@ g_be_gentle = 0;
 		printf_diff("%.0g", d);
 	)
 
+	T(test5_3_0,
+		double	d;
+
+		d = 95.5;
+		printf_diff("%.0g", d);
+	)
+
 	T(test5_4,
 		double	d;
 

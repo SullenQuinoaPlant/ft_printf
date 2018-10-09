@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_vaarged_floatingpoint.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 13:19:56 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 13:20:40 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libmyfloatingpoint.h"
 #include "inner.h"
 
-long double
-	get_ldouble(
-		t_s_arg *vaarg)
+long double							get_ldouble(
+	t_s_arg *vaarg)
 {
 	t_e_t	const type = vaarg->type;
 
@@ -14,9 +25,10 @@ long double
 	return (compose_nan());
 }
 
-void
-	set_dfp(
-		t_s_arg	*arg, t_s_dfp *ret)
+
+void								set_dfp(
+	t_s_arg	*arg,
+	t_s_dfp *ret)
 {
 	t_e_t		type;
 
@@ -29,9 +41,10 @@ void
 		*ret = (t_s_dfp){0, 0, 0};
 }
 
-void
-	get_fpndfp(
-		t_s_arg *g, t_s_fpndfp *ret)
+
+void								get_fpndfp(
+	t_s_arg *g,
+	t_s_fpndfp *ret)
 {
 	ret->dbl = get_ldouble(g);
 	decompose_ldouble(&ret->dbl, &ret->dec);

@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_g_estuffers1.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 13:46:04 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 13:47:19 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-void
-	cg_esign(
-		int pos, void *s)
+
+void							cg_esign(
+	int pos,
+	void *s)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = stf->syls + pos;
@@ -18,9 +31,9 @@ void
 		syl->len = 0;
 }
 
-void
-	cg_ezero(
-		int pos, void *s)
+void							cg_ezero(
+	int pos,
+	void *s)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
@@ -32,9 +45,9 @@ void
 	stf->pre--;
 }
 
-void
-	cg_eseparator(
-		int pos, void *s)
+void							cg_eseparator(
+	int pos,
+	void *s)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)s;
 
@@ -45,9 +58,9 @@ void
 }
 
 #define SEPARATOR_REL_POS 1
-void
-	cg_elowdigits(
-		int pos, void *s)
+void							cg_elowdigits(
+	int pos,
+	void *s)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
@@ -61,9 +74,9 @@ void
 	syl->arg = &stf->number;
 }
 
-void
-	cg_eto_the_power(
-		int pos, void *s)
+void							cg_eto_the_power(
+	int pos,
+	void *s)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = &stf->syls[pos];

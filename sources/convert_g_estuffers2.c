@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_g_estuffers2.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 13:48:18 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 13:49:05 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-void
-	cg_eexponent_sign(
-		int pos, void *s)
+void							cg_eexponent_sign(
+	int pos,
+	void *s)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
@@ -13,9 +25,9 @@ void
 	stf->p_exp.len--;
 }
 
-void
-	cg_eexponent_pad(
-		int pos, void *s)
+void							cg_eexponent_pad(
+	int pos,
+	void *s)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
@@ -27,9 +39,9 @@ void
 		syl->len = 0;
 }
 
-void
-	cg_eexponent(
-		int pos, void *s)
+void							cg_eexponent(
+	int pos,
+	void *s)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)s;
 	t_s_so	* const syl = stf->syls + pos;
@@ -41,7 +53,9 @@ void
 
 #define EXP_DIG 9
 #define EXP_GRP 3
-void	cg_esetgroups(int pos, void *p)
+void							cg_esetgroups(
+	int pos,
+	void *p)
 {
 	t_s_gcs	* const stf = (t_s_gcs*)p;
 	t_s_so	* const	syls = stf->syls;
