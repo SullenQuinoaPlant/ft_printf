@@ -325,6 +325,11 @@ int
 		int pow10);
 
 int
+	round_ldouble_weird(
+		long double *d,
+		int pow10);
+
+int
 	run_output_ctl(
 		t_s_ctl *chk);
 

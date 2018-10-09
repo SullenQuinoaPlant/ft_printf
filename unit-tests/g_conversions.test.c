@@ -36,7 +36,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 	T(test5,
 		double	d;
 
-		d = 1.5;
+		d = 0.5;
 		printf_diff("%.0g", d);
 	)
 
@@ -52,7 +52,7 @@ g_be_gentle = 1;
 //gnu rounds both 1.5 and 2.5 to 2.0 I don't get it, I don't like it.
 		double	d;
 
-		for (d = 1.5; d < 120.0; d += 1.0)
+		for (d = 0.5; d < 120.0; d += 1.0)
 		{
 			printf("d is : %f\n", d);
 			printf_diff("%.0g", d);
@@ -65,6 +65,15 @@ g_be_gentle = 1;
 		double	d;
 
 		d = 16.5;
+		printf_diff("%.0g", d);
+g_be_gentle = 0;
+	)
+
+	T(test5_1_1,
+g_be_gentle = 1;
+		double	d;
+
+		d = 97.5;
 		printf_diff("%.0g", d);
 g_be_gentle = 0;
 	)
@@ -113,9 +122,47 @@ g_be_gentle = 0;
 
 	T(test5_7,
 		double	d;
+		int		i;
 
 		d = 1.4;
-		printf_diff("%.0g", d);
+		i = -1;
+		while (++i < 20)
+		{
+			printf_diff("%.0g", d);
+			d += 1.0;
+		}
+	)
+
+	T(test5_8,
+g_be_gentle = 1;
+		double	d;
+		int		i;
+
+		d = 0;
+		i = -1;
+		while (++i < 50)
+		{
+			printf("d is : %f, %%g is : %.0g\n", d, d);
+			printf_diff("%.0g", d);
+			d += 0.1;
+		}
+g_be_gentle = 0;
+	)
+
+	T(test5_9,
+g_be_gentle = 1;
+		double	d;
+		int		i;
+
+		d = 0;
+		i = -1;
+		while (++i < 50)
+		{
+			printf("d is : %f, %%g is : %.0g\n", d, d);
+			printf_diff("%.0g", d);
+			d += 0.5;
+		}
+g_be_gentle = 0;
 	)
 
 	T(test6,

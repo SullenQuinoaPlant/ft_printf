@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 12:45:10 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 12:47:09 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 15:25:06 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void						set_precision(
 		stf->pre = 1;
 }
 
+#ifndef MINE
 static int						set_number(
 	t_s_gcs *stf)
 {
@@ -63,9 +64,39 @@ static int						set_number(
 	if (output_nan_inf(&num.dec, stf->chk))
 		return (0);
 	stf->number = near_low_pot(&num);
-	round_ldouble(&stf->number.times, -stf->pre + 1);
+	if (!stf->number.pow10)
+		round_ldouble_weird(&stf->number.times, -stf->pre + 1);
+	else
+		round_ldouble(&stf->number.times, -stf->pre + 1);
+	if (stf->number.times >= 10)
+	{
+		stf->number.times /= 10.0;
+		stf->number.pow10 += 1;
+	}
 	return (1);
 }
+#endif
+#ifdef MINE
+static int						set_number(
+	t_s_gcs *stf)
+{
+	t_s_fpndfp	num;
+
+	get_fpndfp(stf->chk->vaarg, &num);
+	if (output_nan_inf(&num.dec, stf->chk))
+		return (0);
+	stf->number = near_low_pot(&num);
+	if (!stf->number.pow10)
+		round_ldouble_weird(&stf->number.times, -stf->pre + 1);
+	else
+		round_ldouble(&stf->number.times, -stf->pre + 1);
+	if (stf->number.times >= 10)
+	{
+		stf->number.times /= 10.0;
+		stf->number.pow10 += 1;
+	}
+	return (1);
+#endif
 
 static t_stuffer				*choose_pattern(
 	t_s_gcs *stf)

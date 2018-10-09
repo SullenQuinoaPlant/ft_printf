@@ -5,8 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 14:50:56 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 16:27:41 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_fp_to_decimal.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 12:55:14 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 12:56:10 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 14:50:49 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +62,18 @@ t_s_pot								near_low_pot(
 	return (ret);
 }
 
+static void							round_idontunderstandwhythisis(
+	long double *p)
+{
+	double	d;
+
+	d = *p;
+	d += 0.5;
+	*p = (int)d;
+	if ((int)d == d && (int)d % 2)
+		*p -= 1;
+}
+
 int									round_ldouble(
 	long double *d,
 	int pow10)
@@ -58,8 +82,21 @@ int									round_ldouble(
 
 	if (!is_finite((dd = *d * my_intpowl(10, -pow10))))
 		return (-1);
-	if (dd - my_floorl(dd) >= 0.5)
+	if (dd - my_floorl(dd) > 0.5)
 		*d += my_intpowl(10, pow10);
+	return (0);
+}
+
+int									round_ldouble_weird(
+	long double *d,
+	int pow10)
+{
+	double	dd;
+
+	if (pow10 == 0 && (dd = *d) > 1.0 && dd < 10.0)
+		round_idontunderstandwhythisis(d);
+	else
+		round_ldouble(d, pow10);
 	return (0);
 }
 
