@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:08:25 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 17:27:37 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 18:27:45 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_stuffer			g_fstr[A_SYLLABLES + 1] =
 	0
 };
 
-static void					set_syl_grps(
+static void							set_syl_grps(
 	t_s_acs *stf)
 {
 	t_s_so *const	syls = stf->syllables;
@@ -44,7 +44,7 @@ static void					set_syl_grps(
 	ft_memcpy(stf->syl_groups, ar, sizeof(ar));
 }
 
-static void					set_float_stuff(
+static void							set_float_stuff(
 	t_s_pct *chk,
 	t_s_acs *stf)
 {
@@ -64,10 +64,13 @@ static void							set_precision(
 {
 	if (chk->precision && **chk->precision < 0)
 	{
+		**chk->precision = 0;
+/*
 		if (chk->len_mod == e_bigl)
 			**chk->precision = 16;
 		else
 			**chk->precision = 13;
+*/
 	}
 }
 

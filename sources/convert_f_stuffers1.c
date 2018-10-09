@@ -1,6 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_f_stuffers1.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 18:55:19 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 18:58:41 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-void	cf_sign(int pos, void *p)
+void						cf_sign(
+	int pos,
+	void *p)
 {
 	t_s_fcs	* const stf = (t_s_fcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
@@ -17,7 +31,9 @@ void	cf_sign(int pos, void *p)
 		syl->len = 0;
 }
 
-void	cf_highdigits(int pos, void *p)
+void						cf_highdigits(
+	int pos,
+	void *p)
 {
 	t_s_fcs	* const stf = (t_s_fcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
@@ -33,7 +49,9 @@ void	cf_highdigits(int pos, void *p)
 		syl->len = (size_t)stf->number.pow10 + 1;
 }
 
-void	cf_powerzero(int pos, void *p)
+void						cf_powerzero(
+	int pos,
+	void *p)
 {
 	t_s_fcs	* const stf = (t_s_fcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
@@ -52,7 +70,9 @@ void	cf_powerzero(int pos, void *p)
 	}
 }
 
-void	cf_separator(int pos, void *p)
+void						cf_separator(
+	int pos,
+	void *p)
 {
 	t_s_fcs	* const stf = (t_s_fcs*)p;
 	t_s_so	* const syl = stf->syls + pos;
@@ -64,7 +84,9 @@ void	cf_separator(int pos, void *p)
 		syl->len = 1;
 }
 
-void	cf_zeros(int pos, void *p)
+void						cf_zeros(
+	int pos,
+	void *p)
 {
 	t_s_fcs	* const stf = (t_s_fcs*)p;
 	t_s_so	* const syl = stf->syls + pos;

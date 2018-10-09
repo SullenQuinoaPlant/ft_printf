@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_u.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 18:17:42 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 18:19:22 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-static t_stuffer
-	g_fstr[D_SYLS + 1] = {
-		dummy_stuffer,
-		dummy_stuffer,
-		cu_prefix,
-		cu_digits,
-		dummy_stuffer,
-		0};
+static t_stuffer	g_fstr[D_SYLS + 1] =
+{
+	dummy_stuffer,
+	dummy_stuffer,
+	cu_prefix,
+	cu_digits,
+	dummy_stuffer,
+	0
+};
 
-static int
-	set_uinteger(
-		t_s_ucs *stf)
+static int							set_uinteger(
+	t_s_ucs *stf)
 {
 	t_s_pct		* const chk = stf->chk;
 	t_s_arg		* const arg = chk->vaarg;
@@ -23,18 +35,19 @@ static int
 	return (d ? 1 : 0);
 }
 
-static int
-	set_precision(
-		t_s_ucs *stf)
+static int							set_precision(
+	t_s_pct *chk,
+	t_s_ucs *stf)
 {
-	t_s_pct		* const chk = stf->chk;
-
-	return ((stf->pre = chk->precision ? **chk->precision : -1));
+	if (chk->precision && **chk->precision >= 0)
+		stf->pre = **chk->precision;
+	else
+		stf->pre = 1;
+	return (stf->pre);
 }
 
-static void
-	set_group(
-		t_s_ucs *stf)
+static void							set_group(
+	t_s_ucs *stf)
 {
 	stf->group.first = stf->syls;
 	stf->group.sz = U_SYLS;
@@ -44,9 +57,8 @@ static void
 		apstr_grp_props_offset(AF_DG, AF_DS, &stf->group);
 }
 
-void
-	convert_u(
-		t_s_pct *chk)
+void								convert_u(
+	t_s_pct *chk)
 {
 	int			pad_indexes[e_pp_sz] = {0};
 	t_s_ucs		stf;
@@ -55,7 +67,7 @@ void
 	stf.chk = chk;
 	init_syls(e_sot_c, U_SYLS, stf.syls);
 	r = set_uinteger(&stf);
-	r |= set_precision(&stf);
+	r |= set_precision(chk, &stf);
 	if (r)
 	{
 		call_tstuffers(g_fstr, &stf, pad_indexes);
@@ -65,7 +77,7 @@ void
 	}
 }
 
-void						convert_big_u(
+void								convert_big_u(
 	t_s_pct *chk)
 {
 	convert_u(chk);

@@ -1,18 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_x.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 18:19:32 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 18:22:30 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-static t_stuffer
-	g_fstr[X_SYLS + 1] = {
-		dummy_stuffer,
-		cx_hashfix,
-		dummy_stuffer,
-		cx_prefix,
-		cx_digits,
-		dummy_stuffer,
-		0};
+static t_stuffer	g_fstr[X_SYLS + 1] =
+{
+	dummy_stuffer,
+	cx_hashfix,
+	dummy_stuffer,
+	cx_prefix,
+	cx_digits,
+	dummy_stuffer,
+	0
+};
 
-static int
-	set_integer(
-		t_s_xcs *stf)
+static int							set_integer(
+	t_s_xcs *stf)
 {
 	t_s_pct		* const chk = stf->chk;
 	t_s_arg		* const arg = chk->vaarg;
@@ -29,13 +41,16 @@ static int
 	return (d ? 1 : 0);
 }
 
-static int
-	set_precision(
-		t_s_xcs *stf)
-{
-	t_s_pct		* const chk = stf->chk;
 
-	return ((stf->pre = chk->precision ? **chk->precision : -1));
+static int							set_precision(
+	t_s_pct *chk,
+	t_s_xcs *stf)
+{
+	if (chk->precision && **chk->precision >= 0)
+		stf->pre = **chk->precision;
+	else
+		stf->pre = 1;
+	return (stf->pre);
 }
 
 static void
@@ -50,7 +65,7 @@ static void
 		apstr_grp_props_offset(AF_2G, AF_BS, &stf->group);
 }
 
-void		convert_x(t_s_pct *chk)
+void								convert_x(t_s_pct *chk)
 {
 	int			pad_indexes[e_pp_sz] = {0};
 	t_s_xcs		stf;
@@ -59,7 +74,7 @@ void		convert_x(t_s_pct *chk)
 	stf.chk = chk;
 	init_syls(e_sot_c, X_SYLS, stf.syls);
 	r = set_integer(&stf);
-	r |= set_precision(&stf);
+	r |= set_precision(chk, &stf);
 	if (r)
 	{
 		call_tstuffers(g_fstr, &stf, pad_indexes);

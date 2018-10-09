@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_f_stuffers2.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 18:59:09 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 18:59:35 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-void	cf_lowdigits(int pos, void *p)
+void							cf_lowdigits(
+	int pos,
+	void *p)
 {
-	t_s_fcs	* const stf = (t_s_fcs*)p;
-	t_s_so	* const syl = stf->syls + pos;
+	t_s_fcs *const	stf = (t_s_fcs*)p;
+	t_s_so *const	syl = stf->syls + pos;
 
 	syl->type = e_sot_f;
 	if (stf->chk->flags & APSTR_FLAG)

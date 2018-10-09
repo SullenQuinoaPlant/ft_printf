@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 16:52:19 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 18:04:20 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 18:36:40 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ static void							set_precision(
 	t_s_pct *chk,
 	t_s_fcs *stf)
 {
+	if (chk->precision && **chk->precision >= 0)
+		stf->pre = **chk->precision;
+/*
 	if (chk->precision)
 	{
 		if (**chk->precision < 0)
@@ -54,6 +57,7 @@ static void							set_precision(
 		else
 			stf->pre = **chk->precision;
 	}
+*/
 	else
 		stf->pre = 6;
 }
@@ -69,7 +73,6 @@ static int							set_number(
 		return (0);
 	stf->number = near_low_pot(&num);
 	roundat = -(stf->number.pow10 + stf->pre);
-	round_ldouble(&stf->number.times, roundat);
 #ifndef MINE
 	if (!stf->number.pow10)
 		round_ldouble_weird(&stf->number.times, roundat);
