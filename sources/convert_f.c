@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_f.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 16:52:19 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 17:51:34 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
 #define HIGH_DIG 3
-static t_stuffer
-			g_fstr[F_SYLLABLES + 1] = {
+static t_stuffer			g_fstr[F_SYLLABLES + 1] =
+{
 	dummy_stuffer,
 	cf_sign,
 	dummy_stuffer,
@@ -16,7 +28,8 @@ static t_stuffer
 };
 
 #define HIGH_GRP 1
-static void	set_syl_grps(t_s_fcs *stf)
+static void							set_syl_grps(
+	t_s_fcs *stf)
 {
 	t_s_so	* const	syls = stf->syls;
 	t_s_sgd	ar[F_SYLGRPS] = {
@@ -30,19 +43,22 @@ static void	set_syl_grps(t_s_fcs *stf)
 	ft_memcpy(stf->syl_grps, ar, sizeof(ar));
 }
 
-static void
-	set_precision(
-		t_s_fcs *stf)
+static void							set_precision(
+	t_s_fcs *stf)
 {
-	if (stf->chk->precision)
-		stf->pre = **stf->chk->precision;
+	if (chk->precision)
+	{
+		if (**chk->precision < 0)
+			stf->pre = (chk->len_mod == e_bigl) ? 17 : 20;
+		else
+			stf->pre = **chk->precision;
+	}
 	else
 		stf->pre = 6;
 }
 
-static int
-	set_number(
-		t_s_fcs *stf)
+static int							set_number(
+	t_s_fcs *stf)
 {
 	t_s_fpndfp	num;
 	int			roundat;
@@ -53,10 +69,19 @@ static int
 	stf->number = near_low_pot(&num);
 	roundat = -(stf->number.pow10 + stf->pre);
 	round_ldouble(&stf->number.times, roundat);
+#ifndef MINE
+	if (!stf->number.pow10)
+		round_ldouble_weird(&stf->number.times, roundat);
+	else
+		round_ldouble(&stf->number.times, roundat);
+#else
+	round_ldouble(&stf->number.times, roundat);
+#endif
 	return (1);
 }
 
-void		convert_f(t_s_pct *chk)
+void								convert_f(
+	t_s_pct *chk)
 {
 	int		* const pads = (int[e_pp_sz]){0};
 	t_s_fcs	stf;
@@ -71,7 +96,8 @@ void		convert_f(t_s_pct *chk)
 	out_syl_groups(stf.syl_grps, F_SYLGRPS);
 }
 
-void		convert_big_f(t_s_pct *p_chk)
+void								convert_big_f(
+	t_s_pct *p_chk)
 {
 	p_chk->flags |= BIGCS_FLAG;
 	convert_f(p_chk);

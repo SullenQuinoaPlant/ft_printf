@@ -1,49 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_e.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/09 16:32:33 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/09 17:49:12 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-static t_stuffer
-	g_fstr[E_SYLLABLES + 1] = {
-		ce_sign,
-		ce_zero,
-		ce_separator,
-		ce_lowdigits,
-		ce_to_the_power,
-		ce_exponent_sign,
-		ce_exponent_pad,
-		ce_exponent,
-		0
+static t_stuffer	g_fstr[E_SYLLABLES + 1] =
+{
+	ce_sign,
+	ce_zero,
+	ce_separator,
+	ce_lowdigits,
+	ce_to_the_power,
+	ce_exponent_sign,
+	ce_exponent_pad,
+	ce_exponent,
+	0
 };
 
-static t_oa
-	g_outputters = {
-		&ce_prefix,
-		&ce_body
+static t_oa			g_outputters = {
+	&ce_prefix,
+	&ce_body
 };
 
-static void
-	set_precision(
-		t_s_pct *chk, t_s_ecs *stf)
+static void						set_precision(
+	t_s_pct *chk,
+	t_s_ecs *stf)
 {
 	if (chk->precision)
-		stf->pre = **chk->precision;
+	{
+		if (**chk->precision < 0)
+			stf->pre = (chk->len_mod == e_bigl) ? 17 : 20;
+		else
+			stf->pre = **chk->precision;
+	}
 	else
 		stf->pre = 6;
 }
 
-static void
-	set_number(
-		t_s_fpndfp *num, t_s_ecs *stf)
+static void						set_number(
+	t_s_fpndfp *num,
+	t_s_ecs *stf)
 {
 	stf->number = near_low_pot(num);
+#ifndef MINE
+	if (!stf->number.pow10)
+		round_ldouble_weird(&stf->number.times, -stf->pre);
+	else
+		round_ldouble(&stf->number.times, -stf->pre);
+#else
 	round_ldouble(&stf->number.times, -stf->pre);
+#endif
+	if (stf->number.times >= 10)
+	{
+		stf->number.times /= 10.0;
+		stf->number.pow10 += 1;
+	}
 }
 
-static void
-	set_exponent(
-		int	pow10, t_s_vtb_cc *p, t_vtb_mib *here)
+static void						set_exponent(
+	int	pow10,
+	t_s_vtb_cc *p,
+	t_vtb_mib *here)
 {
 	*p = vtb_sv_tscc(pow10, VTB_DEC_SYMS, here, e_vtb_spall);
 }
-		
+
 #define EXP_DIG 7
 #define EXP_GRP 3
 static void

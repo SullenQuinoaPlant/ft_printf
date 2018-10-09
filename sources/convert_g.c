@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 12:45:10 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 15:25:06 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 17:54:20 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,34 @@ static t_stuffer		g_fstyle[G_FSYLS + GRP_SETTER + 1] =
 static void						set_precision(
 	t_s_gcs *stf)
 {
-	stf->pre = 6;
-	if (stf->chk->precision &&
-		!(stf->pre = **stf->chk->precision))
-		stf->pre = 1;
+	if (chk->precision)
+	{
+		if (**chk->precision < 0)
+			stf->pre = (chk->len_mod == e_bigl) ? 17 : 20;
+		else if (!(stf->pre = **chk->precision))
+			stf->pre = 1;
+	}
+	else
+		stf->pre = 6;
 }
 
+static int						set_number(
+	t_s_gcs *stf)
+{
+	t_s_fpndfp	num;
+
+	get_fpndfp(stf->chk->vaarg, &num);
+	if (output_nan_inf(&num.dec, stf->chk))
+		return (0);
+	stf->number = near_low_pot(&num);
 #ifndef MINE
-static int						set_number(
-	t_s_gcs *stf)
-{
-	t_s_fpndfp	num;
-
-	get_fpndfp(stf->chk->vaarg, &num);
-	if (output_nan_inf(&num.dec, stf->chk))
-		return (0);
-	stf->number = near_low_pot(&num);
 	if (!stf->number.pow10)
 		round_ldouble_weird(&stf->number.times, -stf->pre + 1);
 	else
 		round_ldouble(&stf->number.times, -stf->pre + 1);
+#else
+	round_ldouble(&stf->number.times, -stf->pre + 1);
+#endif
 	if (stf->number.times >= 10)
 	{
 		stf->number.times /= 10.0;
@@ -75,28 +83,6 @@ static int						set_number(
 	}
 	return (1);
 }
-#endif
-#ifdef MINE
-static int						set_number(
-	t_s_gcs *stf)
-{
-	t_s_fpndfp	num;
-
-	get_fpndfp(stf->chk->vaarg, &num);
-	if (output_nan_inf(&num.dec, stf->chk))
-		return (0);
-	stf->number = near_low_pot(&num);
-	if (!stf->number.pow10)
-		round_ldouble_weird(&stf->number.times, -stf->pre + 1);
-	else
-		round_ldouble(&stf->number.times, -stf->pre + 1);
-	if (stf->number.times >= 10)
-	{
-		stf->number.times /= 10.0;
-		stf->number.pow10 += 1;
-	}
-	return (1);
-#endif
 
 static t_stuffer				*choose_pattern(
 	t_s_gcs *stf)

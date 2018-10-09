@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 22:42:49 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 23:21:01 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 17:31:15 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,13 @@ static void							filter_width(
 static void							filter_precision(
 	t_s_pct *chk)
 {
+	(void)chk;
+/*
 	if (chk->precision &&
 		**chk->precision < 0 &&
 		!(chk->specifier == e_b || chk->specifier == e_bigb))
 		**chk->precision = 0;
+*/
 }
 
 void								output_pct_chk(

@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:08:25 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/05 03:37:17 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 17:27:37 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,18 @@ static void					set_float_stuff(
 	stf->aligned_mant = stf->fpd.mant << shift;
 }
 
+static void							set_precision(
+	t_s_pct *chk)
+{
+	if (chk->precision && **chk->precision < 0)
+	{
+		if (chk->len_mod == e_bigl)
+			**chk->precision = 16;
+		else
+			**chk->precision = 13;
+	}
+}
+
 void						convert_a(
 	t_s_pct *chk)
 {
@@ -66,6 +78,7 @@ void						convert_a(
 	t_s_acs		stf;
 
 	stf.chk = chk;
+	set_precision(chk);
 	set_float_stuff(chk, &stf);
 	if (output_nan_inf(&stf.fpd, chk))
 		return;
