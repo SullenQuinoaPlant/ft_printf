@@ -26,21 +26,32 @@ DEPENDENCIES =\
 	libft
 
 ifndef TOOLS
-	TOOLS = GNU
-endif
-ifeq ($(TOOLS),MAC)
-	CC := gcc-8.2.0
+	TOOLS := MAC
 else
-	CC := gcc
+	TOOLS := GNU
 endif
+
 ifndef ARCH
 	ARCH := ARCH_A
 endif
-CC_DEFINES := $(TOOLS) $(ARCH)
-CFLAGS_MORE = -g
+
+ifndef BEHAVIOR
+	BEHAVIOR := MAC
+endif
+
+ifeq ($(TOOLS),MAC)
+	TEST_CC := gcc-8.2.0
+else
+	TEST_CC := gcc
+endif
+
+CC := gcc
+
+CC_DEFINES := $(BEHAVIOR) $(ARCH)
 ifndef CFLAGS
 	CFLAGS := -Wall -Wextra -Werror\
 			-I $(INC_DIR) -I $(LIBS_I)\
 			$(patsubst %,-D%,$(CC_DEFINES))
 endif
+CFLAGS_MORE = -g
 CFLAGS += $(CFLAGS_MORE)

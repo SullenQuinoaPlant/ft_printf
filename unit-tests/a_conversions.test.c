@@ -1,6 +1,7 @@
 #define HOW_MANY_TESTS 100
-//#include "cmocka/my_overlay.h"
+#include "cmocka/my_overlay.h"
 
+/*
 #include "libftprintf.h"
 int	main()
 {
@@ -9,8 +10,9 @@ int	main()
 	ft_printf("%a", d1);
 	return (0);
 }
+*/
 
-/*
+//*
 #include "printf_diff.c"
 
 int	declare_tests_and_run(int all_of, char *these[])
@@ -152,10 +154,19 @@ int	declare_tests_and_run(int all_of, char *these[])
 	)
 
 	T(test10,
+g_be_gentle = 1;
 		double	d;
 
 		d = 1.5;
 		printf_diff("%010,10a", d);
+g_be_gentle = 0;
+	)
+
+	T(test10_0,
+		double	d;
+
+		d = 1.5;
+		printf_diff("%010.10a", d);
 	)
 
 	T(test11,
@@ -228,32 +239,32 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%2a", d);
 	)
 
-g_be_gentle = 1;
 	T(test19_0,
+g_be_gentle = 1;
 		double	d;
 
 		d = 1.456;
 		printf_diff("%2.*a", -3, d);
-	)
 g_be_gentle = 0;
+	)
 
-g_be_gentle = 1;
 	T(test19_1,
+g_be_gentle = 1;
 		double	d;
 
 		d = 1.456;
 		printf_diff("%2.-3a", d);
-	)
 g_be_gentle = 0;
+	)
 
-g_be_gentle = 1;
 	T(test20,
+g_be_gentle = 1;
 		double	d;
 
 		d = 1234.1234;
 		printf_diff("%.*a", -2, d);
-	)
 g_be_gentle = 0;
+	)
 
 	T(test21,
 		double	d;
@@ -344,6 +355,7 @@ g_be_gentle = 1;
 		d = 2.0;
 		printf_diff("%12$.*1$a", 13, d);
 		printf_diff("%302$.*1$a", 13, d);
+g_be_gentle = 0;
 	)
 
 	T(text_double_text,

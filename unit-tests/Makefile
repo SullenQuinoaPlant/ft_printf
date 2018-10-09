@@ -39,7 +39,7 @@ set_utest_flags :
 $(UTEST_DIR)/%.test.o\
 :\
 $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS_UTEST)\
+	$(TEST_CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -I $(SRC_DIR)\
 		-D main=testee_main\
 		-include $(SRC_DIR)/$*.c\
@@ -54,7 +54,7 @@ $(UTEST_DIR)/%.test.c $(SRC_DIR)/%.c
 $(UTEST_DIR)/%.test.o\
 :\
 $(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
-	$(CC) $(CFLAGS_UTEST)\
+	$(TEST_CC) $(CFLAGS_UTEST)\
 		-I $(SRC_DIR)\
 		-I $(LIBS_I)\
 		$<\
@@ -83,7 +83,7 @@ run_tests : cmocka $(EXECUTION_STAMPS)
 
 .PHONY : cmocka
 cmocka : 
-	@if $(CC) $(CFLAGS_UTEST)\
+	@if $(TEST_CC) $(CFLAGS_UTEST)\
 		-I $(LIBS_I) -L $(LIBS_L)\
 	 	$(UTEST_DIR)/cmocka/check_install.c\
 		 -lcmocka -o test.o\

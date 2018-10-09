@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 22:57:11 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/06 02:37:28 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 10:37:20 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void							set_flags_and_precision(
 {
 	t_s_pct *const	chk = stf->chk;
 
-#ifdef MAC_OS
+#ifdef MAC
 	stf->chk->flags &= ~(PLUS_FLAG | SPACE_FLAG);
 #endif
 	stf->pre = chk->precision ? **chk->precision : 1;
