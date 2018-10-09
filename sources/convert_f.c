@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 16:52:19 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 18:36:40 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 19:49:31 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,15 @@ static int							set_number(
 	stf->number = near_low_pot(&num);
 	roundat = -(stf->number.pow10 + stf->pre);
 #ifndef MINE
-	if (!stf->number.pow10)
-		round_ldouble_weird(&stf->number.times, roundat);
-	else
-		round_ldouble(&stf->number.times, roundat);
+	round_ldouble_weird(&stf->number.times, roundat);
 #else
 	round_ldouble(&stf->number.times, roundat);
 #endif
+	if (stf->number.times > 10)
+	{
+		stf->number.times /= 10.0;
+		stf->number.pow10++;
+	}
 	return (1);
 }
 

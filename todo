@@ -15,3 +15,5 @@ use this to:
 	- change otuput string/file
 
 ----------REPAIRS--------------
+find how the fuck they round floating point values, and do it like them.
+convert_f isn't functional atm.
