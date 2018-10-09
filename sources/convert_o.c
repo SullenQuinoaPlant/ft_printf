@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 22:28:19 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/09/21 22:35:35 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 18:16:59 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@ static int							set_integer(
 }
 
 static int							set_precision(
+	t_s_pct *chk,
 	t_s_ocs *stf)
 {
-	t_s_pct *const	chk = stf->chk;
-
-	return ((stf->pre = chk->precision ? **chk->precision : -1));
+	if (chk->precision && **chk->precision >= 0)
+		stf->pre = **chk->precision;
+	else
+		stf->pre = 1;
+	return (stf->pre);
 }
 
 static void							set_group(
@@ -66,7 +69,7 @@ void								convert_o(
 	stf.chk = chk;
 	init_syls(e_sot_c, O_SYLS, stf.syls);
 	r = set_integer(&stf);
-	r |= set_precision(&stf);
+	r |= set_precision(chk, &stf);
 	if (r)
 	{
 		call_tstuffers(g_fstr, &stf, pad_indexes);

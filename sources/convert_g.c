@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 12:45:10 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 17:54:20 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 18:05:01 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static t_stuffer		g_fstyle[G_FSYLS + GRP_SETTER + 1] =
 };
 
 static void						set_precision(
+	t_s_pct *chk,
 	t_s_gcs *stf)
 {
 	if (chk->precision)
@@ -101,7 +102,7 @@ void							convert_g(t_s_pct *chk)
 	t_s_gcs		stf;
 
 	stf.chk = chk;
-	set_precision(&stf);
+	set_precision(chk, &stf);
 	if (!set_number(&stf))
 		return;
 	init_syls(e_sot_c, G_SYLLABLES, stf.syls);

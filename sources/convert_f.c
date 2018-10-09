@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 16:52:19 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 17:51:34 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 18:04:20 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void							set_syl_grps(
 }
 
 static void							set_precision(
+	t_s_pct *chk,
 	t_s_fcs *stf)
 {
 	if (chk->precision)
@@ -87,7 +88,7 @@ void								convert_f(
 	t_s_fcs	stf;
 
 	stf.chk = chk;
-	set_precision(&stf);
+	set_precision(chk, &stf);
 	if (!set_number(&stf))
 		return ;
 	call_tstuffers(g_fstr, &stf, pads);

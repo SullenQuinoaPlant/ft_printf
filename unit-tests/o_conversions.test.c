@@ -161,6 +161,12 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%.0o", t);
 	)
 
+	T(test26_0,
+		int		t = 0;
+
+		printf_diff("we want what exactly?%.0o", t);
+	)
+
 	T(test27,
 		int		t = 1000;
 

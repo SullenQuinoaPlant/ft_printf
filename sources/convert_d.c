@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 22:38:24 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 17:59:41 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/09 18:11:44 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int							set_precision(
 	t_s_dcs *stf,
 	t_s_pct *chk)
 {
-	if (chk->precision && **chk->precision >=0)
+	if (chk->precision && **chk->precision >= 0)
 		stf->pre = **chk->precision;
 	else
 		stf->pre = 1;
@@ -71,7 +71,7 @@ void								convert_d(
 	stf.chk = chk;
 	init_syls(e_sot_c, D_SYLS, stf.syls);
 	r = set_integer(&stf);
-	r |= set_precision(chk);
+	r |= set_precision(&stf, chk);
 	if (r)
 	{
 		call_tstuffers(g_fstr, &stf, pad_indexes);
