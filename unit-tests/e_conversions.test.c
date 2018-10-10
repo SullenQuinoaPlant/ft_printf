@@ -71,6 +71,13 @@ int	declare_tests_and_run(int all_of, char *these[])
 		printf_diff("%.0e", d);
 	)
 
+	T(test5_1_2,
+		double	d;
+
+		d = 4.5;
+		printf_diff("%.0e", d);
+	)
+
 	T(test5_2,
 		double	d;
 

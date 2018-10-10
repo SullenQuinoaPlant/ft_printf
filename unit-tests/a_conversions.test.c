@@ -379,6 +379,26 @@ g_be_gentle = 0;
 		printf_diff("%a", d);
 	)
 
+	T(test32,
+		double	d;
+
+		for (d = 1.5; d < 120.0; d += 1.0)
+		{
+			printf("d is : %f\n", d);
+			printf_diff("%.2a", d);
+		}
+	)
+
+	T(test33,
+		double	d;
+
+		for (d = 1.5789456; d < 10.0; d += 0.1)
+		{
+			printf("d is : %f\n", d);
+			printf_diff("%.2a", d);
+		}
+	)
+
 	return(run_test_arr(all_of, these));
 }
 //*/

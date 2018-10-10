@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/10 16:16:58 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 17:20:32 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,34 +65,6 @@ size_t	tssos_lensum(t_s_so stack[], int len)
 	return (ret);
 }
 
-/*
-**had to change rounding policy to accomodate printf,
-**which rouds as follows:
-**		0.8 -> 1	(precision 0)
-**		0.80 -> 0	(precision 0)
-**	which I think is unintuitive.
-**Worse, it then gives:
-**		0.88 -> 0.8	(precision 1)
-**		where it should give 0.9 to be coherent with
-**		the previous whacky behavior
-**	Anyways, had to change:
-**
-**	up = 0;
-**	if (syl->cc[at] > mid)
-**		up = 1;
-**	else if (syl->cc[at] == mid)
-**	{
-**		zero = base[0];
-**		i = syl->len - 1;
-**		while (i > at && syl->cc[i] == zero)
-**			i--;
-**		if (i != at)
-**			up = 1;
-**	}
-**	... to what can now be found below.
-**			(which I hate because)
-*/
-
 static int						add_carry(
 	char const *base,
 	t_s_so *syl,
@@ -121,6 +93,9 @@ static int						add_carry(
 	return (0);
 }
 
+/*
+**THE FOLLOWING RELIES ON BASE SYMBOLS' BINARY REPRESENTATIONS' ORDER
+**MIRRORING THE SYMBOLS' ORDER.
 #ifdef PRTF_BEHAVIOR_GNU
 int								round_ccsyl(
 	size_t at,
@@ -154,66 +129,85 @@ int								round_ccsyl(
 	return (1);
 }
 #endif
-#ifdef PRTF_BEHAVIOR_MAC
+*/
+
+int								is_even(
+	char c,
+	char const *base)
+{
+	int		evenness;
+
+	evenness = 1;
+	while (c != *base++)
+		evenness = !evenness;
+	return (evenness);
+}
+
+int								less_eq_more_than_mid(
+	char c,
+	char const *base)
+{
+	int const	base_len = ft_strlen(base);
+	int			pos;
+	char		mid;
+
+	pos = -1;
+	while (++pos < base_len)
+		if (base[pos] == c)
+			break;
+	if (pos < (mid = base_len / 2))
+		return (-1);
+	else if (pos == mid)
+		return (0);
+	else
+		return (1);
+}
+
+static int						has_tail(
+	t_s_so *syl,
+	size_t at,
+	char const *base)
+{
+	char const	zero = base[0];
+	size_t		i;
+
+	i = syl->len - 1;
+	while (i > at)
+		if (syl->cc[i--] != zero)
+			return (1);
+	return (0);
+}
+
 int								round_ccsyl(
 	size_t at,
 	t_s_so *syl,
 	char const *base,
 	char *overflow)
 {
-	int const	base_len = ft_strlen(base);
-	char	mid;
 	int		carry;
+	char	prv;
+	int		rel;
 
 	if (at >= syl->len)
 		return (0);
-	mid = base[base_len / 2];
-	carry = 0;
-	if (syl->cc[at] > mid)
-		carry = 1;
 	syl->len = at;
-	if (carry && overflow && add_carry(base, syl, at, overflow))
+	prv = at ? syl->cc[at - 1] : *overflow;
+	carry = 0;
+	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
+#ifdef PRTF_ROUNDING_BEHAVIOR_NEAR_EVEN
+		(rel == 0 && !is_even(prv, base)) ||
+#endif
+		has_tail(syl, at, base))
+		carry = 1;
+	if (carry && add_carry(base, syl, at, overflow))
 		return (-1);
 	return (1);
 }
-#endif
-#ifdef PRTF_BEHAVIOR_MINE
-int								round_ccsyl(
-	size_t at,
-	t_s_so *syl,
-	char const *base,
-	char *overflow)
-{
-	int const	base_len = ft_strlen(base);
-	char	mid;
-	char	zero;
-	int		carry;
-	size_t	i;
 
-	if (at >= syl->len)
-		return (0);
-	mid = base[base_len / 2];
-	carry = 0;
-	if (syl->cc[at] > mid)
-		carry = 1;
-	if (syl->cc[at] == mid)
-	{
-		zero = base[0];
-		i = syl->len - 1;
-		while (i > at)
-			if ((carry = syl->cc[i--] != zero))
-				break;
-	}
-	syl->len = at;
-	if (carry && overflow && add_carry(base, syl, at, overflow))
-		return (-1);
-	return (1);
-}
-#endif
-
-void
-	init_syls(
-		enum e_sot type, int how_many, t_s_so *ar)
+void							init_syls(
+	enum e_sot type,
+	int how_many,
+	t_s_so *ar)
 {
 	t_s_so	init;
 

@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 22:57:11 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 10:37:20 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 16:29:57 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_stuffer					g_fstr[P_SYLS + 1] =
 };
 
 static void							set_address(
-	t_s_pcs *stf)
+		t_s_pcs *stf)
 {
 	t_s_pct *const	chk = stf->chk;
 	t_s_arg *const	arg = chk->vaarg;
@@ -42,11 +42,11 @@ static void							set_address(
 }
 
 static void							set_flags_and_precision(
-	t_s_pcs *stf)
+		t_s_pcs *stf)
 {
 	t_s_pct *const	chk = stf->chk;
 
-#ifdef MAC
+#ifdef PRTF_BEHAVIOR_MAC
 	stf->chk->flags &= ~(PLUS_FLAG | SPACE_FLAG);
 #endif
 	stf->pre = chk->precision ? **chk->precision : 1;
@@ -73,7 +73,7 @@ void								convert_p(
 	t_s_pcs		stf;
 
 	stf.chk = chk;
-#ifdef GNU
+#if defined(PRTF_BEHAVIOR_GNU) || defined(PRTF_BEHAVIOR_MINE)
 	if (!*(void**)chk->vaarg->p_val)
 	{
 		output_nil(chk);
