@@ -16,7 +16,6 @@ $(OUT_DIR_LIB)/$(LIBNAME).a : $(OBJS)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS)\
-		$(patsubst %,-D%,$(CC_DEFINES))\
 		-o $@ -c $<
 
 $(OUT_DIR_H)/$(LIBNAME).h :

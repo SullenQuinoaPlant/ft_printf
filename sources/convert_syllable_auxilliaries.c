@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 12:36:26 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 16:16:58 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,7 @@ static int						add_carry(
 	return (0);
 }
 
-/*
-**The gnu version rounds weirdly on unit:
-**	if (syl->cc[at] > mid || (syl->cc[at] == mid && !at))
-**The mac version only takes in account one digit.
-*/
-#ifdef GNU
+#ifdef PRTF_BEHAVIOR_GNU
 int								round_ccsyl(
 	size_t at,
 	t_s_so *syl,
@@ -159,7 +154,7 @@ int								round_ccsyl(
 	return (1);
 }
 #endif
-#ifdef MAC
+#ifdef PRTF_BEHAVIOR_MAC
 int								round_ccsyl(
 	size_t at,
 	t_s_so *syl,
@@ -182,7 +177,7 @@ int								round_ccsyl(
 	return (1);
 }
 #endif
-#ifdef MINE
+#ifdef PRTF_BEHAVIOR_MINE
 int								round_ccsyl(
 	size_t at,
 	t_s_so *syl,
