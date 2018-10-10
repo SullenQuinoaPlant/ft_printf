@@ -71,7 +71,7 @@ static int						set_number(
 	stf->number = near_low_pot(&num);
 #ifndef MINE
 	if (!stf->number.pow10)
-		round_ldouble_weird(&stf->number.times, -stf->pre + 1);
+		round_ldouble(&stf->number.times, -stf->pre + 1);
 	else
 		round_ldouble(&stf->number.times, -stf->pre + 1);
 #else
