@@ -25,18 +25,39 @@ DEPENDENCIES =\
 	libmyfloatingpoint\
 	libft
 
-ifndef TOOLS
-#options are MAC, GNU
-	TOOLS := MAC
-endif
 
+####################
+#compiling options :
+
+#options are ARCH_A and 'add one to limbmyfloatingpoint'
 ifndef ARCH
 	ARCH := ARCH_A
 endif
 
-ifndef BEHAVIOR
 #options are MAC, GNU, MINE
-	BEHAVIOR := MAC
+ifndef BEHAVIOR
+	BEHAVIOR := PRTF_BEHAVIOR_MAC
+endif
+
+ifeq ($(BEHAVIOR), MAC)
+	ROUNDING_BEHAVIOR := PRTF_ROUNDING_BEHAVIOR_NEAR_EVEN
+endif
+
+ifeq ($(BEHAVIOR), GNU)
+	ROUNDING_BEHAVIOR := PRTF_ROUNDING_BEHAVIOR_NEAR_EVEN
+endif
+
+ifeq ($(BEHAVIOR), MINE)
+	ROUNDING_BEHAVIOR := PRTF_ROUNDING_BEHAVIOR_AWAY
+endif
+
+
+#################
+#compiling tools:
+
+#options are MAC, GNU
+ifndef TOOLS
+	TOOLS := MAC
 endif
 
 ifeq ($(TOOLS),MAC)
@@ -46,8 +67,7 @@ else
 endif
 
 CC := gcc
-
-CC_DEFINES := $(BEHAVIOR) $(ARCH)
+CC_DEFINES := $(ARCH) $(BEHAVIOR) $(ROUNDING_BEHAVIOR)
 ifndef CFLAGS
 	CFLAGS := -Wall -Wextra -Werror\
 			-I $(INC_DIR) -I $(LIBS_I)\

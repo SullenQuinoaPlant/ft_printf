@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 14:50:56 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 19:50:54 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 15:55:26 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,38 @@ t_s_pot								near_low_pot(
 	return (ret);
 }
 
-static void							round_idontunderstandwhythisis(
-	long double *p)
+/*
+**No down rounding because trailing zeroes aren't printed anyways.
+*/
+#ifdef PRTF_ROUNDING_BEHAVIOR_NEAR_EVEN
+static int							is_even(
+	long double d)
 {
-	double	d;
+	int		is_even;
 
-	d = *p;
-	d += 0.5;
-	*p = (int)d;
-	if ((int)d == d && (int)d % 2)
-		*p -= 1;
+	is_even = (my_floorl(d / 2.0L) * 2.0L == d);
+	return (is_even);
 }
 
+int									round_ldouble(
+	long double *d,
+	int pow10)
+{
+	long double	dd;
+	long double	ddd;
+	long double	floor;
+
+	if (!is_finite((dd = *d * my_intpowl(10, -pow10))))
+		return (-1);
+	floor = my_floorl(dd);
+	if ((ddd = dd - floor) > 0.5 ||
+		(ddd == 0.5 && !is_even(floor)))
+		*d += my_intpowl(10, pow10);
+	return (0);
+}
+#endif
+
+#ifdef PRTF_ROUNDING_BEHAVIOR_AWAY
 int									round_ldouble(
 	long double *d,
 	int pow10)
@@ -70,21 +90,11 @@ int									round_ldouble(
 
 	if (!is_finite((dd = *d * my_intpowl(10, -pow10))))
 		return (-1);
-	if (dd - my_floorl(dd) > 0.5)
+	if (dd - my_floorl(dd) >= 0.5)
 		*d += my_intpowl(10, pow10);
 	return (0);
 }
-
-int									round_ldouble_weird(
-	long double *d,
-	int pow10)
-{
-	if (pow10 == 0)
-		round_idontunderstandwhythisis(d);
-	else
-		round_ldouble(d, pow10);
-	return (0);
-}
+#endif
 
 int									trailing_zeros(
 	long double d,
