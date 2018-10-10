@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 14:50:56 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/10 16:22:33 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 18:27:57 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,35 @@ static long double					log2_to_log10(
 	return (res);
 }
 
+#define SMALL_NUMBER (long double)UINT64_MAX
+static int							small_number(
+	t_s_fpndfp const *num,
+	t_s_pot *ret)
+{
+	int const	sign = num->dbl < 0 ? -1 : 1;
+	int			pow10;
+	long double	d;
+
+	if ((d = sign * num->dbl) > SMALL_NUMBER)
+		return (0);
+	pow10 = 0;
+	if (d < 1)
+		while (d < 1)
+		{
+			d *= 10.0L;
+			pow10--;
+		}
+	else
+		while (d > 10)
+		{
+			d /= 10.0L;
+			pow10++;
+		}
+	ret->pow10 = pow10;
+	ret->times = d;
+	return (1);
+}
+
 t_s_pot								near_low_pot(
 	t_s_fpndfp const *num)
 {
@@ -31,6 +60,8 @@ t_s_pot								near_low_pot(
 
 	if (num->dbl == 0.0)
 		return ((t_s_pot){0, 0.0L});
+	if (small_number(num, &ret))
+		return (ret);
 	log = log2_to_log10(num->dec.exp);
 	ret.pow10 = (int)log;
 	ret.times = make_ldouble(0, num->dec.mant, -MANT_RES);

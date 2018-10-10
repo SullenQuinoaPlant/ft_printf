@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_e_stuffers1.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/10 17:40:09 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/10 17:41:32 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-void
-	ce_sign(
-		int pos, void *s)
+void						ce_sign(
+	int pos,
+	void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 
@@ -17,9 +29,9 @@ void
 		stf->syls[pos].len = 0;
 }
 
-void
-	ce_zero(
-		int pos, void *s)
+void						ce_zero(
+	int pos,
+	void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
@@ -30,9 +42,9 @@ void
 	syl->arg = &stf->number;
 }
 
-void
-	ce_separator(
-		int pos, void *s)
+void						ce_separator(
+	int pos,
+	void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 
@@ -42,9 +54,9 @@ void
 		stf->syls[pos].len = 0;
 }
 
-void
-	ce_lowdigits(
-		int pos, void *s)
+void						ce_lowdigits(
+	int pos,
+	void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
@@ -55,9 +67,9 @@ void
 	syl->arg = &stf->number;
 }
 
-void
-	ce_to_the_power(
-		int pos, void *s)
+void						ce_to_the_power(
+	int pos,
+	void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 	t_s_so	* const syl = &stf->syls[pos];

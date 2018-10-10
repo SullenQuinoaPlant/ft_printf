@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/10 17:20:32 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 17:32:26 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int								round_ccsyl(
 #endif
 */
 
-int								is_even(
+static int						is_even(
 	char c,
 	char const *base)
 {
@@ -143,7 +143,7 @@ int								is_even(
 	return (evenness);
 }
 
-int								less_eq_more_than_mid(
+static int						less_eq_more_than_mid(
 	char c,
 	char const *base)
 {

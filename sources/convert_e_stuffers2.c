@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_e_stuffers2.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/10 17:41:38 by nmauvari          #+#    #+#             */
+/*   Updated: 2018/10/10 17:42:16 by nmauvari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inner.h"
 
-void
-	ce_exponent_sign(
-		int pos, void *s)
+void						ce_exponent_sign(
+	int pos,
+	void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
@@ -12,9 +24,9 @@ void
 	stf->p_exp.len--;
 }
 
-void
-	ce_exponent_pad(
-		int pos, void *s)
+void						ce_exponent_pad(
+	int pos,
+	void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 	t_s_so	* const syl = &stf->syls[pos];
@@ -26,9 +38,9 @@ void
 		syl->len = 0;
 }
 
-void
-	ce_exponent(
-		int pos, void *s)
+void						ce_exponent(
+	int pos,
+	void *s)
 {
 	t_s_ecs	* const stf = (t_s_ecs*)s;
 	t_s_so	* const syl = stf->syls + pos;

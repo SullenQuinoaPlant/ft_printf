@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 16:32:33 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/10 17:29:25 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 17:42:27 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,7 @@ static void						set_number(
 	t_s_ecs *stf)
 {
 	stf->number = near_low_pot(num);
-#ifndef MINE
-	if (!stf->number.pow10)
-		round_ldouble(&stf->number.times, -stf->pre);
-	else
-		round_ldouble(&stf->number.times, -stf->pre);
-#else
 	round_ldouble(&stf->number.times, -stf->pre);
-#endif
 	if (stf->number.times >= 10)
 	{
 		stf->number.times /= 10.0;
