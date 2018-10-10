@@ -479,6 +479,14 @@ g_be_gentle = 0;
 		}
 	)
 
+	T(test39_0,
+		double	d;
+
+		d = 0x1.0a188p-3;
+		printf("d is : %f\t%a\n", d, d);
+		printf_diff("%.3a", d);
+	)
+
 	return(run_test_arr(all_of, these));
 }
 //*/

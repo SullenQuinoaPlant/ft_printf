@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/10 21:29:36 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 23:04:05 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,9 @@ int								round_ccsyl(
 }
 #endif
 #ifdef PRTF_BEHAVIOR_MAC
+/*
+**Couldn't figure it out. Tired.
+*/
 int								round_ccsyl(
 	size_t at,
 	t_s_so *syl,
