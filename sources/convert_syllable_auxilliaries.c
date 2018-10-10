@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/10 19:02:23 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 21:08:10 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,64 @@ static int						add_carry(
 	return (0);
 }
 
+static int						has_tail(
+	t_s_so *syl,
+	size_t at,
+	char const *base)
+{
+	char const	zero = base[0];
+	size_t		i;
+
+	i = syl->len - 1;
+	while (i > at)
+		if (syl->cc[i--] != zero)
+			return (1);
+	return (0);
+}
+
+static int						less_eq_more_than_mid(
+	char c,
+	char const *base)
+{
+	int const	base_len = ft_strlen(base);
+	int			pos;
+	char		mid;
+
+	pos = -1;
+	while (++pos < base_len)
+		if (base[pos] == c)
+			break;
+	if (pos < (mid = base_len / 2))
+		return (-1);
+	else if (pos == mid)
+		return (0);
+	else
+		return (1);
+}
+
+static int						is_even(
+	char c,
+	char const *base)
+{
+	int		evenness;
+
+	evenness = 1;
+	while (c != *base++)
+		evenness = !evenness;
+	return (evenness);
+}
+
+void							compiler_please_shut_up(
+	void)
+{
+	(void)is_even;
+	(void)has_tail;
+}
+
 /*
 **THE FOLLOWING RELIES ON BASE SYMBOLS' BINARY REPRESENTATIONS' ORDER
-**MIRRORING THE SYMBOLS' ORDER.
+**MIRRORING THE SYMBOLS' ORDER. CHANGE IT.
+*/
 #ifdef PRTF_BEHAVIOR_GNU
 int								round_ccsyl(
 	size_t at,
@@ -129,55 +184,7 @@ int								round_ccsyl(
 	return (1);
 }
 #endif
-*/
-
-static int						is_even(
-	char c,
-	char const *base)
-{
-	int		evenness;
-
-	evenness = 1;
-	while (c != *base++)
-		evenness = !evenness;
-	return (evenness);
-}
-
-static int						less_eq_more_than_mid(
-	char c,
-	char const *base)
-{
-	int const	base_len = ft_strlen(base);
-	int			pos;
-	char		mid;
-
-	pos = -1;
-	while (++pos < base_len)
-		if (base[pos] == c)
-			break;
-	if (pos < (mid = base_len / 2))
-		return (-1);
-	else if (pos == mid)
-		return (0);
-	else
-		return (1);
-}
-
-static int						has_tail(
-	t_s_so *syl,
-	size_t at,
-	char const *base)
-{
-	char const	zero = base[0];
-	size_t		i;
-
-	i = syl->len - 1;
-	while (i > at)
-		if (syl->cc[i--] != zero)
-			return (1);
-	return (0);
-}
-
+#ifdef PRTF_BEHAVIOR_MINE
 int								round_ccsyl(
 	size_t at,
 	t_s_so *syl,
@@ -190,19 +197,49 @@ int								round_ccsyl(
 
 	if (at >= syl->len)
 		return (0);
-	syl->len = at;
 	prv = at ? syl->cc[at - 1] : *overflow;
 	carry = 0;
 	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
-#ifdef PRTF_ROUNDING_BEHAVIOR_NEAR_EVEN
+# ifdef PRTF_ROUNDING_BEHAVIOR_NEAR_EVEN
 		(rel == 0 && !is_even(prv, base)) ||
-#endif
+# endif
 		has_tail(syl, at, base))
 		carry = 1;
+	syl->len = at;
 	if (carry && add_carry(base, syl, at, overflow))
 		return (-1);
 	return (1);
 }
+#endif
+#ifdef PRTF_BEHAVIOR_MAC
+int								round_ccsyl(
+	size_t at,
+	t_s_so *syl,
+	char const *base,
+	char *overflow)
+{
+	int			carry;
+	char		prv;
+	int			rel;
+
+	if (at >= syl->len)
+		return (0);
+	prv = at ? syl->cc[at - 1] : *overflow;
+	carry = 0;
+	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
+//		(rel == 0 && at && (!is_even(prv, base) || has_tail(syl, at, base))))
+//		(rel == 0 && at && ((has_tail(syl, at, base)) || !is_even(prv, base))))
+		(rel == 0 && at && ((has_tail(syl, at, base)) && (
+		!is_even(prv, base) || prv == *base))))
+//		(rel == 0 && at && (!is_even(prv, base))))
+		carry = 1;
+//		(rel == 0 && at && has_tail(syl, at, base)))
+	syl->len = at;
+	if (carry && add_carry(base, syl, at, overflow))
+		return (-1);
+	return (1);
+}
+#endif
 
 void							init_syls(
 	enum e_sot type,

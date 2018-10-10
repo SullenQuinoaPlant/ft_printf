@@ -49,6 +49,13 @@ int	declare_tests_and_run(int all_of, char *these[])
 		double	d;
 
 		d = 1.5;
+		printf("d is : %f\n", d);
+		printf_diff("%.0a", d);
+		d = 1.51;
+		printf("d is : %f\n", d);
+		printf_diff("%.0a", d);
+		d = 1.6;
+		printf("d is : %f\n", d);
 		printf_diff("%.0a", d);
 	)
 
@@ -394,7 +401,70 @@ g_be_gentle = 0;
 
 		for (d = 1.5789456; d < 10.0; d += 0.1)
 		{
+			printf("d is : %f\t%a\n", d, d);
+			printf_diff("%.2a", d);
+		}
+	)
+
+	T(test33_0,
+		double	d;
+
+		d = 2.378946;
+		printf("d is : %f\t%a\n", d, d);
+		printf_diff("%.2a", d);
+	)
+
+	T(test33_1,
+		double	d;
+
+		d = 8.078946;
+		printf("d is : %f\t%a\n", d, d);
+		printf_diff("%.2a", d);
+	)
+
+	T(test34,
+		double	d;
+
+		d = 1.6;
+		printf_diff("%.0a", d);
+	)
+
+	T(test35,
+		double	d;
+
+		for (d = 1.05; d < 3.0; d += 0.1)
+		{
 			printf("d is : %f\n", d);
+			printf_diff("%.2a", d);
+		}
+	)
+
+	T(test36,
+		double	d;
+
+		for (d = 1.05; d < 3.0; d += 0.1)
+		{
+			printf("d is : %.1f\n", d);
+			printf_diff("%.2a", d);
+		}
+	)
+
+	T(test37,
+		double	d;
+
+		for (d = 1.05; d < 3.0; d += 0.1)
+		{
+			printf("d is : %.2f\n", d);
+			printf_diff("%.2a", d);
+		}
+	)
+
+	T(test38,
+		double	d;
+
+		for (d = 0x0.01231p0; d < 10.0; d += 0x0.1p0)
+		{
+			printf("d is : %f\t%a\n", d, d);
 			printf_diff("%.2a", d);
 		}
 	)

@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:22:12 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/10 19:00:13 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 20:15:28 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,6 @@ void						ca_separator(
 	stf->syllables[syl] = set;
 }
 
-/*
-**The MAC version of the function does not provide an overflow
-**	address in the call to round_ccsyl.
-*/
-#ifdef PRTF_BEHAVIOR_MAC
 void						ca_mantissa(
 	int syl,
 	void *p)
@@ -85,7 +80,7 @@ void						ca_mantissa(
 	char const		*base;
 	uint64_t		v;
 	t_s_so			set;
-	int				pr;
+	size_t			pr;
 
 	base = stf->chk->flags & BIGCS_FLAG ? VTB_BHEX_SYMS : VTB_HEX_SYMS;
 	v = stf->aligned_mant;
@@ -94,42 +89,14 @@ void						ca_mantissa(
 	stf->excess = 0;
 	if (stf->chk->precision)
 	{
-		pr = (size_t)**stf->chk->precision;
-		if (!round_ccsyl(pr, &set, base, &stf->zero))
+		if ((pr = (size_t)**stf->chk->precision) > set.len)
 			stf->excess = pr - set.len;
+		round_ccsyl(pr, &set, base, &stf->zero);
 	}
 	if (stf->chk->flags & APSTR_FLAG)
 		set.type = e_sot_apstr_cc;
 	stf->syllables[syl] = set;
 }
-#else
-void						ca_mantissa(
-	int syl,
-	void *p)
-{
-	t_s_acs *const	stf = (t_s_acs*)p;
-	char const		*base;
-	uint64_t		v;
-	t_s_so			set;
-	int				pr;
-
-	base = stf->chk->flags & BIGCS_FLAG ? VTB_BHEX_SYMS : VTB_HEX_SYMS;
-	v = stf->aligned_mant;
-	set = syl_lowv_tob(v, sizeof(v), base, &stf->m);
-	set.len = v ? set.len : 0;
-	stf->excess = 0;
-	if (stf->chk->precision &&
-		**stf->chk->precision >= 0)
-	{
-		pr = (size_t)**stf->chk->precision;
-		if (!round_ccsyl(pr, &set, base, &stf->zero))
-			stf->excess = pr - set.len;
-	}
-	if (stf->chk->flags & APSTR_FLAG)
-		set.type = e_sot_apstr_cc;
-	stf->syllables[syl] = set;
-}
-#endif
 
 void	ca_excess_precision(int syl, void *p)
 {
