@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:08:25 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 18:27:45 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 18:59:11 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,6 @@ static void							set_precision(
 	if (chk->precision && **chk->precision < 0)
 	{
 		**chk->precision = 0;
-/*
-		if (chk->len_mod == e_bigl)
-			**chk->precision = 16;
-		else
-			**chk->precision = 13;
-*/
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:22:12 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 12:05:09 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 19:00:13 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ void						ca_separator(
 **The MAC version of the function does not provide an overflow
 **	address in the call to round_ccsyl.
 */
-#define MID_BASE 8
-#ifdef MAC
+#ifdef PRTF_BEHAVIOR_MAC
 void						ca_mantissa(
 	int syl,
 	void *p)
@@ -93,8 +92,7 @@ void						ca_mantissa(
 	set = syl_lowv_tob(v, sizeof(v), base, &stf->m);
 	set.len = v ? set.len : 0;
 	stf->excess = 0;
-	if (stf->chk->precision &&
-		**stf->chk->precision >= 0)
+	if (stf->chk->precision)
 	{
 		pr = (size_t)**stf->chk->precision;
 		if (!round_ccsyl(pr, &set, base, &stf->zero))
@@ -132,7 +130,6 @@ void						ca_mantissa(
 	stf->syllables[syl] = set;
 }
 #endif
-#undef MID_BASE
 
 void	ca_excess_precision(int syl, void *p)
 {
