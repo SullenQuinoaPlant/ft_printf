@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:22:12 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/10 20:15:28 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 21:27:02 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void						ca_mantissa(
 		if ((pr = (size_t)**stf->chk->precision) > set.len)
 			stf->excess = pr - set.len;
 		round_ccsyl(pr, &set, base, &stf->zero);
+		set.len = pr;
 	}
 	if (stf->chk->flags & APSTR_FLAG)
 		set.type = e_sot_apstr_cc;

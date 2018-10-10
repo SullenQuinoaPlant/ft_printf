@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/10 21:08:10 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/10 21:29:36 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,8 +200,9 @@ int								round_ccsyl(
 	prv = at ? syl->cc[at - 1] : *overflow;
 	carry = 0;
 	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
+		(!rel && (0 ||
 # ifdef PRTF_ROUNDING_BEHAVIOR_NEAR_EVEN
-		(rel == 0 && !is_even(prv, base)) ||
+		!is_even(prv, base) ||
 # endif
 		has_tail(syl, at, base))
 		carry = 1;
@@ -227,18 +228,38 @@ int								round_ccsyl(
 	prv = at ? syl->cc[at - 1] : *overflow;
 	carry = 0;
 	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
-//		(rel == 0 && at && (!is_even(prv, base) || has_tail(syl, at, base))))
-//		(rel == 0 && at && ((has_tail(syl, at, base)) || !is_even(prv, base))))
-		(rel == 0 && at && ((has_tail(syl, at, base)) && (
-		!is_even(prv, base) || prv == *base))))
-//		(rel == 0 && at && (!is_even(prv, base))))
+		(rel == 0 &&
+		((has_tail(syl, at, base)) || (!is_even(prv, base)))))
 		carry = 1;
-//		(rel == 0 && at && has_tail(syl, at, base)))
+	if (carry && add_carry(base, syl, at, overflow))
+		return (-1);
+	return (1);
+}
+/*
+int								round_ccsyl(
+	size_t at,
+	t_s_so *syl,
+	char const *base,
+	char *overflow)
+{
+	int			carry;
+	char		prv;
+	int			rel;
+
+	if (at >= syl->len)
+		return (0);
+	prv = at ? syl->cc[at - 1] : *overflow;
+	carry = 0;
+	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
+		(rel == 0 && at && ((has_tail(syl, at, base)) &&
+		(!is_even(prv, base) || prv == *base))))
+		carry = 1;
 	syl->len = at;
 	if (carry && add_carry(base, syl, at, overflow))
 		return (-1);
 	return (1);
 }
+*/
 #endif
 
 void							init_syls(
