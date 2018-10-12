@@ -46,6 +46,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 	)
 
 	T(test5,
+g_be_gentle = 1;
 		double	d;
 
 		d = 1.5;
@@ -57,6 +58,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		d = 1.6;
 		printf("d is : %f\n", d);
 		printf_diff("%.0a", d);
+g_be_gentle = 0;
 	)
 
 	T(test5_00,
@@ -74,6 +76,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 	)
 
 	T(test5_1,
+g_be_gentle = 1;
 		double	d;
 
 		for (d = 1.5; d < 120.0; d += 1.0)
@@ -81,6 +84,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 			printf("d is : %f\n", d);
 			printf_diff("%.0a", d);
 		}
+g_be_gentle = 0;
 	)
 
 	T(test5_1_0,
@@ -98,10 +102,12 @@ int	declare_tests_and_run(int all_of, char *these[])
 	)
 
 	T(test5_3,
+g_be_gentle = 1;
 		double	d;
 
 		d = 1.53125;
 		printf_diff("%.0a", d);
+g_be_gentle = 0;
 	)
 
 	T(test5_4,
@@ -396,7 +402,19 @@ g_be_gentle = 0;
 		}
 	)
 
+	T(test32_0,
+		double	d;
+
+		d = 1.5;
+		printf("d is : %f\n", d);
+		ft_printf("ftprintf gives: %.2a\n", d);
+		printf("printf gives: %.2a\n", d);
+		printf_diff("%.2a", d);
+	)
+
+
 	T(test33,
+g_be_gentle = 1;
 		double	d;
 
 		for (d = 1.5789456; d < 10.0; d += 0.1)
@@ -404,14 +422,17 @@ g_be_gentle = 0;
 			printf("d is : %f\t%a\n", d, d);
 			printf_diff("%.2a", d);
 		}
+g_be_gentle = 0;
 	)
 
 	T(test33_0,
+g_be_gentle = 1;
 		double	d;
 
 		d = 2.378946;
 		printf("d is : %f\t%a\n", d, d);
 		printf_diff("%.2a", d);
+g_be_gentle = 0;
 	)
 
 	T(test33_1,
@@ -470,6 +491,7 @@ g_be_gentle = 0;
 	)
 
 	T(test39,
+g_be_gentle = 1;
 		double	d;
 
 		for (d = 0x0.01231p0; d < 100.0; d += 0x0.101p0)
@@ -477,14 +499,17 @@ g_be_gentle = 0;
 			printf("d is : %f\t%a\n", d, d);
 			printf_diff("%.3a", d);
 		}
+g_be_gentle = 0;
 	)
 
 	T(test39_0,
+g_be_gentle = 1;
 		double	d;
 
 		d = 0x1.0a188p-3;
 		printf("d is : %f\t%a\n", d, d);
 		printf_diff("%.3a", d);
+g_be_gentle = 0;
 	)
 
 	return(run_test_arr(all_of, these));

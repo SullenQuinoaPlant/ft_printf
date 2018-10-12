@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 23:23:02 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/10 23:04:05 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/12 04:49:38 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,51 +140,7 @@ static int						is_even(
 	return (evenness);
 }
 
-void							compiler_please_shut_up(
-	void)
-{
-	(void)is_even;
-	(void)has_tail;
-}
-
-/*
-**THE FOLLOWING RELIES ON BASE SYMBOLS' BINARY REPRESENTATIONS' ORDER
-**MIRRORING THE SYMBOLS' ORDER. CHANGE IT.
-*/
-#ifdef PRTF_BEHAVIOR_GNU
-int								round_ccsyl(
-	size_t at,
-	t_s_so *syl,
-	char const *base,
-	char *overflow)
-{
-	int const	base_len = ft_strlen(base);
-	char	mid;
-	char	zero;
-	int		carry;
-	size_t	i;
-
-	if (at >= syl->len)
-		return (0);
-	mid = base[base_len / 2];
-	carry = 0;
-	if (syl->cc[at] > mid || (syl->cc[at] == mid && !at))
-		carry = 1;
-	if (syl->cc[at] == mid)
-	{
-		zero = base[0];
-		i = syl->len - 1;
-		while (i > at)
-			if ((carry = syl->cc[i--] != zero))
-				break;
-	}
-	syl->len = at;
-	if (carry && overflow && add_carry(base, syl, at, overflow))
-		return (-1);
-	return (1);
-}
-#endif
-#ifdef PRTF_BEHAVIOR_MINE
+#if defined PRTF_BEHAVIOR_MINE || PRTF_BEHAVIOR_MAC || PRTF_BEHAVIOR_GNU
 int								round_ccsyl(
 	size_t at,
 	t_s_so *syl,
@@ -197,6 +153,7 @@ int								round_ccsyl(
 
 	if (at >= syl->len)
 		return (0);
+	syl->len = at;
 	prv = at ? syl->cc[at - 1] : *overflow;
 	carry = 0;
 	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
@@ -204,7 +161,7 @@ int								round_ccsyl(
 # ifdef PRTF_ROUNDING_BEHAVIOR_NEAR_EVEN
 		!is_even(prv, base) ||
 # endif
-		has_tail(syl, at, base))
+		has_tail(syl, at, base))))
 		carry = 1;
 	syl->len = at;
 	if (carry && add_carry(base, syl, at, overflow))
@@ -212,58 +169,97 @@ int								round_ccsyl(
 	return (1);
 }
 #endif
-#ifdef PRTF_BEHAVIOR_MAC
+
 /*
 **Couldn't figure it out. Tired.
+**I consider the above function's behavior to be sensible enough.
+**Left the following for examples as to what I tried.
+**But I couldn't reproduce the rounding technique employed, couldn't find an
+**	indication on the web as to which rounding method is desired in this case,
+**	and looking at the sources would be the same as copy-pasting.
+**So things are probably going to stay the way they are.
+**#ifdef PRTF_BEHAVIOR_MAC
+**int								round_ccsyl(
+**	size_t at,
+**	t_s_so *syl,
+**	char const *base,
+**	char *overflow)
+**{
+**	int			carry;
+**	char		prv;
+**	int			rel;
+**
+**	if (at >= syl->len)
+**		return (0);
+**	prv = at ? syl->cc[at - 1] : *overflow;
+**	carry = 0;
+**	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
+**		(rel == 0 &&
+**		((has_tail(syl, at, base)) || (!is_even(prv, base)))))
+**		carry = 1;
+**	if (carry && add_carry(base, syl, at, overflow))
+**		return (-1);
+**	return (1);
+**}
+**int								round_ccsyl(
+**	size_t at,
+**	t_s_so *syl,
+**	char const *base,
+**	char *overflow)
+**{
+**	int			carry;
+**	char		prv;
+**	int			rel;
+**
+**	if (at >= syl->len)
+**		return (0);
+**	prv = at ? syl->cc[at - 1] : *overflow;
+**	carry = 0;
+**	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
+**		(rel == 0 && at && ((has_tail(syl, at, base)) &&
+**		(!is_even(prv, base) || prv == *base))))
+**		carry = 1;
+**	syl->len = at;
+**	if (carry && add_carry(base, syl, at, overflow))
+**		return (-1);
+**	return (1);
+**}
+****THE FOLLOWING RELIES ON BASE SYMBOLS' BINARY REPRESENTATIONS' ORDER
+****MIRRORING THE SYMBOLS' ORDER. CHANGE IT.
+**#ifdef PRTF_BEHAVIOR_GNU
+**int								round_ccsyl(
+**	size_t at,
+**	t_s_so *syl,
+**	char const *base,
+**	char *overflow)
+**{
+**	int const	base_len = ft_strlen(base);
+**	char	mid;
+**	char	zero;
+**	int		carry;
+**	size_t	i;
+**
+**	if (at >= syl->len)
+**		return (0);
+**	mid = base[base_len / 2];
+**	carry = 0;
+**	if (syl->cc[at] > mid || (syl->cc[at] == mid && !at))
+**		carry = 1;
+**	if (syl->cc[at] == mid)
+**	{
+**		zero = base[0];
+**		i = syl->len - 1;
+**		while (i > at)
+**			if ((carry = syl->cc[i--] != zero))
+**				break;
+**	}
+**	syl->len = at;
+**	if (carry && overflow && add_carry(base, syl, at, overflow))
+**		return (-1);
+**	return (1);
+**}
+**#endif
 */
-int								round_ccsyl(
-	size_t at,
-	t_s_so *syl,
-	char const *base,
-	char *overflow)
-{
-	int			carry;
-	char		prv;
-	int			rel;
-
-	if (at >= syl->len)
-		return (0);
-	prv = at ? syl->cc[at - 1] : *overflow;
-	carry = 0;
-	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
-		(rel == 0 &&
-		((has_tail(syl, at, base)) || (!is_even(prv, base)))))
-		carry = 1;
-	if (carry && add_carry(base, syl, at, overflow))
-		return (-1);
-	return (1);
-}
-/*
-int								round_ccsyl(
-	size_t at,
-	t_s_so *syl,
-	char const *base,
-	char *overflow)
-{
-	int			carry;
-	char		prv;
-	int			rel;
-
-	if (at >= syl->len)
-		return (0);
-	prv = at ? syl->cc[at - 1] : *overflow;
-	carry = 0;
-	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
-		(rel == 0 && at && ((has_tail(syl, at, base)) &&
-		(!is_even(prv, base) || prv == *base))))
-		carry = 1;
-	syl->len = at;
-	if (carry && add_carry(base, syl, at, overflow))
-		return (-1);
-	return (1);
-}
-*/
-#endif
 
 void							init_syls(
 	enum e_sot type,
