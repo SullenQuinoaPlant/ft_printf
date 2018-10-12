@@ -11,9 +11,8 @@ void						convert_r(
 		output_null(chk);
 		return ;
 	}
-	pre = 0;
-	if (chk->precision)
-		pre = **chk->precision;
+	if (!chk->precision || (pre = **chk->precision) < 0)
+		pre = 0;
 	output_padnbuffer(p, (size_t[e_oi_sz]){0, (size_t)pre}, chk);
 }
 
@@ -21,7 +20,7 @@ void						convert_r(
 void						convert_big_r(
 	t_s_pct *chk)
 {
-	int const	fd = *(int*)chk->vaarg->p_val;
+	int const	fd = *(int**)chk->vaarg->p_val;
 	int			pre;
 	size_t		b_sz;
 	ssize_t		r;
@@ -41,7 +40,6 @@ void						convert_big_r(
 		}
 		r = read(fd, b, b_sz);
 		output_padnbuffer(b, (size_t[e_oi_sz]){0, b_sz}, chk);
-		pre -= BUFF_SZ;
 	}
 	if (r < 0)
 		g_os.errored++;

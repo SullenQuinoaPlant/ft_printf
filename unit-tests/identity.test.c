@@ -65,7 +65,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 	});
 
 	#define COMMAND_SZ 256
-	T(identities,
+	T(identities_fdctrl,
 		char	**file;
 		int		in_fd;
 		int		out_fd;
