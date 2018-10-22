@@ -142,7 +142,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 			if ((in_fd = open(*file, O_RDONLY)) > 0 &&
 				(out_fd = open("identity_res",
 					O_RDWR | O_CREAT | O_TRUNC,
-					S_IRUSR | S_IWUSR)) > 0) &&
+					S_IRUSR | S_IWUSR)) > 0 &&
 				!fstat(fd, &stat) &&
 				(in_buf = malloc(stat.off_t)) &&
 				(read = read(fd, in_buf, stat.off_t)) == stat.off)
@@ -206,7 +206,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 			if ((in_fd = open(*file, O_RDONLY)) > 0 &&
 				(out_fd = open("identity_res",
 					O_RDWR | O_CREAT | O_TRUNC,
-					S_IRUSR | S_IWUSR)) > 0) &&
+					S_IRUSR | S_IWUSR)) > 0)
 			{
 				ft_printf("%{>*}%R", out_fd, in_fd);
 				close(out_fd);

@@ -29,7 +29,7 @@ DEPENDENCIES =\
 ####################
 #compiling options :
 
-#options are ARCH_A and 'add one to limbmyfloatingpoint'
+#options are ARCH_A and 'add another to limbmyfloatingpoint'
 ifndef ARCH
 	ARCH := ARCH_A
 endif

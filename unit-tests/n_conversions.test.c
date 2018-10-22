@@ -37,7 +37,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 
 		if ((b = malloc(BIG_CHUNK)))
 		{
-			ft_printf("%r%n%N", b, &nref, &bignref);
+			ft_printf("%.*r%n%N", BIG_CHUNK, b, &nref, &bignref);
 			assert_true(nref == BIG_CHUNK);
 			assert_true(bignref == (size_t)BIG_CHUNK);
 		}
