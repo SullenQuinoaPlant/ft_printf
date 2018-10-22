@@ -29,5 +29,22 @@ int	declare_tests_and_run(int all_of, char *these[])
 	)
 	#undef CMD 
 
+	#define BIG_CHUNK 0x1000
+	T(test_r,
+		char	*b;
+		int		nref;
+		size_t	bignref;
+
+		if ((b = malloc(BIG_CHUNK)))
+		{
+			ft_printf("%r%n%N", b, &nref, &bignref);
+			assert_true(nref == BIG_CHUNK);
+			assert_true(bignref == (size_t)BIG_CHUNK);
+		}
+		else
+			skip();
+	)
+	#undef BIG_CHUNK
+
 	return(run_test_arr(all_of, these));
 }

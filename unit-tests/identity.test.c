@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include "cmocka/my_overlay.h"
 #include "libftprintf.h"
 #include "libgetnextline.h"
@@ -65,7 +67,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 	});
 
 	#define COMMAND_SZ 256
-	T(identities_fdctrl,
+	T(string_conversion_fdctrl,
 		char	**file;
 		int		in_fd;
 		int		out_fd;
@@ -121,5 +123,131 @@ int	declare_tests_and_run(int all_of, char *these[])
 				close(out_fd);
 		}
 	)
+
+	T(r_conversion_id,
+		char		**file;
+		int			in_fd;
+		int			out_fd;
+		int			res_fd;
+		struct stat	stat;
+		char		*in_buf;
+		ssize_t		read;
+		int			r;
+		char		command[COMMAND_SZ];
+
+		r = 0;
+		file = files;
+		while (*file && !r)
+		{
+			if ((in_fd = open(*file, O_RDONLY)) > 0 &&
+				(out_fd = open("identity_res",
+					O_RDWR | O_CREAT | O_TRUNC,
+					S_IRUSR | S_IWUSR)) > 0) &&
+				!fstat(fd, &stat) &&
+				(in_buf = malloc(stat.off_t)) &&
+				(read = read(fd, in_buf, stat.off_t)) == stat.off)
+			{
+				close(in_fd);
+				ft_printf("%{>*}%r", out_fd, in_buf);
+				close(out_fd);
+				free(in_buf);
+				if (r = snprintf(command,
+						COMMAND_SZ,
+						"diff %s identity_res > identity_diff",
+						*file)) >= 0 &&
+					(r = system(command)) >= 0 &&
+					(res_fd = open("identity_diff",
+						O_RDONLY)) >= 0)
+				{
+					char	dummy;
+					if ((r = read(res_fd, &dummy, 1)) > 0)
+					{
+						printf("failed on %s\n", *file);
+						system("cat identity_diff");
+					}
+					else if (!r)
+						printf("success on: %s\n", *file);
+					close(res_fd);
+					assert_true(r <= 0);
+					r = r < 0 ? r : 0;
+				}
+				else
+					r = -1;
+			}
+			else
+				r = -1;
+			file++;
+		}
+		if (in_fd >= 0)
+			close(in_fd);
+		if (out_fd >= 0)
+			close(out_fd);
+		if (in_buf)
+			free(in_buf);
+		if (r < 0)
+		{
+			printf("system error on %s\n", *file);
+			skip();
+		}
+	)
+
+	T(big_r_conversion_id,
+		char		**file;
+		int			in_fd;
+		int			out_fd;
+		int			res_fd;
+		int			r;
+		char		command[COMMAND_SZ];
+
+		r = 0;
+		file = files;
+		while (*file && !r)
+		{
+			if ((in_fd = open(*file, O_RDONLY)) > 0 &&
+				(out_fd = open("identity_res",
+					O_RDWR | O_CREAT | O_TRUNC,
+					S_IRUSR | S_IWUSR)) > 0) &&
+			{
+				ft_printf("%{>*}%R", out_fd, in_fd);
+				close(out_fd);
+				close(in_fd);
+				if (r = snprintf(command,
+						COMMAND_SZ,
+						"diff %s identity_res > identity_diff",
+						*file)) >= 0 &&
+					(r = system(command)) >= 0 &&
+					(res_fd = open("identity_diff",
+						O_RDONLY)) >= 0)
+				{
+					char	dummy;
+					if ((r = read(res_fd, &dummy, 1)) > 0)
+					{
+						printf("failed on %s\n", *file);
+						system("cat identity_diff");
+					}
+					else if (!r)
+						printf("success on: %s\n", *file);
+					close(res_fd);
+					assert_true(r <= 0);
+					r = r < 0 ? r : 0;
+				}
+				else
+					r = -1;
+			}
+			else
+				r = -1;
+			file++;
+		}
+		if (in_fd >= 0)
+			close(in_fd);
+		if (out_fd >= 0)
+			close(out_fd);
+		if (r < 0)
+		{
+			printf("system error on %s\n", *file);
+			skip();
+		}
+	)
+
 	return(run_test_arr(all_of, these));
 }
