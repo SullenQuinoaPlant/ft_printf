@@ -20,7 +20,7 @@ void						convert_r(
 void						convert_big_r(
 	t_s_pct *chk)
 {
-	int const	fd = *(int**)chk->vaarg->p_val;
+	int const	fd = *(int*)chk->vaarg->p_val;
 	int			pre;
 	size_t		b_sz;
 	ssize_t		r;

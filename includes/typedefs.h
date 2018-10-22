@@ -73,7 +73,7 @@ typedef struct						s_length_mod_and_pattern
 /*
 **length of enumeration is relied upon for array declarations
 */
-typedef enum	convert_e_specifiers {
+typedef enum	e_conversion_specifiers {
 	e_no_specifier,
 	e_a, e_biga,
 	e_b, e_bigb,
@@ -115,8 +115,7 @@ typedef enum	e_types {
 	e_types_sz
 }				t_e_t;
 
-extern size_t
-	g_et_sz[];
+extern size_t	g_et_sz[];
 
 typedef struct	s_va_arg {
 	t_e_t		type;
