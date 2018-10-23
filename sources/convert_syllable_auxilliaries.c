@@ -223,41 +223,6 @@ int								round_ccsyl(
 **		return (-1);
 **	return (1);
 **}
-****THE FOLLOWING RELIES ON BASE SYMBOLS' BINARY REPRESENTATIONS' ORDER
-****MIRRORING THE SYMBOLS' ORDER. CHANGE IT.
-**#ifdef PRTF_BEHAVIOR_GNU
-**int								round_ccsyl(
-**	size_t at,
-**	t_s_so *syl,
-**	char const *base,
-**	char *overflow)
-**{
-**	int const	base_len = ft_strlen(base);
-**	char	mid;
-**	char	zero;
-**	int		carry;
-**	size_t	i;
-**
-**	if (at >= syl->len)
-**		return (0);
-**	mid = base[base_len / 2];
-**	carry = 0;
-**	if (syl->cc[at] > mid || (syl->cc[at] == mid && !at))
-**		carry = 1;
-**	if (syl->cc[at] == mid)
-**	{
-**		zero = base[0];
-**		i = syl->len - 1;
-**		while (i > at)
-**			if ((carry = syl->cc[i--] != zero))
-**				break;
-**	}
-**	syl->len = at;
-**	if (carry && overflow && add_carry(base, syl, at, overflow))
-**		return (-1);
-**	return (1);
-**}
-**#endif
 */
 
 void							init_syls(
