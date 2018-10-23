@@ -131,7 +131,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 		int			res_fd;
 		struct stat	stat;
 		char		*in_buf;
-		ssize_t		read;
+		ssize_t		readed;
 		int			r;
 		char		command[COMMAND_SZ];
 
@@ -143,15 +143,15 @@ int	declare_tests_and_run(int all_of, char *these[])
 				(out_fd = open("identity_res",
 					O_RDWR | O_CREAT | O_TRUNC,
 					S_IRUSR | S_IWUSR)) > 0 &&
-				!fstat(fd, &stat) &&
-				(in_buf = malloc(stat.off_t)) &&
-				(read = read(fd, in_buf, stat.off_t)) == stat.off)
+				!fstat(in_fd, &stat) &&
+				(in_buf = malloc(stat.st_size)) &&
+				(readed = read(in_fd, in_buf, stat.st_size)) == stat.st_size)
 			{
 				close(in_fd);
 				ft_printf("%{>*}%r", out_fd, in_buf);
 				close(out_fd);
 				free(in_buf);
-				if (r = snprintf(command,
+				if ((r = snprintf(command,
 						COMMAND_SZ,
 						"diff %s identity_res > identity_diff",
 						*file)) >= 0 &&
@@ -211,7 +211,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 				ft_printf("%{>*}%R", out_fd, in_fd);
 				close(out_fd);
 				close(in_fd);
-				if (r = snprintf(command,
+				if ((r = snprintf(command,
 						COMMAND_SZ,
 						"diff %s identity_res > identity_diff",
 						*file)) >= 0 &&
