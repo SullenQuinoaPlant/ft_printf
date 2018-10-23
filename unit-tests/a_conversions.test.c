@@ -435,11 +435,29 @@ g_be_gentle = 1;
 g_be_gentle = 0;
 	)
 
+	T(test33_b0,
+g_be_gentle = 1;
+		double	d;
+
+		d = 2.378946;
+		printf("d is : %f\t%A\n", d, d);
+		printf_diff("%.2a", d);
+g_be_gentle = 0;
+	)
+
 	T(test33_1,
 		double	d;
 
 		d = 8.078946;
 		printf("d is : %f\t%a\n", d, d);
+		printf_diff("%.2a", d);
+	)
+
+	T(test33_b1,
+		double	d;
+
+		d = 8.078946;
+		printf("d is : %f\t%A\n", d, d);
 		printf_diff("%.2a", d);
 	)
 

@@ -153,7 +153,6 @@ int								round_ccsyl(
 
 	if (at >= syl->len)
 		return (0);
-	syl->len = at;
 	prv = at ? syl->cc[at - 1] : *overflow;
 	carry = 0;
 	if ((rel = less_eq_more_than_mid(syl->cc[at], base)) == 1 ||
