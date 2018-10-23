@@ -1,7 +1,7 @@
 #include "inner.h"
 #include "get_va_args__vaargers.h"
 
-void const	*(*f_ar[e_types_sz])(va_list*) =
+void const *(*const			f_ar[e_types_sz])(va_list*) =
 {
 			vaarg_notype,
 			vaarg_char,
@@ -32,7 +32,9 @@ void const	*(*f_ar[e_types_sz])(va_list*) =
 			vaarg_wint_t
 };
 
-static void	init_t_s_arg_array(size_t len, t_s_arg *ar)
+static void					init_t_s_arg_array(
+	size_t len,
+	t_s_arg *ar)
 {
 	size_t	i;
 
@@ -41,7 +43,8 @@ static void	init_t_s_arg_array(size_t len, t_s_arg *ar)
 		ar[i] = (t_s_arg){e_notype, {0}, (void*)0};
 }
 
-static void	fill_vaarg_ar(t_s_arg *ar)
+static void					fill_vaarg_ar(
+	t_s_arg *ar)
 {
 	t_list			*parsed;
 	t_s_arg			*req_arg;
@@ -60,8 +63,10 @@ static void	fill_vaarg_ar(t_s_arg *ar)
 	}
 }
 
-static void resolve_vaargs(
-	va_list *vaargs, t_s_arg *ar, size_t len)
+static void 				resolve_vaargs(
+	va_list *vaargs,
+	t_s_arg *ar,
+	size_t len)
 {
 	size_t	i;
 
@@ -70,7 +75,8 @@ static void resolve_vaargs(
 		ar[i].p_val = f_ar[ar[i].type](vaargs);
 }
 
-static void	fulfill_arg_reqs(t_s_arg *resolved)
+static void	fulfill_arg_reqs(
+	t_s_arg *resolved)
 {
 	t_list	*parsed;
 	t_s_arg	*required_arg;
@@ -87,21 +93,23 @@ static void	fulfill_arg_reqs(t_s_arg *resolved)
 	}
 }
 
-static void	check_arg_use(
-	t_s_arg *used_args, size_t len)
+static void					check_arg_use(
+	t_s_arg *used_args,
+	size_t len)
 {
 	size_t	i;
 
 	i = -1;
 	while (++i < len)
-		if (! used_args[i].count_uses)
+		if (!used_args[i].count_uses)
 		{
 			g_ps.errored++;
 			break;
 		}
 }
 
-int			get_va_args(va_list *vaargs)
+int							get_va_args(
+	va_list *vaargs)
 {
 	unsigned int	len;
 	size_t			ar_sz;

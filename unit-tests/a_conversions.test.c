@@ -50,13 +50,13 @@ g_be_gentle = 1;
 		double	d;
 
 		d = 1.5;
-		printf("d is : %f\n", d);
+		//printf("d is : %f\n", d);
 		printf_diff("%.0a", d);
 		d = 1.51;
-		printf("d is : %f\n", d);
+		//printf("d is : %f\n", d);
 		printf_diff("%.0a", d);
 		d = 1.6;
-		printf("d is : %f\n", d);
+		//printf("d is : %f\n", d);
 		printf_diff("%.0a", d);
 g_be_gentle = 0;
 	)
@@ -81,7 +81,7 @@ g_be_gentle = 1;
 
 		for (d = 1.5; d < 120.0; d += 1.0)
 		{
-			printf("d is : %f\n", d);
+			//printf("d is : %f\n", d);
 			printf_diff("%.0a", d);
 		}
 g_be_gentle = 0;
@@ -397,7 +397,7 @@ g_be_gentle = 0;
 
 		for (d = 1.5; d < 120.0; d += 1.0)
 		{
-			printf("d is : %f\n", d);
+			//printf("d is : %f\n", d);
 			printf_diff("%.2a", d);
 		}
 	)
@@ -406,9 +406,9 @@ g_be_gentle = 0;
 		double	d;
 
 		d = 1.5;
-		printf("d is : %f\n", d);
+		//printf("d is : %f\n", d);
 		ft_printf("ftprintf gives: %.2a\n", d);
-		printf("printf gives: %.2a\n", d);
+		//printf("printf gives: %.2a\n", d);
 		printf_diff("%.2a", d);
 	)
 
@@ -419,7 +419,7 @@ g_be_gentle = 1;
 
 		for (d = 1.5789456; d < 10.0; d += 0.1)
 		{
-			printf("d is : %f\t%a\n", d, d);
+			//printf("d is : %f\t%a\n", d, d);
 			printf_diff("%.2a", d);
 		}
 g_be_gentle = 0;
@@ -430,7 +430,7 @@ g_be_gentle = 1;
 		double	d;
 
 		d = 2.378946;
-		printf("d is : %f\t%a\n", d, d);
+		//printf("d is : %f\t%a\n", d, d);
 		printf_diff("%.2a", d);
 g_be_gentle = 0;
 	)
@@ -440,7 +440,7 @@ g_be_gentle = 1;
 		double	d;
 
 		d = 2.378946;
-		printf("d is : %f\t%A\n", d, d);
+		//printf("d is : %f\t%A\n", d, d);
 		printf_diff("%.2a", d);
 g_be_gentle = 0;
 	)
@@ -449,7 +449,7 @@ g_be_gentle = 0;
 		double	d;
 
 		d = 8.078946;
-		printf("d is : %f\t%a\n", d, d);
+		//printf("d is : %f\t%a\n", d, d);
 		printf_diff("%.2a", d);
 	)
 
@@ -457,7 +457,7 @@ g_be_gentle = 0;
 		double	d;
 
 		d = 8.078946;
-		printf("d is : %f\t%A\n", d, d);
+		//printf("d is : %f\t%A\n", d, d);
 		printf_diff("%.2a", d);
 	)
 
@@ -473,7 +473,7 @@ g_be_gentle = 0;
 
 		for (d = 1.05; d < 3.0; d += 0.1)
 		{
-			printf("d is : %f\n", d);
+			//printf("d is : %f\n", d);
 			printf_diff("%.2a", d);
 		}
 	)
@@ -483,7 +483,7 @@ g_be_gentle = 0;
 
 		for (d = 1.05; d < 3.0; d += 0.1)
 		{
-			printf("d is : %.1f\n", d);
+			//printf("d is : %.1f\n", d);
 			printf_diff("%.2a", d);
 		}
 	)
@@ -493,7 +493,7 @@ g_be_gentle = 0;
 
 		for (d = 1.05; d < 3.0; d += 0.1)
 		{
-			printf("d is : %.2f\n", d);
+			//printf("d is : %.2f\n", d);
 			printf_diff("%.2a", d);
 		}
 	)
@@ -503,7 +503,7 @@ g_be_gentle = 0;
 
 		for (d = 0x0.01231p0; d < 10.0; d += 0x0.1p0)
 		{
-			printf("d is : %f\t%a\n", d, d);
+			//printf("d is : %f\t%a\n", d, d);
 			printf_diff("%.2a", d);
 		}
 	)
@@ -514,7 +514,7 @@ g_be_gentle = 1;
 
 		for (d = 0x0.01231p0; d < 100.0; d += 0x0.101p0)
 		{
-			printf("d is : %f\t%a\n", d, d);
+			//printf("d is : %f\t%a\n", d, d);
 			printf_diff("%.3a", d);
 		}
 g_be_gentle = 0;
@@ -525,7 +525,7 @@ g_be_gentle = 1;
 		double	d;
 
 		d = 0x1.0a188p-3;
-		printf("d is : %f\t%a\n", d, d);
+		//printf("d is : %f\t%a\n", d, d);
 		printf_diff("%.3a", d);
 g_be_gentle = 0;
 	)
