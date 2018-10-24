@@ -1,5 +1,45 @@
 #include "inner.h"
 
+static long double					log2_to_log10(
+	int32_t p2exp)
+{
+	long double	res;
+
+	res = p2exp;
+	res /= M_LN10L;
+	res *= M_LN2L;
+	return (res);
+}
+
+#define SMALL_NUMBER (long double)UINT64_MAX
+static int							small_number(
+	t_s_fpndfp const *num,
+	t_s_pot *ret)
+{
+	int const	sign = num->dbl < 0 ? -1 : 1;
+	int			pow10;
+	long double	d;
+
+	if ((d = sign * num->dbl) > SMALL_NUMBER)
+		return (0);
+	pow10 = 0;
+	if (d < 1)
+		while (d < 1)
+		{
+			d *= 10.0L;
+			pow10--;
+		}
+	else
+		while (d > 10)
+		{
+			d /= 10.0L;
+			pow10++;
+		}
+	ret->pow10 = pow10;
+	ret->times = d;
+	return (1);
+}
+
 t_s_pot								near_low_pot(
 	t_s_fpndfp const *num)
 {

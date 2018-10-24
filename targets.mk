@@ -16,7 +16,8 @@ TARGETS := \
 	convert_e_stuffers1 \
 	convert_e_stuffers2 \
 	convert_f \
-	convert_fp_to_decimal \
+	convert_fp_to_decimal1 \
+	convert_fp_to_decimal2 \
 	convert_f_stuffers1 \
 	convert_f_stuffers2 \
 	convert_g \
