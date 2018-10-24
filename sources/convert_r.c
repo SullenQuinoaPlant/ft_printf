@@ -38,8 +38,8 @@ void						convert_big_r(
 			b_sz = pre > BUFF_SZ ? BUFF_SZ : pre;
 			pre -= b_sz;
 		}
-		r = read(fd, b, b_sz);
-		output_padnbuffer(b, (size_t[e_oi_sz]){0, b_sz}, chk);
+		if ((r = read(fd, b, b_sz)) > 0)
+			output_padnbuffer(b, (size_t[e_oi_sz]){0, r}, chk);
 	}
 	if (r < 0)
 		g_os.errored++;

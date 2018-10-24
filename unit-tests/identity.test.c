@@ -16,12 +16,10 @@ int	declare_tests_and_run(int all_of, char *these[])
 		"a_conversions.test.c",
 		"a_conversions.test.execution.stamp",
 		"b_achar.ref",
-		"B_achar.ref",
 		"b_conversions.test.c",
 		"b_conversions.test.execution.stamp",
 		"boilerplate.c",
 		"b_twochars.ref",
-		"B_twochars.ref",
 		"c_conversions.test.c",
 		"c_conversions.test.execution.stamp",
 		"convert_decompose_floating_point.donttest.c",
@@ -137,6 +135,7 @@ int	declare_tests_and_run(int all_of, char *these[])
 
 		r = 0;
 		file = files;
+		in_buf = 0;
 		while (*file && !r)
 		{
 			if ((in_fd = open(*file, O_RDONLY)) > 0 &&
@@ -148,9 +147,10 @@ int	declare_tests_and_run(int all_of, char *these[])
 				(readed = read(in_fd, in_buf, stat.st_size)) == stat.st_size)
 			{
 				close(in_fd);
-				ft_printf("%{>*}%r", out_fd, in_buf);
+				ft_printf("%{>*}%.*r", out_fd, (int)stat.st_size, in_buf);
 				close(out_fd);
 				free(in_buf);
+				in_buf = 0;
 				if ((r = snprintf(command,
 						COMMAND_SZ,
 						"diff %s identity_res > identity_diff",
@@ -178,6 +178,8 @@ int	declare_tests_and_run(int all_of, char *these[])
 				r = -1;
 			file++;
 		}
+		if (in_buf)
+			free(in_buf);
 		if (in_fd >= 0)
 			close(in_fd);
 		if (out_fd >= 0)
