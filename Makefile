@@ -31,3 +31,37 @@ include $(UTEST_DIR)/Makefile
 ########
 #DEBUG :
 include $(DEBUG_DIR)/Makefile
+
+##########
+#RELEASE :
+.PHONY : release
+release : $(RELEASE_DIR)
+
+.PHONY : $(RELEASE_DIR)
+$(RELEASE_DIR) :
+	if [ -d $@ ];\
+	then rm -rf $(RELEASE_DIR)/;\
+	fi
+	git clone \
+		--single-branch \
+		-b release \
+		$(GIT_REPO) \
+		$@
+	cd $@ && git rm -rf *
+	cp auteur $@/
+	mkdir $@/sources
+	cp $(SRCS) $@/sources
+	mkdir $@/includes
+	cp $(INCS) $@/includes
+	cp $(patsubst %,$(LIBS_I)/%.h,$(DEPENDENCIES)) $@/includes
+	cp -R $(patsubst %,$(LIB_DIR)/%,$(DEPENDENCIES)) $@/
+	for alib in $(DEPENDENCIES); do\
+		$(MAKE) -C "$@/$$alib" fclean\
+	done
+	cat $(ROOT)/targets.mk $(ROOT)/release_vars.mk \
+		$(ROOT)/core.mk $(ROOT)/release_addendum.mk >\
+		$@/Makefile
+	cd $@ && \
+		git add * && \
+		git commit -m make_release && \
+		git push origin release

@@ -1,5 +1,6 @@
 NAME = ftprintf
 LIBNAME = libftprintf
+GIT_REPO = https://github.com/SullenQuinoaPlant/ft_printf.git
 
 CALL_DIR := $(shell pwd)
 SRC_DIR := $(ROOT)/sources
@@ -12,6 +13,7 @@ OUT_DIR_LIB := $(LIBS_L)
 OUT_DIR_H := $(LIBS_I)
 UTEST_DIR := $(ROOT)/unit-tests
 DEBUG_DIR := $(ROOT)/debug
+RELEASE_DIR := $(ROOT)/release
 
 include $(ROOT)/targets.mk
 SRCS := $(patsubst %,$(SRC_DIR)/%.c,$(TARGETS))

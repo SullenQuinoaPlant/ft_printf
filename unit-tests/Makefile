@@ -60,10 +60,10 @@ $(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 		$<\
 		-L $(LIBS_L)\
 		-lftprintf\
+		$(patsubst lib%,-l%,$(DEPENDENCIES))\
 		$(patsubst lib%,-l%,$(TEST_DEPENDENCIES))\
 		-o $@\
 		-Wl,-rpath,$(LIBS_L)
-#		$(patsubst lib%,-l%,$(DEPENDENCIES))\
 
 
 
