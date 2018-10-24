@@ -50,13 +50,13 @@ g_be_gentle = 1;
 		double	d;
 
 		d = 1.5;
-		//printf("d is : %f\n", d);
+		printf("d is : %f\n", d);
 		printf_diff("%.0a", d);
 		d = 1.51;
-		//printf("d is : %f\n", d);
+		printf("d is : %f\n", d);
 		printf_diff("%.0a", d);
 		d = 1.6;
-		//printf("d is : %f\n", d);
+		printf("d is : %f\n", d);
 		printf_diff("%.0a", d);
 g_be_gentle = 0;
 	)
@@ -449,7 +449,7 @@ g_be_gentle = 0;
 		double	d;
 
 		d = 8.078946;
-		//printf("d is : %f\t%a\n", d, d);
+		printf("d is : %f\t%a\n", d, d);
 		printf_diff("%.2a", d);
 	)
 

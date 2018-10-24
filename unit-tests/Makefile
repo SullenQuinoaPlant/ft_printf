@@ -26,7 +26,7 @@ build_test_dependencies : $(TEST_DEPENDENCIES)
 
 .PHONY : libcmocka
 libcmocka :
-		$(MAKE) -C $(UTEST_DIR)/cmocka/;\
+	$(MAKE) -C $(UTEST_DIR)/cmocka/;\
 
 .PHONY : build_tests
 build_tests : set_utest_flags def $(TEST_OBJS)
@@ -61,9 +61,9 @@ $(UTEST_DIR)/%.test.c $(UTEST_DIR)/printf_diff.c $(LIBS_L)/libftprintf.a
 		-L $(LIBS_L)\
 		-lftprintf\
 		$(patsubst lib%,-l%,$(TEST_DEPENDENCIES))\
-		$(patsubst lib%,-l%,$(DEPENDENCIES))\
 		-o $@\
 		-Wl,-rpath,$(LIBS_L)
+#		$(patsubst lib%,-l%,$(DEPENDENCIES))\
 
 
 

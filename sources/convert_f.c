@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 16:52:19 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 19:49:31 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/25 00:49:02 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,8 @@ static void							set_precision(
 	t_s_pct *chk,
 	t_s_fcs *stf)
 {
-#ifndef MINE
 	if (chk->precision && **chk->precision >= 0)
 		stf->pre = **chk->precision;
-#else
-	if (chk->precision)
-	{
-		if (**chk->precision < 0)
-			stf->pre = (chk->len_mod == e_bigl) ? 17 : 20;
-		else
-			stf->pre = **chk->precision;
-	}
-#endif
 	else
 		stf->pre = 6;
 }

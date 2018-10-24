@@ -29,7 +29,7 @@ $(BUILD_DIR) :
 
 $(SOURCE_DIR) :
 	if [ -d $(SOURCE_DIR) ]; then :; else git clone git://git.cryptomilk.org/projects/cmocka.git $(SOURCE_DIR); fi
-	
+
 
 clean :
 	-rm libcmocka*

@@ -11,8 +11,9 @@ library : $(OUT_DIR_LIB)/$(LIBNAME).a
 
 ##############
 #compilation :
-$(OUT_DIR_LIB)/$(LIBNAME).a : $(OBJS)
-	-ar rcs $@ $^
+$(OUT_DIR_LIB)/$(LIBNAME).a : $(OBJS) $(patsubst %,$(LIBS_L)/%.a,$(DEPENDENCIES))
+	-libtool -static -o $@ -s $^
+#	-ar rcs $@ $^
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS)\

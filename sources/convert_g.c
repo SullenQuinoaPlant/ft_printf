@@ -6,7 +6,7 @@
 /*   By: nmauvari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/09 12:45:10 by nmauvari          #+#    #+#             */
-/*   Updated: 2018/10/09 18:05:01 by nmauvari         ###   ########.fr       */
+/*   Updated: 2018/10/25 00:41:40 by nmauvari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ static void						set_precision(
 	if (chk->precision)
 	{
 		if (**chk->precision < 0)
-			stf->pre = (chk->len_mod == e_bigl) ? 17 : 20;
+#ifdef PRTF_BEHAVIOR_MAC
+			stf->pre = 6;
+#else
+			stf->pre = 0;
+#endif
 		else if (!(stf->pre = **chk->precision))
 			stf->pre = 1;
 	}
