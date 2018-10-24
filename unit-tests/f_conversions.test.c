@@ -95,6 +95,15 @@ g_be_gentle = 1;
 g_be_gentle = 0;
 	)
 
+	T(test5_1_4,
+g_be_gentle = 1;
+		double	d;
+
+		d = 117.5;
+		printf_diff("%.0f", d);
+g_be_gentle = 0;
+	)
+
 	T(test5_2,
 		double	d;
 

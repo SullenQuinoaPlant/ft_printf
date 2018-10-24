@@ -47,9 +47,10 @@ static void							set_precision(
 	t_s_pct *chk,
 	t_s_fcs *stf)
 {
+#ifndef MINE
 	if (chk->precision && **chk->precision >= 0)
 		stf->pre = **chk->precision;
-/*
+#else
 	if (chk->precision)
 	{
 		if (**chk->precision < 0)
@@ -57,7 +58,7 @@ static void							set_precision(
 		else
 			stf->pre = **chk->precision;
 	}
-*/
+#endif
 	else
 		stf->pre = 6;
 }
@@ -73,11 +74,7 @@ static int							set_number(
 		return (0);
 	stf->number = near_low_pot(&num);
 	roundat = -(stf->number.pow10 + stf->pre);
-#ifndef MINE
 	round_ldouble(&stf->number.times, roundat);
-#else
-	round_ldouble(&stf->number.times, roundat);
-#endif
 	if (stf->number.times > 10)
 	{
 		stf->number.times /= 10.0;
