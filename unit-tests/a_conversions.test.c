@@ -514,7 +514,7 @@ g_be_gentle = 1;
 
 		for (d = 0x0.01231p0; d < 100.0; d += 0x0.101p0)
 		{
-			//printf("d is : %f\t%a\n", d, d);
+			printf("d is : %f\t%a\n", d, d);
 			printf_diff("%.3a", d);
 		}
 g_be_gentle = 0;
