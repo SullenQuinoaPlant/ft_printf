@@ -14,6 +14,7 @@ OUT_DIR_H := $(LIBS_I)
 
 SRCS := $(patsubst %,$(SRC_DIR)/%.c,$(TARGETS))
 OBJS := $(patsubst %,$(OBJ_DIR)/%.o,$(TARGETS))
+OBJS += $(patsubst %,$(LIB_DIR)/objects/*.o,$(DEPENDENCIES))
 
 DEPENDENCIES =\
 	libmyvaltobuffers\
@@ -50,6 +51,11 @@ ifeq ($(BEHAVIOR), PRTF_BEHAVIOR_MINE)
 	ROUNDING_BEHAVIOR := PRTF_ROUNDING_BEHAVIOR_AWAY
 endif
 
+ifdef FAT_STATIC_LIBRARY
+	PREREQUISITES := $(patsubst %,$(LIBS_L)/%.a,$(DEPENDENCIES)) $(OBJS)
+else
+	PREREQUISITES := $(OBJS)
+endif
 
 
 CC := gcc

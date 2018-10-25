@@ -53,6 +53,12 @@ ifeq ($(BEHAVIOR), PRTF_BEHAVIOR_MINE)
 	ROUNDING_BEHAVIOR := PRTF_ROUNDING_BEHAVIOR_AWAY
 endif
 
+ifdef FAT_STATIC_LIBRARY
+	PREREQUISITES := $(patsubst %,$(LIBS_L)/%.a,$(DEPENDENCIES)) $(OBJS)
+else
+	PREREQUISITES := $(OBJS)
+endif
+
 
 #################
 #compiling tools:

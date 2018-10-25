@@ -12,14 +12,8 @@ library : $(OUT_DIR_LIB)/$(LIBNAME).a
 ##############
 #compilation :
 
-ifdef FAT_STATIC_LIBRARY
-	PREREQUISITES := $(patsubst %,$(LIBS_L)/%.a,$(DEPENDENCIES)) $(OBJS)
-else
-	PREREQUISITES := $(OBJS)
-endif
-
-$(OUT_DIR_LIB)/$(LIBNAME).a : $(PREREQUISITES)
-	-libtool -static -o $@ -s $(PREREQUISITES)
+$(OUT_DIR_LIB)/$(LIBNAME).a : $(OBJS)
+	-ar -rcs $@ $^
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS)\

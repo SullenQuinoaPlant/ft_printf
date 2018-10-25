@@ -3,3 +3,4 @@
 identity_diff
 identity_res
 *.dSYM
+*.log
