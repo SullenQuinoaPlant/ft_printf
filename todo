@@ -1,9 +1,3 @@
-conversions : r(R needs read) %
-
-test : kK O U #s #S
-
-
-make it work again.
 make it global-state-less
 
 control chunk arguments : output_state, always, variable array of void pointers.
@@ -14,6 +8,6 @@ use this to:
 	- count utf8 symbor output (count leading 0s and leading 11s)
 	- change otuput string/file
 
+rounding on %a for MAC not consistent with native behavior
+
 ----------REPAIRS--------------
-find how the fuck they round floating point values, and do it like them.
-convert_f isn't functional atm.
