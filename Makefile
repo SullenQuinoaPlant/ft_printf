@@ -90,6 +90,7 @@ TARGETS := \
 NAME = ftprintf
 LIBNAME = libftprintf
 
+ROOT := .
 SRC_DIR := $(ROOT)/sources
 INC_DIR := $(ROOT)/includes
 OBJ_DIR := $(ROOT)/objects
