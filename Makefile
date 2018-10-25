@@ -189,6 +189,7 @@ fclean : clean
 	-rm $(OUT_DIR_H)/$(LIBNAME).h
 
 re : fclean all
+
 .PHONY : $(DEPENDENCIES)
 $(DEPENDENCIES) :
 	$(MAKE) -C $(LIB_DIR)/$@
