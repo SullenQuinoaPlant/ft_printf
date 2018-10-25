@@ -11,12 +11,13 @@ library : $(OUT_DIR_LIB)/$(LIBNAME).a
 
 ##############
 #compilation :
-$(OUT_DIR_LIB)/$(LIBNAME).a \
-: \
 ifdef FAT_STATIC_LIBRARY
-$(patsubst %,$(LIBS_L)/%.a,$(DEPENDENCIES)) \
-endif
+$(OUT_DIR_LIB)/$(LIBNAME).a :\
+$(patsubst %,$(LIBS_L)/%.a,$(DEPENDENCIES)) $(OBJS)\
+else
+$(OUT_DIR_LIB)/$(LIBNAME).a :\
 $(OBJS)
+endif
 	-libtool -static -o $@ -s $^
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c

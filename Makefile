@@ -56,7 +56,7 @@ $(RELEASE_DIR) :
 	cp $(patsubst %,$(LIBS_I)/%.h,$(DEPENDENCIES)) $@/includes
 	cp -R $(patsubst %,$(LIB_DIR)/%,$(DEPENDENCIES)) $@/
 	for alib in $(DEPENDENCIES); do\
-		$(MAKE) -C "$@/$$alib" fclean\
+		$(MAKE) -C "$@/$${alib}" fclean;\
 	done
 	cat $(ROOT)/targets.mk $(ROOT)/release_vars.mk \
 		$(ROOT)/core.mk $(ROOT)/release_addendum.mk >\

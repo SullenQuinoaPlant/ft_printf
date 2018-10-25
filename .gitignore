@@ -4,3 +4,6 @@
 *.a
 stuff/
 *.txt
+release/
+Vagrantfile
+.vagrant/
