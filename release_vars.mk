@@ -23,8 +23,6 @@ DEPENDENCIES =\
 	libmyfloatingpoint\
 	libft
 
-FAT_STATIC_LIBRARY = 1
-
 
 ####################
 #compiling options :
