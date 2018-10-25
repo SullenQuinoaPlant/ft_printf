@@ -53,14 +53,10 @@ $(RELEASE_DIR) :
 	cp $(SRCS) $@/sources
 	mkdir $@/includes
 	cp $(INCS) $@/includes
-	mkdir $@/objects
 	cp $(patsubst %,$(LIBS_I)/%.h,$(DEPENDENCIES)) $@/includes
-	cp -R $(patsubst %,$(LIB_DIR)/%,$(DEPENDENCIES)) $@/
-	for alib in $(DEPENDENCIES); do\
-		$(MAKE) -C "$@/$${alib}" fclean;\
-	done
+	mkdir $@/objects
 	cat $(ROOT)/targets.mk $(ROOT)/release_vars.mk \
-		$(ROOT)/core.mk $(ROOT)/release_addendum.mk >\
+		$(ROOT)/core.mk >\
 		$@/Makefile
 	cd $@ && \
 		git add * && \
