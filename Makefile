@@ -53,6 +53,7 @@ $(RELEASE_DIR) :
 	cp $(SRCS) $@/sources
 	mkdir $@/includes
 	cp $(INCS) $@/includes
+	mkdir $@/objects
 	cp $(patsubst %,$(LIBS_I)/%.h,$(DEPENDENCIES)) $@/includes
 	cp -R $(patsubst %,$(LIB_DIR)/%,$(DEPENDENCIES)) $@/
 	for alib in $(DEPENDENCIES); do\

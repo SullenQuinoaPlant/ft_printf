@@ -2,13 +2,14 @@
 NAME = ftprintf
 LIBNAME = libftprintf
 
+ROOT := .
 SRC_DIR := $(ROOT)/sources
 INC_DIR := $(ROOT)/includes
 OBJ_DIR := $(ROOT)/objects
 LIB_DIR := $(ROOT)
 LIBS_L := $(LIB_DIR)/objects
 LIBS_I := $(LIB_DIR)/includes
-OUT_DIR_LIB := $(ROT)
+OUT_DIR_LIB := $(ROOT)
 OUT_DIR_H := $(LIBS_I)
 
 SRCS := $(patsubst %,$(SRC_DIR)/%.c,$(TARGETS))
